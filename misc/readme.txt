@@ -1,0 +1,1 @@
+Mettre dans ce repertoire tout ce qui n'as rien à voir avec le code (rapports, diapos, diagrammes, schémas, notes ...)
