@@ -7,6 +7,7 @@ class Todo extends CI_Controller
 	{
 		parent::__construct();
 		// Chargement des modèles et des helpers (librairies) nécéssaires.
+		//
 		$this -> load -> model( 'TodoModel' ); // Définis également le nom pour accéder au modèle
 		$this -> load -> helper( 'url' );
 	}
