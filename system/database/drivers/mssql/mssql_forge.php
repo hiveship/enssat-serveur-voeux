@@ -69,6 +69,7 @@ class CI_DB_mssql_forge extends CI_DB_forge
 	 * @var array
 	 */
 	protected $_unsigned = array ( 
+		
 			'TINYINT' => 'SMALLINT', 
 			'SMALLINT' => 'INT', 
 			'INT' => 'BIGINT', 
@@ -88,6 +89,7 @@ class CI_DB_mssql_forge extends CI_DB_forge
 	protected function _alter_table ( $alter_type, $table, $field )
 	{
 		if ( in_array( $alter_type, array ( 
+			
 				'ADD', 
 				'DROP' 
 		), TRUE ) ) {

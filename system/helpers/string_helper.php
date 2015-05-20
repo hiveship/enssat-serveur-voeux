@@ -111,6 +111,7 @@ if ( ! function_exists( 'strip_quotes' ) ) {
 	function strip_quotes ( $str )
 	{
 		return str_replace( array ( 
+			
 				'"', 
 				"'" 
 		), '', $str );
@@ -132,11 +133,13 @@ if ( ! function_exists( 'quotes_to_entities' ) ) {
 	function quotes_to_entities ( $str )
 	{
 		return str_replace( array ( 
+			
 				"\'", 
 				"\"", 
 				"'", 
 				'"' 
 		), array ( 
+			
 				"&#39;", 
 				"&quot;", 
 				"&#39;", 
@@ -173,7 +176,8 @@ if ( ! function_exists( 'reduce_multiples' ) ) {
 
 	/**
 	 * Reduce Multiples
-	 * Reduces multiple instances of a particular character. Example:
+	 * Reduces multiple instances of a particular character.
+	 * Example:
 	 * Fred, Bill,, Joe, Jimmy
 	 * becomes:
 	 * Fred, Bill, Joe, Jimmy
@@ -269,7 +273,8 @@ if ( ! function_exists( 'alternator' ) ) {
 
 	/**
 	 * Alternator
-	 * Allows strings to be alternated. See docs...
+	 * Allows strings to be alternated.
+	 * See docs...
 	 * 
 	 * @param
 	 *        	string (as many parameters as needed)

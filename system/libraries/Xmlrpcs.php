@@ -143,23 +143,31 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 	public function set_system_methods ()
 	{
 		$this -> methods = array ( 
+			
 				'system.listMethods' => array ( 
+					
 						'function' => 'this.listMethods', 
 						'signature' => array ( 
+							
 								array ( 
+									
 										$this -> xmlrpcArray, 
 										$this -> xmlrpcString 
 								), 
 								array ( 
+									
 										$this -> xmlrpcArray 
 								) 
 						), 
 						'docstring' => 'Returns an array of available methods on this server' 
 				), 
 				'system.methodHelp' => array ( 
+					
 						'function' => 'this.methodHelp', 
 						'signature' => array ( 
+							
 								array ( 
+									
 										$this -> xmlrpcString, 
 										$this -> xmlrpcString 
 								) 
@@ -167,9 +175,12 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 						'docstring' => 'Returns a documentation string for the specified method' 
 				), 
 				'system.methodSignature' => array ( 
+					
 						'function' => 'this.methodSignature', 
 						'signature' => array ( 
+							
 								array ( 
+									
 										$this -> xmlrpcArray, 
 										$this -> xmlrpcString 
 								) 
@@ -177,9 +188,12 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 						'docstring' => 'Returns an array describing the return type and required parameters of a method' 
 				), 
 				'system.multicall' => array ( 
+					
 						'function' => 'this.multicall', 
 						'signature' => array ( 
+							
 								array ( 
+									
 										$this -> xmlrpcArray, 
 										$this -> xmlrpcArray 
 								) 
@@ -224,6 +238,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 	public function add_to_map ( $methodname, $function, $sig, $doc )
 	{
 		$this -> methods [$methodname] = array ( 
+			
 				'function' => $function, 
 				'signature' => $sig, 
 				'docstring' => $doc 
@@ -261,6 +276,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		$pname = ( string ) $parser;
 		
 		$parser_object -> xh [$pname] = array ( 
+			
 				'isf' => 0, 
 				'isf_reason' => '', 
 				'params' => array (), 
@@ -354,12 +370,14 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		
 		if ( $system_call === TRUE ) {
 			if ( ! is_callable( array ( 
+				
 					$this, 
 					$method_parts [1] 
 			) ) ) {
 				return new XML_RPC_Response( 0, $this -> xmlrpcerr ['unknown_method'], $this -> xmlrpcstr ['unknown_method'] );
 			}
 		} elseif ( ( $objectCall && ! is_callable( array ( 
+			
 				$method_parts [0], 
 				$method_parts [1] 
 		) ) ) or ( ! $objectCall && ! is_callable( $this -> methods [$methName] ['function'] ) ) ) {
@@ -398,6 +416,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		if ( $objectCall === TRUE ) {
 			if ( $method_parts [0] === 'this' && $system_call === TRUE ) {
 				return call_user_func( array ( 
+					
 						$this, 
 						$method_parts [1] 
 				), $m );
@@ -531,6 +550,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 			}
 			
 			$result [] = new XML_RPC_Values( array ( 
+				
 					$attempt -> value() 
 			), 'array' );
 		}
@@ -602,6 +622,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		}
 		
 		return new XML_RPC_Values( array ( 
+			
 				$result -> value() 
 		), 'array' );
 	}

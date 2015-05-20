@@ -59,6 +59,7 @@ class CI_Profiler
 	 * @var array
 	 */
 	protected $_available_sections = array ( 
+		
 			'benchmarks', 
 			'get', 
 			'memory_usage', 
@@ -143,7 +144,8 @@ class CI_Profiler
 	 * Auto Profiler
 	 * This function cycles through the entire array of mark points and
 	 * matches any two points that are named identically (ending in "_start"
-	 * and "_end" respectively). It then compiles the execution times for
+	 * and "_end" respectively).
+	 * It then compiles the execution times for
 	 * all points and returns it as an array
 	 * 
 	 * @return array
@@ -167,6 +169,7 @@ class CI_Profiler
 		
 		foreach ( $profile as $key => $val ) {
 			$key = ucwords( str_replace( array ( 
+				
 					'_', 
 					'-' 
 			), ' ', $key ) );
@@ -211,6 +214,7 @@ class CI_Profiler
 		
 		// Key words we want bolded
 		$highlight = array ( 
+			
 				'SELECT', 
 				'DISTINCT', 
 				'FROM', 
@@ -405,6 +409,7 @@ class CI_Profiler
 		$output = "\n\n" . '<fieldset id="ci_profiler_http_headers" style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">' . "\n" . '<legend style="color:#000;">&nbsp;&nbsp;' . $this -> CI -> lang -> line( 'profiler_headers' ) . '&nbsp;&nbsp;(<span style="cursor: pointer;" onclick="var s=document.getElementById(\'ci_profiler_httpheaders_table\').style;s.display=s.display==\'none\'?\'\':\'none\';this.innerHTML=this.innerHTML==\'' . $this -> CI -> lang -> line( 'profiler_section_show' ) . '\'?\'' . $this -> CI -> lang -> line( 'profiler_section_hide' ) . '\':\'' . $this -> CI -> lang -> line( 'profiler_section_show' ) . '\';">' . $this -> CI -> lang -> line( 'profiler_section_show' ) . "</span>)</legend>\n\n\n" . '<table style="width:100%;display:none;" id="ci_profiler_httpheaders_table">' . "\n";
 		
 		foreach ( array ( 
+			
 				'HTTP_ACCEPT', 
 				'HTTP_USER_AGENT', 
 				'HTTP_CONNECTION', 

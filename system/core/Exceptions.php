@@ -62,6 +62,7 @@ class CI_Exceptions
 	 * @var array
 	 */
 	public $levels = array ( 
+		
 			E_ERROR => 'Error', 
 			E_WARNING => 'Warning', 
 			E_PARSE => 'Parsing Error', 

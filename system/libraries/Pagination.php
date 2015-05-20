@@ -328,6 +328,7 @@ class CI_Pagination
 		$this -> CI = & get_instance();
 		$this -> CI -> load -> language( 'pagination' );
 		foreach ( array ( 
+			
 				'first_link', 
 				'next_link', 
 				'prev_link', 
@@ -446,6 +447,7 @@ class CI_Pagination
 			// Add the page segment to the end of the query string, where the
 			// page number will be appended.
 			$base_url .= $query_string_sep . http_build_query( array_merge( $get, array ( 
+				
 					$this -> query_string_segment => '' 
 			) ) );
 		} else {
@@ -486,6 +488,7 @@ class CI_Pagination
 			// Remove any specified prefix/suffix from the segment.
 			if ( $this -> prefix !== '' or $this -> suffix !== '' ) {
 				$this -> cur_page = str_replace( array ( 
+					
 						$this -> prefix, 
 						$this -> suffix 
 				), '', $this -> cur_page );
@@ -611,6 +614,7 @@ class CI_Pagination
 	{
 		isset( $attributes ['rel'] ) or $attributes ['rel'] = TRUE;
 		$this -> _link_types = ( $attributes ['rel'] ) ? array ( 
+			
 				'start' => 'start', 
 				'prev' => 'prev', 
 				'next' => 'next' 

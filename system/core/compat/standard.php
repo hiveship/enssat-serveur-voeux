@@ -69,6 +69,7 @@ if ( ! function_exists( 'array_column' ) ) {
 	function array_column ( array $array, $column_key, $index_key = NULL )
 	{
 		if ( ! in_array( $type = gettype( $column_key ), array ( 
+			
 				'integer', 
 				'string', 
 				'NULL' 
@@ -84,6 +85,7 @@ if ( ! function_exists( 'array_column' ) ) {
 		}
 		
 		if ( ! in_array( $type = gettype( $index_key ), array ( 
+			
 				'integer', 
 				'string', 
 				'NULL' 
@@ -139,6 +141,7 @@ if ( ! function_exists( 'hex2bin' ) ) {
 	function hex2bin ( $data )
 	{
 		if ( in_array( $type = gettype( $data ), array ( 
+			
 				'array', 
 				'double', 
 				'object' 
@@ -277,6 +280,7 @@ if ( ! function_exists( 'quoted_printable_encode' ) ) {
 		if ( strlen( $str ) === 0 ) {
 			return '';
 		} elseif ( in_array( $type = gettype( $str ), array ( 
+			
 				'array', 
 				'object' 
 		), TRUE ) ) {

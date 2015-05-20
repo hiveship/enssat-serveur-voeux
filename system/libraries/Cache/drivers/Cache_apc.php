@@ -52,7 +52,8 @@ class CI_Cache_apc extends CI_Driver
 
 	/**
 	 * Get
-	 * Look for a value in the cache. If it exists, return the data
+	 * Look for a value in the cache.
+	 * If it exists, return the data
 	 * if not, return FALSE
 	 * 
 	 * @param
@@ -90,6 +91,7 @@ class CI_Cache_apc extends CI_Driver
 		$ttl = ( int ) $ttl;
 		
 		return apc_store( $id, ( $raw === TRUE ? $data : array ( 
+			
 				serialize( $data ), 
 				time(), 
 				$ttl 
@@ -187,6 +189,7 @@ class CI_Cache_apc extends CI_Driver
 		list ( $data, $time, $ttl ) = $stored;
 		
 		return array ( 
+			
 				'expire' => $time + $ttl, 
 				'mtime' => $time, 
 				'data' => unserialize( $data ) 

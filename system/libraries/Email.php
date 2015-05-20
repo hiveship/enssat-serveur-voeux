@@ -189,7 +189,8 @@ class CI_Email
 	/**
 	 * CRLF character sequence
 	 * RFC 2045 specifies that for 'quoted-printable' encoding,
-	 * "\r\n" must be used. However, it appears that some servers
+	 * "\r\n" must be used.
+	 * However, it appears that some servers
 	 * (even on the receiving end) don't handle it properly and
 	 * switching to "\n", while improper, is the only solution
 	 * that seems to work for all environments.
@@ -359,6 +360,7 @@ class CI_Email
 	 * @var string[]
 	 */
 	protected $_protocols = array ( 
+		
 			'mail', 
 			'sendmail', 
 			'smtp' 
@@ -372,6 +374,7 @@ class CI_Email
 	 * @var string[]
 	 */
 	protected $_base_charsets = array ( 
+		
 			'us-ascii', 
 			'iso-2022-' 
 	);
@@ -384,6 +387,7 @@ class CI_Email
 	 * @var string[]
 	 */
 	protected $_bit_depths = array ( 
+		
 			'7bit', 
 			'8bit' 
 	);
@@ -395,6 +399,7 @@ class CI_Email
 	 * @var string[]
 	 */
 	protected $_priorities = array ( 
+		
 			1 => '1 (Highest)', 
 			2 => '2 (High)', 
 			3 => '3 (Normal)', 
@@ -745,7 +750,9 @@ class CI_Email
 		}
 		
 		$this -> _attachments [] = array ( 
+			
 				'name' => array ( 
+					
 						$file, 
 						$newname 
 				), 
@@ -796,6 +803,7 @@ class CI_Email
 	public function set_header ( $header, $value )
 	{
 		$this -> _headers [$header] = str_replace( array ( 
+			
 				"\n", 
 				"\r" 
 		), '', $value );
@@ -906,6 +914,7 @@ class CI_Email
 	public function set_newline ( $newline = "\n" )
 	{
 		$this -> newline = in_array( $newline, array ( 
+			
 				"\n", 
 				"\r\n", 
 				"\r" 
@@ -951,6 +960,7 @@ class CI_Email
 	protected function _get_message_id ()
 	{
 		$from = str_replace( array ( 
+			
 				'>', 
 				'<' 
 		), '', $this -> _headers ['Return-Path'] );
@@ -1166,6 +1176,7 @@ class CI_Email
 		// Standardize newlines
 		if ( strpos( $str, "\r" ) !== FALSE ) {
 			$str = str_replace( array ( 
+				
 					"\r\n", 
 					"\r" 
 			), "\n", $str );
@@ -1403,6 +1414,7 @@ class CI_Email
 		// We are intentionally wrapping so mail servers will encode characters
 		// properly and MUAs will behave, so {unwrap} must go!
 		$str = str_replace( array ( 
+			
 				'{unwrap}', 
 				'{/unwrap}' 
 		), '', $str );
@@ -1421,9 +1433,11 @@ class CI_Email
 		
 		// Reduce multiple spaces & remove nulls
 		$str = preg_replace( array ( 
+			
 				'| +|', 
 				'/\x00+/' 
 		), array ( 
+			
 				' ', 
 				'' 
 		), $str );
@@ -1431,6 +1445,7 @@ class CI_Email
 		// Standardize newlines
 		if ( strpos( $str, "\r" ) !== FALSE ) {
 			$str = str_replace( array ( 
+				
 					"\r\n", 
 					"\r" 
 			), "\n", $str );
@@ -1493,6 +1508,7 @@ class CI_Email
 	protected function _prep_q_encoding ( $str )
 	{
 		$str = str_replace( array ( 
+			
 				"\r", 
 				"\n" 
 		), '', $str );
@@ -1502,6 +1518,7 @@ class CI_Email
 				return mb_encode_mimeheader( $str, $this -> charset, 'Q', $this -> crlf );
 			} elseif ( ICONV_ENABLED === TRUE ) {
 				$output = @iconv_mime_encode( '', $str, array ( 
+					
 						'scheme' => 'Q', 
 						'line-length' => 76, 
 						'input-charset' => $this -> charset, 
@@ -1653,6 +1670,7 @@ class CI_Email
 	protected function _unwrap_specials ()
 	{
 		$this -> _finalbody = preg_replace_callback( '/\{unwrap\}(.*?)\{\/unwrap\}/si', array ( 
+			
 				$this, 
 				'_remove_nl_callback' 
 		), $this -> _finalbody );
@@ -1670,6 +1688,7 @@ class CI_Email
 	{
 		if ( strpos( $matches [1], "\r" ) !== FALSE or strpos( $matches [1], "\n" ) !== FALSE ) {
 			$matches [1] = str_replace( array ( 
+				
 					"\r\n", 
 					"\r", 
 					"\n" 
@@ -2076,6 +2095,7 @@ class CI_Email
 		// Determine which parts of our raw data needs to be printed
 		$raw_data = '';
 		is_array( $include ) or $include = array ( 
+			
 				$include 
 		);
 		

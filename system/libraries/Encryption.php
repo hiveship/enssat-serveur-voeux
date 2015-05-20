@@ -98,7 +98,9 @@ class CI_Encryption
 	 * @var array
 	 */
 	protected $_modes = array ( 
+		
 			'mcrypt' => array ( 
+				
 					'cbc' => 'cbc', 
 					'ecb' => 'ecb', 
 					'ofb' => 'nofb', 
@@ -109,6 +111,7 @@ class CI_Encryption
 					'stream' => 'stream' 
 			), 
 			'openssl' => array ( 
+				
 					'cbc' => 'cbc', 
 					'ecb' => 'ecb', 
 					'ofb' => 'ofb', 
@@ -127,6 +130,7 @@ class CI_Encryption
 	 * @var array
 	 */
 	protected $_digests = array ( 
+		
 			'sha224' => 28, 
 			'sha256' => 32, 
 			'sha384' => 48, 
@@ -151,6 +155,7 @@ class CI_Encryption
 	public function __construct ( array $params = array() )
 	{
 		$this -> _drivers = array ( 
+			
 				'mcrypt' => defined( 'MCRYPT_DEV_URANDOM' ), 
 				// While OpenSSL is available for PHP 5.3.0, an IV parameter
 				// for the encrypt/decrypt functions is only available since 5.3.3
@@ -361,6 +366,7 @@ class CI_Encryption
 		// Use PKCS#7 padding in order to ensure compatibility with OpenSSL
 		// and other implementations outside of PHP.
 		if ( in_array( strtolower( mcrypt_enc_get_modes_name( $params ['handle'] ) ), array ( 
+			
 				'cbc', 
 				'ecb' 
 		), TRUE ) ) {
@@ -507,6 +513,7 @@ $iv );
 		$data = mdecrypt_generic( $params ['handle'], $data );
 		// Remove PKCS#7 padding, if necessary
 		if ( in_array( strtolower( mcrypt_enc_get_modes_name( $params ['handle'] ) ), array ( 
+			
 				'cbc', 
 				'ecb' 
 		), TRUE ) ) {
@@ -555,6 +562,7 @@ $iv );
 	{
 		if ( empty( $params ) ) {
 			return isset( $this -> _cipher, $this -> _mode, $this -> _key, $this -> _handle ) ? array ( 
+				
 					'handle' => $this -> _handle, 
 					'cipher' => $this -> _cipher, 
 					'mode' => $this -> _mode, 
@@ -592,6 +600,7 @@ $iv );
 		}
 		
 		$params = array ( 
+			
 				'handle' => NULL, 
 				'cipher' => $params ['cipher'], 
 				'mode' => $params ['mode'], 
@@ -651,7 +660,9 @@ $iv );
 		
 		if ( empty( $dictionary ) ) {
 			$dictionary = array ( 
+				
 					'mcrypt' => array ( 
+						
 							'aes-128' => 'rijndael-128', 
 							'aes-192' => 'rijndael-128', 
 							'aes-256' => 'rijndael-128', 
@@ -662,6 +673,7 @@ $iv );
 							'rc4-40' => 'arcfour' 
 					), 
 					'openssl' => array ( 
+						
 							'rijndael-128' => 'aes-128', 
 							'tripledes' => 'des-ede3', 
 							'blowfish' => 'bf', 
@@ -762,6 +774,7 @@ $iv );
 		if ( $key === 'mode' ) {
 			return array_search( $this -> _mode, $this -> _modes [$this -> _driver], TRUE );
 		} elseif ( in_array( $key, array ( 
+			
 				'cipher', 
 				'driver', 
 				'drivers', 

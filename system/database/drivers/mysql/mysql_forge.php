@@ -69,6 +69,7 @@ class CI_DB_mysql_forge extends CI_DB_forge
 	 * @var array
 	 */
 	protected $_unsigned = array ( 
+		
 			'TINYINT', 
 			'SMALLINT', 
 			'MEDIUMINT', 
@@ -152,6 +153,7 @@ class CI_DB_mysql_forge extends CI_DB_forge
 		}
 		
 		return array ( 
+			
 				$sql . implode( ',', $field ) 
 		);
 	}
@@ -201,6 +203,7 @@ class CI_DB_mysql_forge extends CI_DB_forge
 			}
 			
 			is_array( $this -> keys [$i] ) or $this -> keys [$i] = array ( 
+				
 					$this -> keys [$i] 
 			);
 			

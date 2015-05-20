@@ -248,7 +248,8 @@ if ( ! function_exists( 'days_in_month' ) ) {
 	/**
 	 * Number of days in a month
 	 * Takes a month/year as input and returns the number of days
-	 * for the given month/year. Takes leap years into consideration.
+	 * for the given month/year.
+	 * Takes leap years into consideration.
 	 * 
 	 * @param
 	 *        	int a numeric month
@@ -279,6 +280,7 @@ if ( ! function_exists( 'days_in_month' ) ) {
 		}
 		
 		$days_in_month = array ( 
+			
 				31, 
 				28, 
 				31, 
@@ -365,6 +367,7 @@ if ( ! function_exists( 'mysql_to_unix' ) ) {
 		// YYYY-MM-DD HH:MM:SS
 		
 		$time = str_replace( array ( 
+			
 				'-', 
 				':', 
 				' ' 
@@ -481,6 +484,7 @@ if ( ! function_exists( 'nice_date' ) ) {
 		// Date like: YYYYMM
 		if ( preg_match( '/^\d{6}$/i', $bad_date ) ) {
 			if ( in_array( substr( $bad_date, 0, 2 ), array ( 
+				
 					'19', 
 					'20' 
 			) ) ) {
@@ -564,7 +568,8 @@ if ( ! function_exists( 'timezones' ) ) {
 
 	/**
 	 * Timezones
-	 * Returns an array of timezones. This is a helper function
+	 * Returns an array of timezones.
+	 * This is a helper function
 	 * for various other ones in this library
 	 * 
 	 * @param
@@ -577,6 +582,7 @@ if ( ! function_exists( 'timezones' ) ) {
 		// some items appear to be in the wrong order
 		
 		$zones = array ( 
+			
 				'UM12' => - 12, 
 				'UM11' => - 11, 
 				'UM10' => - 10, 
@@ -664,6 +670,7 @@ if ( ! function_exists( 'date_range' ) ) {
 		
 		if ( $is_unix && ( $unix_start == $mixed or date( $format, $unix_start ) === date( $format, $mixed ) ) ) {
 			return array ( 
+				
 					date( $format, $unix_start ) 
 			);
 		}

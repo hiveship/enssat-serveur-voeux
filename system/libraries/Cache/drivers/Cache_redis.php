@@ -57,6 +57,7 @@ class CI_Cache_redis extends CI_Driver
 	 * @var array
 	 */
 	protected static $_default_config = array ( 
+		
 			'socket_type' => 'tcp', 
 			'host' => '127.0.0.1', 
 			'password' => NULL, 
@@ -227,6 +228,7 @@ class CI_Cache_redis extends CI_Driver
 		
 		if ( $value ) {
 			return array ( 
+				
 					'expire' => time() + $this -> _redis -> ttl( $key ), 
 					'data' => $value 
 			);
@@ -256,7 +258,8 @@ class CI_Cache_redis extends CI_Driver
 	
 	/**
 	 * Setup Redis config and connection
-	 * Loads Redis config file if present. Will halt execution
+	 * Loads Redis config file if present.
+	 * Will halt execution
 	 * if a Redis connection can't be established.
 	 * 
 	 * @return bool

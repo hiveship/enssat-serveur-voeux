@@ -182,6 +182,7 @@ if ( ! function_exists( 'img' ) ) {
 	{
 		if ( ! is_array( $src ) ) {
 			$src = array ( 
+				
 					'src' => $src 
 			);
 		}
@@ -335,7 +336,9 @@ if ( ! function_exists( 'meta' ) ) {
 		// or a multidimensional one, we need to do a little prepping.
 		if ( ! is_array( $name ) ) {
 			$name = array ( 
+				
 					array ( 
+						
 							'name' => $name, 
 							'content' => $content, 
 							'type' => $type, 
@@ -345,6 +348,7 @@ if ( ! function_exists( 'meta' ) ) {
 		} elseif ( isset( $name ['name'] ) ) {
 			// Turn single array into multidimensional
 			$name = array ( 
+				
 					$name 
 			);
 		}

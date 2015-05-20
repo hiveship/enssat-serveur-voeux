@@ -77,6 +77,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'NEWID()', 
 			'RAND(%d)' 
 	);
@@ -119,11 +120,13 @@ class CI_DB_sqlsrv_driver extends CI_DB
 	public function db_connect ( $pooling = FALSE )
 	{
 		$charset = in_array( strtolower( $this -> char_set ), array ( 
+			
 				'utf-8', 
 				'utf8' 
 		), TRUE ) ? 'UTF-8' : SQLSRV_ENC_CHAR;
 		
 		$connection = array ( 
+			
 				'UID' => empty( $this -> username ) ? '' : $this -> username, 
 				'PWD' => empty( $this -> password ) ? '' : $this -> password, 
 				'Database' => $this -> database, 
@@ -146,6 +149,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
 		$query = $query -> row_array();
 		$this -> _quoted_identifier = empty( $query ) ? FALSE : ( bool ) $query ['qi'];
 		$this -> _escape_char = ( $this -> _quoted_identifier ) ? '"' : array ( 
+			
 				'[', 
 				']' 
 		);
@@ -187,6 +191,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
 	protected function _execute ( $sql )
 	{
 		return ( $this -> scrollable === FALSE or $this -> is_write_type( $sql ) ) ? sqlsrv_query( $this -> conn_id, $sql ) : sqlsrv_query( $this -> conn_id, $sql, NULL, array ( 
+			
 				'Scrollable' => $this -> scrollable 
 		) );
 	}
@@ -375,6 +380,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
 	public function error ()
 	{
 		$error = array ( 
+			
 				'code' => '00000', 
 				'message' => '' 
 		);

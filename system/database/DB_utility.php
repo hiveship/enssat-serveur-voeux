@@ -272,6 +272,7 @@ abstract class CI_DB_utility
 		
 		// Set our default values
 		foreach ( array ( 
+			
 				'root' => 'root', 
 				'element' => 'element', 
 				'newline' => "\n", 
@@ -316,12 +317,14 @@ abstract class CI_DB_utility
 		// name, which is a valid short cut.
 		if ( is_string( $params ) ) {
 			$params = array ( 
+				
 					'tables' => $params 
 			);
 		}
 		
 		// Set up our default preferences
 		$prefs = array ( 
+			
 				'tables' => array (), 
 				'ignore' => array (), 
 				'filename' => '', 
@@ -349,6 +352,7 @@ abstract class CI_DB_utility
 		
 		// Validate the format
 		if ( ! in_array( $prefs ['format'], array ( 
+			
 				'gzip', 
 				'zip', 
 				'txt' 

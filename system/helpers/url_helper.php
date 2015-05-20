@@ -53,7 +53,8 @@ if ( ! function_exists( 'site_url' ) ) {
 
 	/**
 	 * Site URL
-	 * Create a local URL based on your basepath. Segments can be passed via the
+	 * Create a local URL based on your basepath.
+	 * Segments can be passed via the
 	 * first parameter either as a string or an array.
 	 * 
 	 * @param string $uri        	
@@ -176,7 +177,8 @@ if ( ! function_exists( 'anchor_popup' ) ) {
 
 	/**
 	 * Anchor Link - Pop-up version
-	 * Creates an anchor based on the local URL. The link
+	 * Creates an anchor based on the local URL.
+	 * The link
 	 * opens a new window based on the attributes specified.
 	 * 
 	 * @param
@@ -202,6 +204,7 @@ if ( ! function_exists( 'anchor_popup' ) ) {
 		
 		if ( ! is_array( $attributes ) ) {
 			$attributes = array ( 
+				
 					$attributes 
 			);
 			
@@ -215,6 +218,7 @@ if ( ! function_exists( 'anchor_popup' ) ) {
 		}
 		
 		foreach ( array ( 
+			
 				'width' => '800', 
 				'height' => '600', 
 				'scrollbars' => 'yes', 
@@ -461,6 +465,7 @@ if ( ! function_exists( 'url_title' ) ) {
 		$q_separator = preg_quote( $separator, '#' );
 		
 		$trans = array ( 
+			
 				'&.+?;' => '', 
 				'[^a-z0-9 _-]' => '', 
 				'\s+' => $separator, 

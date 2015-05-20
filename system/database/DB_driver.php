@@ -307,6 +307,7 @@ abstract class CI_DB_driver
 	 * @var string[]
 	 */
 	protected $_reserved_identifiers = array ( 
+		
 			'*' 
 	);
 	
@@ -337,6 +338,7 @@ abstract class CI_DB_driver
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'RAND()', 
 			'RAND(%d)' 
 	);
@@ -560,7 +562,8 @@ abstract class CI_DB_driver
 	/**
 	 * Execute the query
 	 * Accepts an SQL string as input and returns a result object upon
-	 * successful execution of a "read" type query. Returns boolean TRUE
+	 * successful execution of a "read" type query.
+	 * Returns boolean TRUE
 	 * upon successful execution of a "write" type query. Returns boolean
 	 * FALSE upon failure, and if the $db_debug variable is set to TRUE
 	 * will raise an error.
@@ -637,6 +640,7 @@ abstract class CI_DB_driver
 				
 				// Display errors
 				return $this -> display_error( array ( 
+					
 						'Error Number: ' . $error ['code'], 
 						$error ['message'], 
 						$sql 
@@ -861,6 +865,7 @@ abstract class CI_DB_driver
 			return $sql;
 		} elseif ( ! is_array( $binds ) ) {
 			$binds = array ( 
+				
 					$binds 
 			);
 			$bind_count = 1;
@@ -964,6 +969,7 @@ abstract class CI_DB_driver
 	{
 		if ( is_array( $str ) ) {
 			$str = array_map( array ( 
+				
 					&$this, 
 					'escape' 
 			), $str );
@@ -1004,10 +1010,12 @@ abstract class CI_DB_driver
 		// escape LIKE condition wildcards
 		if ( $like === TRUE ) {
 			return str_replace( array ( 
+				
 					$this -> _like_escape_chr, 
 					'%', 
 					'_' 
 			), array ( 
+				
 					$this -> _like_escape_chr . $this -> _like_escape_chr, 
 					$this -> _like_escape_chr . '%', 
 					$this -> _like_escape_chr . '_' 
@@ -1051,7 +1059,8 @@ abstract class CI_DB_driver
 	
 	/**
 	 * Primary
-	 * Retrieves the primary key. It assumes that the row in the first
+	 * Retrieves the primary key.
+	 * It assumes that the row in the first
 	 * position is the primary key
 	 * 
 	 * @param string $table        	
@@ -1244,8 +1253,8 @@ abstract class CI_DB_driver
 			}
 			
 			return $item;
-		}		// Avoid breaking functions and literal values inside queries
-		elseif ( ctype_digit( $item ) or $item [0] === "'" or ( $this -> _escape_char !== '"' && $item [0] === '"' ) or strpos( $item, '(' ) !== FALSE ) {
+		} // Avoid breaking functions and literal values inside queries
+elseif ( ctype_digit( $item ) or $item [0] === "'" or ( $this -> _escape_char !== '"' && $item [0] === '"' ) or strpos( $item, '(' ) !== FALSE ) {
 			return $item;
 		}
 		
@@ -1254,6 +1263,7 @@ abstract class CI_DB_driver
 		if ( empty( $preg_ec ) ) {
 			if ( is_array( $this -> _escape_char ) ) {
 				$preg_ec = array ( 
+					
 						preg_quote( $this -> _escape_char [0], '/' ), 
 						preg_quote( $this -> _escape_char [1], '/' ), 
 						$this -> _escape_char [0], 
@@ -1398,6 +1408,7 @@ abstract class CI_DB_driver
 		if ( empty( $_operators ) ) {
 			$_les = ( $this -> _like_escape_str !== '' ) ? '\s+' . preg_quote( trim( sprintf( $this -> _like_escape_str, $this -> _like_escape_chr ) ), '/' ) : '';
 			$_operators = array ( 
+				
 					'\s*(?:<|>|!)?=\s*',  // =, <=, >=, !=
 					'\s*<>?\s*',  // <, <>
 					'\s*>\s*',  // >
@@ -1410,8 +1421,7 @@ abstract class CI_DB_driver
 					'\s+NOT IN\s*\([^\)]+\)',  // NOT IN (list)
 					'\s+LIKE\s+\S+' . $_les,  // LIKE 'expr'[ ESCAPE '%s']
 					'\s+NOT LIKE\s+\S+' . $_les 
-			) // NOT LIKE 'expr'[ ESCAPE '%s']
-;
+			); // NOT LIKE 'expr'[ ESCAPE '%s']
 		
 		}
 		
@@ -1578,6 +1588,7 @@ abstract class CI_DB_driver
 			$message = ( array ) $error;
 		} else {
 			$message = is_array( $error ) ? $error : array ( 
+				
 					str_replace( '%s', $swap, $LANG -> line( $error ) ) 
 			);
 		}
@@ -1596,6 +1607,7 @@ abstract class CI_DB_driver
 				if ( strpos( $call ['file'], BASEPATH . 'database' ) === FALSE && strpos( $call ['class'], 'Loader' ) === FALSE ) {
 					// Found it - use a relative path for safety
 					$message [] = 'Filename: ' . str_replace( array ( 
+						
 							APPPATH, 
 							BASEPATH 
 					), '', $call ['file'] );
@@ -1708,12 +1720,12 @@ abstract class CI_DB_driver
 				// If so, we add the table prefix to the column name in the 3rd segment.
 				if ( isset( $parts [3] ) ) {
 					$i = 2;
-				}				// Do we have 3 segments (database.table.column)?
-				// If so, we add the table prefix to the column name in 2nd position
+				} // Do we have 3 segments (database.table.column)?
+				  // If so, we add the table prefix to the column name in 2nd position
 				elseif ( isset( $parts [2] ) ) {
 					$i = 1;
-				} 				// Do we have 2 segments (table.column)?
-				// If so, we add the table prefix to the column name in 1st segment
+				}  // Do we have 2 segments (table.column)?
+				  // If so, we add the table prefix to the column name in 1st segment
 				else {
 					$i = 0;
 				}
@@ -1727,8 +1739,8 @@ abstract class CI_DB_driver
 				// Verify table prefix and replace if necessary
 				if ( $this -> swap_pre !== '' && strpos( $parts [$i], $this -> swap_pre ) === 0 ) {
 					$parts [$i] = preg_replace( '/^' . $this -> swap_pre . '(\S+?)/', $this -> dbprefix . '\\1', $parts [$i] );
-				}				// We only add the table prefix if it does not already exist
-				elseif ( strpos( $parts [$i], $this -> dbprefix ) !== 0 ) {
+				} // We only add the table prefix if it does not already exist
+elseif ( strpos( $parts [$i], $this -> dbprefix ) !== 0 ) {
 					$parts [$i] = $this -> dbprefix . $parts [$i];
 				}
 				
@@ -1748,8 +1760,8 @@ abstract class CI_DB_driver
 			// Verify table prefix and replace if necessary
 			if ( $this -> swap_pre !== '' && strpos( $item, $this -> swap_pre ) === 0 ) {
 				$item = preg_replace( '/^' . $this -> swap_pre . '(\S+?)/', $this -> dbprefix . '\\1', $item );
-			}			// Do we prefix an item with no segments?
-			elseif ( $prefix_single === TRUE && strpos( $item, $this -> dbprefix ) !== 0 ) {
+			} // Do we prefix an item with no segments?
+elseif ( $prefix_single === TRUE && strpos( $item, $this -> dbprefix ) !== 0 ) {
 				$item = $this -> dbprefix . $item;
 			}
 		}

@@ -55,6 +55,7 @@ class CI_Security
 	 * @var array
 	 */
 	public $filename_bad_chars = array ( 
+		
 			'../', 
 			'<!--', 
 			'-->', 
@@ -86,8 +87,7 @@ class CI_Security
 			'%3f',  // ?
 			'%3b',  // ;
 			'%3d' 
-	) // =
-;
+	); // =
 	
 	/**
 	 * Character set
@@ -144,6 +144,7 @@ class CI_Security
 	 * @var array
 	 */
 	protected $_never_allowed_str = array ( 
+		
 			'document.cookie' => '[removed]', 
 			'document.write' => '[removed]', 
 			'.parentNode' => '[removed]', 
@@ -161,6 +162,7 @@ class CI_Security
 	 * @var array
 	 */
 	protected $_never_allowed_regex = array ( 
+		
 			'javascript\s*:', 
 			'(document|(document\.)?window)\.(location|on\w*)', 
 			'expression\s*(\(|&\#40;)',  // CSS and IE
@@ -183,6 +185,7 @@ class CI_Security
 		if ( config_item( 'csrf_protection' ) ) {
 			// CSRF config
 			foreach ( array ( 
+				
 					'csrf_expire', 
 					'csrf_token_name', 
 					'csrf_cookie_name' 
@@ -319,7 +322,8 @@ class CI_Security
 	/**
 	 * XSS Clean
 	 * Sanitizes data so that Cross Site Scripting Hacks can be
-	 * prevented. This method does a fair amount of work but
+	 * prevented.
+	 * This method does a fair amount of work but
 	 * it is extremely thorough, designed to prevent even the
 	 * most obscure XSS attempts. Nothing is ever 100% foolproof,
 	 * of course, but I haven't been able to get anything passed
@@ -370,10 +374,12 @@ class CI_Security
 		 * these are the ones that will pose security problems.
 		 */
 		$str = preg_replace_callback( "/[^a-z0-9>]+[a-z0-9]+=([\'\"]).*?\\1/si", array ( 
+			
 				$this, 
 				'_convert_attribute' 
 		), $str );
 		$str = preg_replace_callback( '/<\w+.*/si', array ( 
+			
 				$this, 
 				'_decode_entity' 
 		), $str );
@@ -409,9 +415,11 @@ class CI_Security
 			$str = preg_replace( '/<\?(php)/i', '&lt;?\\1', $str );
 		} else {
 			$str = str_replace( array ( 
+				
 					'<?', 
 					'?' . '>' 
 			), array ( 
+				
 					'&lt;?', 
 					'?&gt;' 
 			), $str );
@@ -423,6 +431,7 @@ class CI_Security
 		 * These words are compacted back to their correct state.
 		 */
 		$words = array ( 
+			
 				'javascript', 
 				'expression', 
 				'vbscript', 
@@ -447,6 +456,7 @@ class CI_Security
 			// We only want to do this when it is followed by a non-word character
 			// That way valid stuff like "dealer to" does not become "dealerto"
 			$str = preg_replace_callback( '#(' . substr( $word, 0, - 3 ) . ')(\W)#is', array ( 
+				
 					$this, 
 					'_compact_exploded_words' 
 			), $str );
@@ -468,6 +478,7 @@ class CI_Security
 			
 			if ( preg_match( '/<a/i', $str ) ) {
 				$str = preg_replace_callback( '#<a[^a-z0-9>]+([^>]*?)(?:>|$)#si', array ( 
+					
 						$this, 
 						'_js_link_removal' 
 				), $str );
@@ -475,6 +486,7 @@ class CI_Security
 			
 			if ( preg_match( '/<img/i', $str ) ) {
 				$str = preg_replace_callback( '#<img[^a-z0-9]+([^>]*?)(?:\s?/?>|$)#si', array ( 
+					
 						$this, 
 						'_js_img_removal' 
 				), $str );
@@ -499,6 +511,7 @@ class CI_Security
 		 */
 		$naughty = 'alert|prompt|confirm|applet|audio|basefont|base|behavior|bgsound|blink|body|embed|expression|form|frameset|frame|head|html|ilayer|iframe|input|button|select|isindex|layer|link|meta|keygen|object|plaintext|style|script|textarea|title|math|video|svg|xml|xss';
 		$str = preg_replace_callback( '#<(/*\s*)(' . $naughty . ')([^><]*)([><]*)#is', array ( 
+			
 				$this, 
 				'_sanitize_naughty_html' 
 		), $str );
@@ -695,6 +708,7 @@ class CI_Security
 	public function strip_image_tags ( $str )
 	{
 		return preg_replace( array ( 
+			
 				'#<img[\s/]+.*?src\s*=\s*["\'](.+?)["\'].*?\>#', 
 				'#<img[\s/]+.*?src\s*=\s*(.+?).*?\>#' 
 		), '\\1', $str );
@@ -721,7 +735,8 @@ class CI_Security
 	/**
 	 * Remove Evil HTML Attributes (like event handlers and style)
 	 * It removes the evil attribute and either:
-	 * - Everything up until a space. For example, everything between the pipes:
+	 * - Everything up until a space.
+	 * For example, everything between the pipes:
 	 * <code>
 	 * <a |style=document.write('hello');alert('world');| class=link>
 	 * </code>
@@ -739,6 +754,7 @@ class CI_Security
 	protected function _remove_evil_attributes ( $str, $is_image )
 	{
 		$evil_attributes = array ( 
+			
 				'on\w*', 
 				'style', 
 				'xmlns', 
@@ -785,11 +801,13 @@ class CI_Security
 	protected function _sanitize_naughty_html ( $matches )
 	{
 		return '&lt;' . $matches [1] . $matches [2] . $matches [3] . // encode opening brace
-		                                                  // encode captured opening or closing brace to prevent recursive vectors:
+		                                                             // encode captured opening or closing brace to prevent recursive vectors:
 		str_replace( array ( 
+			
 				'>', 
 				'<' 
 		), array ( 
+			
 				'&gt;', 
 				'&lt;' 
 		), $matches [4] );
@@ -811,6 +829,7 @@ class CI_Security
 	protected function _js_link_removal ( $match )
 	{
 		return str_replace( $match [1], preg_replace( '#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si', '', $this -> _filter_attributes( str_replace( array ( 
+			
 				'<', 
 				'>' 
 		), '', $match [1] ) ) ), $match [0] );
@@ -832,6 +851,7 @@ class CI_Security
 	protected function _js_img_removal ( $match )
 	{
 		return str_replace( $match [1], preg_replace( '#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si', '', $this -> _filter_attributes( str_replace( array ( 
+			
 				'<', 
 				'>' 
 		), '', $match [1] ) ) ), $match [0] );
@@ -849,10 +869,12 @@ class CI_Security
 	protected function _convert_attribute ( $match )
 	{
 		return str_replace( array ( 
+			
 				'>', 
 				'<', 
 				'\\' 
 		), array ( 
+			
 				'&gt;', 
 				'&lt;', 
 				'\\\\' 

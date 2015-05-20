@@ -54,7 +54,8 @@ class CI_Cache_wincache extends CI_Driver
 
 	/**
 	 * Get
-	 * Look for a value in the cache. If it exists, return the data,
+	 * Look for a value in the cache.
+	 * If it exists, return the data,
 	 * if not, return FALSE
 	 * 
 	 * @param string $id        	
@@ -179,6 +180,7 @@ class CI_Cache_wincache extends CI_Driver
 			$hitcount = $stored ['ucache_entries'] [1] ['hitcount'];
 			
 			return array ( 
+				
 					'expire' => $ttl - $age, 
 					'hitcount' => $hitcount, 
 					'age' => $age, 

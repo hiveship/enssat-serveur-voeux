@@ -251,6 +251,7 @@ class CI_Table
 		
 		foreach ( $args as $key => $val ) {
 			is_array( $val ) or $args [$key] = array ( 
+				
 					'data' => $val 
 			);
 		}
@@ -456,6 +457,7 @@ class CI_Table
 		
 		$this -> temp = $this -> _default_template();
 		foreach ( array ( 
+			
 				'table_open', 
 				'thead_open', 
 				'thead_close', 
@@ -491,6 +493,7 @@ class CI_Table
 	protected function _default_template ()
 	{
 		return array ( 
+			
 				'table_open' => '<table border="0" cellpadding="4" cellspacing="0">', 
 				
 				'thead_open' => '<thead>', 

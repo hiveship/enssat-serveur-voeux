@@ -69,7 +69,8 @@ class CI_DB_mysqli_driver extends CI_DB
 	/**
 	 * DELETE hack flag
 	 * Whether to use the MySQL "delete hack" which allows the number
-	 * of affected rows to be shown. Uses a preg_replace when enabled,
+	 * of affected rows to be shown.
+	 * Uses a preg_replace when enabled,
 	 * adding a bit more processing to all queries.
 	 * 
 	 * @var bool
@@ -412,12 +413,14 @@ class CI_DB_mysqli_driver extends CI_DB
 	{
 		if ( ! empty( $this -> conn_id -> connect_errno ) ) {
 			return array ( 
+				
 					'code' => $this -> conn_id -> connect_errno, 
 					'message' => is_php( '5.2.9' ) ? $this -> conn_id -> connect_error : mysqli_connect_error() 
 			);
 		}
 		
 		return array ( 
+			
 				'code' => $this -> conn_id -> errno, 
 				'message' => $this -> conn_id -> error 
 		);

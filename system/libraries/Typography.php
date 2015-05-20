@@ -76,6 +76,7 @@ class CI_Typography
 	 * @var array
 	 */
 	public $inner_block_required = array ( 
+		
 			'blockquote' 
 	);
 	
@@ -118,6 +119,7 @@ class CI_Typography
 		// Standardize Newlines to make matching easier
 		if ( strpos( $str, "\r" ) !== FALSE ) {
 			$str = str_replace( array ( 
+				
 					"\r\n", 
 					"\r" 
 			), "\n", $str );
@@ -142,6 +144,7 @@ class CI_Typography
 		// not contain <pre> tags, and it keeps the PCRE patterns below simpler and faster
 		if ( strpos( $str, '<pre' ) !== FALSE ) {
 			$str = preg_replace_callback( '#<pre.*?>.*?</pre>#si', array ( 
+				
 					$this, 
 					'_protect_characters' 
 			), $str );
@@ -149,6 +152,7 @@ class CI_Typography
 		
 		// Convert quotes within tags to temporary markers.
 		$str = preg_replace_callback( '#<.+?>#si', array ( 
+			
 				$this, 
 				'_protect_characters' 
 		), $str );
@@ -156,6 +160,7 @@ class CI_Typography
 		// Do the same with braces if necessary
 		if ( $this -> protect_braced_quotes === TRUE ) {
 			$str = preg_replace_callback( '#\{.+?\}#si', array ( 
+				
 					$this, 
 					'_protect_characters' 
 			), $str );
@@ -230,7 +235,7 @@ class CI_Typography
 		
 		// Final clean up
 		$table = array ( 
-				
+			
 				// If the user submitted their own paragraph tags within the text
 				// we will retain them instead of using our tags.
 				'/(<p[^>*?]>)<p>/' => '$1',  // <?php BBEdit syntax coloring bug fix
@@ -294,6 +299,7 @@ class CI_Typography
 		
 		if ( ! isset( $table ) ) {
 			$table = array ( 
+				
 					// nested smart quotes, opening and closing
 					// note that rules for grammar (English) allow only for two levels deep
 					// and that single quotes are _supposed_ to always be on the outside
@@ -391,11 +397,13 @@ class CI_Typography
 	protected function _protect_characters ( $match )
 	{
 		return str_replace( array ( 
+			
 				"'", 
 				'"', 
 				'--', 
 				'  ' 
 		), array ( 
+			
 				'{@SQ}', 
 				'{@DQ}', 
 				'{@DD}', 

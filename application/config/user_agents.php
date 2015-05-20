@@ -12,6 +12,7 @@ defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
  */
 
 $platforms = array ( 
+	
 		'windows nt 10.0' => 'Windows 10', 
 		'windows nt 6.3' => 'Windows 8.1', 
 		'windows nt 6.2' => 'Windows 8', 
@@ -59,6 +60,7 @@ $platforms = array (
 // The order of this array should NOT be changed. Many browsers return
 // multiple browser types so we want to identify the sub-type first.
 $browsers = array ( 
+	
 		'OPR' => 'Opera', 
 		'Flock' => 'Flock', 
 		'Chrome' => 'Chrome', 
@@ -90,6 +92,7 @@ $browsers = array (
 );
 
 $mobiles = array ( 
+	
 		// legacy array, old values commented out
 		'mobileexplorer' => 'Mobile Explorer', 
 		// 'openwave' => 'Open Wave',
@@ -191,6 +194,7 @@ $mobiles = array (
 
 // There are hundreds of bots but these are the most common.
 $robots = array ( 
+	
 		'googlebot' => 'Googlebot', 
 		'msnbot' => 'MSNBot', 
 		'baiduspider' => 'Baiduspider', 

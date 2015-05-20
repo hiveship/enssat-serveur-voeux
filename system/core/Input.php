@@ -354,6 +354,7 @@ class CI_Input
 		if ( is_array( $name ) ) {
 			// always leave 'name' in last place, as the loop will break otherwise, due to $$item
 			foreach ( array ( 
+				
 					'value', 
 					'expire', 
 					'domain', 
@@ -421,6 +422,7 @@ class CI_Input
 		
 		if ( $proxy_ips ) {
 			foreach ( array ( 
+				
 					'HTTP_X_FORWARDED_FOR', 
 					'HTTP_CLIENT_IP', 
 					'HTTP_X_CLIENT_IP', 

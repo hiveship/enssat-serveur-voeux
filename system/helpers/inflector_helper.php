@@ -67,6 +67,7 @@ if ( ! function_exists( 'singular' ) ) {
 		}
 		
 		$singular_rules = array ( 
+			
 				'/(matr)ices$/' => '\1ix', 
 				'/(vert|ind)ices$/' => '\1ex', 
 				'/^(ox)en/' => '\1', 
@@ -127,6 +128,7 @@ if ( ! function_exists( 'plural' ) ) {
 		}
 		
 		$plural_rules = array ( 
+			
 				'/^(ox)$/' => '\1\2en',  // ox
 				'/([m|l])ouse$/' => '\1ice',  // mouse, louse
 				'/(matr|vert|ind)ix|ex$/' => '\1ices',  // matrix, vertex, index
@@ -225,6 +227,7 @@ if ( ! function_exists( 'is_countable' ) ) {
 	function is_countable ( $word )
 	{
 		return ! in_array( strtolower( $word ), array ( 
+			
 				'equipment', 
 				'information', 
 				'rice', 

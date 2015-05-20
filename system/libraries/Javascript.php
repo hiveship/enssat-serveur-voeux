@@ -68,6 +68,7 @@ class CI_Javascript
 	public function __construct ( $params = array() )
 	{
 		$defaults = array ( 
+			
 				'js_library_driver' => 'jquery', 
 				'autoload' => TRUE 
 		);
@@ -84,6 +85,7 @@ class CI_Javascript
 		
 		// load the requested js library
 		$this -> CI -> load -> library( 'Javascript/' . $js_library_driver, array ( 
+			
 				'autoload' => $autoload 
 		) );
 		// make js to refer to current library
@@ -784,6 +786,7 @@ class CI_Javascript
 		if ( $result !== NULL ) {
 			if ( is_object( $result ) ) {
 				$json_result = is_callable( array ( 
+					
 						$result, 
 						'result_array' 
 				) ) ? $result -> result_array() : ( array ) $result;
@@ -859,6 +862,7 @@ class CI_Javascript
 			return ( $result === TRUE ) ? 'true' : 'false';
 		} elseif ( is_string( $result ) or $is_key ) {
 			return '"' . str_replace( array ( 
+				
 					'\\', 
 					"\t", 
 					"\n", 
@@ -866,6 +870,7 @@ class CI_Javascript
 					'"', 
 					'/' 
 			), array ( 
+				
 					'\\\\', 
 					'\\t', 
 					'\\n', 

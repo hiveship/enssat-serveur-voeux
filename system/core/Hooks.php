@@ -117,7 +117,8 @@ class CI_Hooks
 	
 	/**
 	 * Call Hook
-	 * Calls a particular hook. Called by CodeIgniter.php.
+	 * Calls a particular hook.
+	 * Called by CodeIgniter.php.
 	 * 
 	 * @uses CI_Hooks::_run_hook()
 	 * @param string $which        	

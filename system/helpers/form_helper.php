@@ -70,8 +70,8 @@ if ( ! function_exists( 'form_open' ) ) {
 		// If no action is provided then set to the current url
 		if ( ! $action ) {
 			$action = $CI -> config -> site_url( $CI -> uri -> uri_string() );
-		}		// If an action is not a full URL then turn it into one
-		elseif ( strpos( $action, '://' ) === FALSE ) {
+		} // If an action is not a full URL then turn it into one
+elseif ( strpos( $action, '://' ) === FALSE ) {
 			$action = $CI -> config -> site_url( $action );
 		}
 		
@@ -136,7 +136,8 @@ if ( ! function_exists( 'form_hidden' ) ) {
 
 	/**
 	 * Hidden Input Field
-	 * Generates hidden fields. You can pass a simple key/value string or
+	 * Generates hidden fields.
+	 * You can pass a simple key/value string or
 	 * an associative array with multiple values.
 	 * 
 	 * @param mixed $name        	
@@ -191,6 +192,7 @@ if ( ! function_exists( 'form_input' ) ) {
 	function form_input ( $data = '', $value = '', $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'type' => 'text', 
 				'name' => is_array( $data ) ? '' : $data, 
 				'value' => $value 
@@ -219,6 +221,7 @@ if ( ! function_exists( 'form_password' ) ) {
 	function form_password ( $data = '', $value = '', $extra = '' )
 	{
 		is_array( $data ) or $data = array ( 
+			
 				'name' => $data 
 		);
 		$data ['type'] = 'password';
@@ -245,10 +248,12 @@ if ( ! function_exists( 'form_upload' ) ) {
 	function form_upload ( $data = '', $value = '', $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'type' => 'file', 
 				'name' => '' 
 		);
 		is_array( $data ) or $data = array ( 
+			
 				'name' => $data 
 		);
 		$data ['type'] = 'file';
@@ -271,6 +276,7 @@ if ( ! function_exists( 'form_textarea' ) ) {
 	function form_textarea ( $data = '', $value = '', $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'name' => is_array( $data ) ? '' : $data, 
 				'cols' => '40', 
 				'rows' => '10' 
@@ -343,14 +349,17 @@ if ( ! function_exists( 'form_dropdown' ) ) {
 			}
 		} else {
 			$defaults = array ( 
+				
 					'name' => $data 
 			);
 		}
 		
 		is_array( $selected ) or $selected = array ( 
+			
 				$selected 
 		);
 		is_array( $options ) or $options = array ( 
+			
 				$options 
 		);
 		
@@ -359,11 +368,13 @@ if ( ! function_exists( 'form_dropdown' ) ) {
 			if ( is_array( $data ) ) {
 				if ( isset( $data ['name'], $_POST [$data ['name']] ) ) {
 					$selected = array ( 
+						
 							$_POST [$data ['name']] 
 					);
 				}
 			} elseif ( isset( $_POST [$data] ) ) {
 				$selected = array ( 
+					
 						$_POST [$data] 
 				);
 			}
@@ -420,6 +431,7 @@ if ( ! function_exists( 'form_checkbox' ) ) {
 	function form_checkbox ( $data = '', $value = '', $checked = FALSE, $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'type' => 'checkbox', 
 				'name' => ( ! is_array( $data ) ? $data : '' ), 
 				'value' => $value 
@@ -465,6 +477,7 @@ if ( ! function_exists( 'form_radio' ) ) {
 	function form_radio ( $data = '', $value = '', $checked = FALSE, $extra = '' )
 	{
 		is_array( $data ) or $data = array ( 
+			
 				'name' => $data 
 		);
 		$data ['type'] = 'radio';
@@ -490,6 +503,7 @@ if ( ! function_exists( 'form_submit' ) ) {
 	function form_submit ( $data = '', $value = '', $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'type' => 'submit', 
 				'name' => is_array( $data ) ? '' : $data, 
 				'value' => $value 
@@ -517,6 +531,7 @@ if ( ! function_exists( 'form_reset' ) ) {
 	function form_reset ( $data = '', $value = '', $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'type' => 'reset', 
 				'name' => is_array( $data ) ? '' : $data, 
 				'value' => $value 
@@ -544,6 +559,7 @@ if ( ! function_exists( 'form_button' ) ) {
 	function form_button ( $data = '', $content = '', $extra = '' )
 	{
 		$defaults = array ( 
+			
 				'name' => is_array( $data ) ? '' : $data, 
 				'type' => 'button' 
 		);
@@ -597,7 +613,8 @@ if ( ! function_exists( 'form_fieldset' ) ) {
 
 	/**
 	 * Fieldset Tag
-	 * Used to produce <fieldset><legend>text</legend>. To close fieldset
+	 * Used to produce <fieldset><legend>text</legend>.
+	 * To close fieldset
 	 * use form_fieldset_close()
 	 * 
 	 * @param
@@ -677,7 +694,8 @@ if ( ! function_exists( 'set_value' ) ) {
 	/**
 	 * Form Value
 	 * Grabs a value from the POST array for the specified field so you can
-	 * re-populate an input field or textarea. If Form Validation
+	 * re-populate an input field or textarea.
+	 * If Form Validation
 	 * is active it retrieves the info from the validation class
 	 * 
 	 * @param string $field        	
@@ -817,7 +835,8 @@ if ( ! function_exists( 'form_error' ) ) {
 
 	/**
 	 * Form Error
-	 * Returns the error for a specific form field. This is a helper for the
+	 * Returns the error for a specific form field.
+	 * This is a helper for the
 	 * form validation class.
 	 * 
 	 * @param
@@ -844,7 +863,8 @@ if ( ! function_exists( 'validation_errors' ) ) {
 
 	/**
 	 * Validation Error String
-	 * Returns all the errors associated with a form submission. This is a helper
+	 * Returns all the errors associated with a form submission.
+	 * This is a helper
 	 * function for the form validation class.
 	 * 
 	 * @param

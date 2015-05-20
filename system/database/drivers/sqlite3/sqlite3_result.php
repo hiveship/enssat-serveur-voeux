@@ -87,6 +87,7 @@ class CI_DB_sqlite3_result extends CI_DB_result
 	public function field_data ()
 	{
 		static $data_types = array ( 
+			
 				SQLITE3_INTEGER => 'integer', 
 				SQLITE3_FLOAT => 'float', 
 				SQLITE3_TEXT => 'text', 
@@ -166,7 +167,8 @@ class CI_DB_sqlite3_result extends CI_DB_result
 	
 	/**
 	 * Data Seek
-	 * Moves the internal pointer to the desired offset. We call
+	 * Moves the internal pointer to the desired offset.
+	 * We call
 	 * this internally before fetching results to make sure the
 	 * result set starts at zero.
 	 * 

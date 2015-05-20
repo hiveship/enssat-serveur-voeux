@@ -74,6 +74,7 @@ class CI_DB_postgre_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'RANDOM()', 
 			'RANDOM()' 
 	);
@@ -127,6 +128,7 @@ class CI_DB_postgre_driver extends CI_DB
 		 * postgre://username:password@localhost:5432/database?connect_timeout=5&sslmode=1
 		 */
 		foreach ( array ( 
+			
 				'connect_timeout', 
 				'options', 
 				'sslmode', 
@@ -301,6 +303,7 @@ class CI_DB_postgre_driver extends CI_DB
 	public function is_write_type ( $sql )
 	{
 		return ( bool ) preg_match( '/^\s*"?(SET|INSERT(?![^\)]+\)\s+RETURNING)|UPDATE(?!.*\sRETURNING)|DELETE|CREATE|DROP|TRUNCATE|LOAD|COPY|ALTER|RENAME|GRANT|REVOKE|LOCK|UNLOCK|REINDEX)\s/i', str_replace( array ( 
+			
 				"\r\n", 
 				"\r", 
 				"\n" 
@@ -470,6 +473,7 @@ class CI_DB_postgre_driver extends CI_DB
 	public function error ()
 	{
 		return array ( 
+			
 				'code' => '', 
 				'message' => pg_last_error( $this -> conn_id ) 
 		);

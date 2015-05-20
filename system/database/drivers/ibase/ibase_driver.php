@@ -67,6 +67,7 @@ class CI_DB_ibase_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'RAND()', 
 			'RAND()' 
 	);
@@ -299,6 +300,7 @@ class CI_DB_ibase_driver extends CI_DB
 	public function error ()
 	{
 		return array ( 
+			
 				'code' => ibase_errcode(), 
 				'message' => ibase_errmsg() 
 		);

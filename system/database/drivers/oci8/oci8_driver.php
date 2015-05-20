@@ -106,6 +106,7 @@ class CI_DB_oci8_driver extends CI_DB
 	 * @var string[]
 	 */
 	protected $_reserved_identifiers = array ( 
+		
 			'*', 
 			'rownum' 
 	);
@@ -116,6 +117,7 @@ class CI_DB_oci8_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'ASC', 
 			'ASC' 
 	); // not currently supported
@@ -142,18 +144,19 @@ class CI_DB_oci8_driver extends CI_DB
 		parent::__construct( $params );
 		
 		$valid_dsns = array ( 
+			
 				'tns' => '/^\(DESCRIPTION=(\(.+\)){2,}\)$/',  // TNS
 				                                             // Easy Connect string (Oracle 10g+)
 				'ec' => '/^(\/\/)?[a-z0-9.:_-]+(:[1-9][0-9]{0,4})?(\/[a-z0-9$_]+)?(:[^\/])?(\/[a-z0-9$_]+)?$/i', 
 				'in' => '/^[a-z0-9$_]+$/i' 
-		) // Instance name (defined in tnsnames.ora)
-;
+		); // Instance name (defined in tnsnames.ora)
 		
 		/*
 		 * Space characters don't have any effect when actually
 		 * connecting, but can be a hassle while validating the DSN.
 		 */
 		$this -> dsn = str_replace( array ( 
+			
 				"\n", 
 				"\r", 
 				"\t", 
@@ -170,6 +173,7 @@ class CI_DB_oci8_driver extends CI_DB
 		
 		// Legacy support for TNS in the hostname configuration field
 		$this -> hostname = str_replace( array ( 
+			
 				"\n", 
 				"\r", 
 				"\t", 
@@ -204,6 +208,7 @@ class CI_DB_oci8_driver extends CI_DB
 		}
 		
 		$this -> database = str_replace( array ( 
+			
 				"\n", 
 				"\r", 
 				"\t", 
@@ -369,6 +374,7 @@ class CI_DB_oci8_driver extends CI_DB
 		
 		foreach ( $params as $param ) {
 			foreach ( array ( 
+				
 					'name', 
 					'value', 
 					'type', 

@@ -171,6 +171,7 @@ class CI_Jquery extends CI_Javascript
 	protected function _click ( $element = 'this', $js = '', $ret_false = TRUE )
 	{
 		is_array( $js ) or $js = array ( 
+			
 				$js 
 		);
 		
@@ -388,6 +389,7 @@ class CI_Jquery extends CI_Javascript
 	{
 		if ( ! is_array( $array_js ) ) {
 			$array_js = array ( 
+				
 					$array_js 
 			);
 		}
@@ -966,6 +968,7 @@ class CI_Jquery extends CI_Javascript
 		// External references
 		$external_scripts = implode( '', $this -> jquery_code_for_load );
 		$this -> CI -> load -> vars( array ( 
+			
 				'library_src' => $external_scripts 
 		) );
 		
@@ -980,6 +983,7 @@ class CI_Jquery extends CI_Javascript
 		$output = ( $script_tags === FALSE ) ? $script : $this -> inline( $script );
 		
 		$this -> CI -> load -> vars( array ( 
+			
 				$view_var => $output 
 		) );
 	}
@@ -1009,6 +1013,7 @@ class CI_Jquery extends CI_Javascript
 	protected function _document_ready ( $js )
 	{
 		is_array( $js ) or $js = array ( 
+			
 				$js 
 		);
 		
@@ -1068,6 +1073,7 @@ class CI_Jquery extends CI_Javascript
 	protected function _validate_speed ( $speed )
 	{
 		if ( in_array( $speed, array ( 
+			
 				'slow', 
 				'normal', 
 				'fast' 

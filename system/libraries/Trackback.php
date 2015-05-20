@@ -63,6 +63,7 @@ class CI_Trackback
 	 * @var array
 	 */
 	public $data = array ( 
+		
 			'url' => '', 
 			'title' => '', 
 			'excerpt' => '', 
@@ -123,6 +124,7 @@ class CI_Trackback
 		
 		// Pre-process the Trackback Data
 		foreach ( array ( 
+			
 				'url', 
 				'title', 
 				'excerpt', 
@@ -151,6 +153,7 @@ class CI_Trackback
 			
 			// Convert High ASCII Characters
 			if ( $this -> convert_ascii === TRUE && in_array( $item, array ( 
+				
 					'excerpt', 
 					'title', 
 					'blog_name' 
@@ -191,6 +194,7 @@ class CI_Trackback
 	public function receive ()
 	{
 		foreach ( array ( 
+			
 				'url', 
 				'title', 
 				'blog_name', 
@@ -227,7 +231,8 @@ class CI_Trackback
 	
 	/**
 	 * Send Trackback Error Message
-	 * Allows custom errors to be set. By default it
+	 * Allows custom errors to be set.
+	 * By default it
 	 * sends the "incomplete information" error, as that's
 	 * the most common one.
 	 * 
@@ -273,7 +278,8 @@ class CI_Trackback
 	/**
 	 * Process Trackback
 	 * Opens a socket connection and passes the data to
-	 * the server. Returns TRUE on success, FALSE on failure
+	 * the server.
+	 * Returns TRUE on success, FALSE on failure
 	 * 
 	 * @param
 	 *        	string
@@ -346,6 +352,7 @@ class CI_Trackback
 		$urls = array_unique( preg_split( '/[,]/', rtrim( $urls, ',' ) ) );
 		
 		array_walk( $urls, array ( 
+			
 				$this, 
 				'validate_url' 
 		) );
@@ -422,11 +429,13 @@ class CI_Trackback
 		$temp = '__TEMP_AMPERSANDS__';
 		
 		$str = preg_replace( array ( 
+			
 				'/&#(\d+);/', 
 				'/&(\w+);/' 
 		), $temp . '\\1;', $str );
 		
 		$str = str_replace( array ( 
+			
 				'&', 
 				'<', 
 				'>', 
@@ -434,6 +443,7 @@ class CI_Trackback
 				"'", 
 				'-' 
 		), array ( 
+			
 				'&amp;', 
 				'&lt;', 
 				'&gt;', 
@@ -443,9 +453,11 @@ class CI_Trackback
 		), $str );
 		
 		return preg_replace( array ( 
+			
 				'/' . $temp . '(\d+);/', 
 				'/' . $temp . '(\w+);/' 
 		), array ( 
+			
 				'&#\\1;', 
 				'&\\1;' 
 		), $str );
@@ -455,7 +467,8 @@ class CI_Trackback
 	
 	/**
 	 * Character limiter
-	 * Limits the string based on the character count. Will preserve complete words.
+	 * Limits the string based on the character count.
+	 * Will preserve complete words.
 	 * 
 	 * @param
 	 *        	string
@@ -472,6 +485,7 @@ class CI_Trackback
 		}
 		
 		$str = preg_replace( '/\s+/', ' ', str_replace( array ( 
+			
 				"\r\n", 
 				"\r", 
 				"\n" 

@@ -64,6 +64,7 @@ class CI_Loader
 	 * @var array
 	 */
 	protected $_ci_view_paths = array ( 
+		
 			VIEWPATH => TRUE 
 	);
 	
@@ -73,6 +74,7 @@ class CI_Loader
 	 * @var array
 	 */
 	protected $_ci_library_paths = array ( 
+		
 			APPPATH, 
 			BASEPATH 
 	);
@@ -83,6 +85,7 @@ class CI_Loader
 	 * @var array
 	 */
 	protected $_ci_model_paths = array ( 
+		
 			APPPATH 
 	);
 	
@@ -92,6 +95,7 @@ class CI_Loader
 	 * @var array
 	 */
 	protected $_ci_helper_paths = array ( 
+		
 			APPPATH, 
 			BASEPATH 
 	);
@@ -130,6 +134,7 @@ class CI_Loader
 	 * @var array
 	 */
 	protected $_ci_varmap = array ( 
+		
 			'unit_test' => 'unit', 
 			'user_agent' => 'agent' 
 	);
@@ -427,6 +432,7 @@ class CI_Loader
 	public function view ( $view, $vars = array(), $return = FALSE )
 	{
 		return $this -> _ci_load( array ( 
+			
 				'_ci_view' => $view, 
 				'_ci_vars' => $this -> _ci_object_to_array( $vars ), 
 				'_ci_return' => $return 
@@ -446,6 +452,7 @@ class CI_Loader
 	public function file ( $path, $return = FALSE )
 	{
 		return $this -> _ci_load( array ( 
+			
 				'_ci_path' => $path, 
 				'_ci_return' => $return 
 		) );
@@ -469,6 +476,7 @@ class CI_Loader
 	{
 		if ( is_string( $vars ) ) {
 			$vars = array ( 
+				
 					$vars => $val 
 			);
 		}
@@ -703,6 +711,7 @@ class CI_Loader
 		array_unshift( $this -> _ci_helper_paths, $path );
 		
 		$this -> _ci_view_paths = array ( 
+			
 				$path . 'views/' => $view_cascade 
 		) + $this -> _ci_view_paths;
 		
@@ -733,7 +742,8 @@ class CI_Loader
 	/**
 	 * Remove Package Path
 	 * Remove a path from the library, model, helper and/or config
-	 * path arrays if it exists. If no path is provided, the most recently
+	 * path arrays if it exists.
+	 * If no path is provided, the most recently
 	 * added path will be removed removed.
 	 * 
 	 * @param string $path
@@ -753,6 +763,7 @@ class CI_Loader
 		} else {
 			$path = rtrim( $path, '/' ) . '/';
 			foreach ( array ( 
+				
 					'_ci_library_paths', 
 					'_ci_model_paths', 
 					'_ci_helper_paths' 
@@ -773,20 +784,25 @@ class CI_Loader
 		
 		// make sure the application default paths are still in the array
 		$this -> _ci_library_paths = array_unique( array_merge( $this -> _ci_library_paths, array ( 
+			
 				APPPATH, 
 				BASEPATH 
 		) ) );
 		$this -> _ci_helper_paths = array_unique( array_merge( $this -> _ci_helper_paths, array ( 
+			
 				APPPATH, 
 				BASEPATH 
 		) ) );
 		$this -> _ci_model_paths = array_unique( array_merge( $this -> _ci_model_paths, array ( 
+			
 				APPPATH 
 		) ) );
 		$this -> _ci_view_paths = array_merge( $this -> _ci_view_paths, array ( 
+			
 				APPPATH . 'views/' => TRUE 
 		) );
 		$config -> _config_paths = array_unique( array_merge( $config -> _config_paths, array ( 
+			
 				APPPATH 
 		) ) );
 		
@@ -811,6 +827,7 @@ class CI_Loader
 	{
 		// Set the default data variables
 		foreach ( array ( 
+			
 				'_ci_view', 
 				'_ci_vars', 
 				'_ci_path', 
@@ -979,8 +996,8 @@ class CI_Loader
 				
 				log_message( 'debug', $class . ' class already loaded. Second attempt ignored.' );
 				return;
-			}			// Does the file exist? No? Bummer...
-			elseif ( ! file_exists( $filepath ) ) {
+			} // Does the file exist? No? Bummer...
+elseif ( ! file_exists( $filepath ) ) {
 				continue;
 			}
 			
@@ -1205,6 +1222,7 @@ class CI_Loader
 		
 		// Autoload helpers and languages
 		foreach ( array ( 
+			
 				'helper', 
 				'language' 
 		) as $type ) {
@@ -1226,6 +1244,7 @@ class CI_Loader
 			if ( in_array( 'database', $autoload ['libraries'] ) ) {
 				$this -> database();
 				$autoload ['libraries'] = array_diff( $autoload ['libraries'], array ( 
+					
 						'database' 
 				) );
 			}
@@ -1288,7 +1307,9 @@ class CI_Loader
 	{
 		if ( ! is_array( $filename ) ) {
 			return array ( 
+				
 					strtolower( str_replace( array ( 
+						
 							$extension, 
 							'.php' 
 					), '', $filename ) . $extension ) 
@@ -1296,6 +1317,7 @@ class CI_Loader
 		} else {
 			foreach ( $filename as $key => $val ) {
 				$filename [$key] = strtolower( str_replace( array ( 
+					
 						$extension, 
 						'.php' 
 				), '', $val ) . $extension );

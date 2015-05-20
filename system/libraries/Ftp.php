@@ -212,7 +212,8 @@ class CI_FTP
 	 * Change directory
 	 * The second parameter lets us momentarily turn off debugging so that
 	 * this function can be used to test for the existence of a folder
-	 * without throwing an error. There's no FTP equivalent to is_dir()
+	 * without throwing an error.
+	 * There's no FTP equivalent to is_dir()
 	 * so we do it by trying to change to a particular directory.
 	 * Internally, this parameter is only used by the "mirror" function below.
 	 * 
@@ -579,6 +580,7 @@ class CI_FTP
 	protected function _settype ( $ext )
 	{
 		return in_array( $ext, array ( 
+			
 				'txt', 
 				'text', 
 				'php', 

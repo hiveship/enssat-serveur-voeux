@@ -206,6 +206,7 @@ class CI_Output
 		}
 		
 		$this -> headers [] = array ( 
+			
 				$header, 
 				$replace 
 		);
@@ -247,6 +248,7 @@ class CI_Output
 		$header = 'Content-Type: ' . $mime_type . ( empty( $charset ) ? '' : '; charset=' . $charset );
 		
 		$this -> headers [] = array ( 
+			
 				$header, 
 				TRUE 
 		);
@@ -376,7 +378,8 @@ class CI_Output
 	/**
 	 * Display Output
 	 * Processes and sends finalized output data to the browser along
-	 * with any server headers and profile data. It also stops benchmark
+	 * with any server headers and profile data.
+	 * It also stops benchmark
 	 * timers so the page rendering speed and memory usage can be shown.
 	 * Note: All "view" data is automatically put into $this->final_output
 	 * by controller class.
@@ -425,9 +428,11 @@ class CI_Output
 		if ( $this -> parse_exec_vars === TRUE ) {
 			$memory = round( memory_get_usage() / 1024 / 1024, 2 ) . 'MB';
 			$output = str_replace( array ( 
+				
 					'{elapsed_time}', 
 					'{memory_usage}' 
 			), array ( 
+				
 					$elapsed, 
 					$memory 
 			), $output );
@@ -552,6 +557,7 @@ $this -> _compress_output === TRUE && isset( $_SERVER ['HTTP_ACCEPT_ENCODING'] )
 			
 			// Put together our serialized info.
 			$cache_info = serialize( array ( 
+				
 					'expire' => $expire, 
 					'headers' => $this -> headers 
 			) );

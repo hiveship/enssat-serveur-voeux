@@ -408,6 +408,7 @@ class CI_Image_lib
 	public function clear ()
 	{
 		$props = array ( 
+			
 				'thumb_marker', 
 				'library_path', 
 				'source_image', 
@@ -478,6 +479,7 @@ class CI_Image_lib
 			foreach ( $props as $key => $val ) {
 				if ( property_exists( $this, $key ) ) {
 					if ( in_array( $key, array ( 
+						
 							'wm_font_color', 
 							'wm_shadow_color' 
 					) ) ) {
@@ -689,6 +691,7 @@ class CI_Image_lib
 	{
 		// Allowed rotation values
 		$degs = array ( 
+			
 				90, 
 				180, 
 				270, 
@@ -1332,6 +1335,7 @@ class CI_Image_lib
 			case 1 :
 				if ( ! function_exists( 'imagecreatefromgif' ) ) {
 					$this -> set_error( array ( 
+						
 							'imglib_unsupported_imagecreate', 
 							'imglib_gif_not_supported' 
 					) );
@@ -1342,6 +1346,7 @@ class CI_Image_lib
 			case 2 :
 				if ( ! function_exists( 'imagecreatefromjpeg' ) ) {
 					$this -> set_error( array ( 
+						
 							'imglib_unsupported_imagecreate', 
 							'imglib_jpg_not_supported' 
 					) );
@@ -1352,6 +1357,7 @@ class CI_Image_lib
 			case 3 :
 				if ( ! function_exists( 'imagecreatefrompng' ) ) {
 					$this -> set_error( array ( 
+						
 							'imglib_unsupported_imagecreate', 
 							'imglib_png_not_supported' 
 					) );
@@ -1361,6 +1367,7 @@ class CI_Image_lib
 				return imagecreatefrompng( $path );
 			default :
 				$this -> set_error( array ( 
+					
 						'imglib_unsupported_imagecreate' 
 				) );
 				return FALSE;
@@ -1384,6 +1391,7 @@ class CI_Image_lib
 			case 1 :
 				if ( ! function_exists( 'imagegif' ) ) {
 					$this -> set_error( array ( 
+						
 							'imglib_unsupported_imagecreate', 
 							'imglib_gif_not_supported' 
 					) );
@@ -1398,6 +1406,7 @@ class CI_Image_lib
 			case 2 :
 				if ( ! function_exists( 'imagejpeg' ) ) {
 					$this -> set_error( array ( 
+						
 							'imglib_unsupported_imagecreate', 
 							'imglib_jpg_not_supported' 
 					) );
@@ -1412,6 +1421,7 @@ class CI_Image_lib
 			case 3 :
 				if ( ! function_exists( 'imagepng' ) ) {
 					$this -> set_error( array ( 
+						
 							'imglib_unsupported_imagecreate', 
 							'imglib_png_not_supported' 
 					) );
@@ -1425,6 +1435,7 @@ class CI_Image_lib
 				break;
 			default :
 				$this -> set_error( array ( 
+					
 						'imglib_unsupported_imagecreate' 
 				) );
 				return FALSE;
@@ -1533,6 +1544,7 @@ class CI_Image_lib
 		
 		$vals = getimagesize( $path );
 		$types = array ( 
+			
 				1 => 'gif', 
 				2 => 'jpeg', 
 				3 => 'png' 
@@ -1541,6 +1553,7 @@ class CI_Image_lib
 		
 		if ( $return === TRUE ) {
 			return array ( 
+				
 					'width' => $vals [0], 
 					'height' => $vals [1], 
 					'image_type' => $vals [2], 
@@ -1563,7 +1576,8 @@ class CI_Image_lib
 	/**
 	 * Size calculator
 	 * This function takes a known width x height and
-	 * recalculates it to a new size. Only one
+	 * recalculates it to a new size.
+	 * Only one
 	 * new variable needs to be known
 	 * $props = array(
 	 * 'width' => $width,
@@ -1583,6 +1597,7 @@ class CI_Image_lib
 		}
 		
 		$allowed = array ( 
+			
 				'new_width', 
 				'new_height', 
 				'width', 
@@ -1613,7 +1628,8 @@ class CI_Image_lib
 	/**
 	 * Explode source_image
 	 * This is a helper function that extracts the extension
-	 * from the source_image. This function lets us deal with
+	 * from the source_image.
+	 * This function lets us deal with
 	 * source_images with multiple periods, like: my.cool.jpg
 	 * It returns an associative array with two elements:
 	 * $array['ext'] = '.jpg';
@@ -1629,6 +1645,7 @@ class CI_Image_lib
 		$name = ( $ext === FALSE ) ? $source_image : substr( $source_image, 0, - strlen( $ext ) );
 		
 		return array ( 
+			
 				'ext' => $ext, 
 				'name' => $name 
 		);

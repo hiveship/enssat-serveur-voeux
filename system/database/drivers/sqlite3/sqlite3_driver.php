@@ -67,6 +67,7 @@ class CI_DB_sqlite3_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'RANDOM()', 
 			'RANDOM()' 
 	);
@@ -291,6 +292,7 @@ class CI_DB_sqlite3_driver extends CI_DB
 	public function error ()
 	{
 		return array ( 
+			
 				'code' => $this -> conn_id -> lastErrorCode(), 
 				'message' => $this -> conn_id -> lastErrorMsg() 
 		);

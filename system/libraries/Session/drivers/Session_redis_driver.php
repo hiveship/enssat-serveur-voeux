@@ -87,6 +87,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 		} elseif ( preg_match( '#(?:tcp://)?([^:?]+)(?:\:(\d+))?(\?.+)?#', $this -> _config ['save_path'], $matches ) ) {
 			isset( $matches [3] ) or $matches [3] = ''; // Just to avoid undefined index notices below
 			$this -> _config ['save_path'] = array ( 
+				
 					'host' => $matches [1], 
 					'port' => empty( $matches [2] ) ? NULL : $matches [2], 
 					'password' => preg_match( '#auth=([^\s&]+)#', $matches [3], $match ) ? $match [1] : NULL, 
@@ -174,8 +175,8 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	{
 		if ( ! isset( $this -> _redis ) ) {
 			return FALSE;
-		}		// Was the ID regenerated?
-		elseif ( $session_id !== $this -> _session_id ) {
+		} // Was the ID regenerated?
+elseif ( $session_id !== $this -> _session_id ) {
 			if ( ! $this -> _release_lock() or ! $this -> _get_lock( $session_id ) ) {
 				return FALSE;
 			}

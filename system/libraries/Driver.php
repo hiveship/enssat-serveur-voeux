@@ -97,6 +97,7 @@ class CI_Driver_Library
 		if ( ! isset( $this -> lib_name ) ) {
 			// Get library name without any prefix
 			$this -> lib_name = str_replace( array ( 
+				
 					'CI_', 
 					$prefix 
 			), '', get_class( $this ) );
@@ -261,6 +262,7 @@ class CI_Driver
 			}
 			
 			self::$_reflections [$class_name] = array ( 
+				
 					$this -> _methods, 
 					$this -> _properties 
 			);
@@ -285,6 +287,7 @@ class CI_Driver
 	{
 		if ( in_array( $method, $this -> _methods ) ) {
 			return call_user_func_array( array ( 
+				
 					$this -> _parent, 
 					$method 
 			), $args );

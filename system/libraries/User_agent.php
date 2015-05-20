@@ -246,6 +246,7 @@ class CI_User_agent
 		$this -> _set_platform();
 		
 		foreach ( array ( 
+			
 				'_set_robot', 
 				'_set_browser', 
 				'_set_mobile' 
@@ -362,6 +363,7 @@ class CI_User_agent
 		
 		if ( count( $this -> languages ) === 0 ) {
 			$this -> languages = array ( 
+				
 					'Undefined' 
 			);
 		}
@@ -382,6 +384,7 @@ class CI_User_agent
 		
 		if ( count( $this -> charsets ) === 0 ) {
 			$this -> charsets = array ( 
+				
 					'Undefined' 
 			);
 		}

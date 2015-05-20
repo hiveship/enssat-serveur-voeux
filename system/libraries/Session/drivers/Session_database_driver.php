@@ -98,6 +98,7 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 		if ( strpos( $db_driver, 'mysql' ) !== FALSE ) {
 			$this -> _platform = 'mysql';
 		} elseif ( in_array( $db_driver, array ( 
+			
 				'postgre', 
 				'pdo_pgsql' 
 		), TRUE ) ) {
@@ -191,6 +192,7 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 		
 		if ( $this -> _row_exists === FALSE ) {
 			$insert_data = array ( 
+				
 					'id' => $session_id, 
 					'ip_address' => $_SERVER ['REMOTE_ADDR'], 
 					'timestamp' => time(), 
@@ -211,6 +213,7 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 		}
 		
 		$update_data = array ( 
+			
 				'timestamp' => time() 
 		);
 		if ( $this -> _fingerprint !== md5( $session_data ) ) {

@@ -113,6 +113,7 @@ class CI_Cart
 		if ( $this -> _cart_contents === NULL ) {
 			// No cart exists so we'll set some base values
 			$this -> _cart_contents = array ( 
+				
 					'cart_total' => 0, 
 					'total_items' => 0 
 			);
@@ -347,6 +348,7 @@ class CI_Cart
 		
 		// product id & name shouldn't be changed
 		foreach ( array_diff( $keys, array ( 
+			
 				'id', 
 				'name' 
 		) ) as $key ) {
@@ -389,6 +391,7 @@ class CI_Cart
 		// If we made it this far it means that our cart has data.
 		// Let's pass it to the Session class so it can be stored
 		$this -> CI -> session -> set_userdata( array ( 
+			
 				'cart_contents' => $this -> _cart_contents 
 		) );
 		
@@ -473,6 +476,7 @@ class CI_Cart
 	public function get_item ( $row_id )
 	{
 		return ( in_array( $row_id, array ( 
+			
 				'total_items', 
 				'cart_total' 
 		), TRUE ) or ! isset( $this -> _cart_contents [$row_id] ) ) ? FALSE : $this -> _cart_contents [$row_id];
@@ -535,6 +539,7 @@ class CI_Cart
 	public function destroy ()
 	{
 		$this -> _cart_contents = array ( 
+			
 				'cart_total' => 0, 
 				'total_items' => 0 
 		);

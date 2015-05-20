@@ -67,6 +67,7 @@ class CI_DB_pdo_dblib_driver extends CI_DB_pdo_driver
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'NEWID()', 
 			'RAND(%d)' 
 	);
@@ -133,6 +134,7 @@ class CI_DB_pdo_dblib_driver extends CI_DB_pdo_driver
 		$query = $query -> row_array();
 		$this -> _quoted_identifier = empty( $query ) ? FALSE : ( bool ) $query ['qi'];
 		$this -> _escape_char = ( $this -> _quoted_identifier ) ? '"' : array ( 
+			
 				'[', 
 				']' 
 		);

@@ -177,6 +177,7 @@ class CI_Router
 				}
 				
 				$this -> uri -> rsegments = array ( 
+					
 						1 => $this -> class, 
 						2 => $this -> method 
 				);
@@ -282,6 +283,7 @@ class CI_Router
 		
 		// Assign routed segments, index starting from 1
 		$this -> uri -> rsegments = array ( 
+			
 				1 => $class, 
 				2 => $method 
 		);
@@ -342,8 +344,8 @@ class CI_Router
 			if ( is_string( $this -> routes [$uri] ) ) {
 				$this -> _set_request( explode( '/', $this -> routes [$uri] ) );
 				return;
-			}			// Is there a matching http verb?
-			elseif ( is_array( $this -> routes [$uri] ) && isset( $this -> routes [$uri] [$http_verb] ) ) {
+			} // Is there a matching http verb?
+elseif ( is_array( $this -> routes [$uri] ) && isset( $this -> routes [$uri] [$http_verb] ) ) {
 				$this -> _set_request( explode( '/', $this -> routes [$uri] [$http_verb] ) );
 				return;
 			}
@@ -362,9 +364,11 @@ class CI_Router
 			
 			// Convert wildcards to RegEx
 			$key = str_replace( array ( 
+				
 					':any', 
 					':num' 
 			), array ( 
+				
 					'[^/]+', 
 					'[0-9]+' 
 			), $key );
@@ -378,8 +382,8 @@ class CI_Router
 					
 					// Execute the callback using the values in matches as its parameters.
 					$val = call_user_func_array( $val, $matches );
-				}				// Are we using the default routing method for back-references?
-				elseif ( strpos( $val, '$' ) !== FALSE && strpos( $key, '(' ) !== FALSE ) {
+				} // Are we using the default routing method for back-references?
+elseif ( strpos( $val, '$' ) !== FALSE && strpos( $key, '(' ) !== FALSE ) {
 					$val = preg_replace( '#^' . $key . '$#', $val, $uri );
 				}
 				
@@ -404,6 +408,7 @@ class CI_Router
 	public function set_class ( $class )
 	{
 		$this -> class = str_replace( array ( 
+			
 				'/', 
 				'.' 
 		), '', $class );

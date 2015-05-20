@@ -89,6 +89,7 @@ class CI_DB_odbc_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'RND()', 
 			'RND(%d)' 
 	);
@@ -297,6 +298,7 @@ class CI_DB_odbc_driver extends CI_DB
 	public function error ()
 	{
 		return array ( 
+			
 				'code' => odbc_error( $this -> conn_id ), 
 				'message' => odbc_errormsg( $this -> conn_id ) 
 		);

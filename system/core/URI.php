@@ -315,7 +315,8 @@ class CI_URI
 	/**
 	 * Fetch URI "routed" Segment
 	 * Returns the re-routed URI segment (assuming routing rules are used)
-	 * based on the index provided. If there is no routing, will return
+	 * based on the index provided.
+	 * If there is no routing, will return
 	 * the same result as CI_URI::segment().
 	 * 
 	 * @see CI_URI::$rsegments
@@ -335,7 +336,8 @@ class CI_URI
 	/**
 	 * URI to assoc
 	 * Generates an associative array of URI data starting at the supplied
-	 * segment index. For example, if this is your URI:
+	 * segment index.
+	 * For example, if this is your URI:
 	 * example.com/user/search/name/joe/location/UK/gender/male
 	 * You can use this method to generate an array with this prototype:
 	 * array (

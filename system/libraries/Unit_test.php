@@ -92,6 +92,7 @@ class CI_Unit_test
 	 * @var array
 	 */
 	protected $_test_items_visible = array ( 
+		
 			'test_name', 
 			'test_datatype', 
 			'res_datatype', 
@@ -148,6 +149,7 @@ class CI_Unit_test
 		}
 		
 		if ( in_array( $expected, array ( 
+			
 				'is_object', 
 				'is_string', 
 				'is_bool', 
@@ -163,6 +165,7 @@ class CI_Unit_test
 			$expected = str_replace( 'is_double', 'is_float', $expected );
 			$result = $expected( $test );
 			$extype = str_replace( array ( 
+				
 					'true', 
 					'false' 
 			), 'bool', str_replace( 'is_', '', $expected ) );
@@ -174,6 +177,7 @@ class CI_Unit_test
 		$back = $this -> _backtrace();
 		
 		$report = array ( 
+			
 				'test_name' => $test_name, 
 				'test_datatype' => gettype( $test ), 
 				'res_datatype' => $extype, 
@@ -186,6 +190,7 @@ class CI_Unit_test
 		$this -> results [] = $report;
 		
 		return $this -> report( $this -> result( array ( 
+			
 				$report 
 		) ) );
 	}
@@ -224,9 +229,11 @@ class CI_Unit_test
 				}
 				
 				$table .= str_replace( array ( 
+					
 						'{item}', 
 						'{result}' 
 				), array ( 
+					
 						$key, 
 						$val 
 				), $this -> _template_rows );
@@ -333,6 +340,7 @@ class CI_Unit_test
 	{
 		$back = debug_backtrace();
 		return array ( 
+			
 				'file' => ( isset( $back [1] ['file'] ) ? $back [1] ['file'] : '' ), 
 				'line' => ( isset( $back [1] ['line'] ) ? $back [1] ['line'] : '' ) 
 		);

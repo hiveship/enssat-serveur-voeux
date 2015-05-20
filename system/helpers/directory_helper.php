@@ -54,7 +54,8 @@ if ( ! function_exists( 'directory_map' ) ) {
 	/**
 	 * Create a Directory Map
 	 * Reads the specified directory and builds an array
-	 * representation of it. Sub-folders contained with the
+	 * representation of it.
+	 * Sub-folders contained with the
 	 * directory will be mapped as well.
 	 * 
 	 * @param string $source_dir

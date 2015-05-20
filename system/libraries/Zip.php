@@ -152,6 +152,7 @@ class CI_Zip
 		$date = file_exists( $dir ) ? getdate( filemtime( $dir ) ) : getdate( $this -> now );
 		
 		return array ( 
+			
 				'file_mtime' => ( $date ['hours'] << 11 ) + ( $date ['minutes'] << 5 ) + $date ['seconds'] / 2, 
 				'file_mdate' => ( ( $date ['year'] - 1980 ) << 9 ) + ( $date ['mon'] << 5 ) + $date ['mday'] 
 		);
@@ -203,7 +204,8 @@ $dir;
 	
 	/**
 	 * Add Data to Zip
-	 * Lets you add files to the archive. If the path is included
+	 * Lets you add files to the archive.
+	 * If the path is included
 	 * in the filename it will be placed within a directory. Make
 	 * sure you use add_dir() first to create the folder.
 	 * 
@@ -330,6 +332,7 @@ $filepath;
 				$this -> read_dir( $path . $file . DIRECTORY_SEPARATOR, $preserve_filepath, $root_path );
 			} elseif ( FALSE !== ( $data = file_get_contents( $path . $file ) ) ) {
 				$name = str_replace( array ( 
+					
 						'\\', 
 						'/' 
 				), DIRECTORY_SEPARATOR, $path );
@@ -422,7 +425,8 @@ pack( 'V', strlen( $this -> zipdata ) ) . // offset to start of central dir
 	
 	/**
 	 * Initialize Data
-	 * Lets you clear current zip data. Useful if you need to create
+	 * Lets you clear current zip data.
+	 * Useful if you need to create
 	 * multiple zips with different data.
 	 * 
 	 * @return CI_Zip

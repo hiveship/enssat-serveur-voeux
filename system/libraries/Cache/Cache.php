@@ -56,6 +56,7 @@ class CI_Cache extends CI_Driver_Library
 	 * @var array
 	 */
 	protected $valid_drivers = array ( 
+		
 			'apc', 
 			'dummy', 
 			'file', 
@@ -103,6 +104,7 @@ class CI_Cache extends CI_Driver_Library
 	public function __construct ( $config = array() )
 	{
 		$default_config = array ( 
+			
 				'adapter', 
 				'memcached' 
 		);
@@ -139,7 +141,8 @@ class CI_Cache extends CI_Driver_Library
 	
 	/**
 	 * Get
-	 * Look for a value in the cache. If it exists, return the data
+	 * Look for a value in the cache.
+	 * If it exists, return the data
 	 * if not, return FALSE
 	 * 
 	 * @param string $id        	

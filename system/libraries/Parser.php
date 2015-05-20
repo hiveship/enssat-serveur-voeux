@@ -194,6 +194,7 @@ class CI_Parser
 	protected function _parse_single ( $key, $val, $string )
 	{
 		return array ( 
+			
 				$this -> l_delim . $key . $this -> r_delim => ( string ) $val 
 		);
 	}
@@ -202,7 +203,8 @@ class CI_Parser
 	
 	/**
 	 * Parse a tag pair
-	 * Parses tag pairs: {some_tag} string... {/some_tag}
+	 * Parses tag pairs: {some_tag} string...
+	 * {/some_tag}
 	 * 
 	 * @param
 	 *        	string

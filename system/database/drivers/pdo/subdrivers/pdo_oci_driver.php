@@ -68,6 +68,7 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
 	 * @var string[]
 	 */
 	protected $_reserved_identifiers = array ( 
+		
 			'*', 
 			'rownum' 
 	);
@@ -78,6 +79,7 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'ASC', 
 			'ASC' 
 	); // Currently not supported

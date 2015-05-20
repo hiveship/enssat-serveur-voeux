@@ -10,6 +10,7 @@ defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
  * |
  */
 $foreign_characters = array ( 
+	
 		'/ä|æ|ǽ/' => 'ae', 
 		'/ö|œ/' => 'oe', 
 		'/ü/' => 'ue', 

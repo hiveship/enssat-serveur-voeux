@@ -80,8 +80,8 @@ class CI_Session
 			unset( $params ['driver'] );
 		} elseif ( $driver = config_item( 'sess_driver' ) ) {
 			$this -> _driver = $driver;
-		}		// Note: BC workaround
-		elseif ( config_item( 'sess_use_database' ) ) {
+		} // Note: BC workaround
+elseif ( config_item( 'sess_use_database' ) ) {
 			$this -> _driver = 'database';
 		}
 		
@@ -96,21 +96,27 @@ class CI_Session
 				session_set_save_handler( $class, TRUE );
 			} else {
 				session_set_save_handler( array ( 
+					
 						$class, 
 						'open' 
 				), array ( 
+					
 						$class, 
 						'close' 
 				), array ( 
+					
 						$class, 
 						'read' 
 				), array ( 
+					
 						$class, 
 						'write' 
 				), array ( 
+					
 						$class, 
 						'destroy' 
 				), array ( 
+					
 						$class, 
 						'gc' 
 				) );
@@ -136,8 +142,8 @@ class CI_Session
 			} elseif ( $_SESSION ['__ci_last_regenerate'] < ( time() - $regenerate_time ) ) {
 				$this -> sess_regenerate( ( bool ) config_item( 'sess_regenerate_destroy' ) );
 			}
-		}		// Another work-around ... PHP doesn't seem to send the session cookie
-		// unless it is being currently created or regenerated
+		} // Another work-around ... PHP doesn't seem to send the session cookie
+		  // unless it is being currently created or regenerated
 		elseif ( isset( $_COOKIE [$this -> _config ['cookie_name']] ) && $_COOKIE [$this -> _config ['cookie_name']] === session_id() ) {
 			setcookie( $this -> _config ['cookie_name'], session_id(), ( empty( $this -> _config ['cookie_lifetime'] ) ? 0 : time() + $this -> _config ['cookie_lifetime'] ), $this -> _config ['cookie_path'], $this -> _config ['cookie_domain'], $this -> _config ['cookie_secure'], TRUE );
 		}
@@ -152,7 +158,8 @@ class CI_Session
 	/**
 	 * CI Load Classes
 	 * An internal method to load all possible dependency and extension
-	 * classes. It kind of emulates the CI_Driver library, but is
+	 * classes.
+	 * It kind of emulates the CI_Driver library, but is
 	 * self-sufficient.
 	 * 
 	 * @param string $driver        	
@@ -236,8 +243,7 @@ class CI_Session
 		isset( $params ['cookie_domain'] ) or $params ['cookie_domain'] = config_item( 'cookie_domain' );
 		isset( $params ['cookie_secure'] ) or $params ['cookie_secure'] = ( bool ) config_item( 'cookie_secure' );
 		
-		session_set_cookie_params( $params ['cookie_lifetime'], $params ['cookie_path'], $params ['cookie_domain'], $params ['cookie_secure'], TRUE ) // HttpOnly; Yes, this is intentional and not configurable for security reasons
-;
+		session_set_cookie_params( $params ['cookie_lifetime'], $params ['cookie_path'], $params ['cookie_domain'], $params ['cookie_secure'], TRUE ); // HttpOnly; Yes, this is intentional and not configurable for security reasons
 		
 		if ( empty( $expiration ) ) {
 			$params ['expiration'] = ( int ) ini_get( 'session.gc_maxlifetime' );
@@ -278,8 +284,8 @@ class CI_Session
 			foreach ( $_SESSION ['__ci_vars'] as $key => &$value ) {
 				if ( $value === 'new' ) {
 					$_SESSION ['__ci_vars'] [$key] = 'old';
-				}				// Hacky, but 'old' will (implicitly) always be less than time() ;)
-				// DO NOT move this above the 'new' check!
+				} // Hacky, but 'old' will (implicitly) always be less than time() ;)
+				  // DO NOT move this above the 'new' check!
 				elseif ( $value < $current_time ) {
 					unset( $_SESSION [$key], $_SESSION ['__ci_vars'] [$key] );
 				}
@@ -363,6 +369,7 @@ class CI_Session
 		}
 		
 		is_array( $key ) or $key = array ( 
+			
 				$key 
 		);
 		
@@ -461,6 +468,7 @@ class CI_Session
 		}
 		
 		is_array( $key ) or $key = array ( 
+			
 				$key 
 		);
 		
@@ -575,6 +583,7 @@ class CI_Session
 		
 		$userdata = array ();
 		$_exclude = array_merge( array ( 
+			
 				'__ci_vars' 
 		), $this -> get_flash_keys(), $this -> get_temp_keys() );
 		

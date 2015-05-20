@@ -67,6 +67,7 @@ class CI_DB_mssql_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'NEWID()', 
 			'RAND(%d)' 
 	);
@@ -128,6 +129,7 @@ class CI_DB_mssql_driver extends CI_DB
 		$query = $query -> row_array();
 		$this -> _quoted_identifier = empty( $query ) ? FALSE : ( bool ) $query ['qi'];
 		$this -> _escape_char = ( $this -> _quoted_identifier ) ? '"' : array ( 
+			
 				'[', 
 				']' 
 		);
@@ -365,6 +367,7 @@ class CI_DB_mssql_driver extends CI_DB
 		$query = $this -> query( 'SELECT @@ERROR AS code' );
 		$query = $query -> row();
 		return array ( 
+			
 				'code' => $query -> code, 
 				'message' => mssql_get_last_message() 
 		);

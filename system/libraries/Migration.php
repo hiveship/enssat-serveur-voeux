@@ -118,6 +118,7 @@ class CI_Migration
 	{
 		// Only run this constructor on main library load
 		if ( ! in_array( get_class( $this ), array ( 
+			
 				'CI_Migration', 
 				config_item( 'subclass_prefix' ) . 'Migration' 
 		), TRUE ) ) {
@@ -157,6 +158,7 @@ class CI_Migration
 		
 		// Make sure a valid migration numbering type was set.
 		if ( ! in_array( $this -> _migration_type, array ( 
+			
 				'sequential', 
 				'timestamp' 
 		) ) ) {
@@ -166,7 +168,9 @@ class CI_Migration
 		// If the migrations table is missing, make it
 		if ( ! $this -> db -> table_exists( $this -> _migration_table ) ) {
 			$this -> dbforge -> add_field( array ( 
+				
 					'version' => array ( 
+						
 							'type' => 'BIGINT', 
 							'constraint' => 20 
 					) 
@@ -175,6 +179,7 @@ class CI_Migration
 			$this -> dbforge -> create_table( $this -> _migration_table, TRUE );
 			
 			$this -> db -> insert( $this -> _migration_table, array ( 
+				
 					'version' => 0 
 			) );
 		}
@@ -252,6 +257,7 @@ class CI_Migration
 			if ( ( $method === 'up' && $number > $current_version && $number <= $target_version ) or ( $method === 'down' && $number <= $current_version && $number > $target_version ) ) {
 				$instance = new $class();
 				if ( ! is_callable( array ( 
+					
 						$instance, 
 						$method 
 				) ) ) {
@@ -261,6 +267,7 @@ class CI_Migration
 				
 				log_message( 'debug', 'Migrating ' . $method . ' from version ' . $current_version . ' to version ' . $number );
 				call_user_func( array ( 
+					
 						$instance, 
 						$method 
 				) );
@@ -413,6 +420,7 @@ class CI_Migration
 	protected function _update_version ( $migration )
 	{
 		$this -> db -> update( $this -> _migration_table, array ( 
+			
 				'version' => $migration 
 		) );
 	}

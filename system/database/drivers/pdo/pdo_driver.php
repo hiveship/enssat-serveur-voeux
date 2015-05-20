@@ -84,13 +84,14 @@ class CI_DB_pdo_driver extends CI_DB
 			// This is for general PDO users, who tend to have a full DSN string.
 			$this -> subdriver = $match [1];
 			return;
-		}		// Legacy support for DSN specified in the hostname field
-		elseif ( preg_match( '/([^:]+):/', $this -> hostname, $match ) && count( $match ) === 2 ) {
+		} // Legacy support for DSN specified in the hostname field
+elseif ( preg_match( '/([^:]+):/', $this -> hostname, $match ) && count( $match ) === 2 ) {
 			$this -> dsn = $this -> hostname;
 			$this -> hostname = NULL;
 			$this -> subdriver = $match [1];
 			return;
 		} elseif ( in_array( $this -> subdriver, array ( 
+			
 				'mssql', 
 				'sybase' 
 		), TRUE ) ) {
@@ -98,6 +99,7 @@ class CI_DB_pdo_driver extends CI_DB
 		} elseif ( $this -> subdriver === '4D' ) {
 			$this -> subdriver = '4d';
 		} elseif ( ! in_array( $this -> subdriver, array ( 
+			
 				'4d', 
 				'cubrid', 
 				'dblib', 
@@ -304,6 +306,7 @@ class CI_DB_pdo_driver extends CI_DB
 	public function error ()
 	{
 		$error = array ( 
+			
 				'code' => '00000', 
 				'message' => '' 
 		);

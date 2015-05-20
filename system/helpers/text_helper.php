@@ -85,7 +85,8 @@ if ( ! function_exists( 'character_limiter' ) ) {
 
 	/**
 	 * Character Limiter
-	 * Limits the string based on the character count. Preserves complete words
+	 * Limits the string based on the character count.
+	 * Preserves complete words
 	 * so the character count may not be exactly as specified.
 	 * 
 	 * @param
@@ -104,6 +105,7 @@ if ( ! function_exists( 'character_limiter' ) ) {
 		
 		// a bit complicated, but faster than preg_replace with \s+
 		$str = preg_replace( '/ {2,}/', ' ', str_replace( array ( 
+			
 				"\r", 
 				"\n", 
 				"\t", 
@@ -168,8 +170,8 @@ if ( ! function_exists( 'ascii_to_entities' ) ) {
 					$out .= '&#' . $number . ';';
 					$count = 1;
 					$temp = array ();
-				}				// If this is the last iteration, just output whatever we have
-				elseif ( $i === $s ) {
+				} // If this is the last iteration, just output whatever we have
+elseif ( $i === $s ) {
 					$out .= '&#' . implode( ';', $temp ) . ';';
 				}
 			}
@@ -215,6 +217,7 @@ if ( ! function_exists( 'entities_to_ascii' ) ) {
 		
 		if ( $all ) {
 			return str_replace( array ( 
+				
 					'&amp;', 
 					'&lt;', 
 					'&gt;', 
@@ -222,6 +225,7 @@ if ( ! function_exists( 'entities_to_ascii' ) ) {
 					'&apos;', 
 					'&#45;' 
 			), array ( 
+				
 					'&', 
 					'<', 
 					'>', 
@@ -301,6 +305,7 @@ if ( ! function_exists( 'highlight_code' ) ) {
 		 * and thus, thwart the highlighting.
 		 */
 		$str = str_replace( array ( 
+			
 				'&lt;', 
 				'&gt;', 
 				'<?', 
@@ -310,6 +315,7 @@ if ( ! function_exists( 'highlight_code' ) ) {
 				'\\', 
 				'</script>' 
 		), array ( 
+			
 				'<', 
 				'>', 
 				'phptagopen', 
@@ -326,10 +332,12 @@ if ( ! function_exists( 'highlight_code' ) ) {
 		
 		// Remove our artificially added PHP, and the syntax highlighting that came with it
 		$str = preg_replace( array ( 
+			
 				'/<span style="color: #([A-Z0-9]+)">&lt;\?php(&nbsp;| )/i', 
 				'/(<span style="color: #[A-Z0-9]+">.*?)\?&gt;<\/span>\n<\/span>\n<\/code>/is', 
 				'/<span style="color: #[A-Z0-9]+"\><\/span>/i' 
 		), array ( 
+			
 				'<span style="color: #$1">', 
 				"$1</span>\n</span>\n</code>", 
 				'' 
@@ -337,6 +345,7 @@ if ( ! function_exists( 'highlight_code' ) ) {
 		
 		// Replace our markers back to PHP tags.
 		return str_replace( array ( 
+			
 				'phptagopen', 
 				'phptagclose', 
 				'asptagopen', 
@@ -344,6 +353,7 @@ if ( ! function_exists( 'highlight_code' ) ) {
 				'backslashtmp', 
 				'scriptclose' 
 		), array ( 
+			
 				'&lt;?', 
 				'?&gt;', 
 				'&lt;%', 
@@ -422,7 +432,8 @@ if ( ! function_exists( 'word_wrap' ) ) {
 
 	/**
 	 * Word Wrap
-	 * Wraps text at the specified character. Maintains the integrity of words.
+	 * Wraps text at the specified character.
+	 * Maintains the integrity of words.
 	 * Anything placed between {unwrap}{/unwrap} will not be word wrapped, nor
 	 * will URLs.
 	 * 
@@ -443,6 +454,7 @@ if ( ! function_exists( 'word_wrap' ) ) {
 		// Standardize newlines
 		if ( strpos( $str, "\r" ) !== FALSE ) {
 			$str = str_replace( array ( 
+				
 					"\r\n", 
 					"\r" 
 			), "\n", $str );

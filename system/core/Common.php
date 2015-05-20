@@ -79,7 +79,8 @@ if ( ! function_exists( 'is_really_writable' ) ) {
 	/**
 	 * Tests for file writability
 	 * is_writable() returns TRUE on Windows servers when you really can't write to
-	 * the file, based on the read-only attribute. is_writable() is also unreliable
+	 * the file, based on the read-only attribute.
+	 * is_writable() is also unreliable
 	 * on Unix servers if safe_mode is on.
 	 * 
 	 * @link https://bugs.php.net/bug.php?id=54709
@@ -123,7 +124,8 @@ if ( ! function_exists( 'load_class' ) ) {
 
 	/**
 	 * Class registry
-	 * This function acts as a singleton. If the requested class does not
+	 * This function acts as a singleton.
+	 * If the requested class does not
 	 * exist it is instantiated and set to a static variable. If it has
 	 * previously been instantiated the variable is returned.
 	 * 
@@ -149,6 +151,7 @@ if ( ! function_exists( 'load_class' ) ) {
 		// Look for the class first in the local application/libraries folder
 		// then in the native system/libraries folder
 		foreach ( array ( 
+			
 				APPPATH, 
 				BASEPATH 
 		) as $path ) {
@@ -476,6 +479,7 @@ if ( ! function_exists( 'set_status_header' ) ) {
 		if ( empty( $text ) ) {
 			is_int( $code ) or $code = ( int ) $code;
 			$stati = array ( 
+				
 					200 => 'OK', 
 					201 => 'Created', 
 					202 => 'Accepted', 
@@ -542,7 +546,8 @@ if ( ! function_exists( '_error_handler' ) ) {
 	/**
 	 * Error Handler
 	 * This is the custom error handler that is declared at the (relative)
-	 * top of CodeIgniter.php. The main reason we use this is to permit
+	 * top of CodeIgniter.php.
+	 * The main reason we use this is to permit
 	 * PHP errors to be logged in our own log files since the user may
 	 * not have access to server logs. Since this function effectively
 	 * intercepts PHP errors, however, we also need to display errors
@@ -580,6 +585,7 @@ if ( ! function_exists( '_error_handler' ) ) {
 		
 		// Should we display the error?
 		if ( str_ireplace( array ( 
+			
 				'off', 
 				'none', 
 				'no', 
@@ -618,6 +624,7 @@ if ( ! function_exists( '_exception_handler' ) ) {
 		
 		// Should we display the error?
 		if ( str_ireplace( array ( 
+			
 				'off', 
 				'none', 
 				'no', 
@@ -638,7 +645,8 @@ if ( ! function_exists( '_shutdown_handler' ) ) {
 	/**
 	 * Shutdown Handler
 	 * This is the shutdown handler that is declared at the top
-	 * of CodeIgniter.php. The main reason we use this is to simulate
+	 * of CodeIgniter.php.
+	 * The main reason we use this is to simulate
 	 * a complete custom exception handler.
 	 * E_STRICT is purposivly neglected because such events may have
 	 * been caught. Duplication or none? None is preferred for now.

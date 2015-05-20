@@ -60,6 +60,7 @@ class CI_DB_pdo_pgsql_forge extends CI_DB_pdo_forge
 	 * @var array
 	 */
 	protected $_unsigned = array ( 
+		
 			'INT2' => 'INTEGER', 
 			'SMALLINT' => 'INTEGER', 
 			'INT' => 'BIGINT', 
@@ -109,6 +110,7 @@ class CI_DB_pdo_pgsql_forge extends CI_DB_pdo_forge
 	protected function _alter_table ( $alter_type, $table, $field )
 	{
 		if ( in_array( $alter_type, array ( 
+			
 				'DROP', 
 				'ADD' 
 		), TRUE ) ) {

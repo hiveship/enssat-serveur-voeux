@@ -223,6 +223,7 @@ class CI_Form_validation
 		
 		// Build our master array
 		$this -> _field_data [$field] = array ( 
+			
 				'field' => $field, 
 				'label' => $label, 
 				'rules' => $rules, 
@@ -262,7 +263,8 @@ class CI_Form_validation
 	
 	/**
 	 * Set Error Message
-	 * Lets users set their own error messages on the fly. Note:
+	 * Lets users set their own error messages on the fly.
+	 * Note:
 	 * The key name has to match the function name that it corresponds to.
 	 * 
 	 * @param
@@ -275,6 +277,7 @@ class CI_Form_validation
 	{
 		if ( ! is_array( $lang ) ) {
 			$lang = array ( 
+				
 					$lang => $val 
 			);
 		}
@@ -562,6 +565,7 @@ class CI_Form_validation
 					if ( strncmp( $rule, 'callback_', 9 ) === 0 ) {
 						$callback = TRUE;
 						$rules = array ( 
+							
 								1 => $rule 
 						);
 						break;
@@ -569,6 +573,7 @@ class CI_Form_validation
 				} elseif ( is_callable( $rule ) ) {
 					$callback = TRUE;
 					$rules = array ( 
+						
 							1 => $rule 
 					);
 					break;
@@ -801,9 +806,11 @@ class CI_Form_validation
 		}
 		
 		return str_replace( array ( 
+			
 				'{field}', 
 				'{param}' 
 		), array ( 
+			
 				$field, 
 				$param 
 		), $line );
@@ -1027,6 +1034,7 @@ class CI_Form_validation
 	{
 		sscanf( $field, '%[^.].%[^.]', $table, $field );
 		return isset( $this -> CI -> db ) ? ( $this -> CI -> db -> limit( 1 ) -> get_where( $table, array ( 
+			
 				$field => $str 
 		) ) -> num_rows() === 0 ) : FALSE;
 	}
@@ -1107,6 +1115,7 @@ class CI_Form_validation
 			if ( empty( $matches [2] ) ) {
 				return FALSE;
 			} elseif ( ! in_array( $matches [1], array ( 
+				
 					'http', 
 					'https' 
 			), TRUE ) ) {
@@ -1124,6 +1133,7 @@ class CI_Form_validation
 		if ( version_compare( PHP_VERSION, '5.2.13', '==' ) or version_compare( PHP_VERSION, '5.3.2', '==' ) ) {
 			sscanf( $str, 'http://%[^/]', $host );
 			$str = substr_replace( $str, strtr( $host, array ( 
+				
 					'_' => '-', 
 					'-' => '_' 
 			) ), 7, strlen( $host ) );
@@ -1439,11 +1449,13 @@ class CI_Form_validation
 		}
 		
 		return str_replace( array ( 
+			
 				"'", 
 				'"', 
 				'<', 
 				'>' 
 		), array ( 
+			
 				'&#39;', 
 				'&quot;', 
 				'&lt;', 
@@ -1499,9 +1511,11 @@ class CI_Form_validation
 	public function encode_php_tags ( $str )
 	{
 		return str_replace( array ( 
+			
 				'<?', 
 				'?>' 
 		), array ( 
+			
 				'&lt;?', 
 				'?&gt;' 
 		), $str );

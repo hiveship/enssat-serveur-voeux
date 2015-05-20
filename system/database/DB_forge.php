@@ -261,7 +261,9 @@ abstract class CI_DB_forge
 		if ( is_string( $field ) ) {
 			if ( $field === 'id' ) {
 				$this -> add_field( array ( 
+					
 						'id' => array ( 
+							
 								'type' => 'INT', 
 								'constraint' => 9, 
 								'auto_increment' => TRUE 
@@ -508,6 +510,7 @@ abstract class CI_DB_forge
 	{
 		// Work-around for literal column definitions
 		is_array( $field ) or $field = array ( 
+			
 				$field 
 		);
 		
@@ -518,6 +521,7 @@ abstract class CI_DB_forge
 			}
 			
 			$this -> add_field( array ( 
+				
 					$k => $field [$k] 
 			) );
 		}
@@ -569,11 +573,13 @@ abstract class CI_DB_forge
 	{
 		// Work-around for literal column definitions
 		is_array( $field ) or $field = array ( 
+			
 				$field 
 		);
 		
 		foreach ( array_keys( $field ) as $k ) {
 			$this -> add_field( array ( 
+				
 					$k => $field [$k] 
 			) );
 		}
@@ -641,6 +647,7 @@ abstract class CI_DB_forge
 		foreach ( $this -> fields as $key => $attributes ) {
 			if ( is_int( $key ) && ! is_array( $attributes ) ) {
 				$fields [] = array ( 
+					
 						'_literal' => $attributes 
 				);
 				continue;
@@ -655,6 +662,7 @@ abstract class CI_DB_forge
 			isset( $attributes ['TYPE'] ) && $this -> _attr_type( $attributes );
 			
 			$field = array ( 
+				
 					'name' => $key, 
 					'new_name' => isset( $attributes ['NAME'] ) ? $attributes ['NAME'] : NULL, 
 					'type' => isset( $attributes ['TYPE'] ) ? $attributes ['TYPE'] : NULL, 
@@ -904,6 +912,7 @@ abstract class CI_DB_forge
 			}
 			
 			is_array( $this -> keys [$i] ) or $this -> keys [$i] = array ( 
+				
 					$this -> keys [$i] 
 			);
 			

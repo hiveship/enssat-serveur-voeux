@@ -73,6 +73,7 @@ if ( ! function_exists( 'xml_convert' ) ) {
 		}
 		
 		$str = str_replace( array ( 
+			
 				'&', 
 				'<', 
 				'>', 
@@ -80,6 +81,7 @@ if ( ! function_exists( 'xml_convert' ) ) {
 				"'", 
 				'-' 
 		), array ( 
+			
 				'&amp;', 
 				'&lt;', 
 				'&gt;', 

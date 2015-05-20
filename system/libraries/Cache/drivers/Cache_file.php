@@ -101,6 +101,7 @@ class CI_Cache_file extends CI_Driver
 	public function save ( $id, $data, $ttl = 60, $raw = FALSE )
 	{
 		$contents = array ( 
+			
 				'time' => time(), 
 				'ttl' => $ttl, 
 				'data' => $data 
@@ -144,6 +145,7 @@ class CI_Cache_file extends CI_Driver
 		
 		if ( $data === FALSE ) {
 			$data = array ( 
+				
 					'data' => 0, 
 					'ttl' => 60 
 			);
@@ -171,6 +173,7 @@ class CI_Cache_file extends CI_Driver
 		
 		if ( $data === FALSE ) {
 			$data = array ( 
+				
 					'data' => 0, 
 					'ttl' => 60 
 			);
@@ -234,6 +237,7 @@ class CI_Cache_file extends CI_Driver
 			}
 			
 			return array ( 
+				
 					'expire' => $mtime + $data ['ttl'], 
 					'mtime' => $mtime 
 			);

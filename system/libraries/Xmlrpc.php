@@ -266,6 +266,7 @@ class CI_Xmlrpc
 		
 		// Types for info sent back and forth
 		$this -> xmlrpcTypes = array ( 
+			
 				$this -> xmlrpcI4 => '1', 
 				$this -> xmlrpcInt => '1', 
 				$this -> xmlrpcBoolean => '1', 
@@ -279,56 +280,74 @@ class CI_Xmlrpc
 		
 		// Array of Valid Parents for Various XML-RPC elements
 		$this -> valid_parents = array ( 
+			
 				'BOOLEAN' => array ( 
+					
 						'VALUE' 
 				), 
 				'I4' => array ( 
+					
 						'VALUE' 
 				), 
 				'INT' => array ( 
+					
 						'VALUE' 
 				), 
 				'STRING' => array ( 
+					
 						'VALUE' 
 				), 
 				'DOUBLE' => array ( 
+					
 						'VALUE' 
 				), 
 				'DATETIME.ISO8601' => array ( 
+					
 						'VALUE' 
 				), 
 				'BASE64' => array ( 
+					
 						'VALUE' 
 				), 
 				'ARRAY' => array ( 
+					
 						'VALUE' 
 				), 
 				'STRUCT' => array ( 
+					
 						'VALUE' 
 				), 
 				'PARAM' => array ( 
+					
 						'PARAMS' 
 				), 
 				'METHODNAME' => array ( 
+					
 						'METHODCALL' 
 				), 
 				'PARAMS' => array ( 
+					
 						'METHODCALL', 
 						'METHODRESPONSE' 
 				), 
 				'MEMBER' => array ( 
+					
 						'STRUCT' 
 				), 
 				'NAME' => array ( 
+					
 						'MEMBER' 
 				), 
 				'DATA' => array ( 
+					
 						'ARRAY' 
 				), 
 				'FAULT' => array ( 
+					
 						'METHODRESPONSE' 
 				), 
 				'VALUE' => array ( 
+					
 						'MEMBER', 
 						'DATA', 
 						'PARAM', 
@@ -573,7 +592,7 @@ class CI_Xmlrpc
 	}
 
 }
- // END XML_RPC Class
+// END XML_RPC Class
 
 /**
  * XML-RPC Client class
@@ -759,7 +778,7 @@ class XML_RPC_Client extends CI_Xmlrpc
 	}
 
 }
- // END XML_RPC_Client Class
+// END XML_RPC_Client Class
 
 /**
  * XML-RPC Response class
@@ -985,7 +1004,7 @@ class XML_RPC_Response
 	}
 
 }
- // END XML_RPC_Response Class
+// END XML_RPC_Response Class
 
 /**
  * XML-RPC Message class
@@ -1108,6 +1127,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 		$parser = xml_parser_create( $this -> xmlrpc_defencoding );
 		$pname = ( string ) $parser;
 		$this -> xh [$pname] = array ( 
+			
 				'isf' => 0, 
 				'ac' => '', 
 				'headers' => array (), 
@@ -1233,8 +1253,8 @@ class XML_RPC_Message extends CI_Xmlrpc
 				$this -> xh [$the_parser] ['isf_reason'] = 'Top level XML-RPC element is missing';
 				return;
 			}
-		}		// not top level element: see if parent is OK
-		elseif ( ! in_array( $this -> xh [$the_parser] ['stack'] [0], $this -> valid_parents [$name], TRUE ) ) {
+		} // not top level element: see if parent is OK
+elseif ( ! in_array( $this -> xh [$the_parser] ['stack'] [0], $this -> valid_parents [$name], TRUE ) ) {
 			$this -> xh [$the_parser] ['isf'] = 2;
 			$this -> xh [$the_parser] ['isf_reason'] = 'XML-RPC element ' . $name . ' cannot be child of ' . $this -> xh [$the_parser] ['stack'] [0];
 			return;
@@ -1245,6 +1265,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 			case 'ARRAY' :
 				// Creates array for child elements
 				$cur_val = array ( 
+					
 						'value' => array (), 
 						'type' => $name 
 				);
@@ -1439,7 +1460,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 		
 		if ( $this -> xh [$the_parser] ['isf'] > 1 )
 			return; // XML Fault found already
-				                                               
+				        
 		// If a value has not been found
 		if ( $this -> xh [$the_parser] ['lv'] !== 3 ) {
 			if ( $this -> xh [$the_parser] ['lv'] === 1 ) {
@@ -1547,7 +1568,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 	}
 
 }
- // END XML_RPC_Message Class
+// END XML_RPC_Message Class
 
 /**
  * XML-RPC Values class

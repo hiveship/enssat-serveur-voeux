@@ -203,6 +203,7 @@ class CI_Calendar
 		
 		// Set the starting day of the week
 		$start_days = array ( 
+			
 				'sunday' => 0, 
 				'monday' => 1, 
 				'tuesday' => 2, 
@@ -282,9 +283,11 @@ class CI_Calendar
 						// Cells with content
 						$temp = ( $is_current_month === TRUE && $day == $cur_day ) ? $this -> replacements ['cal_cell_content_today'] : $this -> replacements ['cal_cell_content'];
 						$out .= str_replace( array ( 
+							
 								'{content}', 
 								'{day}' 
 						), array ( 
+							
 								$data [$day], 
 								$day 
 						), $temp );
@@ -338,6 +341,7 @@ class CI_Calendar
 	{
 		if ( $this -> month_type === 'short' ) {
 			$month_names = array ( 
+				
 					'01' => 'cal_jan', 
 					'02' => 'cal_feb', 
 					'03' => 'cal_mar', 
@@ -353,6 +357,7 @@ class CI_Calendar
 			);
 		} else {
 			$month_names = array ( 
+				
 					'01' => 'cal_january', 
 					'02' => 'cal_february', 
 					'03' => 'cal_march', 
@@ -376,7 +381,8 @@ class CI_Calendar
 	/**
 	 * Get Day Names
 	 * Returns an array of day names (Sunday, Monday, etc.) based
-	 * on the type. Options: long, short, abr
+	 * on the type.
+	 * Options: long, short, abr
 	 * 
 	 * @param
 	 *        	string
@@ -390,6 +396,7 @@ class CI_Calendar
 		
 		if ( $this -> day_type === 'long' ) {
 			$day_names = array ( 
+				
 					'sunday', 
 					'monday', 
 					'tuesday', 
@@ -400,6 +407,7 @@ class CI_Calendar
 			);
 		} elseif ( $this -> day_type === 'short' ) {
 			$day_names = array ( 
+				
 					'sun', 
 					'mon', 
 					'tue', 
@@ -410,6 +418,7 @@ class CI_Calendar
 			);
 		} else {
 			$day_names = array ( 
+				
 					'su', 
 					'mo', 
 					'tu', 
@@ -494,6 +503,7 @@ class CI_Calendar
 	public function default_template ()
 	{
 		return array ( 
+			
 				'table_open' => '<table border="0" cellpadding="4" cellspacing="0">', 
 				'heading_row_start' => '<tr>', 
 				'heading_previous_cell' => '<th><a href="{previous_url}">&lt;&lt;</a></th>', 
@@ -540,6 +550,7 @@ class CI_Calendar
 		
 		if ( is_string( $this -> template ) ) {
 			$today = array ( 
+				
 					'cal_cell_start_today', 
 					'cal_cell_content_today', 
 					'cal_cell_no_content_today', 
@@ -547,6 +558,7 @@ class CI_Calendar
 			);
 			
 			foreach ( array ( 
+				
 					'table_open', 
 					'table_close', 
 					'heading_row_start', 

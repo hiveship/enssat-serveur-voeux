@@ -81,6 +81,7 @@ class CI_DB_cubrid_driver extends CI_DB
 	 * @var array
 	 */
 	protected $_random_keyword = array ( 
+		
 			'RANDOM()', 
 			'RANDOM(%d)' 
 	);
@@ -358,6 +359,7 @@ class CI_DB_cubrid_driver extends CI_DB
 	public function error ()
 	{
 		return array ( 
+			
 				'code' => cubrid_errno( $this -> conn_id ), 
 				'message' => cubrid_error( $this -> conn_id ) 
 		);

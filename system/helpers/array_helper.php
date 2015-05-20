@@ -93,7 +93,8 @@ if ( ! function_exists( 'elements' ) ) {
 
 	/**
 	 * Elements
-	 * Returns only the array items specified. Will return a default value if
+	 * Returns only the array items specified.
+	 * Will return a default value if
 	 * it is not set.
 	 * 
 	 * @param
@@ -109,6 +110,7 @@ if ( ! function_exists( 'elements' ) ) {
 		$return = array ();
 		
 		is_array( $items ) or $items = array ( 
+			
 				$items 
 		);
 		

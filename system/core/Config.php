@@ -71,6 +71,7 @@ class CI_Config
 	 * @var array
 	 */
 	public $_config_paths = array ( 
+		
 			APPPATH 
 	);
 	
@@ -122,6 +123,7 @@ class CI_Config
 		
 		foreach ( $this -> _config_paths as $path ) {
 			foreach ( array ( 
+				
 					$file, 
 					ENVIRONMENT . DIRECTORY_SEPARATOR . $file 
 			) as $location ) {
@@ -209,7 +211,8 @@ class CI_Config
 	
 	/**
 	 * Site URL
-	 * Returns base_url . index_page [. uri_string]
+	 * Returns base_url .
+	 * index_page [. uri_string]
 	 * 
 	 * @uses CI_Config::_uri_string()
 	 * @param string|string[] $uri
@@ -254,7 +257,8 @@ class CI_Config
 	
 	/**
 	 * Base URL
-	 * Returns base_url [. uri_string]
+	 * Returns base_url [.
+	 * uri_string]
 	 * 
 	 * @uses CI_Config::_uri_string()
 	 * @param string|string[] $uri

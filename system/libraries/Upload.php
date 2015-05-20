@@ -361,8 +361,8 @@ class CI_Upload
 		// Is $_FILES[$field] set? If not, no reason to continue.
 		if ( isset( $_FILES [$field] ) ) {
 			$_file = $_FILES [$field];
-		}		// Does the field name contain array notation?
-		elseif ( ( $c = preg_match_all( '/(?:^[^\[]+)|\[[^]]*\]/', $field, $matches ) ) > 1 ) {
+		} // Does the field name contain array notation?
+elseif ( ( $c = preg_match_all( '/(?:^[^\[]+)|\[[^]]*\]/', $field, $matches ) ) > 1 ) {
 			$_file = $_FILES;
 			for ( $i = 0 ; $i < $c ; $i ++ ) {
 				// We can't track numeric iterations, only full field names are accepted
@@ -555,6 +555,7 @@ class CI_Upload
 	public function data ( $index = NULL )
 	{
 		$data = array ( 
+			
 				'file_name' => $this -> file_name, 
 				'file_type' => $this -> file_type, 
 				'file_path' => $this -> upload_path, 
@@ -598,7 +599,8 @@ class CI_Upload
 	/**
 	 * Set the file name
 	 * This function takes a filename/path as input and looks for the
-	 * existence of a file with the same name. If found, it will append a
+	 * existence of a file with the same name.
+	 * If found, it will append a
 	 * number to the end of the filename to avoid overwriting a pre-existing file.
 	 * 
 	 * @param string $path        	
@@ -745,6 +747,7 @@ class CI_Upload
 		if ( $this -> is_image() && function_exists( 'getimagesize' ) ) {
 			if ( FALSE !== ( $D = @getimagesize( $path ) ) ) {
 				$types = array ( 
+					
 						1 => 'gif', 
 						2 => 'jpeg', 
 						3 => 'png' 
@@ -789,9 +792,11 @@ class CI_Upload
 		// jpegs or pngs to the same file type.
 		
 		$png_mimes = array ( 
+			
 				'image/x-png' 
 		);
 		$jpeg_mimes = array ( 
+			
 				'image/jpg', 
 				'image/jpe', 
 				'image/jpeg', 
@@ -805,6 +810,7 @@ class CI_Upload
 		}
 		
 		$img_mimes = array ( 
+			
 				'image/gif', 
 				'image/jpeg', 
 				'image/png' 
@@ -840,6 +846,7 @@ class CI_Upload
 		
 		// Images get some additional checks
 		if ( in_array( $ext, array ( 
+			
 				'gif', 
 				'jpg', 
 				'jpeg', 
@@ -1060,6 +1067,7 @@ class CI_Upload
 		$this -> _CI -> lang -> load( 'upload' );
 		
 		is_array( $msg ) or $msg = array ( 
+			
 				$msg 
 		);
 		

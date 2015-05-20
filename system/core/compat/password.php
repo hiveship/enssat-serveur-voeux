@@ -73,13 +73,16 @@ if ( ! function_exists( 'password_get_info' ) ) {
 	function password_get_info ( $hash )
 	{
 		return ( strlen( $hash ) < 60 or sscanf( $hash, '$2y$%d', $hash ) !== 1 ) ? array ( 
+			
 				'algo' => 0, 
 				'algoName' => 'unknown', 
 				'options' => array () 
 		) : array ( 
+			
 				'algo' => 1, 
 				'algoName' => 'bcrypt', 
 				'options' => array ( 
+					
 						'cost' => $hash 
 				) 
 		);
