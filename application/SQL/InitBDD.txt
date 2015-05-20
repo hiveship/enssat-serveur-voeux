@@ -1,0 +1,4 @@
+CREATE USER 'projet-imr1'@'localhost' IDENTIFIED BY '***';GRANT ALL PRIVILEGES ON *.* TO 'projet-imr1'@'localhost' IDENTIFIED BY '***' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON `projet-imr1\_%`.* TO 'projet-imr1'@'localhost';
+
+Login: projet-imr1
+Password: admin
