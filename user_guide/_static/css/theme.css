@@ -18,26 +18,38 @@ audio, canvas, video {
 audio
 
 
+
+
 :not
 
+
  
+
 
 (
 [
 controls
 ]
 
+
  
+
 
 ){
 display
 
 
+
+
 :
+
 
  
 
+
 none
+
+
 
 
 
@@ -159,24 +171,36 @@ img {
 svg
 
 
+
+
 :not
 
+
  
+
 
 (
 :root
 
+
  
+
 
 ){
 overflow
 
 
+
+
 :
+
 
  
 
+
 hidden
+
+
 
 
 
@@ -527,7 +551,11 @@ big, small {
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -545,7 +573,11 @@ big, small {
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -563,7 +595,11 @@ big, small {
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -582,7 +618,11 @@ keyframes spin { 0%{
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -593,7 +633,11 @@ transform
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -5272,30 +5316,44 @@ nav.stickynav {
 
 .rst-content
 
+
  
+
 
 dl
 
 
+
+
 :not
 
+
  
+
 
 (
 .docutils
 
+
  
+
 
 ){
 margin-bottom
 
 
+
+
 :
+
 
  
 
+
 24
 px
+
+
 
 
 
