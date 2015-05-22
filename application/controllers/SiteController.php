@@ -7,11 +7,22 @@ class SiteController extends CI_Controller
 	{
 		parent::__construct();
 		$this -> load -> library( 'session' );
+		$this -> load -> helper( 'url' );
+		$this -> load -> helper( 'form' );
+		$this -> load -> library( 'form_validation' );
 		$this -> load -> model( 'enseignant/EnseignantModel' );
+	}
+
+	public function index ()
+	{
+		$this -> load -> view( 'site/login' );
 	}
 
 	public function login ()
 	{
+		$this -> form_validation -> set_rules( 'login', 'login', 'required' );
+		$this -> form_validation -> set_rules( 'password', 'password', 'required' );
+		
 		$login = $this -> input -> post( 'login' );
 		$pasword = $this -> input -> post( 'password' );
 		$me = $this -> EnseignantModel -> get( $login, $password );
