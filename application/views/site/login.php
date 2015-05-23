@@ -1,18 +1,6 @@
 
-
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>SuperTodo</title>
-<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
-<script type="text/javascript" src="<?php echo base_url("assets/js/jQuery-2.1.4.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
-</head>
-
-<body>
-	<div class="container">
-		<div class="row login-form well col-centered col-md-3">
+<div class="container">
+	<div class="row login-form well col-centered col-md-3">
 			<?php
 			
 			echo form_open( 'SiteController/login', 'role="form"' );
@@ -43,8 +31,4 @@
 			echo form_close();
 			?>
 		</div>
-	</div>
-
-
-</body>
-</html>
+</div>

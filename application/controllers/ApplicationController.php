@@ -10,8 +10,6 @@ class ApplicationController extends CI_Controller
 	public function __construct ()
 	{
 		parent::__construct();
-		// See https://ellislab.com/codeigniter/user-guide/libraries/sessions.html
-		$this -> load -> library( 'session' );
 	}
 
 	public function require_login ()
@@ -52,6 +50,17 @@ class ApplicationController extends CI_Controller
 	public static function flash_warning ( $message )
 	{
 		flash( self::FLASH_LEVEL_WARNING, $message );
+	}
+
+	public function get_flashs ()
+	{
+		$data = array ( 
+			
+				'error' => $this -> session -> flashdata( 'error' ), 
+				'warning' => $this -> session -> flashdata( 'warning' ), 
+				'success' => $this -> session -> flashdata( 'success' ), 
+				'info' => $this -> session -> flashdata( 'info' ) 
+		);
 	}
 
 }
