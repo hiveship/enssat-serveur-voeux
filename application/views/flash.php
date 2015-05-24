@@ -1,18 +1,41 @@
+<!--  TODO il faut optimiser ce code étant donné que seul le 'level' change d'une div à l'autre ! -->
+
+<div class="container">
+	<br />
 <?php
-$levels = array ( 
-	
-		'error', 
-		'warning', 
-		'success', 
-		'info' 
-);
-<div id="flash" class="container">
-<% [:error, :warning, :success, :info].each do |level|
-if flash[level] %>
-<%= content_tag :div, class: %(alert alert-#{level} fade in) do %>
-<%= button_tag 'x', type: 'button', class: 'close', data: {dismiss: 'alert'} %>
-<%= flash[level] %>
-<% end
-end
-end %>
+if ( $success ) {
+	?>
+<div class="alert alert-success fade in"> <?= $success?><a href="#" class="close"
+			data-dismiss="alert">&times;</a>
+	</div>
+<?php
+}
+?>
+<?php
+
+if ( $error ) {
+	?>
+
+<div class="alert alert-danger fade in"> <?= $error?><a href="#" class="close" data-dismiss="alert">&times;</a>
+	</div>
+<?php
+}
+?><?php
+
+if ( $warning ) {
+	?>
+<div class="alert alert-warning fade in"> <?= $warning?><a href="#" class="close"
+			data-dismiss="alert">&times;</a>
+	</div>
+<?php
+}
+?><?php
+
+if ( $info ) {
+	?>
+<div class="alert alert-info fade in"> <?= $info?><a href="#" class="close" data-dismiss="alert">&times;</a>
+	</div>
+<?php
+}
+?>
 </div>

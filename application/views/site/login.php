@@ -11,7 +11,7 @@
 					/* En cas d'erreur, à la validation du formulaire, si le champs était rempli, la saisie de l'utilisateur sera toujours présente.*/
 					'value' => set_value( 'login' ) 
 			);
-			echo form_label( 'Login: ', 'login', 'class="icon-white icon-user"' );
+			echo form_label( 'Login: ', 'login' );
 			echo form_input( $login, '', 'class="form-control"' );
 			echo form_error( 'login' );
 			
@@ -21,7 +21,7 @@
 					'id' => 'password', 
 					'value' => set_value( 'password' ) 
 			);
-			echo form_label( 'Password: ', 'password', 'class="icon-white icon-question-sign"' );
+			echo form_label( 'Password: ', 'password' );
 			echo form_password( $password, 'password', 'class="form-control"' );
 			echo form_error( 'password' );
 			

@@ -91,7 +91,8 @@ $autoload ['drivers'] = array ();
 $autoload ['helper'] = array ( 
 	
 		'url', 
-		'html' 
+		'html', 
+		'Flash_helper' 
 );
 
 /*

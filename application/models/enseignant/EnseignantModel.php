@@ -15,11 +15,34 @@ class EnseignantModel extends CI_Model
 				'login' => $login, 
 				'pwd' => $password 
 		), 1 );
-		print_r( $query -> result() );
+		$result = $query -> row();
+		if ( empty( $result ) ) {
+			return FALSE;
+		} else {
+			return $this -> create_user( $result );
+		}
 	}
-	
-	// Construire l'objet user avec les bonnes enums etc...
-	// Return FALSE si on a récupéré 0 lignes
+
+	private function create_user ( $resultRow )
+	{
+		if ( empty( $resultRow ) ) {
+			return FALSE;
+		} else {
+			// Créer une classe Utilisateur ??
+			$user = array ( 
+				
+					'login' => $resultRow -> login, 
+					'password' => $resultRow -> pwd, 
+					'nom' => $resultRow -> nom, 
+					'prenom' => $resultRow -> prenom, 
+					'statut' => $resultRow -> statut, 
+					'statutaire' => $resultRow -> statutaire, 
+					'actif' => $resultRow -> actif, 
+					'level' => $resultRow -> administrateur 
+			);
+			return $user;
+		}
+	}
 
 }
 ?>

@@ -1,57 +1,61 @@
-<div id="OrderPackages">
+<div id="mesCours">
 	<table id="tableSearchResults" class="table table-hover  table-striped table-condensed">
 		<thead>
 			<tr>
-				<th>Package ID</th>
-				<th>Quantity</th>
 				<th></th>
+				<th>Module</th>
+				<th>Heures enseignées</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr id="package1" class="accordion-toggle" data-toggle="collapse" data-parent="#OrderPackages"
 				data-target=".packageDetails1">
-				<td>123456</td>
-				<td>3</td>
-				<td><i class="indicator glyphicon glyphicon-chevron-up pull-right"></i></td>
+				<td><i class="indicator glyphicon glyphicon-chevron-up pull-left"></i>
+				
+				<td>Programation web IMR1 S1</td>
+				<td>30h</td>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="3" class="hiddenRow">
 					<div class="accordion-body collapse packageDetails1" id="accordion1">
 						<table>
 							<tr>
-								<td>Revealed item 1</td>
+								<td>Découverte du protocole HTTP</td>
+								<td>2h</td>
 							</tr>
 							<tr>
-								<td>Revealed item 2</td>
+								<td>Développement côté client avec JavaScript</td>
+								<td>28h</td>
 							</tr>
 						</table>
 					</div>
 				</td>
 			</tr>
-			<tr id="package2" class="accordion-toggle" data-toggle="collapse" data-parent="#OrderPackages"
+			<tr id="package1" class="accordion-toggle" data-toggle="collapse" data-parent="#OrderPackages"
 				data-target=".packageDetails2">
-				<td>654321</td>
-				<td>2</td>
-				<td><i class="indicator glyphicon glyphicon-chevron-up pull-right"></i></td>
+				<td><i class="indicator glyphicon glyphicon-chevron-up pull-left"></i>
+				
+				<td>Algorithmique INFO1 S2</td>
+				<td>45h</td>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="3" class="hiddenRow">
-					<div class="accordion-body collapse packageDetails2" id="accordion2">
+					<div class="accordion-body collapse packageDetails2 danger" id="accordion1">
 						<table>
 							<tr>
-								<td>Revealed item 1</td>
+								<td>Le langage C</td>
+								<td>15h</td>
 							</tr>
 							<tr>
-								<td>Revealed item 2</td>
-							</tr>
-							<tr>
-								<td>Revealed item 3</td>
+								<td>Structures de données et pointeurs</td>
+								<td>30h</td>
 							</tr>
 						</table>
 					</div>
 				</td>
 			</tr>
-			<tr></tr>
 		</tbody>
 	</table>
 </div>

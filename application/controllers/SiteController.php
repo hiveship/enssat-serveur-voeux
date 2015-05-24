@@ -19,32 +19,20 @@ class SiteController extends CI_Controller
 	public function login ()
 	{
 		$this -> form_validation -> set_message( 'required', 'Ce champ doit être renseigné.' );
-		
 		$this -> form_validation -> set_rules( 'login', 'Login doit être renseigné', 'trim|required' );
 		$this -> form_validation -> set_rules( 'password', 'password', 'trim|required' );
 		
 		if ( $this -> form_validation -> run() === FALSE ) {
 			$this -> load -> template( 'site/login' );
 		} else {
-			$me = array ( 
-				
-					'level' => EnumEnseignantCompteLevel::ADMINISTRATEUR 
-			);
-			$this -> session -> set_userdata( 'me', $me );
-			$login = $this -> input -> post( 'login', true );
-			$password = $this -> input -> post( 'password' );
-			echo "<br/>";
-			echo "login vaut : " . $login;
-			echo "<br/>";
-			echo "password vaut : " . $password;
-			$this -> load -> template( 'fake' );
-			$me = $this -> EnseignantModel -> get( $login, $password );
+			$me = $this -> EnseignantModel -> get( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
 			if ( $me != FALSE ) {
-				// ApplicationController::flash_error( "Vous êtes désormais connecté !" );
-				// redirect('page voulue');
+				$this -> session -> set_userdata( 'me', $me );
+				flash_success( 'Authentification réussie !' );
+				$this -> load -> template( 'fake' );
 			} else {
-				// ApplicationController::flash_error( "Erreur d'authentification !" );
-				// redirect( 'site/login' );
+				flash_error( "Echec d'authentification" );
+				$this -> load -> template( 'site/login' );
 			}
 		}
 	}
@@ -53,6 +41,7 @@ class SiteController extends CI_Controller
 	{
 		$this -> session -> unset_userdata( 'me' );
 		$this -> session -> sess_destroy();
+		flash_success( 'Vous êtes désormais déconnecté !' );
 		$this -> load -> template( 'site/login' );
 	}
 
