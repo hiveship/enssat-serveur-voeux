@@ -18,8 +18,7 @@ class SiteController extends CI_Controller
 
 	public function login ()
 	{
-		$this -> form_validation -> set_message( 'required', 'Ce champ doit être renseigné.' );
-		$this -> form_validation -> set_rules( 'login', 'Login doit être renseigné', 'trim|required' );
+		$this -> form_validation -> set_rules( 'login', 'Login', 'trim|required' );
 		$this -> form_validation -> set_rules( 'password', 'password', 'trim|required' );
 		
 		if ( $this -> form_validation -> run() === FALSE ) {
