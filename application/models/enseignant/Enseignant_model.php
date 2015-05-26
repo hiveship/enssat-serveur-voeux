@@ -1,6 +1,6 @@
 <?php
 
-class EnseignantModel extends CI_Model
+class Enseignant_model extends CI_Model
 {
 
 	public function __construct ()
