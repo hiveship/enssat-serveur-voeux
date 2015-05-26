@@ -92,7 +92,7 @@ $autoload ['helper'] = array (
 	
 		'url', 
 		'html', 
-		'Flash_helper' 
+		'flash_helper' 
 );
 
 /*

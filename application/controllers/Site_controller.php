@@ -1,6 +1,6 @@
 <?php
 // N'hérite pas de ApplicationController, car c'est la SEULE partie de l'application qui ne nécéssite pas d'authentification préalable.
-class SiteController extends CI_Controller
+class Site_controller extends CI_Controller
 {
 
 	public function __construct ()
@@ -8,7 +8,7 @@ class SiteController extends CI_Controller
 		parent::__construct();
 		$this -> load -> helper( 'form' );
 		$this -> load -> library( 'form_validation' );
-		$this -> load -> model( 'enseignant/EnseignantModel' );
+		$this -> load -> model( 'enseignant/Enseignant_model' );
 	}
 
 	public function index ()
@@ -24,7 +24,7 @@ class SiteController extends CI_Controller
 		if ( $this -> form_validation -> run() === FALSE ) {
 			$this -> load -> template( 'site/login' );
 		} else {
-			$me = $this -> EnseignantModel -> get( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
+			$me = $this -> Enseignant_model -> get( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
 			if ( $me != FALSE ) {
 				$this -> session -> set_userdata( 'me', $me );
 				flash_success( 'Authentification réussie !' );
