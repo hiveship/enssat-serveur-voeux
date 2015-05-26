@@ -1,6 +1,6 @@
 <?php
 
-class EnseignantController extends ApplicationController
+class Enseignant_controller extends ApplicationController
 {
 
 	public function __construct ()

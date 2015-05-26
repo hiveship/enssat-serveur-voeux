@@ -1,6 +1,6 @@
 <?php
 
-class ApplicationController extends CI_Controller
+class Application_controller extends CI_Controller
 {
 
 	public function __construct ()
