@@ -58,9 +58,39 @@ class Module_controller extends Application_controller
 					'modules' => $module 
 			);
 			$this -> load -> template ( 'cours/aff_get_module', $data );
+		} else {
+			$this -> load -> template ( 'cours/get_module' );
+		}
+	}
+
+	public function edit_menu ()
+	{
+		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
+		if ( $this -> form_validation -> run () === TRUE ) {
+			$module = $this -> Module_model -> get ( $this -> input -> post ( 'ID' ) )[0];
+			$data = array ( 
+					'module' => $module 
+			);
+			$this -> load -> template ( 'cours/edit_module', $data );
 		
 		} else {
 			$this -> load -> template ( 'cours/get_module' );
+		}
+	}
+
+	public function update_remove ()
+	{
+		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'public', 'public', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'semestre', 'semestre', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
+		
+		if ( $this -> form_validation -> run () === TRUE ) {
+			if ( $this -> input -> post ( 'req' ) == 'delete' ) {
+				echo "test";
+				$this -> Module_model -> delete ( $this -> input -> post ( 'ID_orig' ) );
+			
+			}
 		}
 	}
 

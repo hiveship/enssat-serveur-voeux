@@ -1,7 +1,6 @@
 <div class="container">
 	<div>
 			<?php
-			// TODO trouver comment afficher
 			echo form_open ( 'Module_controller/get', 'role="form"' );
 			
 			$ID = array ( 

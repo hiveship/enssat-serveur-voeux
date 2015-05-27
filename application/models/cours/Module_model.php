@@ -40,6 +40,13 @@ class Module_model extends CI_model
 		return $querry -> result_array ();
 	}
 
+	public function delete ( $ID )
+	{
+		$this -> db -> delete ( 'module', array ( 
+				'ident' => $ID 
+		) );
+	}
+
 }
 
 ?>
