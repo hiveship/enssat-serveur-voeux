@@ -2,7 +2,7 @@
 	<div>
 			<?php
 			// TODO trouver comment afficher
-			echo form_open ( 'Module_controler/create', 'role="form"' );
+			echo form_open ( 'Module_controller/create', 'role="form"' );
 			$ID = array ( 
 					
 					'id' => 'ID', 
@@ -21,7 +21,7 @@
 					'value' => set_value ( 'public' ) 
 			);
 			echo form_label ( 'public: ', 'public' );
-			echo form_password ( $public, '', 'class="form-control"' );
+			echo form_input ( $public, '', 'class="form-control"' );
 			echo form_error ( 'public' );
 			
 			$semestre = array ( 
@@ -31,7 +31,7 @@
 					'value' => set_value ( 'semestre' ) 
 			);
 			echo form_label ( 'semestre: ', 'semestre' );
-			echo form_password ( $semestre, '', 'class="form-control"' );
+			echo form_input ( $semestre, '', 'class="form-control"' );
 			echo form_error ( 'semestre' );
 			
 			$libelle = array ( 
@@ -41,7 +41,7 @@
 					'value' => set_value ( 'libelle' ) 
 			);
 			echo form_label ( 'libelle: ', 'libelle' );
-			echo form_password ( $libelle, '', 'class="form-control"' );
+			echo form_input ( $libelle, '', 'class="form-control"' );
 			echo form_error ( 'libelle' );
 			
 			echo br ( 1 );
