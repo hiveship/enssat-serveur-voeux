@@ -8,15 +8,29 @@ class Application_controller extends CI_Controller
 		parent::__construct();
 	}
 
+	public function index ()
+	{
+		$this -> load -> template( 'site/login' );
+	}
+
 	public function require_login ()
 	{
-		// TODO: code pour vérifier si il faut être connecté pour accéder à la page.
+		if ( $this -> session -> userdata( 'me' ) == NULL ) {
+			flash_warning( "Cette page nécéssite d'être connecté !" );
+			// $this -> load -> template( 'site/login' );
+			redirect( 'Site_controller/index', 'auto' );
+		}
 	}
 
 	public function have_admin_rights ()
 	{
+		$this -> load() -> model( 'Enseignant_model' );
 		require_login();
-		// TODO: code pour vérifier si il faut être administrateur pour accéder à la page.
+		$me = $this -> session -> userdata( 'me' );
+		if ( $me ['level'] !== Enseignant_model::ADMINISTRATEUR ) {
+			flash_error( "Erreur, cette page est réservée aux administrateurs." );
+			// TODO redirect to root path
+		}
 	}
 
 }

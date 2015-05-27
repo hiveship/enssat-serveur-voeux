@@ -41,4 +41,5 @@ function get_flashs ()
 	);
 	return $data;
 }
+
 ?>

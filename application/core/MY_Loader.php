@@ -1,7 +1,5 @@
 <?php
 
-require_once ( APPPATH . 'models/enseignant/enum_enseignant_compte_level.php' );
-
 class MY_Loader extends CI_Loader
 {
 
@@ -17,10 +15,11 @@ class MY_Loader extends CI_Loader
 	 */
 	public function template ( $view, $data = array() )
 	{
+		$this -> model( 'Enseignant_model' );
 		$this -> view( 'header' );
 		if ( $this -> session -> userdata( 'me' ) !== NULL ) {
 			$me = $this -> session -> userdata( 'me' );
-			if ( $me ['level'] == EnumEnseignantCompteLevel::ADMINISTRATEUR ) {
+			if ( $me ['level'] == Enseignant_model::LEVEL_ADMINISTRATEUR ) {
 				$this -> view( 'admin/navbar' );
 			} else {
 				$this -> view( 'navbar' );
