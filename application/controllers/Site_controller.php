@@ -29,9 +29,11 @@ class Site_controller extends CI_Controller
 				$this -> session -> set_userdata( 'me', $me );
 				flash_success( 'Authentification réussie !' );
 				$this -> load -> template( 'fake' );
+				// TODO lors de l'envoie sur une vrai page, ça sera un redirect à placer ici
 			} else {
 				flash_error( "Echec d'authentification" );
-				$this -> load -> template( 'site/login' );
+				redirect( 'Site_controller/index', 'refresh' );
+				// see: http://stackoverflow.com/questions/4281800/codeigniter-when-to-use-redirect-and-when-to-use-this-load-view
 			}
 		}
 	}
@@ -39,9 +41,9 @@ class Site_controller extends CI_Controller
 	public function logout ()
 	{
 		$this -> session -> unset_userdata( 'me' );
-		$this -> session -> sess_destroy();
 		flash_success( 'Vous êtes désormais déconnecté !' );
-		$this -> load -> template( 'site/login' );
+		// Ne pas faire un appel à session_destroy, sinon les messages flashs seront également perdus.
+		redirect( 'Site_controller/index', 'refresh' );
 	}
 
 }

@@ -8,5 +8,10 @@ class Enseignant_controller extends ApplicationController
 		parent::__construct();
 	}
 
+	public function index ()
+	{
+		$this -> load -> template( 'fake' );
+	}
+
 }
 ?>
