@@ -2,6 +2,16 @@
 
 class Enseignant_model extends CI_Model
 {
+	const LEVEL_ENSEIGNANT = 0;
+	const LEVEL_ADMINISTRATEUR = 1;
+	
+	const STATUT_ADMINISTRATIF = 'administratif';
+	const STATUT_CONTRACTUEL = 'contractuel';
+	const STATUT_TITULAIRE = 'titulaire';
+	const STATUT_VACATAIRE = 'vacataire';
+	
+	const ETAT_ACTIF = 1;
+	const ETAT_INACTIF = 0;
 
 	public function __construct ()
 	{
@@ -20,7 +30,7 @@ class Enseignant_model extends CI_Model
 		if ( empty ( $result ) ) {
 			return FALSE;
 		} else {
-			return $this -> create_user ( $result );
+			return $this -> create_user_array( $result );
 		}
 	}
 
@@ -32,12 +42,11 @@ class Enseignant_model extends CI_Model
 		return $query -> result_array ();
 	}
 
-	private function create_user ( $resultRow )
+	private function create_user_array ( $resultRow )
 	{
 		if ( empty ( $resultRow ) ) {
 			return FALSE;
 		} else {
-			// Créer une classe Utilisateur ??
 			$user = array ( 
 					
 					'login' => $resultRow -> login, 
@@ -46,7 +55,7 @@ class Enseignant_model extends CI_Model
 					'prenom' => $resultRow -> prenom, 
 					'statut' => $resultRow -> statut, 
 					'statutaire' => $resultRow -> statutaire, 
-					'actif' => $resultRow -> actif, 
+					'etat' => $resultRow -> actif, 
 					'level' => $resultRow -> administrateur 
 			);
 			return $user;

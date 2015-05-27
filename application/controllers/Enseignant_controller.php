@@ -20,5 +20,10 @@ class Enseignant_controller extends Application_controller
 	
 	}
 
+	public function index ()
+	{
+		$this -> load -> template( 'fake' );
+	}
+
 }
 ?>
