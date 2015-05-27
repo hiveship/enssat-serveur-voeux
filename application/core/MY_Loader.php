@@ -1,6 +1,6 @@
 <?php
 
-require_once ( APPPATH . 'models/enseignant/EnumEnseignantCompteLevel.php' );
+require_once ( APPPATH . 'models/enseignant/enum_enseignant_compte_level.php' );
 
 class MY_Loader extends CI_Loader
 {

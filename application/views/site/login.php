@@ -3,7 +3,7 @@
 	<div class="row login-form well col-centered col-md-3">
 			<?php
 			
-			echo form_open( 'SiteController/login', 'role="form"' );
+			echo form_open( 'Site_controller/login', 'role="form"' );
 			$login = array ( 
 				
 					'id' => 'login', 
