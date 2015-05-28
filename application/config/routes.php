@@ -53,7 +53,5 @@ $route ['default_controller'] = 'site_controller';
 $route ['404_override'] = '';
 $route ['translate_uri_dashes'] = FALSE;
 
-//$route ['enseignant/:login'] = "Site_controller/get";
-
 
 

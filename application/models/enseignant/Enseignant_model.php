@@ -6,6 +6,8 @@ class Enseignant_model extends CI_Model
 	// CONSTANTS
 	// =========
 	
+	const TABLE_NAME = 'enseignant';
+	
 	const LEVEL_ENSEIGNANT = 0;
 	const LEVEL_ADMINISTRATEUR = 1; // Qui peut le plus peut le moins, un administrateur est un enseignant particulier.
 	
@@ -41,68 +43,95 @@ class Enseignant_model extends CI_Model
 	
 	public function get_all ()
 	{
-	
+		$query = $this -> db -> get( self::TABLE_NAME );
+		$enseignants = array ();
+		foreach ( $query -> result() as $row ) {
+			array_push( $enseignants, $this -> create_user_entity( $row ) );
+		}
+		return $enseignants;
 	}
 
-	public function get ( $login, $password )
+	public function authenticate ( $login, $password )
 	{
-		$query = $this -> db -> get_where( 'enseignant', array ( 
+		$query = $this -> db -> get_where( self::TABLE_NAME, array ( 
 			
 				'login' => $login, 
 				'pwd' => $password 
-		), 1 );
+		) );
+		return $this -> create_user_entity( $query -> row() );
+	}
+
+	public function get ( $login )
+	{
+		$query = $this -> db -> get_where( self::TABLE_NAME, array ( 
+			
+				'login' => $login 
+		) );
 		return $this -> create_user_entity( $query -> row() );
 	}
 	
 	// UPDATE
 	// ------
 	
-	public function update_nom ()
+	private function update_field ( $login, $field, $value )
 	{
-	
+		$this -> db -> where( 'login', $login );
+		$this -> db -> update( self::TABLE_NAME, array ( 
+			
+				$field => $value 
+		) );
 	}
 
-	public function update_prenom ()
+	public function update_nom ( $login, $nom )
 	{
-	
+		$this -> update_field( $login, 'nom', $nom );
 	}
 
-	public function update_password ()
+	public function update_prenom ( $login, $prenom )
 	{
-	
+		$this -> update_field( $login, 'prenom', $prenom );
 	}
 
-	public function update_email ()
+	public function update_password ( $login, $password )
 	{
-	
+		// TODO: secure storage
+		$this -> update_field( $login, 'pwd', $password );
 	}
 
-	public function rendre_administrateur ()
+	public function update_email ( $login, $email )
 	{
-	
+		$this -> update_field( $login, 'email', $email );
+	}
+
+	public function rendre_administrateur ( $login )
+	{
+		$this -> update_field( $login, 'administrateur', self::LEVEL_ADMINISTRATEUR );
 	}
 
 	public function rendre_enseignant ()
 	{
-	
+		$this -> update_field( $login, 'administrateur', self::LEVEL_ENSEIGNANT );
 	}
 
-	public function rendre_actif ()
+	public function rendre_actif ( $login )
 	{
-	
+		$this -> update_field( $login, 'actif', self::ETAT_ACTIF );
 	}
 
-	public function rendre_inactif ()
+	public function rendre_inactif ( $login )
 	{
-	
+		$this -> update_field( $login, 'actif', self::ETAT_INACTIF );
 	}
 	
 	// DELETE
 	// ------
 	
-	public function delete ()
+	public function delete ( $login )
 	{
-	
+		$this -> db -> delete( self::TABLE_NAME, array ( 
+			
+				'login' => $login 
+		) );
 	}
 	
 	// =========
@@ -114,19 +143,16 @@ class Enseignant_model extends CI_Model
 		if ( empty( $queryResult ) ) {
 			return FALSE;
 		} else {
-			$actif = $queryResult -> actif == self::ETAT_ACTIF;
-			$administrateur = $queryResult -> administrateur == self::LEVEL_ADMINISTRATEUR;
-			
 			$user = array ( 
 				
 					'login' => $queryResult -> login, 
-					'password' => $queryResult -> pwd, 
 					'nom' => $queryResult -> nom, 
 					'prenom' => $queryResult -> prenom, 
+					'email' => $queryResult -> email, 
 					'statut' => $queryResult -> statut, 
 					'statutaire' => $queryResult -> statutaire, 
-					'actif' => $actif, 
-					'administrateur' => $administrateur 
+					'actif' => $queryResult -> actif == self::ETAT_ACTIF, 
+					'administrateur' => $queryResult -> administrateur == self::LEVEL_ADMINISTRATEUR 
 			);
 			return $user;
 		}
@@ -164,7 +190,7 @@ class Enseignant_model extends CI_Model
 	 */
 	public function compute_login ( $prenom, $nom )
 	{
-		return strtolower( substr( $prenom, $start ) . $nom );
+		return strtolower( substr( $prenom, 0 ) . $nom );
 	}
 
 }
