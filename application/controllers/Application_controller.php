@@ -12,7 +12,11 @@ class Application_controller extends CI_Controller
 	{
 		$this -> load -> template( 'site/login' );
 	}
-
+	
+	// ============
+	// CHECK RIGHTS
+	// ============
+	
 	public function require_login ()
 	{
 		if ( $this -> session -> userdata( 'me' ) == NULL ) {
