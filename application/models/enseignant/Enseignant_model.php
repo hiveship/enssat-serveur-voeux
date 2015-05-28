@@ -39,9 +39,19 @@ class Enseignant_model extends CI_Model
 	// GET / GET ALL
 	// -------------
 	
-	public function getAll ()
+	public function get_all ()
 	{
 	
+	}
+
+	public function get ( $login, $password )
+	{
+		$query = $this -> db -> get_where( 'enseignant', array ( 
+			
+				'login' => $login, 
+				'pwd' => $password 
+		), 1 );
+		return $this -> create_user_entity( $query -> row() );
 	}
 	
 	// UPDATE
@@ -61,18 +71,38 @@ class Enseignant_model extends CI_Model
 	{
 	
 	}
+
+	public function update_email ()
+	{
+	
+	}
+
+	public function rendre_administrateur ()
+	{
+	
+	}
+
+	public function rendre_enseignant ()
+	{
+	
+	}
+
+	public function rendre_actif ()
+	{
+	
+	}
+
+	public function rendre_inactif ()
+	{
+	
+	}
 	
 	// DELETE
 	// ------
 	
-	public function get ( $login, $password )
+	public function delete ()
 	{
-		$query = $this -> db -> get_where( 'enseignant', array ( 
-			
-				'login' => $login, 
-				'pwd' => $password 
-		), 1 );
-		return $this -> create_user_entity( $query -> row() );
+	
 	}
 	
 	// =========

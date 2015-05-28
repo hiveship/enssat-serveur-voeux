@@ -2,3 +2,6 @@ CREATE USER 'projet-imr1'@'localhost' IDENTIFIED BY '***';GRANT ALL PRIVILEGES O
 
 Login: projet-imr1
 Password: admin
+
+Ajout d'une colonne email dans enseignant
+ALTER TABLE `enseignant` ADD `email` VARCHAR(255) NOT NULL AFTER `prenom`;
