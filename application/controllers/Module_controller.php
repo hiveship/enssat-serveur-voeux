@@ -33,8 +33,8 @@ class Module_controller extends Application_controller
 			$semestre = $this -> input -> post ( 'semestre' );
 			$libelle = $this -> input -> post ( 'libelle' );
 			$this -> Module_model -> create ( $ID, $public, $semestre, $libelle );
+			flash_info ( 'Module ' . $ID . ' crée' );
 			$this -> load -> template ( 'fake' );
-			flash_info ( 'bdd entry created' );
 		} else {
 			$this -> load -> template ( 'cours/create_module' );
 		}
@@ -75,6 +75,16 @@ class Module_controller extends Application_controller
 		
 		} else {
 			$this -> load -> template ( 'cours/get_module' );
+		}
+	}
+
+	public function delete ()
+	{
+		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
+		if ( $this -> form_validation -> run () === TRUE ) {
+			// $this -> Module_model -> delete ( $this -> input -> post ( 'ID' ) );
+			flash_info ( "module " . $this -> input -> post ( 'ID' ) . " supprimé" );
+			$this -> load -> template ( 'fake' );
 		}
 	}
 

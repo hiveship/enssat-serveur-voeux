@@ -1,3 +1,4 @@
+<div class="container">
 <?php
 echo "<table id='tableSearchResults' class='table table-hover 
 		table-striped table-condensed'>";
@@ -24,10 +25,39 @@ foreach ( $modules as $module ) {
 			'value' => $module ['ident'], 
 			'type' => 'submit', 
 			'content' => 'Modifier', 
-			'class' => 'btn btn-primary' 
+			'class' => 'btn btn-primary btn-xs' 
 	);
 	echo form_button ( $data );
+	echo form_close ();
+	
+	$params = array ( 
+			'onsubmit' => 'return(validate(this));' 
+	);
+	echo form_open ( 'Module_controller/delete', $params );
+	$data = array ( 
+			'name' => 'ID', 
+			'value' => $module ['ident'], 
+			'type' => 'submit', 
+			'content' => 'Supprimer', 
+			'class' => 'btn btn-danger btn-xs' 
+	);
+	echo form_button ( $data );
+	echo form_close ();
 	echo "</td></tr>";
 }
 echo "</tbody></table>";
 ?>
+</div>
+<script type="text/javascript">
+function validate(){
+	   var r=confirm("voulez vous supprimer supprimer ce module ?")
+	   if (r==true)
+	  {
+	    return true;
+	  }
+	  else
+	  {
+	   return false;
+	  }
+}
+</script>
