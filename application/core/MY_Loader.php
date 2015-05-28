@@ -15,19 +15,18 @@ class MY_Loader extends CI_Loader
 	 */
 	public function template ( $view, $data = array() )
 	{
-		$this -> model ( 'enseignant/Enseignant_model' );
-		$this -> view ( 'header' );
-		if ( $this -> session -> userdata ( 'me' ) !== NULL ) {
-			$me = $this -> session -> userdata ( 'me' );
-			if ( $me ['level'] == Enseignant_model::LEVEL_ADMINISTRATEUR ) {
-				$this -> view ( 'admin/navbar' );
+		$this -> view( 'header' );
+		if ( $this -> session -> userdata( 'me' ) !== NULL ) {
+			$me = $this -> session -> userdata( 'me' );
+			if ( $me ['administrateur'] ) {
+				$this -> view( 'admin/navbar' );
 			} else {
-				$this -> view ( 'navbar' );
+				$this -> view( 'navbar' );
 			}
 		}
-		$this -> view ( 'flash', get_flashs () );
-		$this -> view ( $view, $data );
-		$this -> view ( 'footer' );
+		$this -> view( 'flash', get_flashs() );
+		$this -> view( $view, $data );
+		$this -> view( 'footer' );
 	}
 
 }

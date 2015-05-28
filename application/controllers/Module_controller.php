@@ -16,7 +16,12 @@ class Module_controller extends Application_controller
 
 	public function index ()
 	{
-		echo 'je suis le controleur Module!!';
+		$modules = $this -> Module_model -> get_all();
+		$data = array ( 
+			
+				'modules' => $modules 
+		);
+		$this -> load -> template( 'cours/aff_get_module', $data );
 	}
 
 	public function create ()
@@ -74,7 +79,7 @@ class Module_controller extends Application_controller
 			$this -> load -> template ( 'cours/edit_module', $data );
 		
 		} else {
-			$this -> load -> template ( 'cours/get_module' );
+			$this -> load -> template( 'cours/get_module' );
 		}
 	}
 

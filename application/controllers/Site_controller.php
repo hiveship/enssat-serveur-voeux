@@ -26,9 +26,12 @@ class Site_controller extends CI_Controller
 		} else {
 			$me = $this -> Enseignant_model -> get( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
 			if ( $me != FALSE ) {
+				// Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis.
 				$this -> session -> set_userdata( 'me', $me );
 				flash_success( 'Authentification réussie !' );
 				$this -> load -> template( 'fake' );
+				redirect( 'Module_controller/index', 'auto' );
+				
 				// TODO lors de l'envoie sur une vrai page, ça sera un redirect à placer ici
 			} else {
 				flash_error( "Echec d'authentification" );
