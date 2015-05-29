@@ -53,11 +53,21 @@
 								
 								
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
 									<td>Adresse mail :</td>
-									<td><?php $mai ?>l</td>
+									<td><?php $email ?></td>
 								</tr>
 							</tbody>
 						</table>
@@ -65,7 +75,8 @@
 
 				</div>
 				<div class="panel-footer">
-					<span class="pull-right"> </span>
+					<a href="#" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-lock"></span>
+						Changer mon mot de passe</a>
 				</div>
 			</div>
 		</div>
