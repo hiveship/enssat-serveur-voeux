@@ -22,8 +22,14 @@ class Module_model extends CI_model
 				'semestre' => $semestre, 
 				'libelle' => $libelle 
 		);
-		set_error_handler ( 'my_error_handler' );
-		$this -> db -> insert ( 'module', $data );
+		$res = $this -> get ( $ID );
+		
+		if ( sizeof ( $res ) == 0 ) {
+			$this -> db -> insert ( 'module', $data );
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function get_all ()
@@ -45,6 +51,25 @@ class Module_model extends CI_model
 		$this -> db -> delete ( 'module', array ( 
 				'ident' => $ID 
 		) );
+	}
+
+	public function update ( $ID_orig, $ID, $public, $semestre, $libelle, $responsable )
+	{
+		if ( $ID != $ID_orig && sizeof ( $this -> get ( $ID ) != 0 ) ) {
+			return false;
+		}
+		
+		$data = array ( 
+				'ident' => $ID, 
+				'public' => $public, 
+				'semestre' => $semestre, 
+				'libelle' => $libelle, 
+				'responsable' => $responsable 
+		);
+		
+		$this -> db -> where ( 'id', $ID_orig );
+		$this -> db -> update ( 'module', $data );
+		return true;
 	}
 
 }

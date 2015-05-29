@@ -50,14 +50,6 @@ echo "</tbody></table>";
 </div>
 <script type="text/javascript">
 function validate(){
-	   var r=confirm("voulez vous supprimer supprimer ce module ?")
-	   if (r==true)
-	  {
-	    return true;
-	  }
-	  else
-	  {
-	   return false;
-	  }
+	   return confirm("voulez vous supprimer supprimer ce module ?");
 }
 </script>

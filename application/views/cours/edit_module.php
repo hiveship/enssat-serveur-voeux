@@ -4,7 +4,7 @@
 			$hidden = array ( 
 					"ID_orig" => $module ['ident'] 
 			);
-			echo form_open ( 'Module_controller/update_remove', 'role="form"', $hidden );
+			echo form_open ( 'Module_controller/update', 'role="form"', $hidden );
 			$ID = array ( 
 					
 					'id' => 'ID', 
@@ -65,15 +65,6 @@
 					'class' => 'btn btn-primary' 
 			);
 			echo form_button ( $data );
-			$data = array ( 
-					'name' => 'req', 
-					'value' => 'delete', 
-					'type' => 'submit', 
-					'content' => 'supprimer', 
-					'class' => 'btn btn-primary' 
-			);
-			echo form_button ( $data );
-			
 			echo form_close ();
 			?>
 		</div>
