@@ -16,12 +16,12 @@ class Module_controller extends Application_controller
 
 	public function index ()
 	{
-		$modules = $this -> Module_model -> get_all();
+		$modules = $this -> Module_model -> get_all ();
 		$data = array ( 
-			
+				
 				'modules' => $modules 
 		);
-		$this -> load -> template( 'cours/aff_get_module', $data );
+		$this -> load -> template ( 'cours/aff_get_module', $data );
 	}
 
 	public function create ()
@@ -37,21 +37,17 @@ class Module_controller extends Application_controller
 			$public = $this -> input -> post ( 'public' );
 			$semestre = $this -> input -> post ( 'semestre' );
 			$libelle = $this -> input -> post ( 'libelle' );
-			$this -> Module_model -> create ( $ID, $public, $semestre, $libelle );
-			flash_info ( 'Module ' . $ID . ' crée' );
-			$this -> load -> template ( 'fake' );
+			$test = $this -> Module_model -> create ( $ID, $public, $semestre, $libelle );
+			if ( $test ) {
+				flash_info ( 'Module ' . $ID . ' crée' );
+				$this -> load -> template ( 'fake' );
+			} else {
+				flash_error ( "le module existe déjà" );
+				$this -> load -> template ( 'cours/create_module' );
+			}
 		} else {
 			$this -> load -> template ( 'cours/create_module' );
 		}
-	}
-
-	public function get_all ()
-	{
-		$modules = $this -> Module_model -> get_all ();
-		$data = array ( 
-				'modules' => $modules 
-		);
-		$this -> load -> template ( 'cours/aff_get_module', $data );
 	}
 
 	public function get ()
@@ -77,9 +73,8 @@ class Module_controller extends Application_controller
 					'module' => $module 
 			);
 			$this -> load -> template ( 'cours/edit_module', $data );
-		
 		} else {
-			$this -> load -> template( 'cours/get_module' );
+			$this -> load -> template ( 'cours/get_module' );
 		}
 	}
 
@@ -93,7 +88,7 @@ class Module_controller extends Application_controller
 		}
 	}
 
-	public function update_remove ()
+	public function update ()
 	{
 		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'public', 'public', 'trim|required' );
@@ -101,10 +96,22 @@ class Module_controller extends Application_controller
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
 		
 		if ( $this -> form_validation -> run () === TRUE ) {
-			if ( $this -> input -> post ( 'req' ) == 'delete' ) {
-				echo "test";
-				$this -> Module_model -> delete ( $this -> input -> post ( 'ID_orig' ) );
+			$ID_orig = $this -> input -> post ( 'ID_orig' );
+			$ID = $this -> input -> post ( 'ID' );
+			$public = $this -> input -> post ( 'public' );
+			$semestre = $this -> input -> post ( 'semestre' );
+			$libelle = $this -> input -> post ( 'libelle' );
+			$responsable = $this -> input -> post ( 'responsable' );
 			
+			$res = $this -> Module_model -> update ( $ID_orig, $ID, $public, $semestre, $libelle, $responsable );
+			if ( $res ) {
+				flash_info ( "module " . $this -> input -> post ( 'ID' ) . " supprimé" );
+				$this -> load -> template ( 'fake' );
+			} else {
+				flash_error ( "nouvel ID invalide" );
+				$this -> load -> template ();
+				
+				$this -> load -> template ( 'cours/edit_module' );
 			}
 		}
 	}

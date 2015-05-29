@@ -1,5 +1,5 @@
 <?php
-defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
+defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
 /*
  * | -------------------------------------------------------------------
@@ -63,7 +63,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db ['default'] = array ( 
-	
+		
 		'dsn' => '', 
 		'hostname' => 'localhost', 
 		'username' => 'projet-imr1', 
@@ -72,7 +72,7 @@ $db ['default'] = array (
 		'dbdriver' => 'mysqli', 
 		'dbprefix' => '', 
 		'pconnect' => FALSE, 
-		'db_debug' => TRUE, 
+		'db_debug' => FALSE, 
 		'cache_on' => FALSE, 
 		'cachedir' => '', 
 		'char_set' => 'utf8', 
