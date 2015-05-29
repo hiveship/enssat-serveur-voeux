@@ -84,7 +84,8 @@ body {
 
 			<div class="panel-body">
 
-				<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+				<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST"
+					action=<?php echo site_url("Site_controller/login");?>>
 
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> <input
