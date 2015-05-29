@@ -24,87 +24,43 @@
 					<fieldset>
 
 						<!-- Form Name -->
-						<legend>Ajouter un enseignant</legend>
+						<legend>Nouvel enseignant</legend>
 
 						<!-- Text input-->
-						<div class="control-group">
-							<label class="control-label" for="nom">Nom</label>
-							<div class="controls">
-								<input id="nom" name="nom" type="text" placeholder="nom de l'enseignant"
-									class="input-medium" required="">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="nom">Nom</label>
+							<div class="col-md-4">
+								<input id="nom" name="nom" type="text" placeholder="nom" class="form-control input-md"
+									required="">
 
 							</div>
 						</div>
 
 						<!-- Text input-->
-						<div class="control-group">
-							<label class="control-label" for="prenom">Prénom</label>
-							<div class="controls">
-								<input id="prenom" name="prenom" type="text" placeholder="prénom de l'enseignant"
-									class="input-medium" required="">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="prenom">Prénom</label>
+							<div class="col-md-4">
+								<input id="prenom" name="prenom" type="text" placeholder="prenom"
+									class="form-control input-md" required="">
 
 							</div>
 						</div>
 
 						<!-- Prepended text-->
-						<div class="control-group">
-							<label class="control-label" for="email">Email</label>
-							<div class="controls">
-								<div class="input-prepend">
-									<span class="add-on">@</span> <input id="email" name="email" class="input-xlarge"
-										placeholder="email" type="text" required="">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="prependedtext">Email</label>
+							<div class="col-md-5">
+								<div class="input-group">
+									<span class="input-group-addon">@</span> <input id="prependedtext" name="prependedtext"
+										class="form-control" placeholder="email" type="text" required="">
 								</div>
 
 							</div>
 						</div>
 
-						<!-- Select Basic -->
-						<div class="control-group">
-							<label class="control-label" for="statut">Statut</label>
-							<div class="controls">
-								<select id="statut" name="statut" class="input-medium">
-									<option>Vacataire</option>
-									<option>A faire en php</option>
-								</select>
-							</div>
-						</div>
-
-						<!-- Text input-->
-						<div class="control-group">
-							<label class="control-label" for="statutaire">Statutaire</label>
-							<div class="controls">
-								<input id="statutaire" name="statutaire" type="text" placeholder="192" class="input-small"
-									required="">
-								<p class="help-block">A exprimer en heures</p>
-							</div>
-						</div>
-
-						<!-- Multiple Radios -->
-						<div class="control-group">
-							<label class="control-label" for="level">Rang du compte</label>
-							<div class="controls">
-								<label class="radio" for="level-0"> <input type="radio" name="level" id="level-0"
-									value="Administrateur" checked="checked"> Administrateur
-								</label> <label class="radio" for="level-1"> <input type="radio" name="level" id="level-1"
-									value="Enseignant"> Enseignant
-								</label>
-							</div>
-						</div>
-
-						<!-- Multiple Radios -->
-						<div class="control-group">
-							<label class="control-label" for="etat">Etat du compte</label>
-							<div class="controls">
-								<label class="radio" for="etat-0"> <input type="radio" name="etat" id="etat-0" value="Actif"
-									checked="checked"> Actif
-								</label> <label class="radio" for="etat-1"> <input type="radio" name="etat" id="etat-1"
-									value="Inactif"> Inactif
-								</label>
-							</div>
-						</div>
-
 					</fieldset>
 				</form>
+
 
 			</div>
 			<div class="modal-footer">
