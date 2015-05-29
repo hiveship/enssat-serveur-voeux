@@ -4,12 +4,68 @@
 		<center>Liste des comptes</center>
 	</h2>
 </div>
+<!--  MODAL CREATION -->
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+	data-whatever="@mdo">Ajouter un enseignant</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="exampleModalLabel">Nouvel enseignant</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Recipient:</label> <input type="text"
+							class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="control-label">Message:</label>
+						<textarea class="form-control" id="message-text"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary">Créer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--  LIST -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Confirmation</h4>
+			</div>
+			<div class="modal-body">
+				<p>Do you want to save changes you made to document before closing?</p>
+				<p class="text-warning">
+					<small>If you don't save, your changes will be lost.</small>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
 <%= link_to 'Nouvel utilisateur', new_admin_user_path, class: "btn pull-right" %> Le mot de passe
 pour tous les comptes animateurs est unique: "<%= User::PASSWORD %>"
 <br>
 <br>
 <br>
-<div class="container-fluid">
+<div class="container">
 	<table class="table table-condensed table-stipped">
 		<thead>
 			<tr>

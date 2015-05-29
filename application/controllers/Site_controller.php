@@ -24,7 +24,7 @@ class Site_controller extends CI_Controller
 		if ( $this -> form_validation -> run() === FALSE ) {
 			$this -> load -> template( 'site/login' );
 		} else {
-			$me = $this -> Enseignant_model -> get( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
+			$me = $this -> Enseignant_model -> authenticate( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
 			if ( $me != FALSE ) {
 				// Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis.
 				$this -> session -> set_userdata( 'me', $me );
