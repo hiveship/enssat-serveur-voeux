@@ -20,20 +20,96 @@
 				<h4 class="modal-title" id="exampleModalLabel">Nouvel enseignant</h4>
 			</div>
 			<div class="modal-body">
-				<form>
-					<div class="form-group">
-						<label for="recipient-name" class="control-label">Recipient:</label> <input type="text"
-							class="form-control" id="recipient-name">
-					</div>
-					<div class="form-group">
-						<label for="message-text" class="control-label">Message:</label>
-						<textarea class="form-control" id="message-text"></textarea>
-					</div>
+				<form class="form-horizontal">
+					<fieldset>
+
+						<!-- Form Name -->
+						<legend>Ajouter un enseignant</legend>
+
+						<!-- Text input-->
+						<div class="control-group">
+							<label class="control-label" for="nom">Nom</label>
+							<div class="controls">
+								<input id="nom" name="nom" type="text" placeholder="nom de l'enseignant"
+									class="input-medium" required="">
+
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="control-group">
+							<label class="control-label" for="prenom">Prénom</label>
+							<div class="controls">
+								<input id="prenom" name="prenom" type="text" placeholder="prénom de l'enseignant"
+									class="input-medium" required="">
+
+							</div>
+						</div>
+
+						<!-- Prepended text-->
+						<div class="control-group">
+							<label class="control-label" for="email">Email</label>
+							<div class="controls">
+								<div class="input-prepend">
+									<span class="add-on">@</span> <input id="email" name="email" class="input-xlarge"
+										placeholder="email" type="text" required="">
+								</div>
+
+							</div>
+						</div>
+
+						<!-- Select Basic -->
+						<div class="control-group">
+							<label class="control-label" for="statut">Statut</label>
+							<div class="controls">
+								<select id="statut" name="statut" class="input-medium">
+									<option>Vacataire</option>
+									<option>A faire en php</option>
+								</select>
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="control-group">
+							<label class="control-label" for="statutaire">Statutaire</label>
+							<div class="controls">
+								<input id="statutaire" name="statutaire" type="text" placeholder="192" class="input-small"
+									required="">
+								<p class="help-block">A exprimer en heures</p>
+							</div>
+						</div>
+
+						<!-- Multiple Radios -->
+						<div class="control-group">
+							<label class="control-label" for="level">Rang du compte</label>
+							<div class="controls">
+								<label class="radio" for="level-0"> <input type="radio" name="level" id="level-0"
+									value="Administrateur" checked="checked"> Administrateur
+								</label> <label class="radio" for="level-1"> <input type="radio" name="level" id="level-1"
+									value="Enseignant"> Enseignant
+								</label>
+							</div>
+						</div>
+
+						<!-- Multiple Radios -->
+						<div class="control-group">
+							<label class="control-label" for="etat">Etat du compte</label>
+							<div class="controls">
+								<label class="radio" for="etat-0"> <input type="radio" name="etat" id="etat-0" value="Actif"
+									checked="checked"> Actif
+								</label> <label class="radio" for="etat-1"> <input type="radio" name="etat" id="etat-1"
+									value="Inactif"> Inactif
+								</label>
+							</div>
+						</div>
+
+					</fieldset>
 				</form>
+
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-primary">Créer</button>
+				<a href="<?php echo site_url("Enseignant_controller/create");?>" class="btn btn-primary">Créer</a>
 			</div>
 		</div>
 	</div>
@@ -60,8 +136,7 @@
 		</div>
 	</div>
 </div>
-<%= link_to 'Nouvel utilisateur', new_admin_user_path, class: "btn pull-right" %> Le mot de passe
-pour tous les comptes animateurs est unique: "<%= User::PASSWORD %>"
+
 <br>
 <br>
 <br>
