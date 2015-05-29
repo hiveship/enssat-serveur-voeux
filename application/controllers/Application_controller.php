@@ -21,7 +21,6 @@ class Application_controller extends CI_Controller
 	{
 		if ( $this -> session -> userdata( 'me' ) == NULL ) {
 			flash_warning( "Cette page nécéssite d'être connecté !" );
-			// $this -> load -> template( 'site/login' );
 			redirect( 'Site_controller/index', 'auto' );
 		}
 	}
@@ -31,7 +30,7 @@ class Application_controller extends CI_Controller
 		$this -> load() -> model( 'Enseignant_model' );
 		require_login();
 		$me = $this -> session -> userdata( 'me' );
-		if ( $me ['level'] !== Enseignant_model::ADMINISTRATEUR ) {
+		if ( $me ['administrateur'] ) {
 			flash_error( "Erreur, cette page est réservée aux administrateurs." );
 			// TODO redirect to root path
 		}
