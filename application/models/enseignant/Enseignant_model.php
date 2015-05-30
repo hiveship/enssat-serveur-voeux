@@ -158,26 +158,28 @@ class Enseignant_model extends CI_Model
 		}
 	}
 
-	/**
-	 * Retourne vrai si un utiliseur est actif, faux sinon.
-	 * 
-	 * @param array $user:
-	 *        	un tableau représentant un utilisateur. Le tableau doit être correctement construit.
-	 */
-	public function is_actif ( $user )
+	public function is_actif ( $login )
 	{
-		return $user ['actif'];
+		$this -> db -> select( 'actif' );
+		$this -> db -> where( 'login', $login );
+		$query = $this -> db -> get( self::TABLE_NAME );
+		return $query -> row() -> actif == self::ETAT_ACTIF;
 	}
 
-	/**
-	 * Retourne vrai si un utiliseur est administrateur, faux sinon.
-	 * 
-	 * @param array $user:
-	 *        	un tableau représentant un utilisateur. Le tableau doit être correctement construit.
-	 */
-	public function is_admin ( $user )
+	public function is_admin ( $login )
 	{
-		return $user ['administrateur'];
+		$this -> db -> select( 'administrateur' );
+		$this -> db -> where( 'login', $login );
+		$query = $this -> db -> get( self::TABLE_NAME );
+		return $query -> row() -> administrateur == self::LEVEL_ADMINISTRATEUR;
+	}
+
+	public function exists ( $login )
+	{
+		$this -> db -> select( 'login' ); // meaningless
+		$this -> db -> where( 'login', $login );
+		$query = $this -> db -> get( self::TABLE_NAME );
+		return $query -> num_rows() == 1;
 	}
 
 	/**
@@ -191,6 +193,42 @@ class Enseignant_model extends CI_Model
 	public function compute_login ( $prenom, $nom )
 	{
 		return strtolower( substr( $prenom, 0 ) . $nom );
+	}
+
+	public function check_statut ( $statut )
+	{
+		// TODO: Refactoré ce code pour qu'il aille chercher tout seul toutes les constantes de la classe commencant par 'STATUT_'.
+		if ( ( $statut == self::STATUT_ADMINISTRATIF ) ||  ( $statut == self::STATUT_CONTRACTUEL ) || ( $statut == self::STATUT_TITULAIRE ) ||  ( $statut == self::STATUT_VACATAIRE ) ) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	public function check_statutaire ( $statutaire )
+	{
+		if ( is_int( $statutaire ) && $statutaire >= 0 ) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	public function check_email_format ( $email )
+	{
+		if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	public function get_allowed_statut ()
+	{
+		return array ( 
+			
+				self::STATUT_ADMINISTRATIF, 
+				self::STATUT_CONTRACTUEL, 
+				self::STATUT_TITULAIRE, 
+				self::STATUT_VACATAIRE 
+		);
 	}
 
 }
