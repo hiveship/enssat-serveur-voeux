@@ -15,9 +15,10 @@ class Enseignant_controller extends Admin_controller
 	{
 		$data = array ( 
 			
-				'enseignants' => $this -> Enseignant_model -> get_all() 
+				'enseignants' => $this -> Enseignant_model -> get_all(), 
+				'allowedStatuts' => $this -> Enseignant_model -> get_allowed_statuts() 
 		);
-		$this -> load -> template( 'enseignants/index', $data );
+		$this -> load -> template( 'admin/enseignants/index', $data );
 	}
 
 	public function create ()
@@ -33,7 +34,7 @@ class Enseignant_controller extends Admin_controller
 		
 		// Double vérification pour assurer l'intégrité de l'application. Le contrôle utiliseur est également traité côté client.
 		if ( ! ( $this -> Enseignant_model -> check_email_format( email ) && $this -> Enseignant_model -> check_statut( $statut ) && $this -> Enseignant_model -> check_statutaire( $statutaire ) ) ) {
-			flash_error( "Informations incorrectes !" );
+			flash_error( "Informations incorrectes ! Création impossible." );
 			redirect( 'admin/enseignants', 'refresh' );
 		} else {
 			$login = $this -> Enseignant_model -> compute_login( $nom, $prenom );
@@ -126,6 +127,7 @@ class Enseignant_controller extends Admin_controller
 
 	private function generate_random_string ()
 	{
+		// TODO: trouver mieux ?
 		return substr( str_shuffle( 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?~#@' ), 0, 10 );
 	}
 
