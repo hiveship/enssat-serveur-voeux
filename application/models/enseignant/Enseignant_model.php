@@ -25,8 +25,8 @@ class Enseignant_model extends CI_Model
 	
 	public function __construct ()
 	{
-		parent::__construct();
-		$this -> load -> database();
+		parent::__construct ();
+		$this -> load -> database ();
 		// Utilisation d'Active Record pour les requêtes à la base de données: abstraction du SGBD.
 	}
 	
@@ -43,31 +43,31 @@ class Enseignant_model extends CI_Model
 	
 	public function get_all ()
 	{
-		$query = $this -> db -> get( self::TABLE_NAME );
+		$query = $this -> db -> get ( self::TABLE_NAME );
 		$enseignants = array ();
-		foreach ( $query -> result() as $row ) {
-			array_push( $enseignants, $this -> create_user_entity( $row ) );
+		foreach ( $query -> result () as $row ) {
+			array_push ( $enseignants, $this -> create_user_entity ( $row ) );
 		}
 		return $enseignants;
 	}
 
 	public function authenticate ( $login, $password )
 	{
-		$query = $this -> db -> get_where( self::TABLE_NAME, array ( 
-			
+		$query = $this -> db -> get_where ( self::TABLE_NAME, array ( 
+				
 				'login' => $login, 
 				'pwd' => $password 
 		) );
-		return $this -> create_user_entity( $query -> row() );
+		return $this -> create_user_entity ( $query -> row () );
 	}
 
 	public function get ( $login )
 	{
-		$query = $this -> db -> get_where( self::TABLE_NAME, array ( 
-			
+		$query = $this -> db -> get_where ( self::TABLE_NAME, array ( 
+				
 				'login' => $login 
 		) );
-		return $this -> create_user_entity( $query -> row() );
+		return $this -> create_user_entity ( $query -> row () );
 	}
 	
 	// UPDATE
@@ -75,52 +75,53 @@ class Enseignant_model extends CI_Model
 	
 	private function update_field ( $login, $field, $value )
 	{
-		$this -> db -> where( 'login', $login );
-		$this -> db -> update( self::TABLE_NAME, array ( 
-			
+		$this -> db -> where ( 'login', $login );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				
 				$field => $value 
 		) );
 	}
 
 	public function update_nom ( $login, $nom )
 	{
-		$this -> update_field( $login, 'nom', $nom );
+		$this -> update_field ( $login, 'nom', $nom );
 	}
 
 	public function update_prenom ( $login, $prenom )
 	{
-		$this -> update_field( $login, 'prenom', $prenom );
+		$this -> update_field ( $login, 'prenom', $prenom );
 	}
 
 	public function update_password ( $login, $password )
 	{
 		// TODO: secure storage
-		$this -> update_field( $login, 'pwd', $password );
+		$this -> update_field ( $login, 'pwd', $password );
 	}
 
 	public function update_email ( $login, $email )
 	{
-		$this -> update_field( $login, 'email', $email );
+		$this -> update_field ( $login, 'email', $email );
+		// $this -> db -> update ( 'enseignant', $email, "login = $login" );
 	}
 
 	public function rendre_administrateur ( $login )
 	{
-		$this -> update_field( $login, 'administrateur', self::LEVEL_ADMINISTRATEUR );
+		$this -> update_field ( $login, 'administrateur', self::LEVEL_ADMINISTRATEUR );
 	}
 
 	public function rendre_enseignant ()
 	{
-		$this -> update_field( $login, 'administrateur', self::LEVEL_ENSEIGNANT );
+		$this -> update_field ( $login, 'administrateur', self::LEVEL_ENSEIGNANT );
 	}
 
 	public function rendre_actif ( $login )
 	{
-		$this -> update_field( $login, 'actif', self::ETAT_ACTIF );
+		$this -> update_field ( $login, 'actif', self::ETAT_ACTIF );
 	}
 
 	public function rendre_inactif ( $login )
 	{
-		$this -> update_field( $login, 'actif', self::ETAT_INACTIF );
+		$this -> update_field ( $login, 'actif', self::ETAT_INACTIF );
 	}
 	
 	// DELETE
@@ -128,8 +129,8 @@ class Enseignant_model extends CI_Model
 	
 	public function delete ( $login )
 	{
-		$this -> db -> delete( self::TABLE_NAME, array ( 
-			
+		$this -> db -> delete ( self::TABLE_NAME, array ( 
+				
 				'login' => $login 
 		) );
 	}
@@ -140,11 +141,11 @@ class Enseignant_model extends CI_Model
 	
 	private function create_user_entity ( $queryResult )
 	{
-		if ( empty( $queryResult ) ) {
+		if ( empty ( $queryResult ) ) {
 			return FALSE;
 		} else {
 			$user = array ( 
-				
+					
 					'login' => $queryResult -> login, 
 					'nom' => $queryResult -> nom, 
 					'prenom' => $queryResult -> prenom, 
@@ -160,26 +161,26 @@ class Enseignant_model extends CI_Model
 
 	public function is_actif ( $login )
 	{
-		$this -> db -> select( 'actif' );
-		$this -> db -> where( 'login', $login );
-		$query = $this -> db -> get( self::TABLE_NAME );
-		return $query -> row() -> actif == self::ETAT_ACTIF;
+		$this -> db -> select ( 'actif' );
+		$this -> db -> where ( 'login', $login );
+		$query = $this -> db -> get ( self::TABLE_NAME );
+		return $query -> row () -> actif == self::ETAT_ACTIF;
 	}
 
 	public function is_admin ( $login )
 	{
-		$this -> db -> select( 'administrateur' );
-		$this -> db -> where( 'login', $login );
-		$query = $this -> db -> get( self::TABLE_NAME );
-		return $query -> row() -> administrateur == self::LEVEL_ADMINISTRATEUR;
+		$this -> db -> select ( 'administrateur' );
+		$this -> db -> where ( 'login', $login );
+		$query = $this -> db -> get ( self::TABLE_NAME );
+		return $query -> row () -> administrateur == self::LEVEL_ADMINISTRATEUR;
 	}
 
 	public function exists ( $login )
 	{
-		$this -> db -> select( 'login' ); // meaningless
-		$this -> db -> where( 'login', $login );
-		$query = $this -> db -> get( self::TABLE_NAME );
-		return $query -> num_rows() == 1;
+		$this -> db -> select ( 'login' ); // meaningless
+		$this -> db -> where ( 'login', $login );
+		$query = $this -> db -> get ( self::TABLE_NAME );
+		return $query -> num_rows () == 1;
 	}
 
 	/**
@@ -192,13 +193,13 @@ class Enseignant_model extends CI_Model
 	 */
 	public function compute_login ( $prenom, $nom )
 	{
-		return strtolower( substr( $prenom, 0 ) . $nom );
+		return strtolower ( substr ( $prenom, 0 ) . $nom );
 	}
 
 	public function check_statut ( $statut )
 	{
 		// TODO: Refactoré ce code pour qu'il aille chercher tout seul toutes les constantes de la classe commencant par 'STATUT_'.
-		if ( ( $statut == self::STATUT_ADMINISTRATIF ) ||  ( $statut == self::STATUT_CONTRACTUEL ) || ( $statut == self::STATUT_TITULAIRE ) ||  ( $statut == self::STATUT_VACATAIRE ) ) {
+		if ( ( $statut == self::STATUT_ADMINISTRATIF ) ||   ( $statut == self::STATUT_CONTRACTUEL ) || ( $statut == self::STATUT_TITULAIRE ) ||   ( $statut == self::STATUT_VACATAIRE ) ) {
 			return TRUE;
 		}
 		return FALSE;
@@ -206,7 +207,7 @@ class Enseignant_model extends CI_Model
 
 	public function check_statutaire ( $statutaire )
 	{
-		if ( is_int( $statutaire ) && $statutaire >= 0 ) {
+		if ( is_int ( $statutaire ) && $statutaire >= 0 ) {
 			return TRUE;
 		}
 		return FALSE;
@@ -214,7 +215,7 @@ class Enseignant_model extends CI_Model
 
 	public function check_email_format ( $email )
 	{
-		if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+		if ( ! filter_var ( $email, FILTER_VALIDATE_EMAIL ) ) {
 			return TRUE;
 		}
 		return FALSE;
@@ -223,7 +224,7 @@ class Enseignant_model extends CI_Model
 	public function get_allowed_statuts ()
 	{
 		return array ( 
-			
+				
 				self::STATUT_ADMINISTRATIF, 
 				self::STATUT_CONTRACTUEL, 
 				self::STATUT_TITULAIRE, 

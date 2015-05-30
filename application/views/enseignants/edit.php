@@ -52,6 +52,28 @@
 								
 								
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -68,11 +90,15 @@
 						data-whatever="@mdo">
 						<span class="glyphicon glyphicon-lock"></span> Modifier mot de passe
 					</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"
+						data-whatever="@mdo">
+						<i class="fa fa-envelope-o"></i> Modifier adresse mail
+					</button>
 				</div>
 			</div>
 		</div>
 
-		<!--  MODAL CREATION -->
+		<!--  MODAL CREATION PASSWORD-->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -85,43 +111,77 @@
 					</div>
 					<div class="modal-body">
 
-
-						<form class="form-horizontal">
+					<?php echo form_open('Enseignant_controller/change_email','class="form-horizontal"'); ?>
 							<fieldset>
-								<!-- Password input-->
-								<div class="form-group">
-									<label class="col-md-4 control-label" for="password-actuel">Mot de passe actuel</label>
-									<div class="col-md-4">
-										<input id="password-actuel" name="password-actuel" placeholder="mot de passe actuel"
-											class="form-control input-md" type="password">
-									</div>
+							<!-- Password input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="password-actuel">Mot de passe actuel</label>
+								<div class="col-md-4">
+									<input id="password-actuel" name="password-actuel" placeholder="mot de passe actuel"
+										class="form-control input-md" type="password">
 								</div>
+							</div>
 
-								<!-- Password input-->
-								<div class="form-group">
-									<label class="col-md-4 control-label" for="newpassword1">Nouveau mot de passe</label>
-									<div class="col-md-4">
-										<input id="newpassword1" name="newpassword1" placeholder="nouveau mot de passe"
-											class="form-control input-md" type="password">
-									</div>
+							<?php
+							
+							echo form_input ( 'username', '', 'id="newemail" placeholder=" adresse
+									mail" class="input-xlarge"' );
+							?>
+							<!-- Password input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="newpassword1">Nouveau mot de passe</label>
+								<div class="col-md-4">
+									<input id="newpassword2" name="newpassword2" placeholder="nouveau mot de passe"
+										class="form-control input-md" type="password">
 								</div>
-								<!-- Password input-->
-								<div class="form-group">
-									<label class="col-md-4 control-label" for="newpassword1">Nouveau mot de passe</label>
-									<div class="col-md-4">
-										<input id="newpassword2" name="newpassword2" placeholder="nouveau mot de passe"
-											class="form-control input-md" type="password">
-									</div>
-								</div>
+							</div>
 
 
-							</fieldset>
-						</form>
+						</fieldset>
 
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<a href="<?php echo site_url("Enseignant_controller/create");?>" class="btn btn-primary">Créer</a>
+							<?php echo form_button('mysubmit', 'Modifier','','class="btn btn-default" type="button"');?>
+						<?php echo form_close();?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--  MODAL CREATION MAIL-->
+		<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h3 class="modal-title" id="exampleModalLabel">Modification de votre mot de passe</h3>
+					</div>
+					<div class="modal-body">
+
+						<?php echo form_open('Enseignant_controller/change_email','class="form-horizontal"'); ?>
+							<fieldset>
+							<!-- Text input-->
+							<div class="control-group">
+								<label class="control-label" for="newemail">Nouvelle adresse mail</label>
+								<div class="controls">
+								<?php
+								
+								echo form_input ( 'newemail', '', 'id="newemail" placeholder=" adresse
+									mail" class="input-xlarge"' );
+								?></div>
+							</div>
+
+						</fieldset>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+						<?php echo form_submit('mysubmit', 'Modifier','','type="button" class="btn btn-default" data-dismiss="modal"');?>
+						<?php echo form_close();?>
 					</div>
 				</div>
 			</div>
