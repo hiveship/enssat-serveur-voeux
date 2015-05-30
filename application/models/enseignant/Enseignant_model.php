@@ -220,7 +220,7 @@ class Enseignant_model extends CI_Model
 		return FALSE;
 	}
 
-	public function get_allowed_statut ()
+	public function get_allowed_statuts ()
 	{
 		return array ( 
 			

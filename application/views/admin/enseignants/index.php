@@ -15,7 +15,7 @@
 					<h4 class="modal-title" id="exampleModalLabel">Nouvel enseignant</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" data-toggle="validator">
 						<fieldset>
 							<!-- Prepended text-->
 							<div class="form-group">
@@ -45,7 +45,7 @@
 								<div class="col-md-5">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span> <input id="email"
-											name="email" class="form-control" placeholder="Email" type="text" required="">
+											name="email" class="form-control" placeholder="Email" type="email" required="">
 									</div>
 								</div>
 							</div>
@@ -54,9 +54,13 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="statutaire">Statutaire</label>
 								<div class="col-md-2">
-									<input id="statutaire" name="statutaire" type="text" placeholder="192"
+									<input id="statutaire" name="statutaire" type="number" placeholder="192"
 										class="form-control input-md" required="">
 								</div>
+								<div class="col-md-5">
+									<span class="help-block">En heures équivalent TD</span>
+								</div>
+
 							</div>
 
 							<!-- Select Basic -->
@@ -64,10 +68,11 @@
 								<label class="col-md-4 control-label" for="statut">Statut</label>
 								<div class="col-md-4">
 									<select id="statut" name="statut" class="form-control">
-										<option value="">Administratif</option>
-										<option value="">Contractuel</option>
-										<option value="">Titulaire</option>
-										<option value="">Vacataire</option>
+									<?php
+									foreach ( $allowedStatuts as $statut ) {
+										?>
+										<option value="<?php echo $statut ;?>"><?php echo ucfirst($statut);?></option>
+										<?php }?>
 									</select>
 								</div>
 							</div>
@@ -107,10 +112,9 @@
 
 						</fieldset>
 					</form>
-
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+					<button id="submit-button" type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 					<a href="<?php echo site_url("admin/enseignants/create");?>" class="btn btn-primary">Créer</a>
 				</div>
 			</div>
