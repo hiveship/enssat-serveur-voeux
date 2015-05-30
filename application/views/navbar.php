@@ -27,7 +27,7 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a value="moncompte"
-						href="<?php echo site_url("Enseignant_controller/edit/".$this->session->userdata('me')['login']) ?>">Mon
+						href="<?php echo site_url("enseignants/edit/".$this->session->userdata('me')['login']) ?>">Mon
 							Compte</a></li>
 					<li><a href="<?php echo site_url('logout') ?>" value="deconnexion">Déconnexion</a></li>
 				</ul>
