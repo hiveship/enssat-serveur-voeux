@@ -3532,15 +3532,16 @@ textarea.form-group-lg .form-control, select[multiple].form-group-lg .form-contr
 
 .btn-primary {
 	color: #fff;
-	background-color: #337ab7;
-	border-color: #2e6da4;
+	background-color: #e67e22;
+	border-color: #d35400;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active,
 	.btn-primary.active, .open>.dropdown-toggle.btn-primary {
 	color: #fff;
-	background-color: #286090;
-	border-color: #204d74;
+	
+	background-color: #e67e22;
+	border-color: #d35400;
 }
 
 .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary
@@ -5685,13 +5686,14 @@ border-radius
 }
 
 .navbar-default {
-	background-color: #f8f8f8;
-	border-color: #e7e7e7;
+	background-color: #e67e22;
+	border-color: #d35400;
 }
 
 .navbar-default .navbar-brand {
-	color: #777;
+	color: #FFFFFF;
 }
+
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
 	{
@@ -5700,11 +5702,11 @@ border-radius
 }
 
 .navbar-default .navbar-text {
-	color: #777;
+	color: #FFFFFF;
 }
 
 .navbar-default .navbar-nav>li>a {
-	color: #777;
+	color: #FFFFFF;
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
@@ -5715,8 +5717,8 @@ border-radius
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
 	.navbar-default .navbar-nav>.active>a:focus {
-	color: #555;
-	background-color: #e7e7e7;
+	color: #FFFFFF;
+	background-color: #d35400;
 }
 
 .navbar-default .navbar-nav>.disabled>a, .navbar-default .navbar-nav>.disabled>a:hover,
@@ -6999,13 +7001,13 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover,
 }
 
 .panel-primary {
-	border-color: #337ab7;
+	border-color: #d35400;
 }
 
 .panel-primary>.panel-heading {
 	color: #fff;
-	background-color: #337ab7;
-	border-color: #337ab7;
+	background-color: #e67e22;
+	border-color: #d35400;
 }
 
 .panel-primary>.panel-heading+.panel-collapse>.panel-body {
