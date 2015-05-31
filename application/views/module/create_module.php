@@ -7,8 +7,7 @@
 			$ID = array ( 
 					
 					'id' => 'ID', 
-					'name' => 'ID',
-					/* En cas d'erreur, à la validation du formulaire, si le champs était rempli, la saisie de l'utilisateur sera toujours présente.*/
+					'name' => 'ID', 
 					'value' => set_value ( 'ID' ) 
 			);
 			echo form_label ( 'ID: ', 'ID' );
@@ -45,36 +44,85 @@
 			echo form_input ( $libelle, '', 'class="form-control"' );
 			echo form_error ( 'libelle' );
 			
-			$test = array ( 
-					
-					'name' => 'test', 
-					'id' => 'test', 
-					'value' => set_value ( 'test' ) 
-			);
-			echo form_label ( 'test 1: ', 'test' );
-			echo form_input ( $test, '', 'class="form-control"' );
-			echo form_error ( 'test' );
+			//
+			//
+			// debut gestion dynamique parties de modules
+			//
+			//
 			
-			$test = array ( 
-					
-					'name' => 'test', 
-					'id' => 'test', 
-					'value' => set_value ( 'test' ) 
-			);
-			echo form_label ( 'test 2: ', 'test' );
-			echo form_input ( $test, '', 'class="form-control"' );
-			echo form_error ( 'test' );
+			echo "<div id=parties><p id=P0>";
+			echo br ( 2 );
 			
-			echo br ( 1 );
+			$Pn = array ( 
+					'name' => 'P0-Pname' 
+			);
+			
+			echo form_label ( 'Nom Partie: ', 'Partie' );
+			echo form_input ( $Pn, '', 'class="form-control"' );
+			
+			$Pt = array ( 
+					'CM' => 'CM', 
+					'TD' => 'TD', 
+					'TP' => 'TP', 
+					'DS' => 'DS' 
+			);
+			
+			echo form_label ( 'Type: ', 'Type' );
+			echo form_dropdown ( 'P0-Ptype', $Pt, 'CM' );
+			
+			$Ph = array ( 
+					'name' => 'P0-Phed', 
+					'type' => 'number', 
+					'value' => '30' 
+			);
+			echo form_label ( 'hed: ', 'hed' );
+			echo form_input ( $Ph );
+			
+			echo "</p></div>";
+			
+			//
+			//
+			// fin zone dynamique
+			//
+			//
+			echo br ( 2 );
+			$button = array ( 
+					'type' => 'button', 
+					'name' => 'ajouter partie', 
+					'content' => 'Ajouter Partie', 
+					'onClick' => 'ajouterPartie()', 
+					'class' => 'btn btn-primary btn-xs' 
+			);
+			echo form_button ( $button );
+			
 			echo form_submit ( 'submit', 'creer', 'class="btn btn-primary pull-right"' );
-			echo "<div id=parties></div>";
+			
 			echo form_close ();
 			?>
 		</div>
 </div>
 
 <script type="text/javascript">
-function myFunction() {
-	document.getElementById("myList").appendChild(test);
+var ID = <?php echo 1;?>;
+			
+function ajouterPartie() {
+
+	var form = $( "#P0" ).clone().html();
+	form = replaceAll("P0", "P"+ID,form);
+
+	button = '<button class="btn btn-danger btn-xs pull-right" onclick="supprimerPartie('+ID+')" type="button">'+
+	'supprimer Partie'+
+	'</button>';
+	
+	$('#parties').append("<p id='P"+ID+"'>"+form+button+"</p>");
+	ID++;
 }
+
+function supprimerPartie(ID){
+				$( "#P" + ID ) . remove ();
+			}
+
+function replaceAll(find, replace, str) {
+	  return str.replace(new RegExp(find, 'g'), replace);
+	}
 </script>

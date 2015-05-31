@@ -1,10 +1,5 @@
 <?php
 
-function my_error_handler ( $no, $str, $file, $line )
-{
-	flash_error ( $str );
-}
-
 class Module_model extends CI_model
 {
 
@@ -48,6 +43,10 @@ class Module_model extends CI_model
 
 	public function delete ( $ID )
 	{
+		$this -> db -> delete ( 'contenu', array ( 
+				'module' => $ID 
+		) );
+		
 		$this -> db -> delete ( 'module', array ( 
 				'ident' => $ID 
 		) );

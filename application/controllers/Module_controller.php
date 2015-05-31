@@ -11,7 +11,7 @@ class Module_controller extends Application_controller
 		$this -> load -> helper ( 'form' );
 		$this -> load -> library ( 'form_validation' );
 		$this -> load -> model ( 'cours/Module_model' );
-	
+		$this -> load -> model ( 'cours/Cours_model' );
 	}
 
 	public function index ()
@@ -31,24 +31,40 @@ class Module_controller extends Application_controller
 		$this -> form_validation -> set_rules ( 'semestre', 'semestre', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
 		
-		/*
-		 * if ( $this -> form_validation -> run () === TRUE ) {
-		 * $ID = $this -> input -> post ( 'ID' );
-		 * $public = $this -> input -> post ( 'public' );
-		 * $semestre = $this -> input -> post ( 'semestre' );
-		 * $libelle = $this -> input -> post ( 'libelle' );
-		 * $test = $this -> Module_model -> create ( $ID, $public, $semestre, $libelle );
-		 * if ( $test ) {
-		 * flash_info ( 'Module ' . $ID . ' crée' );
-		 * $this -> load -> template ( 'fake' );
-		 * } else {
-		 * flash_error ( "le module existe déjà" );
-		 * $this -> load -> template ( 'module/create_module' );
-		 * }
-		 * } else {
-		 * $this -> load -> template ( 'module/create_module' );
-		 * }
-		 */
+		if ( $this -> form_validation -> run () === TRUE ) {
+			$form = $this -> input -> post ();
+			
+			$test = $this -> Module_model -> create ( $form ['ID'], $form ['public'], $form ['semestre'], $form ['libelle'] );
+			
+			$Pnames = array ();
+			$Ptype = array ();
+			$Phed = array ();
+			
+			foreach ( $form as $key => $value ) {
+				if ( strpos ( $key, 'Pname' ) ) {
+					$Pnames [] = $value;
+				} elseif ( strpos ( $key, 'Ptype' ) ) {
+					$Ptype [] = $value;
+				} elseif ( strpos ( $key, 'Phed' ) ) {
+					$Phed [] = ( int ) $value;
+				}
+			}
+			
+			if ( $test ) {
+				for ( $i = 0 ; $i < sizeof ( $Pnames ) ; $i ++ ) {
+					$this -> Cours_model -> create ( $form ['ID'], $Pnames [$i], $Ptype [$i], $Phed [$i] );
+				}
+				
+				flash_info ( 'Module ' . $form ['ID'] . ' crée' );
+				redirect ( 'Module_controller', 'auto' );
+			} else {
+				flash_error ( "le module existe déjà" );
+				$this -> load -> template ( 'module/create_module' );
+			}
+		} else {
+			$this -> load -> template ( 'module/create_module' );
+		}
+	
 	}
 
 	public function get ()
@@ -83,9 +99,9 @@ class Module_controller extends Application_controller
 	{
 		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
 		if ( $this -> form_validation -> run () === TRUE ) {
-			// $this -> Module_model -> delete ( $this -> input -> post ( 'ID' ) );
+			$this -> Module_model -> delete ( $this -> input -> post ( 'ID' ) );
 			flash_info ( "module " . $this -> input -> post ( 'ID' ) . " supprimé" );
-			$this -> load -> template ( 'fake' );
+			redirect ( 'Module_controller', 'auto' );
 		}
 	}
 
