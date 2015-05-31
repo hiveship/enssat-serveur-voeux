@@ -1,7 +1,8 @@
 <div class="container">
 	<div>
 			<?php
-			// TODO trouver comment afficher
+			// TODO rendre + dynamique
+			
 			echo form_open ( 'Module_controller/create', 'role="form"' );
 			$ID = array ( 
 					
@@ -44,10 +45,36 @@
 			echo form_input ( $libelle, '', 'class="form-control"' );
 			echo form_error ( 'libelle' );
 			
+			$test = array ( 
+					
+					'name' => 'test', 
+					'id' => 'test', 
+					'value' => set_value ( 'test' ) 
+			);
+			echo form_label ( 'test 1: ', 'test' );
+			echo form_input ( $test, '', 'class="form-control"' );
+			echo form_error ( 'test' );
+			
+			$test = array ( 
+					
+					'name' => 'test', 
+					'id' => 'test', 
+					'value' => set_value ( 'test' ) 
+			);
+			echo form_label ( 'test 2: ', 'test' );
+			echo form_input ( $test, '', 'class="form-control"' );
+			echo form_error ( 'test' );
+			
 			echo br ( 1 );
 			echo form_submit ( 'submit', 'creer', 'class="btn btn-primary pull-right"' );
-			
+			echo "<div id=parties></div>";
 			echo form_close ();
 			?>
 		</div>
 </div>
+
+<script type="text/javascript">
+function myFunction() {
+	document.getElementById("myList").appendChild(test);
+}
+</script>

@@ -21,7 +21,7 @@ class Module_controller extends Application_controller
 				
 				'modules' => $modules 
 		);
-		$this -> load -> template ( 'cours/aff_get_module', $data );
+		$this -> load -> template ( 'module/aff_get_module', $data );
 	}
 
 	public function create ()
@@ -30,24 +30,25 @@ class Module_controller extends Application_controller
 		$this -> form_validation -> set_rules ( 'public', 'public', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'semestre', 'semestre', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
-		// TODO posibilitée d'ajouter un responsable de module
 		
-		if ( $this -> form_validation -> run () === TRUE ) {
-			$ID = $this -> input -> post ( 'ID' );
-			$public = $this -> input -> post ( 'public' );
-			$semestre = $this -> input -> post ( 'semestre' );
-			$libelle = $this -> input -> post ( 'libelle' );
-			$test = $this -> Module_model -> create ( $ID, $public, $semestre, $libelle );
-			if ( $test ) {
-				flash_info ( 'Module ' . $ID . ' crée' );
-				$this -> load -> template ( 'fake' );
-			} else {
-				flash_error ( "le module existe déjà" );
-				$this -> load -> template ( 'cours/create_module' );
-			}
-		} else {
-			$this -> load -> template ( 'cours/create_module' );
-		}
+		/*
+		 * if ( $this -> form_validation -> run () === TRUE ) {
+		 * $ID = $this -> input -> post ( 'ID' );
+		 * $public = $this -> input -> post ( 'public' );
+		 * $semestre = $this -> input -> post ( 'semestre' );
+		 * $libelle = $this -> input -> post ( 'libelle' );
+		 * $test = $this -> Module_model -> create ( $ID, $public, $semestre, $libelle );
+		 * if ( $test ) {
+		 * flash_info ( 'Module ' . $ID . ' crée' );
+		 * $this -> load -> template ( 'fake' );
+		 * } else {
+		 * flash_error ( "le module existe déjà" );
+		 * $this -> load -> template ( 'module/create_module' );
+		 * }
+		 * } else {
+		 * $this -> load -> template ( 'module/create_module' );
+		 * }
+		 */
 	}
 
 	public function get ()
@@ -58,9 +59,9 @@ class Module_controller extends Application_controller
 			$data = array ( 
 					'modules' => $module 
 			);
-			$this -> load -> template ( 'cours/aff_get_module', $data );
+			$this -> load -> template ( 'module/aff_get_module', $data );
 		} else {
-			$this -> load -> template ( 'cours/get_module' );
+			$this -> load -> template ( 'module/get_module' );
 		}
 	}
 
@@ -72,9 +73,9 @@ class Module_controller extends Application_controller
 			$data = array ( 
 					'module' => $module 
 			);
-			$this -> load -> template ( 'cours/edit_module', $data );
+			$this -> load -> template ( 'module/edit_module', $data );
 		} else {
-			$this -> load -> template ( 'cours/get_module' );
+			$this -> load -> template ( 'module/get_module' );
 		}
 	}
 
@@ -111,7 +112,7 @@ class Module_controller extends Application_controller
 				flash_error ( "nouvel ID invalide" );
 				$this -> load -> template ();
 				
-				$this -> load -> template ( 'cours/edit_module' );
+				$this -> load -> template ( 'module/edit_module' );
 			}
 		}
 	}

@@ -7,23 +7,23 @@ class Enseignant_controller extends Application_controller
 
 	public function __construct ()
 	{
-		parent::__construct ();
-		$this -> load -> model ( 'enseignant/Enseignant_model' );
+		parent::__construct();
+		$this -> load -> model( 'enseignant/Enseignant_model' );
 	}
 
 	public function edit ( $login )
 	{
-		flash_info ( "id récupéré à partir de l'url vaut : " . $login );
-		$this -> load -> template ( 'enseignants/edit', $this -> session -> userdata ( 'me' ) );
+		flash_info( "id récupéré à partir de l'url vaut : " . $login );
+		$this -> load -> template( 'enseignants/edit', $this -> session -> userdata( 'me' ) );
 	}
 
 	public function index ()
 	{
 		$data = array ( 
-				
-				'enseignants' => $this -> Enseignant_model -> get_all () 
+			
+				'enseignants' => $this -> Enseignant_model -> get_all() 
 		);
-		$this -> load -> template ( 'enseignants/index', $data );
+		$this -> load -> template( 'enseignants/index', $data );
 	}
 
 	public function change_password ()
@@ -63,15 +63,25 @@ class Enseignant_controller extends Application_controller
 
 	public function change_email ()
 	{
-		$this -> form_validation -> set_rules ( 'newemail', 'NewEmail', 'required|valid_email' );
+		$this -> form_validation -> set_rules( 'newemail', 'NewEmail', 'required|valid_email' );
 		
 		if ( $this -> form_validation -> run () == FALSE ) {
 			flash_error ( "Votre email n'est pas valide, veuillez recommencer." );
 			$this -> load -> template ( 'enseignants/edit', $this -> session -> userdata ( 'me' ) );
+		if ( $this -> form_validation -> run() == FALSE ) {
+			flash_error( "pas bon email" );
+			$this -> load -> template( 'enseignants/edit', $this -> session -> userdata( 'me' ) );
 		} else {
 			
-			$newemail = $this -> input -> post ( 'newemail' );
-			$login = $this -> session -> userdata ( 'me' )['login'];
+			$newemail = $this -> input -> post( 'newemail' );
+			$login = $this -> session -> userdata( 'me' )['login'];
+			
+			$this -> Enseignant_model -> update_email( $login, $newemail );
+			
+			$me = $this -> session -> userdata( 'me' );
+			$me ['email'] = $newemail;
+			$this -> session -> set_userdata( 'me', $me );
+			flash_success( "yeah" );
 			
 			$this -> Enseignant_model -> update_email ( $login, $newemail );
 			
