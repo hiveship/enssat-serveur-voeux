@@ -49,9 +49,23 @@ defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
  * | Examples: my-controller/index -> my_controller/index
  * | my-controller/my-method -> my_controller/my_method
  */
-$route ['default_controller'] = 'site_controller';
+$route ['default_controller'] = 'Module_controller';
 $route ['404_override'] = '';
 $route ['translate_uri_dashes'] = FALSE;
+
+$route ['login'] = "Site_controller/index";
+$route ['logout'] = "Site_controller/logout";
+
+$route ['admin/enseignants'] = "admin/Enseignant_controller/index";
+$route ['admin/enseignants/create'] = 'admin/Enseignant_controller/create';
+$route ['admin/enseignants/delete/(:any)'] = 'admin/Enseignant_controller/delete/$1';
+$route ['admin/enseignants/activate/(:any)'] = 'admin/Enseignant_controller/rendre_actif/$1';
+$route ['admin/enseignants/deactivate/(:any)'] = "admin/Enseignant_controller/rendre_inactif/$1";
+$route ['admin/enseignants/set_admin/(:any)'] = "admin/Enseignant_controller/rendre_admin/$1";
+$route ['admin/enseignants/set_enseignant/(:any)'] = "admin/Enseignant_controller/rendre_enseignant/$1";
+
+$route ['enseignants'] = "Enseignant_controller/index";
+
 
 
 

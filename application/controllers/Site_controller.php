@@ -18,35 +18,30 @@ class Site_controller extends CI_Controller
 
 	public function login ()
 	{
-		$this -> form_validation -> set_rules( 'login', 'Login', 'trim|required' );
-		$this -> form_validation -> set_rules( 'password', 'password', 'trim|required' );
-		
-		if ( $this -> form_validation -> run() === FALSE ) {
-			$this -> load -> template( 'site/login' );
-		} else {
-			$me = $this -> Enseignant_model -> authenticate( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
-			if ( $me != FALSE ) {
-				// Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis.
-				$this -> session -> set_userdata( 'me', $me );
-				flash_success( 'Authentification réussie !' );
-				$this -> load -> template( 'fake' );
-				redirect( 'Module_controller/index', 'auto' );
-				
-				// TODO lors de l'envoie sur une vrai page, ça sera un redirect à placer ici
+		$me = $this -> Enseignant_model -> authenticate( $this -> input -> post( 'login' ), $this -> input -> post( 'password' ) );
+		if ( $me != FALSE ) {
+			if ( ! $me ['actif'] ) {
+				flash_warning( "Votre compte est désactivé, veuillez contacter un administrateur." );
+				redirect( 'login', 'refresh' );
 			} else {
-				flash_error( "Echec d'authentification" );
-				redirect( 'Site_controller/index', 'refresh' );
-				// see: http://stackoverflow.com/questions/4281800/codeigniter-when-to-use-redirect-and-when-to-use-this-load-view
+				$this -> session -> set_userdata( 'me', $me ); // Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis.
+				flash_success( 'Authentification réussie !' );
+				redirect( 'enseignants', 'auto' );
 			}
+		} else {
+			flash_error( "Login et/ou mot de passe incorrect !" );
+			redirect( 'login', 'refresh' );
 		}
 	}
 
 	public function logout ()
 	{
-		$this -> session -> unset_userdata( 'me' );
-		flash_success( 'Vous êtes désormais déconnecté !' );
+		if ( $this -> session -> userdata( 'me' ) ) {
+			$this -> session -> unset_userdata( 'me' );
+			flash_success( 'Vous êtes désormais déconnecté !' );
+		}
 		// Ne pas faire un appel à session_destroy, sinon les messages flashs seront également perdus.
-		redirect( 'Site_controller/index', 'refresh' );
+		redirect( 'login', 'refresh' );
 	}
 
 }

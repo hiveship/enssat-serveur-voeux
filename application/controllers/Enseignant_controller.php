@@ -11,7 +11,7 @@ class Enseignant_controller extends Application_controller
 		$this -> load -> model( 'enseignant/Enseignant_model' );
 	}
 
-	public function get ( $login )
+	public function edit ( $login )
 	{
 		flash_info( "id récupéré à partir de l'url vaut : " . $login );
 		$this -> load -> template( 'enseignants/edit', $this -> session -> userdata( 'me' ) );
@@ -26,12 +26,33 @@ class Enseignant_controller extends Application_controller
 		$this -> load -> template( 'enseignants/index', $data );
 	}
 
-	public function rendre_administrateur ( $login )
+	public function change_password ()
 	{
-		// TODO controls
-		$this -> Enseignant_model -> rendre_administrateur( $login );
-		flash_success( "L'utilisateur a bien été nommé administrateur !" );
-		redirect( "Enseignant_controller/index", "refresh" );
+	
+	}
+
+	public function change_email ()
+	{
+		$this -> form_validation -> set_rules( 'newemail', 'NewEmail', 'required|valid_email' );
+		
+		if ( $this -> form_validation -> run() == FALSE ) {
+			flash_error( "pas bon email" );
+			$this -> load -> template( 'enseignants/edit', $this -> session -> userdata( 'me' ) );
+		} else {
+			
+			$newemail = $this -> input -> post( 'newemail' );
+			$login = $this -> session -> userdata( 'me' )['login'];
+			
+			$this -> Enseignant_model -> update_email( $login, $newemail );
+			
+			$me = $this -> session -> userdata( 'me' );
+			$me ['email'] = $newemail;
+			$this -> session -> set_userdata( 'me', $me );
+			flash_success( "yeah" );
+			
+			$this -> load -> template( 'enseignants/edit', $this -> session -> userdata( 'me' ) );
+		}
+	
 	}
 
 }

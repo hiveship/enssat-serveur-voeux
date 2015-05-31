@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
 	<div class="navbar-inner">
 
 		<div class="container-fluid">
@@ -27,9 +27,9 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a value="moncompte"
-						href="<?php echo site_url("Enseignant_controller/get/".$this->session->userdata('me')['login']) ?>">Mon
+						href="<?php echo site_url("enseignants/edit/".$this->session->userdata('me')['login']) ?>">Mon
 							Compte</a></li>
-					<li><a href="<?php echo site_url('Site_controller/logout') ?>" value="deconnexion">Déconnexion</a></li>
+					<li><a href="<?php echo site_url('logout') ?>" value="deconnexion">Déconnexion</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
