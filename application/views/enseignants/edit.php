@@ -47,14 +47,8 @@
 									} else {
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
 									}
-									
 									?>
-								
-								
-								
-								
-								
-								
+															
 								
 								
 								
@@ -111,28 +105,30 @@
 					</div>
 					<div class="modal-body">
 
-					<?php echo form_open('Enseignant_controller/change_email','class="form-horizontal"'); ?>
+					<?php echo form_open('Enseignant_controller/change_password','class="form-horizontal"'); ?>
 							<fieldset>
 							<!-- Password input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="password-actuel">Mot de passe actuel</label>
 								<div class="col-md-4">
-									<input id="password-actuel" name="password-actuel" placeholder="mot de passe actuel"
-										class="form-control input-md" type="password">
+								<?php echo form_password ( 'password', '', 'id="password" placeholder=" mot de passe actuel " class="form-control input-md"' ); ?>
 								</div>
 							</div>
 
-							<?php
-							
-							echo form_input ( 'username', '', 'id="newemail" placeholder=" adresse
-									mail" class="input-xlarge"' );
-							?>
 							<!-- Password input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="newpassword1">Nouveau mot de passe</label>
 								<div class="col-md-4">
-									<input id="newpassword2" name="newpassword2" placeholder="nouveau mot de passe"
-										class="form-control input-md" type="password">
+										<?php echo form_password ( 'newpassword1', '', 'id="newpassword1" placeholder=" nouveau mot de passe" class="form-control input-md"' ); ?>
+								</div>
+							</div>
+
+							<!-- Password input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="newpassword1">Confirmation du nouveau mot de
+									passe</label>
+								<div class="col-md-4">
+										<?php echo form_password ( 'newpassword2', '', 'id="newpassword2" placeholder=" nouveau mot de passe" class="form-control input-md"' ); ?>
 								</div>
 							</div>
 
@@ -142,7 +138,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-							<?php echo form_button('mysubmit', 'Modifier','','class="btn btn-default" type="button"');?>
+							<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-default" type="button"');?>
 						<?php echo form_close();?>
 					</div>
 				</div>
@@ -180,7 +176,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<?php echo form_submit('mysubmit', 'Modifier','','type="button" class="btn btn-default" data-dismiss="modal"');?>
+						<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-default" type="button"');?>
 						<?php echo form_close();?>
 					</div>
 				</div>
