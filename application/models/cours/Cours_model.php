@@ -1,14 +1,11 @@
 <?php
-
 class Cours_model extends CI_model
 {
-
 	public function __construct ()
 	{
 		parent::__construct ();
 		$this -> load -> database ();
 	}
-
 	public function create ( $mod, $part, $type, $hed, $enseignant = Null )
 	{
 		if ( $enseignant == Null ) {
@@ -21,6 +18,5 @@ class Cours_model extends CI_model
 		}
 		$this -> db -> insert ( 'contenu', $data );
 	}
-
 }
 ?>

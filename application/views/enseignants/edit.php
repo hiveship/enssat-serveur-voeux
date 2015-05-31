@@ -13,7 +13,7 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h1 class="panel-title">
-						<p><?php echo $nom . " " . $prenom; ?></p>
+						<p><?php echo mb_strtoupper($nom) . " " . ucfirst($prenom); ?></p>
 					</h1>
 				</div>
 				<div class="panel-body">
@@ -22,7 +22,7 @@
 							<tbody>
 								<tr>
 									<td>Statut:</td>
-									<td><?php echo $statut; ?></td>
+									<td><?php echo ucfirst($statut); ?></td>
 								</tr>
 								<tr>
 									<td>Statutaire:</td>
@@ -48,24 +48,6 @@
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
 									}
 									?>
-															
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
 								
 								
 								</tr>
@@ -105,30 +87,28 @@
 					</div>
 					<div class="modal-body">
 
-					<?php echo form_open('Enseignant_controller/change_password','class="form-horizontal"'); ?>
+					<?php echo form_open('enseignants/edit/password','class="form-horizontal"'); ?>
 							<fieldset>
 							<!-- Password input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="password-actuel">Mot de passe actuel</label>
 								<div class="col-md-4">
-								<?php echo form_password ( 'password', '', 'id="password" placeholder=" mot de passe actuel " class="form-control input-md"' ); ?>
+								<?php echo form_password ( 'password', '', 'id="password" placeholder="Mot de passe actuel " class="form-control input-md"' ); ?>
 								</div>
 							</div>
-
 							<!-- Password input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="newpassword1">Nouveau mot de passe</label>
 								<div class="col-md-4">
-										<?php echo form_password ( 'newpassword1', '', 'id="newpassword1" placeholder=" nouveau mot de passe" class="form-control input-md"' ); ?>
+										<?php echo form_password ( 'newpassword1', '', 'id="newpassword1" placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
 								</div>
 							</div>
 
 							<!-- Password input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="newpassword1">Confirmation du nouveau mot de
-									passe</label>
+								<label class="col-md-4 control-label" for="newpassword1">Confirmation</label>
 								<div class="col-md-4">
-										<?php echo form_password ( 'newpassword2', '', 'id="newpassword2" placeholder=" nouveau mot de passe" class="form-control input-md"' ); ?>
+										<?php echo form_password ( 'newpassword2', '', 'id="newpassword2" placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
 								</div>
 							</div>
 
@@ -138,7 +118,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-							<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-default" type="button"');?>
+							<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-primary" type="button"');?>
 						<?php echo form_close();?>
 					</div>
 				</div>
@@ -158,7 +138,7 @@
 					</div>
 					<div class="modal-body">
 
-						<?php echo form_open('Enseignant_controller/change_email','class="form-horizontal"'); ?>
+						<?php echo form_open('enseignants/edit/email','class="form-horizontal"'); ?>
 							<fieldset>
 							<!-- Text input-->
 							<div class="control-group">
@@ -166,7 +146,7 @@
 								<div class="controls">
 								<?php
 								
-								echo form_input ( 'newemail', '', 'id="newemail" placeholder=" adresse
+								echo form_input( 'newemail', '', 'id="newemail" placeholder="Adresse
 									mail" class="input-xlarge"' );
 								?></div>
 							</div>
@@ -176,7 +156,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-default" type="button"');?>
+						<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-primary" type="button"');?>
 						<?php echo form_close();?>
 					</div>
 				</div>

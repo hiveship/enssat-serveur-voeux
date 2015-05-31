@@ -23,23 +23,26 @@ class Enseignant_controller extends Admin_controller
 
 	public function create ()
 	{
-		$nom = $this -> input -> post( 'nom' );
-		$prenom = $this -> input -> post( 'prenom' );
-		$email = $this -> input -> post( 'email' );
-		$statut = $this -> input -> post( 'statut' );
-		$statutaire = $this -> input -> post( 'statutaire' );
+		$nom = strtolower( $this -> input -> post( 'nom' ) );
+		$prenom = strtolower( $this -> input -> post( 'prenom' ) );
+		$email = strtolower( $this -> input -> post( 'email' ) );
+		$statut = strtolower( $this -> input -> post( 'statut' ) );
+		$statutaire = intval( $this -> input -> post( 'statutaire' ) );
 		$actif = $this -> input -> post( 'actif' );
 		$administrateur = $this -> input -> post( 'administrateur' );
 		$password = $this -> generate_random_string();
 		
 		// Double vérification pour assurer l'intégrité de l'application. Le contrôle utiliseur est également traité côté client.
-		if ( ! ( $this -> Enseignant_model -> check_email_format( email ) && $this -> Enseignant_model -> check_statut( $statut ) && $this -> Enseignant_model -> check_statutaire( $statutaire ) ) ) {
+		if ( ! ( $this -> Enseignant_model -> check_statut( $statut ) && $this -> Enseignant_model -> check_statutaire( $statutaire ) ) ) {
+			flash_success( "statut -> " . $this -> Enseignant_model -> check_statut( $statut ) );
+			flash_warning( "statutaire -> " . $this -> Enseignant_model -> check_statutaire( $statutaire ) );
+			
 			flash_error( "Informations incorrectes ! Création impossible." );
 			redirect( 'admin/enseignants', 'refresh' );
 		} else {
-			$login = $this -> Enseignant_model -> compute_login( $nom, $prenom );
-			if ( ! exists( $login ) ) {
-				$this -> Enseignant_model -> create( $login, $nom, $prenom, $email, $statutaire, $statut, $actif, $administrateur );
+			$login = $this -> Enseignant_model -> compute_login( $prenom, $nom );
+			if ( ! $this -> Enseignant_model -> exists( $login ) ) {
+				$this -> Enseignant_model -> create( $login, $password, $nom, $prenom, $email, $statut, $statutaire, $actif, $administrateur );
 				flash_success( "L'enseignant a bien été créé !" );
 			} else {
 				flash_error( "Cet enseignant éxiste déjà !" );

@@ -54,6 +54,7 @@ $route ['404_override'] = '';
 $route ['translate_uri_dashes'] = FALSE;
 
 $route ['login'] = "Site_controller/index";
+$route ['auth'] = "Site_controller/login";
 $route ['logout'] = "Site_controller/logout";
 
 $route ['admin/enseignants'] = "admin/Enseignant_controller/index";
@@ -65,6 +66,10 @@ $route ['admin/enseignants/set_admin/(:any)'] = "admin/Enseignant_controller/ren
 $route ['admin/enseignants/set_enseignant/(:any)'] = "admin/Enseignant_controller/rendre_enseignant/$1";
 
 $route ['enseignants'] = "Enseignant_controller/index";
+$route ['enseignants/edit'] = 'Enseignant_controller/edit';
+$route ['enseignants/edit/email'] = 'Enseignant_controller/change_email';
+$route ['enseignants/edit/password'] = 'Enseignant_controller/change_password';
+
 
 
 

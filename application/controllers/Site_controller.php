@@ -1,5 +1,5 @@
 <?php
-// N'hérite pas de ApplicationController, car c'est la SEULE partie de l'application qui ne nécéssite pas d'authentification préalable.
+// N'hérite pas de Application_controller, car c'est la SEULE partie de l'application qui ne nécéssite pas d'authentification préalable.
 class Site_controller extends CI_Controller
 {
 
