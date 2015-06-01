@@ -19,7 +19,8 @@ class MY_Loader extends CI_Loader
 		if ( $this -> session -> userdata( 'me' ) !== NULL ) {
 			$me = $this -> session -> userdata( 'me' );
 			if ( $me ['administrateur'] ) {
-				$this -> view( 'admin/navbar' );
+				// $this -> view( 'admin/navbar' );
+				$this -> view( 'navbar' );
 			} else {
 				$this -> view( 'navbar' );
 			}

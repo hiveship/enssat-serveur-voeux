@@ -1,7 +1,9 @@
 <div class="container">
 
 	<button type="button" class="btn btn-primary pull-right" data-toggle="modal"
-		data-target="#ajoutEnseignant">Ajouter un enseignant</button>
+		data-target="#ajoutEnseignant">
+		<i class="fa fa-user-plus"></i> Ajouter un enseignant
+	</button>
 	<br> <br>
 
 	<div class="modal fade" id="ajoutEnseignant" tabindex="-1" role="dialog"
@@ -175,22 +177,29 @@
 									<span class="label label-success"> Enseignant </span>
 								</center>
 							</td><?php }?>
-					<td>
-								<center>
+													</td>
+							<td><a href="<?php echo site_url('admin/enseignants/show/'.$enseignant['login']) ?>"> <i
+									class="fa fa-info"></i> Détails
+							</a></td>
+							<td><a href="<?php echo site_url('admin/enseignants/edit/'.$enseignant['login']) ?>"> <i
+									class="fa fa-pencil-square-o"></i> Modifier
+							</a></td>
+							<td>
 								<?php
 									if ( $enseignant ['actif'] ) {
 										?>
 								<a href="<?php echo site_url('admin/enseignants/deactivate/'.$enseignant['login']) ?>"> <i
-										class="fa fa-eye"></i> Désactiver
-									</a>
+									class="fa fa-eye"></i> Désactiver
+							</a>
 									<?php } else { ?>
 									<a href="<?php echo site_url('admin/enseignants/activate/'.$enseignant['login']) ?>"> <i
-										class="fa fa-eye-slash"></i> Activer
-									</a>
+									class="fa fa-eye-slash"></i> Activer
+							</a>
 									<?php }?>
-									
-								</center>
 							</td>
+							<td><a href="<?php echo site_url('admin/enseignants/delete/'.$enseignant['login']) ?>"> <i
+									class="fa fa-times"></i> Supprimer
+							</a></td>
 						</tr>
 		<?php }?>
 					</tbody>
