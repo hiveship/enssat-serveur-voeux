@@ -1,4 +1,6 @@
 <div class="container">
+	<a href="Module_controller/create" class='btn btn-primary pull-right'>Créer
+		Module</a>
 <?php
 echo "<table id='tableSearchResults' class='table table-hover 
 		table-striped table-condensed'>";
@@ -19,33 +21,33 @@ foreach ( $modules as $module ) {
 		echo "<td> $value </td> ";
 	}
 	echo "<td>";
-	echo form_open( 'Module_controller/edit_menu' );
+	echo form_open ( 'Module_controller/edit_menu' );
 	$data = array ( 
-		
+			
 			'name' => 'ID', 
 			'value' => $module ['ident'], 
 			'type' => 'submit', 
 			'content' => 'Modifier', 
 			'class' => 'btn btn-primary btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	
 	$params = array ( 
-		
+			
 			'onsubmit' => 'return(validate(this));' 
 	);
-	echo form_open( 'Module_controller/delete', $params );
+	echo form_open ( 'Module_controller/delete', $params );
 	$data = array ( 
-		
+			
 			'name' => 'ID', 
 			'value' => $module ['ident'], 
 			'type' => 'submit', 
 			'content' => 'Supprimer', 
 			'class' => 'btn btn-danger btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	echo "</td></tr>";
 }
 echo "</tbody></table>";
