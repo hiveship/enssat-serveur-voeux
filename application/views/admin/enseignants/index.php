@@ -6,6 +6,10 @@
 	</button>
 	<br> <br>
 
+	<!-- ============== -->
+	<!-- CREATION MODAL -->
+	<!-- ============== -->
+
 	<div class="modal fade" id="ajoutEnseignant" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -120,13 +124,20 @@
 								<button type="submit" href="#" class="btn btn-primary pull-right">Valider</button>
 							</div>
 						</div>
-
 					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>
+
+	<!-- ============= -->
+	<!-- EDITION MODAL -->
+	<!-- ============= -->
+
+
+	<!-- ===== -->
+	<!-- TABLE -->
+	<!-- ===== -->
 
 	<div class="row">
 		<div class="col-md-12">
@@ -135,18 +146,16 @@
 					<h3 class="panel-title">Enseignants</h3>
 				</div>
 				<div class="panel-body">
-					<input type="text" class="form-control" id="dev-table-filter" data-action="filter"
+					<input type="text" class="form-control" id="search-enseignants-admin" data-action="filter"
 						data-filters="#dev-table" placeholder="Rechercher..." />
 				</div>
-				<table class="table table-striped table-hover" id="dev-table">
+				<table class="table table-striped table-hover" id="enseignants-admin">
 					<thead>
 						<tr>
 							<th><center>Nom</center></th>
 							<th><center>Prenom</center></th>
 							<th><center>Email</center></th>
 							<th><center>Rang</center></th>
-							<th></th>
-							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -156,7 +165,6 @@
 								foreach ( $enseignants as $enseignant ) {
 									?>
 		<tr>
-
 							<td>
 								<center><?php echo mb_strtoupper($enseignant['nom'],'UTF-8')?></center>
 							</td>
@@ -181,24 +189,9 @@
 							<td><a href="<?php echo site_url('admin/enseignants/show/'.$enseignant['login']) ?>"> <i
 									class="fa fa-info"></i> Détails
 							</a></td>
-							<td><a href="<?php echo site_url('admin/enseignants/edit/'.$enseignant['login']) ?>"> <i
+							<td><a id="editLink"
+								href="<?php echo site_url('admin/enseignants/edit/'.$enseignant['login']) ?>"> <i
 									class="fa fa-pencil-square-o"></i> Modifier
-							</a></td>
-							<td>
-								<?php
-									if ( $enseignant ['actif'] ) {
-										?>
-								<a href="<?php echo site_url('admin/enseignants/deactivate/'.$enseignant['login']) ?>"> <i
-									class="fa fa-eye"></i> Désactiver
-							</a>
-									<?php } else { ?>
-									<a href="<?php echo site_url('admin/enseignants/activate/'.$enseignant['login']) ?>"> <i
-									class="fa fa-eye-slash"></i> Activer
-							</a>
-									<?php }?>
-							</td>
-							<td><a href="<?php echo site_url('admin/enseignants/delete/'.$enseignant['login']) ?>"> <i
-									class="fa fa-times"></i> Supprimer
 							</a></td>
 						</tr>
 		<?php }?>
@@ -210,56 +203,33 @@
 </div>
 
 <script type="text/javascript">
-/**
- * Script ok pour des tables de tailles raisonables, mais provoquera de gros problèmes de performances sur des énormes tables de données.
- */
-(function(){
-    'use strict';
-	var $ = jQuery;
-	$.fn.extend({
-		filterTable: function(){
-			return this.each(function(){
-				$(this).on('keyup', function(e){
-					$('.filterTable_no_results').remove();
-					var $this = $(this),
-                        search = $this.val().toLowerCase(),
-                        target = $this.attr('data-filters'),
-                        $target = $(target),
-                        $rows = $target.find('tbody tr');
-                        
-					if(search == '') {
-						$rows.show();
-					} else {
-						$rows.each(function(){
-							var $this = $(this);
-							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-						})
-						if($target.find('tbody tr:visible').size() === 0) {
-							var col_count = $target.find('tr').first().find('td').size();
-							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">Aucun résultat correspondant à votre recherche.</td></tr>')
-							$target.find('tbody').append(no_results);
-						}
-					}
-				});
-			});
-		}
-	});
-	$('[data-action="filter"]').filterTable();
-})(jQuery);
+oTable = $('#enseignants-admin').DataTable( {
+    paging: false,
+    "language": {
+        "zeroRecords": "Aucune résultat ne correspond à votre recherche.",
+    },
+    "aaSorting": [
+                  [0, "asc"]
+              ],
+              "aoColumns": [
+                  null,
+                  null,
+                  null,
+                  null,
+                  {'bSortable': false },
+                  {'bSortable': false },
+              ]
+    
+} );
 
-$(function(){
-    // attach table filter plugin to inputs
-	$('[data-action="filter"]').filterTable();
-	
-	$('.container').on('click', '.panel-heading span.filter', function(e){
-		var $this = $(this),
-			$panel = $this.parents('.panel');
-		
-		$panel.find('.panel-body').slideToggle();
-		if($this.css('display') != 'none') {
-			$panel.find('.panel-body input').focus();
-		}
-	});
-	$('[data-toggle="tooltip"]').tooltip();
-})
+$('#search-enseignants-admin').keyup(function(){
+      oTable.search($(this).val()).draw() ;
+});
+
+$("editLink").click(function(){
+    $.get(<?php echo site_url('admin/enseignants/get/')?>, function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+});
+
 </script>

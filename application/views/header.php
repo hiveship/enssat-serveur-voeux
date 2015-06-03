@@ -7,13 +7,15 @@
 
 <title>ENSSAT - Serveur de voeux d'enseignemants</title>
 
-<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="<?php echo base_url("assets/css/jquery.dataTables.css"); ?>" />
 <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 <link rel="stylesheet" href="<?php echo base_url("assets/css/font-awesome.css"); ?>">
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/jQuery-2.1.4.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/validator.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.dataTables.js"); ?>"></script>
+
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
