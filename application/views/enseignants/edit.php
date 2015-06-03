@@ -52,6 +52,32 @@
 								
 								
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -143,16 +169,13 @@
 						<?php echo form_open('enseignants/edit/email','class="form-horizontal"'); ?>
 							<fieldset>
 							<!-- Text input-->
-							<div class="control-group">
-								<label class="control-label" for="newemail">Nouvelle adresse mail</label>
-								<div class="controls">
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="newemail">Nouvelle adresse mail</label>
+								<div class="col-md-4">
 								<?php
-								
-								echo form_input( 'newemail', '', 'id="newemail" placeholder="Adresse
-									mail" class="input-xlarge"' );
+								echo form_input ( 'newemail', '', 'id="newemail" placeholder="email" class="form-control input-md"' );
 								?></div>
 							</div>
-
 						</fieldset>
 
 					</div>
