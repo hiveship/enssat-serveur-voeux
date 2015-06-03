@@ -91,8 +91,8 @@ class Module_controller extends Application_controller
 	public function delete ( $ID )
 	{
 		$this -> check_ID_parameter ( $ID );
-		$this -> Module_model -> delete ( $this -> input -> post ( 'ID' ) );
-		flash_info ( "module " . $this -> input -> post ( 'ID' ) . " supprimé" );
+		$this -> Module_model -> delete ( $ID );
+		flash_info ( "module " . $ID . " supprimé" );
 		redirect ( 'Module_controller', 'auto' );
 	}
 
@@ -127,7 +127,7 @@ class Module_controller extends Application_controller
 	{
 		if ( ! isset ( $ID ) || ! $this -> Module_model -> exists ( $ID ) ) {
 			flash_error ( "Vous devez spécifier un ID valide ! : recu -> " . $id );
-			redirect ( 'Module_controller', 'refresh' );
+			redirect ( 'Module_controller', 'auto' );
 		}
 	}
 
