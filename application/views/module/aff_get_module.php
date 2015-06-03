@@ -1,26 +1,36 @@
 <div class="container">
-	<a href="Module_controller/create" class='btn btn-primary pull-right'>Créer
-		Module</a>
+	<a href="Module_controller/create" class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	</a> <br></br>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Modules</h3>
+				</div>
+
+				<table id='tableSearchResults' class='table table-hover table-striped'>
+					<thead>
+						<tr>
+							<th><center>Module</center></th>
+							<th><center>Promo</center></th>
+							<th><center>Semestre</center></th>
+							<th><center>Description</center></th>
+							<th><center>Responsable</center></th>
+							<th><center>Modifier</center></th>
+							<th><center>Supprimer</center></th>
+
+						</tr>
+					</thead>
+					<tbody>
 <?php
-echo "<table id='tableSearchResults' class='table table-hover 
-		table-striped table-condensed'>";
-echo "<thead>
-			<tr>
-				<th>Module</th>
-				<th>Promo</th>
-				<th>Semestre</th>
-				<th>Description</th>
-				<th>Responsable</th>
-				<th>Action<th>
-			</tr>
-		</thead>";
-echo "<tbody>";
 foreach ( $modules as $module ) {
 	echo "<tr>";
 	foreach ( $module as $value ) {
-		echo "<td> $value </td> ";
+		echo "<td><center> $value</center></td> ";
 	}
-	echo "<td>";
+	echo "<td><center>";
 	echo form_open ( 'Module_controller/edit_menu' );
 	$data = array ( 
 			
@@ -37,6 +47,8 @@ foreach ( $modules as $module ) {
 			
 			'onsubmit' => 'return(validate(this));' 
 	);
+	echo "</center></td>";
+	echo "<td><center>";
 	echo form_open ( 'Module_controller/delete', $params );
 	$data = array ( 
 			
@@ -48,12 +60,17 @@ foreach ( $modules as $module ) {
 	);
 	echo form_button ( $data );
 	echo form_close ();
-	echo "</td></tr>";
+	echo "</center></td></tr>";
 }
 echo "</tbody></table>";
 ?>
-</div>
-<script type="text/javascript">
+			
+			
+						</div>
+						</div>
+						</div>
+						</div>
+						<script type="text/javascript">
 function validate(){
 	   return confirm("voulez vous supprimer supprimer ce module ?");
 }
