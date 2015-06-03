@@ -78,29 +78,22 @@ class Module_controller extends Application_controller
 		$this -> load -> template ( 'module/get_module', $data );
 	}
 
-	public function edit_menu ()
+	public function edit_menu ( $ID )
 	{
-		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
-		if ( $this -> form_validation -> run () === TRUE ) {
-			$module = $this -> Module_model -> get ( $this -> input -> post ( 'ID' ) )[0];
-			$data = array ( 
-					
-					'module' => $module 
-			);
-			$this -> load -> template ( 'module/edit_module', $data );
-		} else {
-			$this -> load -> template ( 'module/get_module' );
-		}
+		$this -> check_ID_parameter ( $ID );
+		$module = $this -> Module_model -> get ( $ID )[0];
+		$data = array ( 
+				'module' => $module 
+		);
+		$this -> load -> template ( 'module/edit_module', $data );
 	}
 
-	public function delete ()
+	public function delete ( $ID )
 	{
-		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
-		if ( $this -> form_validation -> run () === TRUE ) {
-			$this -> Module_model -> delete ( $this -> input -> post ( 'ID' ) );
-			flash_info ( "module " . $this -> input -> post ( 'ID' ) . " supprimé" );
-			redirect ( 'Module_controller', 'auto' );
-		}
+		$this -> check_ID_parameter ( $ID );
+		$this -> Module_model -> delete ( $this -> input -> post ( 'ID' ) );
+		flash_info ( "module " . $this -> input -> post ( 'ID' ) . " supprimé" );
+		redirect ( 'Module_controller', 'auto' );
 	}
 
 	public function update ( $ID )
@@ -111,7 +104,7 @@ class Module_controller extends Application_controller
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
 		
 		if ( $this -> form_validation -> run () === TRUE ) {
-			$nom = $this -> input -> post ( 'ID' );
+			$nom = $ID;
 			$public = $this -> input -> post ( 'public' );
 			$semestre = $this -> input -> post ( 'semestre' );
 			$libelle = $this -> input -> post ( 'libelle' );
