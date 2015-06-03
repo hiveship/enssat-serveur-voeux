@@ -20,6 +20,10 @@ SET time_zone = "+00:00";
 -- Structure de la table `contenu`
 --
 
+CREATE DATABASE `voeux`;
+
+USE voeux;
+
 CREATE TABLE `contenu` (
   `module` varchar(45) NOT NULL COMMENT 'Nom du module (FK vers l''attribut ident de module)',
   `partie` varchar(20) NOT NULL COMMENT 'Mon de la partie du module, par exemple CM, CM partie 1, CM partie 1, TD (si un seul TD), TD 1, TD 2, TP 1, TP 2, etc.',
