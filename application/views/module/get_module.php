@@ -1,6 +1,7 @@
 <div class="container">
-	<a href="Module_controller/create" class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	<a href="Module_controller/create" class='btn btn-primary pull-right'>
+		<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+		Créer Module
 	</a> <br></br>
 
 	<div class="row">
@@ -10,7 +11,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults' class='table table-hover table-striped'>
+				<table id='tableSearchResults'
+					class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -31,11 +33,8 @@ foreach ( $modules as $module ) {
 		echo "<td><center> $value</center></td> ";
 	}
 	echo "<td><center>";
-	echo form_open ( 'Module_controller/edit_menu' );
+	echo form_open ( 'Module_controller/edit_menu/' . $module ['ident'] );
 	$data = array ( 
-			
-			'name' => 'ID', 
-			'value' => $module ['ident'], 
 			'type' => 'submit', 
 			'content' => 'Modifier', 
 			'class' => 'btn btn-primary btn-xs' 
@@ -49,11 +48,9 @@ foreach ( $modules as $module ) {
 	);
 	echo "</center></td>";
 	echo "<td><center>";
-	echo form_open ( 'Module_controller/delete', $params );
+	echo form_open ( 'Module_controller/delete/' . $module ['ident'], $params );
 	$data = array ( 
 			
-			'name' => 'ID', 
-			'value' => $module ['ident'], 
 			'type' => 'submit', 
 			'content' => 'Supprimer', 
 			'class' => 'btn btn-danger btn-xs' 
