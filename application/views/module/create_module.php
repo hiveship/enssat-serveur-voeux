@@ -1,7 +1,6 @@
 <div class="container">
 	<div>
 			<?php
-			// TODO rendre + dynamique
 			
 			echo form_open ( 'Module_controller/create', 'role="form"' );
 			$nom = array ( 

@@ -40,7 +40,7 @@ class Module_model extends CI_model
 	{
 		$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
 				
-				'ident' => $ID 
+				'id' => $ID 
 		) );
 		return $querry -> result_array ();
 	}
@@ -54,34 +54,34 @@ class Module_model extends CI_model
 		
 		$this -> db -> delete ( self::TABLE_NAME, array ( 
 				
-				'ident' => $ID 
+				'id' => $ID 
 		) );
 	}
 
-	public function update ( $ID_orig, $ID, $public, $semestre, $libelle, $responsable )
+	public function update ( $ID, $nom, $public, $semestre, $libelle, $responsable )
 	{
-		if ( $ID != $ID_orig && sizeof ( $this -> get ( $ID ) != 0 ) ) {
+		if ( ! $this -> exists ( $ID ) ) {
 			return false;
 		}
 		
 		$data = array ( 
 				
-				'ident' => $ID, 
+				'nom' => $nom, 
 				'public' => $public, 
 				'semestre' => $semestre, 
 				'libelle' => $libelle 
 		);
 		// 'responsable' => $responsable
 		
-		$this -> db -> where ( 'ident', $ID_orig );
+		$this -> db -> where ( 'id', $ID );
 		$this -> db -> update ( self::TABLE_NAME, $data );
 		return true;
 	}
 
 	public function exists ( $ID )
 	{
-		$this -> db -> select ( 'ident' ); // meaningless
-		$this -> db -> where ( 'ident', $ID );
+		$this -> db -> select ( 'id' );
+		$this -> db -> where ( 'id', $ID );
 		$query = $this -> db -> get ( self::TABLE_NAME );
 		return $query -> num_rows () == 1;
 	}

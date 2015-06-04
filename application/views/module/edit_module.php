@@ -1,17 +1,16 @@
 <div class="container">
 	<div>
 			<?php
-			echo form_open ( 'Module_controller/update/' . $module ['ident'], 'role="form"' );
-			$ID = array ( 
+			echo form_open ( 'Module_controller/update/' . $module ['id'], 'role="form"' );
+			$nom = array ( 
 					
-					'id' => 'ID', 
-					'name' => 'ID',
-					/* En cas d'erreur, à la validation du formulaire, si le champs était rempli, la saisie de l'utilisateur sera toujours présente.*/
-					'value' => $module ['ident'] 
+					'id' => 'nom', 
+					'name' => 'nom', 
+					'value' => $module ['nom'] 
 			);
-			echo form_label ( 'ID: ', 'ID' );
-			echo form_input ( $ID, '', 'class="form-control"' );
-			echo form_error ( 'ID' );
+			echo form_label ( 'Nom: ', 'nom' );
+			echo form_input ( $nom, '', 'class="form-control"' );
+			echo form_error ( 'nom' );
 			
 			$public = array ( 
 					
