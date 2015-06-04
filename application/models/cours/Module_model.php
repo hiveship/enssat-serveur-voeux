@@ -11,11 +11,11 @@ class Module_model extends CI_model
 		$this -> load -> database ();
 	}
 
-	public function create ( $ID, $public, $semestre, $libelle )
+	public function create ( $nom, $public, $semestre, $libelle )
 	{
 		$data = array ( 
 				
-				'ident' => $ID, 
+				'nom' => $nom, 
 				'public' => $public, 
 				'semestre' => $semestre, 
 				'libelle' => $libelle 
@@ -72,7 +72,6 @@ class Module_model extends CI_model
 				'libelle' => $libelle 
 		);
 		// 'responsable' => $responsable
-		
 		
 		$this -> db -> where ( 'ident', $ID_orig );
 		$this -> db -> update ( self::TABLE_NAME, $data );

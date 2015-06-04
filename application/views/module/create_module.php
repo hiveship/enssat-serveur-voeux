@@ -28,10 +28,19 @@
 					'id' => 'ID', 
 					'name' => 'ID', 
 					'value' => set_value ( 'ID' ) 
+			echo form_open ( 'Module_controller/create', 'role="form"' );
+			$nom = array ( 
+					
+					'id' => 'nom', 
+					'name' => 'nom', 
+					'value' => set_value ( 'nom' ) 
 			);
 			echo form_label ( 'ID: ', 'ID' );
 			echo form_input ( $ID, '', 'class="form-control"' );
 			echo form_error ( 'ID' );
+			echo form_label ( 'nom: ', 'nom' );
+			echo form_input ( $nom, '', 'class="form-control"' );
+			echo form_error ( 'nom' );
 			
 			$public = array ( 
 					

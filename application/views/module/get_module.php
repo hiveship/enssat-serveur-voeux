@@ -29,11 +29,13 @@
 <?php
 foreach ( $modules as $module ) {
 	echo "<tr>";
-	foreach ( $module as $value ) {
-		echo "<td><center> $value</center></td> ";
+	foreach ( $module as $key => $value ) {
+		if ( $key != 'id' ) {
+			echo "<td><center> $value</center></td> ";
+		}
 	}
 	echo "<td><center>";
-	echo form_open ( 'Module_controller/edit_menu/' . $module ['ident'] );
+	echo form_open ( 'Module_controller/edit_menu/' . $module ['id'] );
 	$data = array ( 
 			'type' => 'submit', 
 			'content' => 'Modifier', 
@@ -48,7 +50,7 @@ foreach ( $modules as $module ) {
 	);
 	echo "</center></td>";
 	echo "<td><center>";
-	echo form_open ( 'Module_controller/delete/' . $module ['ident'], $params );
+	echo form_open ( 'Module_controller/delete/' . $module ['id'], $params );
 	$data = array ( 
 			
 			'type' => 'submit', 

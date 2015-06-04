@@ -26,7 +26,7 @@ class Module_controller extends Application_controller
 
 	public function create ()
 	{
-		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'nom', 'nom', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'public', 'public', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'semestre', 'semestre', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
@@ -34,7 +34,7 @@ class Module_controller extends Application_controller
 		if ( $this -> form_validation -> run () === TRUE ) {
 			$form = $this -> input -> post ();
 			
-			$test = $this -> Module_model -> create ( $form ['ID'], $form ['public'], $form ['semestre'], $form ['libelle'] );
+			$test = $this -> Module_model -> create ( $form ['nom'], $form ['public'], $form ['semestre'], $form ['libelle'] );
 			
 			$Pnames = array ();
 			$Ptype = array ();
@@ -51,11 +51,11 @@ class Module_controller extends Application_controller
 			}
 			
 			if ( $test ) {
-				for ( $i = 0 ; $i < sizeof ( $Pnames ) ; $i ++ ) {
-					$this -> Cours_model -> create ( $form ['ID'], $Pnames [$i], $Ptype [$i], $Phed [$i] );
-				}
+				// for ( $i = 0 ; $i < sizeof ( $Pnames ) ; $i ++ ) {
+				// $this -> Cours_model -> create ( $form ['nom'], $Pnames [$i], $Ptype [$i], $Phed [$i] );
+				// }
 				
-				flash_info ( 'Module ' . $form ['ID'] . ' crée' );
+				flash_info ( 'Module ' . $form ['nom'] . ' crée' );
 				redirect ( 'Module_controller', 'auto' );
 			} else {
 				flash_error ( "le module existe déjà" );
