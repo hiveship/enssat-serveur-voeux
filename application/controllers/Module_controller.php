@@ -92,19 +92,20 @@ class Module_controller extends Application_controller
 	{
 		$this -> check_ID_parameter ( $ID );
 		$this -> Module_model -> delete ( $ID );
-		flash_info ( "module " . $ID . " supprimé" );
+		flash_info ( "module supprimé" );
 		redirect ( 'Module_controller', 'auto' );
 	}
 
 	public function update ( $ID )
 	{
 		$this -> check_ID_parameter ( $ID );
+		$this -> form_validation -> set_rules ( 'nom', 'nom', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'public', 'public', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'semestre', 'semestre', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
 		
 		if ( $this -> form_validation -> run () === TRUE ) {
-			$nom = $ID;
+			$nom = $this -> input -> post ( 'nom' );
 			$public = $this -> input -> post ( 'public' );
 			$semestre = $this -> input -> post ( 'semestre' );
 			$libelle = $this -> input -> post ( 'libelle' );

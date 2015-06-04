@@ -20,7 +20,6 @@
 								<table class="table table-condensed table-responsive table-user-information">
 									<tbody>
 			<?php
-			// TODO rendre + dynamique
 			
 			echo form_open ( 'Module_controller/create', 'role="form"' );
 			$ID = array ( 
