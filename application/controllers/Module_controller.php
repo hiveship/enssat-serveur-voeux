@@ -51,6 +51,7 @@ class Module_controller extends Application_controller
 			}
 			
 			if ( $test ) {
+				
 				// for ( $i = 0 ; $i < sizeof ( $Pnames ) ; $i ++ ) {
 				// $this -> Cours_model -> create ( $form ['nom'], $Pnames [$i], $Ptype [$i], $Phed [$i] );
 				// }
