@@ -1,7 +1,8 @@
 <div class="container">
-	<a href="Module_controller/create" class='btn btn-primary pull-right'>
-		<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-		Créer Module
+	<a href="<?php echo site_url("Module_controller/create") ?>"
+		class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
+		Module
 	</a> <br></br>
 
 	<div class="row">
