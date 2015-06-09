@@ -27,6 +27,7 @@
 					'id' => 'ID', 
 					'name' => 'ID', 
 					'value' => set_value ( 'ID' ) 
+			);
 			echo form_open ( 'Module_controller/create', 'role="form"' );
 			$nom = array ( 
 					
