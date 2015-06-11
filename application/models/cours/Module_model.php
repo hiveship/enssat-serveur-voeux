@@ -58,20 +58,28 @@ class Module_model extends CI_model
 		) );
 	}
 
-	public function update ( $ID, $nom, $public, $semestre, $libelle, $responsable )
+	public function update ( $ID, $nom, $public, $semestre, $libelle, $responsable = NULL )
 	{
 		if ( ! $this -> exists ( $ID ) ) {
 			return false;
 		}
-		
-		$data = array ( 
-				
-				'nom' => $nom, 
-				'public' => $public, 
-				'semestre' => $semestre, 
-				'libelle' => $libelle 
-		);
-		// 'responsable' => $responsable
+		if ( $responsable == NULL ) {
+			$data = array ( 
+					
+					'nom' => $nom, 
+					'public' => $public, 
+					'semestre' => $semestre, 
+					'libelle' => $libelle 
+			);
+		} else {
+			$data = array ( 
+					
+					'nom' => $nom, 
+					'public' => $public, 
+					'semestre' => $semestre, 
+					'libelle' => $libelle 
+			);
+		}
 		
 		$this -> db -> where ( 'id', $ID );
 		$this -> db -> update ( self::TABLE_NAME, $data );
