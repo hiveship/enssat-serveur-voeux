@@ -1,23 +1,12 @@
 <?php
 
-class Enseignant_model extends CI_Model
+class Affectation_model extends CI_Model
 {
 	// =========
 	// CONSTANTS
 	// =========
 	
-	const TABLE_NAME = 'enseignant';
-	
-	const LEVEL_ENSEIGNANT = 0;
-	const LEVEL_ADMINISTRATEUR = 1; // Qui peut le plus peut le moins, un administrateur est un enseignant particulier.
-	
-	const STATUT_ADMINISTRATIF = 'administratif';
-	const STATUT_CONTRACTUEL = 'contractuel';
-	const STATUT_TITULAIRE = 'titulaire';
-	const STATUT_VACATAIRE = 'vacataire';
-	
-	const ETAT_ACTIF = 1;
-	const ETAT_INACTIF = 0;
+	const TABLE_NAME = 'contenu';
 	
 	// =================
 	// MODEL CONSTRUCTOR
@@ -33,17 +22,15 @@ class Enseignant_model extends CI_Model
 	// CREATE
 	// ------
 	
-	public function create ( $login, $password, $nom, $prenom, $email, $statut, $statutaire, $actif, $administrateur )
+	public function create ( $module, $partie, $type, $heuresTD, $loginEnseignant )
 	{
-		// FIXME: debug uniquement
-		flash_warning( "DEBUG UNIQUEMENT: mot de passe de l'utilisateur créé -> " . $password );
 		$this -> db -> insert( self::TABLE_NAME, array ( 
 			
-				'login' => $login, 
-				'pwd' => password_hash( $password, PASSWORD_DEFAULT ), 
-				'nom' => $nom, 
-				'prenom' => $prenom, 
-				'email' => $email, 
+				'module' => $module, 
+				'partie' => $partie, 
+				'hed' => $heuresTD, 
+				'type' => $type, 
+				'enseignant' => $loginEnseignant, 
 				'statut' => $statut, 
 				'statutaire' => $statutaire, 
 				'actif' => $actif, 
@@ -100,6 +87,16 @@ class Enseignant_model extends CI_Model
 		
 		return $query -> row()[0] -> statutaire - $query -> row()[0] -> statutaire;
 	}
+
+	public function get_all_affected_cours ( $login )
+	{
+		$this -> db -> select( "module, partie, type, hed" );
+		$this -> db -> from( "contenu" );
+		$this -> db -> join( 'module', 'module.ident=contenu.module' );
+		$this -> db -> where( "enseignant", $login );
+		$query = $this -> db -> get();
+		return $query -> result_array();
+	}
 	
 	// UPDATE
 	// ------
@@ -149,13 +146,12 @@ class Enseignant_model extends CI_Model
 	// DELETE
 	// ------
 	
-	public function delete ( $login )
+	public function delete_all_affected_cours ( $login )
 	{
-		$this -> load -> model( 'Contenu_model' );
-		$this -> Contenu_model -> delete_all_affected_cours( $login );
-		$this -> db -> delete( self::TABLE_NAME, array ( 
+		$this -> db -> where( 'enseignant', $login );
+		$this -> db -> update( 'contenu', array ( 
 			
-				'login' => $login 
+				'enseignant' => null 
 		) );
 	}
 	

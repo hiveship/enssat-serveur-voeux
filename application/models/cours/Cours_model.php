@@ -10,12 +10,12 @@ class Cours_model extends CI_model
 		$this -> load -> database ();
 	}
 
-	public function create ( $mod, $part, $type, $hed, $enseignant = Null )
+	public function create ( $id, $part, $type, $hed, $enseignant = Null )
 	{
 		if ( $enseignant == Null ) {
 			$data = array ( 
 					
-					'module' => $mod, 
+					'module' => $id, 
 					'partie' => $part, 
 					'type' => $type, 
 					'hed' => $hed 
@@ -29,12 +29,12 @@ class Cours_model extends CI_model
 		if ( $partie == NULL ) {
 			$this -> db -> delete ( self::TABLE_NAME, array ( 
 					
-					'id' => $ID 
+					'module' => $id 
 			) );
 		} else {
 			$this -> db -> delete ( self::TABLE_NAME, array ( 
 					
-					'id' => $ID, 
+					'module' => $id, 
 					'partie' => $partie 
 			) );
 		}
@@ -44,15 +44,56 @@ class Cours_model extends CI_model
 	{
 		if ( $partie == NULL ) {
 			$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
-					'id' => $id 
+					'module' => $id 
 			) );
 		} else {
 			$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
-					'id' => $id, 
+					'module' => $id, 
 					'partie' => $partie 
 			) );
 		}
 		return $querry -> result_array ();
+	}
+
+	public function update ( $id, $partie, $type, $hed, $enseignant = Null )
+	{
+		if ( $enseignant == Null ) {
+			$data = array ( 
+					'partie' => $partie, 
+					'type' => $type, 
+					'hed' => $hed 
+			);
+		}
+		
+		$this -> db -> where ( 'id', $id );
+		$this -> db -> where ( 'partie', $partie );
+		$this -> db -> update ( self::TABLE_NAME, $data );
+	}
+
+	public function inscrire_enseignant ( $id, $partie, $enseignant )
+	{
+		$this -> db -> where ( 'id', $id );
+		$this -> db -> where ( 'partie', $partie );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'enseignants' => $enseignant 
+		) );
+	}
+
+	public function desinscrire_enseignant ( $id, $partie )
+	{
+		$this -> db -> where ( 'id', $id );
+		$this -> db -> where ( 'partie', $partie );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'enseignants' => NULL 
+		) );
+	}
+
+	public function desinscrire_enseignant_tout ( $enseignant )
+	{
+		$this -> db -> where ( 'enseignants', $enseignant );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'enseignants' => NULL 
+		) );
 	}
 
 }

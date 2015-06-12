@@ -21,6 +21,16 @@ class Enseignant_controller extends Admin_controller
 		$this -> load -> template( 'admin/enseignants/index', $data );
 	}
 
+	/**
+	 * Méthode utiliée pour une requête AJAX.
+	 * Ne pas faire de return, mais juste un "echo <..>" de la valeur à retourner au client
+	 */
+	public function get ()
+	{
+		$login = $this -> input -> post( 'login' );
+		echo json_encode( $this -> Enseignant_model -> get( $login ) );
+	}
+
 	public function create ()
 	{
 		$nom = strtolower( $this -> input -> post( 'nom' ) );
@@ -123,7 +133,7 @@ class Enseignant_controller extends Admin_controller
 	private function check_login_parameter ( $login )
 	{
 		if ( ! isset( $login ) || ! $this -> Enseignant_model -> exists( $login ) ) {
-			flash_error( "Vous devez spécifier un login d'utilisateur valide ! : recu -> " . $login );
+			flash_error( "Vous devez spécifier un login d'utilisateur valide !" );
 			redirect( 'admin/enseignants', 'refresh' );
 		}
 	}

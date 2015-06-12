@@ -17,8 +17,12 @@ class Module_controller extends Application_controller
 	public function index ()
 	{
 		$modules = $this -> Module_model -> get_all ();
+		$cours = array ();
+		foreach ( $modules as $module ) {
+			$cours [] = $this -> Cours_model -> get ( $module ['id'] );
+		}
 		$data = array ( 
-				
+				'cours' => $cours, 
 				'modules' => $modules 
 		);
 		$this -> load -> template ( 'module/get_module', $data );
@@ -71,11 +75,14 @@ class Module_controller extends Application_controller
 	public function get ( $ID )
 	{
 		$this -> check_ID_parameter ( $ID );
-		$module = $this -> Module_model -> get ( $ID );
+		$modules = $this -> Module_model -> get ( $ID );
+		// $cours [] = $this -> Module_model -> get ( $modules ['id'] );
 		$data = array ( 
 				
-				'modules' => $module 
+				'modules' => $modules 
 		);
+		// 'cours' => $cours
+		
 		$this -> load -> template ( 'module/get_module', $data );
 	}
 
