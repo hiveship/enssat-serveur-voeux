@@ -76,12 +76,12 @@ class Module_controller extends Application_controller
 	{
 		$this -> check_ID_parameter ( $ID );
 		$modules = $this -> Module_model -> get ( $ID );
-		// $cours [] = $this -> Module_model -> get ( $modules ['id'] );
+		$cours [] = $this -> Module_model -> get ( $modules ['id'] );
 		$data = array ( 
 				
-				'modules' => $modules 
+				'modules' => $modules, 
+				'cours' => $cours 
 		);
-		// 'cours' => $cours
 		
 		$this -> load -> template ( 'module/get_module', $data );
 	}

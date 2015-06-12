@@ -17,7 +17,8 @@
 					<div class="panel-body">
 						<div class="row-fluid">
 							<div>
-								<table class="table table-condensed table-responsive table-user-information">
+								<table
+									class="table table-condensed table-responsive table-user-information">
 									<tbody>
 			<?php
 			
@@ -28,19 +29,9 @@
 					'name' => 'ID', 
 					'value' => set_value ( 'ID' ) 
 			);
-			echo form_open ( 'Module_controller/create', 'role="form"' );
-			$nom = array ( 
-					
-					'id' => 'nom', 
-					'name' => 'nom', 
-					'value' => set_value ( 'nom' ) 
-			);
 			echo form_label ( 'ID: ', 'ID' );
 			echo form_input ( $ID, '', 'class="form-control"' );
 			echo form_error ( 'ID' );
-			echo form_label ( 'nom: ', 'nom' );
-			echo form_input ( $nom, '', 'class="form-control"' );
-			echo form_error ( 'nom' );
 			
 			$public = array ( 
 					
