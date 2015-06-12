@@ -373,16 +373,10 @@ function populate_edit_form(login)
             	$('#editAdminAdm').prop('checked', true);
             	$('#editAdminAdm').attr('selected', true);
             	$('#editAdminAdm').val(1);
-            	
-            	
-            	
-            	
         	}
         	
         }
     });
 };
-
-//$("#nomEdit").val("@@@@");
 
 </script>

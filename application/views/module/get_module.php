@@ -92,10 +92,12 @@ foreach ( $modules as $module ) {
 		echo "</tr>";
 	}
 	
-	echo "</table>
-			</div>
-			</td>
-			</tr>";
+	echo "</table>";
+	?><button type="button" class="btn btn-default" data-dismiss="modal">Créer un partie de cours</button><?php
+	echo "</div>";
+	echo "</td>";
+	
+	echo "</tr>";
 	$i ++;
 
 }
@@ -103,7 +105,9 @@ echo "</tbody></table>";
 ?>
 			
 			
-						</div>
+						
+			
+			</div>
 						</div>
 						</div>
 						</div>
