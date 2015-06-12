@@ -50,6 +50,10 @@
 									?>
 								
 								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -159,3 +163,10 @@
 				</div>
 			</div>
 		</div>
+
+
+		<style>
+.container {
+	width: 800px;
+}
+</style>

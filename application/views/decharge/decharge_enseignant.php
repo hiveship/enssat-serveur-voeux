@@ -12,7 +12,7 @@
 		<div class="span10 offset1">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h1 class="panel-title">Décharge</h1>
+					<h1 class="panel-title">Vos Décharges</h1>
 				</div>
 				<div class="panel-body">
 					<div class="row-fluid">
@@ -20,19 +20,26 @@
 							<tbody>
 								
 								<?php
-								foreach ( $decharge as $num ) {
-									foreach ( $num as $value ) {
-										echo "<tr>";
-										echo "<td>Décharge</td>";
-										echo "<td>";
-										echo $value;
-										echo "</td>";
-										echo "<td>";
-										?> <span class="glyphicon glyphicon-remove"></span><?php
-										echo "</td>";
-										echo "</tr>";
-									}
+								
+								foreach ( $decharge as $value ) {
+									
+									echo "<tr>";
+									echo "<td><center>Décharge</center></td>";
+									echo "<td>";
+									echo "<center>";
+									echo $value ['decharge'];
+									echo "</center>";
+									echo "</td>";
+									echo "<td>";
+									echo "<center>";
+									?> <a href="<?php echo site_url('Decharge_controller/delete/'.$value['id']) ?>""><i
+									class="fa fa-times"></i> Supprimer</a>
+								</i><?php
+									echo "<c/enter>";
+									echo "</td>";
+									echo "</tr>";
 								}
+								
 								?>
 								
 
@@ -43,7 +50,7 @@
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
 							data-whatever="@mdo">
 							<i class="fa fa-plus"></i> Ajouter une décharge
-						</button>
+					
 					</div>
 				</div>
 
@@ -61,7 +68,7 @@
 						</div>
 						<div class="modal-body">
 
-					<?php echo form_open('decharge/decharge/add','class="form-horizontal"'); ?>
+					<?php echo form_open('Decharge_controller/add','class="form-horizontal"'); ?>
 							<fieldset>
 								<!-- Password input-->
 								<div class="form-group">
@@ -70,12 +77,19 @@
 								<?php echo form_input( 'decharge', '', 'id="decharge" placeholder="" class="form-control input-md"' ); ?>
 								</div>
 								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="password-actuel">Motif</label>
+									<div class="col-md-4">
+								<?php echo form_textarea( 'motif', '', 'id="motif" placeholder="" class="form-control input-md"' ); ?>
+								</div>
+								</div>
+
 							</fieldset>
 
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-							<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-primary" type="button"');?>
+							<?php echo form_submit('mysubmit', 'Ajouter','class="btn btn-primary" type="button"');?>
 						<?php echo form_close();?>
 					</div>
 					</div>
