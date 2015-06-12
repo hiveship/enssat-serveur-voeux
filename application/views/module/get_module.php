@@ -135,17 +135,15 @@ foreach ( $modules as $module ) {
 	$i ++;
 
 }
-echo "</tbody></table>";
 ?>
 			
-			
-						
-			
+			</tbody>
+				</table>
 			</div>
-						</div>
-						</div>
-						</div>
-						<script type="text/javascript">
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
 function validate(){
 	   return confirm("voulez vous supprimer supprimer ce module ?");
 }
