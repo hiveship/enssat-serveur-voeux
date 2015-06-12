@@ -28,8 +28,10 @@
 					</thead>
 					<tbody>
 <?php
+$i = 1;
 foreach ( $modules as $module ) {
-	echo "<tr>";
+	echo "<tr id='package$i' class='accordion-toggle' data-toggle='collapse' 
+			data-parent='#OrderPackages' data-target='.packageDetails$i'>";
 	foreach ( $module as $key => $value ) {
 		if ( $key != 'id' ) {
 			echo "<td><center> $value</center></td> ";
@@ -60,7 +62,40 @@ foreach ( $modules as $module ) {
 	);
 	echo form_button ( $data );
 	echo form_close ();
-	echo "</center></td></tr>";
+	echo "</center></td>";
+	
+	echo "</tr>";
+	echo "<tr>
+	<td colspan='3' class='hiddenRow'>
+	<div class='accordion-body collapse packageDetails$i'
+		id='accordion$i'>
+		<table>";
+	echo "<thead>
+					<tr>
+					<th><center>Partie</center></th>
+					<th><center>Type</center></th>
+					<th><center>HED</center></th>
+					<th><center>Enseignant</center></th>
+					</tr>
+					</thead>";
+	foreach ( $cours [$i - 1] as $cours_mod ) {
+		echo "<tr>";
+		foreach ( $cours_mod as $key => $value ) {
+			if ( $key != "module" ) {
+				echo "<td>";
+				echo $value;
+				echo "</td>";
+			}
+		}
+		echo "</tr>";
+	}
+	
+	echo "</table>
+			</div>
+			</td>
+			</tr>";
+	$i ++;
+
 }
 echo "</tbody></table>";
 ?>
@@ -74,4 +109,13 @@ echo "</tbody></table>";
 function validate(){
 	   return confirm("voulez vous supprimer supprimer ce module ?");
 }
+
+$('#accordion1').on('shown.bs.collapse', function () {
+    $("#package1 i.indicator").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+});
+$('#accordion1').on('hidden.bs.collapse', function () {
+    $("#package1 i.indicator").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+});
+
+
 </script>
