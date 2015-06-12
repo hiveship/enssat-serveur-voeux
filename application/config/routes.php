@@ -60,6 +60,7 @@ $route ['logout'] = "Site_controller/logout";
 $route ['admin/enseignants'] = "admin/Enseignant_controller/index";
 $route ['admin/enseignants/create'] = 'admin/Enseignant_controller/create';
 $route ['admin/enseignants/delete/(:any)'] = 'admin/Enseignant_controller/delete/$1';
+$route ['admin/enseignants/get'] = 'admin/Enseignant_controller/get/';
 $route ['admin/enseignants/activate/(:any)'] = 'admin/Enseignant_controller/rendre_actif/$1';
 $route ['admin/enseignants/deactivate/(:any)'] = "admin/Enseignant_controller/rendre_inactif/$1";
 $route ['admin/enseignants/set_admin/(:any)'] = "admin/Enseignant_controller/rendre_admin/$1";
@@ -69,6 +70,14 @@ $route ['enseignants'] = "Enseignant_controller/index";
 $route ['enseignants/edit'] = 'Enseignant_controller/edit';
 $route ['enseignants/edit/email'] = 'Enseignant_controller/change_email';
 $route ['enseignants/edit/password'] = 'Enseignant_controller/change_password';
+
+$route ['admin/cours'] = "Module_controller/index";
+$route ['admin/cours/create'] = "Module_controller/create";
+$route ['admin/cours/edit'] = "Module_controller/edit";
+$route ['admin/cours/delete'] = "Module_controller/delete";
+
+
+
 
 
 
