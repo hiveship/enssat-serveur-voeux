@@ -21,6 +21,7 @@
 							<th><center>Semestre</center></th>
 							<th><center>Description</center></th>
 							<th><center>Responsable</center></th>
+							<th><center>Volume Horaire</center></th>
 							<th><center>Modifier</center></th>
 							<th><center>Supprimer</center></th>
 
@@ -37,6 +38,18 @@ foreach ( $modules as $module ) {
 			echo "<td><center> $value</center></td> ";
 		}
 	}
+	
+	$hed_total = 0;
+	$hed_pris = 0;
+	foreach ( $cours [$i - 1] as $cours_mod ) {
+		$hed_total += $cours_mod ['hed'];
+		if ( $cours_mod ['enseignant'] != NULL ) {
+			$hed_pris += $cours_mod ['hed'];
+		}
+	}
+	
+	echo "<td><center>$hed_pris / $hed_total</center></td>";
+	
 	echo "<td><center>";
 	echo form_open ( 'Module_controller/edit_menu/' . $module ['id'] );
 	$data = array ( 
@@ -79,7 +92,7 @@ foreach ( $modules as $module ) {
 					<th><center>HED</center></th>
 				
 					<th><center>Enseignant</center></th>
-			
+					
 					<th><center>Options</center></th>
 					</tr>
 					</thead>";

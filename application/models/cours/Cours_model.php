@@ -55,18 +55,18 @@ class Cours_model extends CI_model
 		return $querry -> result_array ();
 	}
 
-	public function update ( $module, $partie, $type, $hed, $enseignant = Null )
+	public function update ( $module, $partie_old, $partie_new, $type, $hed, $enseignant = Null )
 	{
 		if ( $enseignant == Null ) {
 			$data = array ( 
-					'partie' => $partie, 
+					'partie' => $partie_new, 
 					'type' => $type, 
 					'hed' => $hed 
 			);
 		}
 		
 		$this -> db -> where ( 'module', $module );
-		$this -> db -> where ( 'partie', $partie );
+		$this -> db -> where ( 'partie', $partie_old );
 		$this -> db -> update ( self::TABLE_NAME, $data );
 	}
 

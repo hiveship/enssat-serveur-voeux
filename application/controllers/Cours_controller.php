@@ -27,14 +27,30 @@ class Cours_controller extends Application_controller
 		$this -> load -> template ( 'module/get_module', $data );
 	}
 
-	function get ( $module, $partie = NULL )
+	public function edit ( $module, $partie )
 	{
-	
-	}
-
-	public function edit ()
-	{
-	
+		$this -> check_parameters ( $module, $partie );
+		
+		$this -> form_validation -> set_rules ( 'partie_new', 'partie_new', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'type', 'type', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'hed', 'hed', 'trim|required' );
+		
+		if ( $this -> form_validation -> run () === TRUE ) {
+			$partie_new = $this -> input -> post ( 'partie_new' );
+			$type = $this -> input -> post ( 'type' );
+			$hed = $this -> input -> post ( 'hed' );
+			if ( $partie != $partie_new && $this -> Cours_model -> exists ( $module, $partie_new ) ) {
+				flash_error ( "nom de module déja alloué ! " );
+				redirect ( 'Cours_controller/edit/' . $module . '/' . $partie, 'auto' );
+			}
+			$this -> Cours_model -> update ( $module, $partie, $partie_new, $type, $hed );
+			redirect ( 'Module_controller', 'auto' );
+		}
+		
+		$data = array ( 
+				'cours' => $this -> Cours_model -> get ( $module, $partie )[0] 
+		);
+		$this -> load -> template ( 'cours/edit', $data );
 	}
 
 	public function create ( $module = NULL )
