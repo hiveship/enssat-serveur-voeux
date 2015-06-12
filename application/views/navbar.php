@@ -48,16 +48,13 @@
 			content += '<img id="flyingUnicorn1" class="flyingUnicorn" style="display: none" src="<?php echo base_url('assets/images/unicorn/flyingUnicorn1.gif')?>" />';
 			content += '<img id="flyingUnicorn2" class="flyingUnicorn" style="display: none" src="<?php echo base_url('assets/images/unicorn/flyingUnicorn2.gif')?>" />';
 			content += '<img id="flyingUnicorn3" class="flyingUnicorn" style="display: none" src="<?php echo base_url('assets/images/unicorn/flyingUnicorn3.gif')?>" />';
-			
-			//Check for audio support and add elements if supported
-			//if ($.browser.mozilla && $.browser.version.substr(0, 5) >= "1.9.2" || $.browser.webkit) {
-				audioSupported = true;
-				content+= '<audio id="chimeSound0" preload="auto"><source src="<?php echo base_url('assets/sounds/unicorn/chime1.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/chime1.ogg')?>" /></audio>';
-				content+= '<audio id="chimeSound1" preload="auto"><source src="<?php echo base_url('assets/sounds/unicorn/chime2.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/chime2.ogg')?>" /></audio>';
-				content+= '<audio id="chimeSound2" preload="auto"><source src="<?php echo base_url('assets/sounds/unicorn/chime3.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/chime3.ogg')?>" /></audio>';
-				content+= '<audio id="contraSound" preload="auto" loop><source src="<?php echo base_url('assets/sounds/unicorn/contra.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/contra.ogg')?>" /></audio>';
-		//	}
-			
+
+			audioSupported = true;
+			content+= '<audio id="chimeSound0" preload="auto"><source src="<?php echo base_url('assets/sounds/unicorn/chime1.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/chime1.ogg')?>" /></audio>';
+			content+= '<audio id="chimeSound1" preload="auto"><source src="<?php echo base_url('assets/sounds/unicorn/chime2.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/chime2.ogg')?>" /></audio>';
+			content+= '<audio id="chimeSound2" preload="auto"><source src="<?php echo base_url('assets/sounds/unicorn/chime3.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/chime3.ogg')?>" /></audio>';
+			content+= '<audio id="contraSound" preload="auto" loop><source src="<?php echo base_url('assets/sounds/unicorn/contra.mp3')?>"/><source src="<?php echo base_url('assets/sounds/unicorn/contra.ogg')?>" /></audio>';
+
 			//Add rainbow, unicorns, and sounds to page only if they do not already exist
 			if($('#bigRainbow').size() == 0){
 				$('body').append(content);
@@ -71,34 +68,7 @@
 					}
 					e.preventDefault();
 				});
-			}else if(options.start == 'delay'){
-				if(animationRunning == false){
-					setTimeout(start,options.delayTime);
-				}
-			}else if(options.start == 'konamiCode'){
-				var keysPressed = [];
-				konamiCode = "38,38,40,40,37,39,37,39,66,65";
-				
-				$(window).bind('keydown', function(e){
-					if(animationRunning == false){
-						keysPressed.push(e.keyCode);
-						
-						//if size > 11, trim to 10 most recent key entries
-						if(keysPressed.length > 10){
-							//remove first
-							keysPressed.splice(0,1);
-						}
-						
-						if(keysPressed.toString().indexOf(konamiCode) >= 0){
-							if(audioSupported){
-								document.getElementById('contraSound').play();
-							}
-							start();
-						}
-					}
-				});
 			}
-			
 			//Show unicorns
 			var rainbow;
 			var rHeight;
