@@ -64,9 +64,11 @@ class Cours_controller extends Application_controller
 		$this -> load -> template ( 'cours/create', $data );
 	}
 
-	function delete ()
+	function delete ( $module, $partie )
 	{
-	
+		$this -> check_parameters ( $module, $partie );
+		$this -> Cours_model -> delete ( $module, $partie );
+		redirect ( 'Module_controller', 'auto' );
 	}
 
 	private function check_parameters ( $module, $partie )

@@ -1,6 +1,8 @@
 <div class="container">
-	<a href="<?php echo site_url("Module_controller/create") ?>" class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	<a href="<?php echo site_url("Module_controller/create") ?>"
+		class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
+		Module
 	</a> <br></br>
 
 	<div class="row">
@@ -10,7 +12,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults' class='table table-hover table-striped'>
+				<table id='tableSearchResults'
+					class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -76,6 +79,8 @@ foreach ( $modules as $module ) {
 					<th><center>HED</center></th>
 				
 					<th><center>Enseignant</center></th>
+			
+					<th><center>Options</center></th>
 					</tr>
 					</thead>";
 	foreach ( $cours [$i - 1] as $cours_mod ) {
@@ -89,11 +94,27 @@ foreach ( $modules as $module ) {
 				echo "</td>";
 			}
 		}
+		echo "<td>";
+		
+		echo "<a href='" . site_url ( "Cours_controller/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
+			 class='btn btn-primary btn-xs'>Modifier partie</a>";
+		
+		echo form_open ( 'Cours_controller/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
+		$data = array ( 
+				
+				'type' => 'submit', 
+				'content' => 'Supprimer', 
+				'class' => 'btn btn-danger btn-xs' 
+		);
+		echo form_button ( $data );
+		echo form_close ();
+		
+		echo "</td>";
 		echo "</tr>";
 	}
 	
 	echo "</table>";
-	?><button type="button" class="btn btn-default" data-dismiss="modal">Créer un partie de cours</button><?php
+	echo "<a href='" . site_url ( "Cours_controller/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
 	echo "</div>";
 	echo "</td>";
 	

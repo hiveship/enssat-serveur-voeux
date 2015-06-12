@@ -24,38 +24,38 @@ class Cours_model extends CI_model
 		$this -> db -> insert ( 'contenu', $data );
 	}
 
-	public function delete ( $id, $partie = NULL )
+	public function delete ( $module, $partie = NULL )
 	{
 		if ( $partie == NULL ) {
 			$this -> db -> delete ( self::TABLE_NAME, array ( 
 					
-					'module' => $id 
+					'module' => $module 
 			) );
 		} else {
 			$this -> db -> delete ( self::TABLE_NAME, array ( 
 					
-					'module' => $id, 
+					'module' => $module, 
 					'partie' => $partie 
 			) );
 		}
 	}
 
-	public function get ( $id, $partie = NULL )
+	public function get ( $module, $partie = NULL )
 	{
 		if ( $partie == NULL ) {
 			$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
-					'module' => $id 
+					'module' => $module 
 			) );
 		} else {
 			$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
-					'module' => $id, 
+					'module' => $module, 
 					'partie' => $partie 
 			) );
 		}
 		return $querry -> result_array ();
 	}
 
-	public function update ( $id, $partie, $type, $hed, $enseignant = Null )
+	public function update ( $module, $partie, $type, $hed, $enseignant = Null )
 	{
 		if ( $enseignant == Null ) {
 			$data = array ( 
@@ -65,23 +65,23 @@ class Cours_model extends CI_model
 			);
 		}
 		
-		$this -> db -> where ( 'id', $id );
+		$this -> db -> where ( 'module', $module );
 		$this -> db -> where ( 'partie', $partie );
 		$this -> db -> update ( self::TABLE_NAME, $data );
 	}
 
-	public function inscrire_enseignant ( $id, $partie, $enseignant )
+	public function inscrire_enseignant ( $module, $partie, $enseignant )
 	{
-		$this -> db -> where ( 'id', $id );
+		$this -> db -> where ( 'module', $module );
 		$this -> db -> where ( 'partie', $partie );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
 				'enseignants' => $enseignant 
 		) );
 	}
 
-	public function desinscrire_enseignant ( $id, $partie )
+	public function desinscrire_enseignant ( $module, $partie, $enseignant )
 	{
-		$this -> db -> where ( 'id', $id );
+		$this -> db -> where ( 'module', $module );
 		$this -> db -> where ( 'partie', $partie );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
 				'enseignants' => NULL 
@@ -94,6 +94,14 @@ class Cours_model extends CI_model
 		$this -> db -> update ( self::TABLE_NAME, array ( 
 				'enseignants' => NULL 
 		) );
+	}
+
+	public function exists ( $module, $partie )
+	{
+		$this -> db -> where ( 'module', $module );
+		$this -> db -> where ( 'partie', $partie );
+		$query = $this -> db -> get ( self::TABLE_NAME );
+		return $query -> num_rows () == 1;
 	}
 
 }

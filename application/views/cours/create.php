@@ -11,7 +11,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h1 class="panel-title">
-							<p>Création de module</p>
+							<p>Création de Partie</p>
 						</h1>
 					</div>
 					<div class="panel-body">
