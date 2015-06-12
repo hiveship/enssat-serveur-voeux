@@ -1,8 +1,6 @@
 <div class="container">
-	<a href="<?php echo site_url("Module_controller/create") ?>"
-		class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
-		Module
+	<a href="<?php echo site_url("Module_controller/create") ?>" class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
 	</a> <br></br>
 
 	<div class="row">
@@ -12,8 +10,7 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults'
-					class='table table-hover table-striped'>
+				<table id='tableSearchResults' class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -30,7 +27,7 @@
 <?php
 $i = 1;
 foreach ( $modules as $module ) {
-	echo "<tr id='package$i' class='accordion-toggle' data-toggle='collapse' 
+	echo "<tr id='package$i' class='accordion-toggle' data-toggle='collapse'
 			data-parent='#OrderPackages' data-target='.packageDetails$i'>";
 	foreach ( $module as $key => $value ) {
 		if ( $key != 'id' ) {
@@ -66,15 +63,18 @@ foreach ( $modules as $module ) {
 	
 	echo "</tr>";
 	echo "<tr>
-	<td colspan='3' class='hiddenRow'>
+	<td colspan='7' class='hiddenRow'>
 	<div class='accordion-body collapse packageDetails$i'
 		id='accordion$i'>
-		<table>";
+		<table id='tableSearchResults' class='table table-hover table-striped'>";
 	echo "<thead>
 					<tr>
 					<th><center>Partie</center></th>
+					
 					<th><center>Type</center></th>
+					
 					<th><center>HED</center></th>
+				
 					<th><center>Enseignant</center></th>
 					</tr>
 					</thead>";
@@ -83,7 +83,9 @@ foreach ( $modules as $module ) {
 		foreach ( $cours_mod as $key => $value ) {
 			if ( $key != "module" ) {
 				echo "<td>";
+				echo "<center>";
 				echo $value;
+				echo "</center>";
 				echo "</td>";
 			}
 		}
