@@ -96,6 +96,24 @@ class Cours_model extends CI_model
 		) );
 	}
 
+	public function get_modules_id_de ( $enseignant )
+	{
+		$this -> db -> where ( 'enseignant', $enseignant );
+		$this -> db -> order_by ( "module", "asc" );
+		$this -> db -> select ( 'module' );
+		$this -> db -> distinct ();
+		$querry = $this -> db -> get ( self::TABLE_NAME );
+		return $querry -> result_array ();
+	}
+
+	public function get_cours_de ( $enseignant, $module )
+	{
+		$this -> db -> where ( 'enseignant', $enseignant );
+		$this -> db -> where ( 'module', $module );
+		$querry = $this -> db -> get ( self::TABLE_NAME );
+		return $querry -> result_array ();
+	}
+
 	public function exists ( $module, $partie )
 	{
 		$this -> db -> where ( 'module', $module );

@@ -75,8 +75,8 @@ class Module_controller extends Application_controller
 	public function get ( $ID )
 	{
 		$this -> check_ID_parameter ( $ID );
-		$modules = $this -> Module_model -> get ( $ID );
-		$cours [] = $this -> Module_model -> get ( $modules ['id'] );
+		$modules [0] = $this -> Module_model -> get ( $ID );
+		$cours [0] = $this -> Cours_model -> get ( $ID );
 		$data = array ( 
 				
 				'modules' => $modules, 

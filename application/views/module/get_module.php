@@ -47,8 +47,11 @@ foreach ( $modules as $module ) {
 			$hed_pris += $cours_mod ['hed'];
 		}
 	}
-	
-	echo "<td><center>$hed_pris / $hed_total</center></td>";
+	if ( $hed_pris != $hed_total ) {
+		echo "<td><center>$hed_pris / $hed_total</center></td>";
+	} else {
+		echo "<td><center>$hed_total</center></td>";
+	}
 	
 	echo "<td><center>";
 	echo form_open ( 'Module_controller/edit_menu/' . $module ['id'] );

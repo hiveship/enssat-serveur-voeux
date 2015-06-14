@@ -9,6 +9,8 @@ class Enseignant_controller extends Application_controller
 	{
 		parent::__construct ();
 		$this -> load -> model ( 'enseignant/Enseignant_model' );
+		$this -> load -> model ( 'cours/Cours_model' );
+		$this -> load -> model ( 'cours/Module_model' );
 	}
 
 	public function edit ()
@@ -77,6 +79,30 @@ class Enseignant_controller extends Application_controller
 			flash_success ( "Le changement de votre adresse email a bien été effectué." );
 		}
 		redirect ( site_url ( 'enseignants/edit' ) );
+	}
+
+	public function cours_de ( $login = null )
+	{
+		if ( $login == null ) {
+			$login = $this -> session -> userdata ( 'me' )['login'];
+		}
+		if ( ! $this -> Enseignant_model -> exists ( $login ) ) {
+			redirect ( '', auto );
+		}
+		
+		$modIds = $this -> Cours_model -> get_modules_id_de ( $login );
+		$modules = array ();
+		$cours = array ();
+		foreach ( $modIds as $Id ) {
+			$modules [] = $this -> Module_model -> get ( $Id ['module'] );
+			$cours [] = $this -> Cours_model -> get_cours_de ( $login, $Id ['module'] );
+		}
+		
+		$data = array ( 
+				'cours' => $cours, 
+				'modules' => $modules 
+		);
+		$this -> load -> template ( 'module/get_module', $data );
 	}
 
 }

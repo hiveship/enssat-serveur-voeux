@@ -42,7 +42,7 @@ class Module_model extends CI_model
 				
 				'id' => $ID 
 		) );
-		return $querry -> result_array ();
+		return $querry -> result_array ()[0];
 	}
 
 	public function delete ( $ID )
