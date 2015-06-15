@@ -75,7 +75,7 @@ class Cours_model extends CI_model
 		$this -> db -> where ( 'module', $module );
 		$this -> db -> where ( 'partie', $partie );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
-				'enseignants' => $enseignant 
+				'enseignant' => $enseignant 
 		) );
 	}
 
@@ -84,15 +84,15 @@ class Cours_model extends CI_model
 		$this -> db -> where ( 'module', $module );
 		$this -> db -> where ( 'partie', $partie );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
-				'enseignants' => NULL 
+				'enseignant' => NULL 
 		) );
 	}
 
 	public function desinscrire_enseignant_tout ( $enseignant )
 	{
-		$this -> db -> where ( 'enseignants', $enseignant );
+		$this -> db -> where ( 'enseignant', $enseignant );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
-				'enseignants' => NULL 
+				'enseignant' => NULL 
 		) );
 	}
 
