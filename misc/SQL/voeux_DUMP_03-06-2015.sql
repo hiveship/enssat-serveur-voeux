@@ -143,7 +143,7 @@ INSERT INTO `enseignant` (`login`, `pwd`, `nom`, `prenom`, `email`, `statut`, `s
 
 CREATE TABLE `module` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `nom` varchar(10) UNIQUE NOT NULL COMMENT 'nom d affichage du module',
+  `nom` varchar(10) NOT NULL COMMENT 'nom d affichage du module',
   `public` varchar(20) NOT NULL COMMENT 'Formation, à choisir parmi {par exemple, EII2, TC, Commun IMR1-EII2}',
   `semestre` varchar(10) NOT NULL DEFAULT 'S1',
   `libelle` varchar(50) NOT NULL COMMENT 'Label (nom long) du module',
