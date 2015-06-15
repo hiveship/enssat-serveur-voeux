@@ -6,8 +6,7 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults'
-					class='table table-hover table-striped'>
+				<table id='modules' class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -29,9 +28,9 @@ foreach ( $modules as $module ) {
 			echo "<td><center>";
 			if ( $key == 'responsable' ) {
 				if ( $value == null ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
-				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
+					echo "<a href=" . site_url( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
+				} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
+					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -51,9 +50,9 @@ foreach ( $modules as $module ) {
 		}
 	}
 	if ( $hed_pris != $hed_total ) {
-		echo "<td><center>$hed_pris / $hed_total</center></td>";
+		echo "<td class='success'><center>$hed_pris h / $hed_total h</center></td>";
 	} else {
-		echo "<td><center>$hed_total</center></td>";
+		echo "<td class='danger'><center>$hed_total (complet) </center></td>";
 	}
 	echo "</tr>";
 	echo "<tr>
@@ -81,9 +80,9 @@ foreach ( $modules as $module ) {
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
 					if ( $value == null ) {
-						echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">m'incrire</a>";
-					} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-						echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">me retirer</a>";
+						echo "<a href=" . site_url( "Enseignant_controller/inscrire/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">m'incrire</a>";
+					} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
+						echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">me retirer</a>";
 					} else {
 						echo $value;
 					}
@@ -123,6 +122,5 @@ $('#accordion1').on('shown.bs.collapse', function () {
 $('#accordion1').on('hidden.bs.collapse', function () {
     $("#package1 i.indicator").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
 });
-
 
 </script>

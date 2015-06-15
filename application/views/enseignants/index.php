@@ -7,10 +7,10 @@
 					<h3 class="panel-title">Enseignants</h3>
 				</div>
 				<div class="panel-body">
-					<input type="text" class="form-control" id="dev-table-filter" data-action="filter"
+					<input id="search-enseignants" type="text" class="form-control" data-action="filter"
 						data-filters="#dev-table" placeholder="Rechercher..." />
 				</div>
-				<table class="table table-hover" id="dev-table">
+				<table class="table table-hover" id="enseignants">
 					<thead>
 						<tr>
 							<th><center>Nom</center></th>
@@ -56,56 +56,26 @@
 </div>
 
 <script type="text/javascript">
-/**
- * Script ok pour des tables de tailles raisonables, mais provoquera de gros problèmes de performances sur des énormes tables de données.
- */
-(function(){
-    'use strict';
-	var $ = jQuery;
-	$.fn.extend({
-		filterTable: function(){
-			return this.each(function(){
-				$(this).on('keyup', function(e){
-					$('.filterTable_no_results').remove();
-					var $this = $(this),
-                        search = $this.val().toLowerCase(),
-                        target = $this.attr('data-filters'),
-                        $target = $(target),
-                        $rows = $target.find('tbody tr');
-                        
-					if(search == '') {
-						$rows.show();
-					} else {
-						$rows.each(function(){
-							var $this = $(this);
-							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-						})
-						if($target.find('tbody tr:visible').size() === 0) {
-							var col_count = $target.find('tr').first().find('td').size();
-							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">Aucun résultat correspondant à votre recherche.</td></tr>')
-							$target.find('tbody').append(no_results);
-						}
-					}
-				});
-			});
-		}
-	});
-	$('[data-action="filter"]').filterTable();
-})(jQuery);
+//Colonnes triables
+oTable = $('#enseignants').DataTable( {
+ paging: false,
+ "language": {
+     "zeroRecords": "Aucune résultat ne correspond à votre recherche.",
+ },
+ "aaSorting": [
+               [0, "asc"]
+           ],
+           "aoColumns": [
+               null,
+               null,
+               null,
+               null,
+           ]
+ 
+} );
 
-$(function(){
-    // attach table filter plugin to inputs
-	$('[data-action="filter"]').filterTable();
-	
-	$('.container').on('click', '.panel-heading span.filter', function(e){
-		var $this = $(this),
-			$panel = $this.parents('.panel');
-		
-		$panel.find('.panel-body').slideToggle();
-		if($this.css('display') != 'none') {
-			$panel.find('.panel-body input').focus();
-		}
-	});
-	$('[data-toggle="tooltip"]').tooltip();
-})
+//Barre de recherche
+$('#search-enseignants').keyup(function(){
+   oTable.search($(this).val()).draw() ;
+});
 </script>
