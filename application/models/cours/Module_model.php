@@ -20,13 +20,14 @@ class Module_model extends CI_model
 				'semestre' => $semestre, 
 				'libelle' => $libelle 
 		);
-		$res = $this -> get ( $ID );
+		
+		$res = $this -> get_nom ( $nom );
 		
 		if ( sizeof ( $res ) == 0 ) {
 			$this -> db -> insert ( self::TABLE_NAME, $data );
-			return true;
+			return $this -> get_nom ( $nom );
 		} else {
-			return false;
+			return null;
 		}
 	}
 
@@ -41,6 +42,16 @@ class Module_model extends CI_model
 		$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
 				
 				'id' => $ID 
+		) );
+		return $querry -> result_array ()[0];
+	}
+
+	public function get_nom ( $nom )
+	{
+		$this -> db -> select ( 'id' );
+		$querry = $this -> db -> get_where ( self::TABLE_NAME, array ( 
+				
+				'nom' => $nom 
 		) );
 		return $querry -> result_array ()[0];
 	}
@@ -89,6 +100,14 @@ class Module_model extends CI_model
 	public function exists ( $ID )
 	{
 		$this -> db -> select ( 'id' );
+		$this -> db -> where ( 'id', $ID );
+		$query = $this -> db -> get ( self::TABLE_NAME );
+		return $query -> num_rows () == 1;
+	}
+
+	public function est_libre ( $ID )
+	{
+		$this -> db -> where ( 'enseignant', null );
 		$this -> db -> where ( 'id', $ID );
 		$query = $this -> db -> get ( self::TABLE_NAME );
 		return $query -> num_rows () == 1;

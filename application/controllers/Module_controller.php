@@ -4,7 +4,8 @@ include 'Application_controller.php';
 
 class Module_controller extends Application_controller
 {
-
+	// TODO foutre dans le putain de controleur administrateur pour faire plaisir au putains de normes à la con !!!!!!
+	
 	public function __construct ()
 	{
 		parent::__construct ();
@@ -30,7 +31,7 @@ class Module_controller extends Application_controller
 
 	public function create ()
 	{
-		$this -> form_validation -> set_rules ( 'nom', 'nom', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'ID', 'ID', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'public', 'public', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'semestre', 'semestre', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'libelle', 'libelle', 'required' );
@@ -38,7 +39,7 @@ class Module_controller extends Application_controller
 		if ( $this -> form_validation -> run () === TRUE ) {
 			$form = $this -> input -> post ();
 			
-			$test = $this -> Module_model -> create ( $form ['nom'], $form ['public'], $form ['semestre'], $form ['libelle'] );
+			$ID = $this -> Module_model -> create ( $form ['ID'], $form ['public'], $form ['semestre'], $form ['libelle'] );
 			
 			$Pnames = array ();
 			$Ptype = array ();
@@ -54,11 +55,11 @@ class Module_controller extends Application_controller
 				}
 			}
 			
-			if ( $test ) {
+			if ( $ID != null ) {
 				
-				// for ( $i = 0 ; $i < sizeof ( $Pnames ) ; $i ++ ) {
-				// $this -> Cours_model -> create ( $form ['nom'], $Pnames [$i], $Ptype [$i], $Phed [$i] );
-				// }
+				for ( $i = 0 ; $i < sizeof ( $Pnames ) ; $i ++ ) {
+					$this -> Cours_model -> create ( $ID ['id'], $Pnames [$i], $Ptype [$i], $Phed [$i] );
+				}
 				
 				flash_info ( 'Module ' . $form ['nom'] . ' crée' );
 				redirect ( 'Module_controller', 'auto' );
@@ -82,7 +83,26 @@ class Module_controller extends Application_controller
 				'modules' => $modules, 
 				'cours' => $cours 
 		);
-		
+		$this -> load -> template ( 'module/get_module', $data );
+	}
+
+	public function get_admin ( $ID = null )
+	{
+		if ( $ID != null ) {
+			$this -> check_ID_parameter ( $ID );
+			$modules [0] = $this -> Module_model -> get ( $ID );
+			$cours [0] = $this -> Cours_model -> get ( $ID );
+		} else {
+			$modules = $this -> Module_model -> get_all ();
+			$cours = array ();
+			foreach ( $modules as $module ) {
+				$cours [] = $this -> Cours_model -> get ( $module ['id'] );
+			}
+		}
+		$data = array ( 
+				'cours' => $cours, 
+				'modules' => $modules 
+		);
 		$this -> load -> template ( 'module/get_module', $data );
 	}
 

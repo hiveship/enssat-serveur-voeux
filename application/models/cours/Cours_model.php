@@ -122,5 +122,14 @@ class Cours_model extends CI_model
 		return $query -> num_rows () == 1;
 	}
 
+	public function est_libre ( $module, $partie )
+	{
+		$this -> db -> where ( 'enseignant', null );
+		$this -> db -> where ( 'module', $module );
+		$this -> db -> where ( 'partie', $partie );
+		$query = $this -> db -> get ( self::TABLE_NAME );
+		return $query -> num_rows () == 1;
+	}
+
 }
 ?>

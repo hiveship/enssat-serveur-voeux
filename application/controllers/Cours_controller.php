@@ -3,7 +3,8 @@ include 'Application_controller.php';
 
 class Cours_controller extends Application_controller
 {
-
+	// TODO foutre dans le putain de controleur administrateur pour faire plaisir au putains de normes à la con !!!!!!
+	
 	public function __construct ()
 	{
 		parent::__construct ();
