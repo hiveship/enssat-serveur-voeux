@@ -65,6 +65,21 @@ class Enseignant_model extends CI_Model
 		return $enseignants;
 	}
 
+	public function get_all_login_nom_prenom ()
+	{
+		$this -> db -> select( 'login, nom, prenom' );
+		$query = $this -> db -> get( self::TABLE_NAME );
+		$return = array ();
+		foreach ( $query -> result as $row ) {
+			array_push( array ( 
+				
+					'login' => $row -> login, 
+					'nom' => $row -> nom, 
+					'prenom' => $row -> prenom 
+			) );
+		}
+	}
+
 	public function authenticate ( $login, $password )
 	{
 		$query = $this -> db -> get_where( self::TABLE_NAME, array ( 
