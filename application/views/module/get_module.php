@@ -31,7 +31,7 @@ foreach ( $modules as $module ) {
 				if ( $value == null ) {
 					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
 				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-					echo "<b>me retirer</b>";
+					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -83,7 +83,7 @@ foreach ( $modules as $module ) {
 					if ( $value == null ) {
 						echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">m'incrire</a>";
 					} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-						echo "<a href=" . site_url ( "Enseignant_controller/retirer" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">me retirer</a>";
+						echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">me retirer</a>";
 					} else {
 						echo $value;
 					}

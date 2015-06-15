@@ -160,10 +160,5 @@ class Module_controller extends Application_controller
 		}
 	}
 
-	public function get_module_enseignant ()
-	{
-		$this -> load -> template ( 'module/get_module_enseignant' );
-	}
-
 }
 ?>

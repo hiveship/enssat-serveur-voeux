@@ -123,5 +123,15 @@ class Enseignant_controller extends Application_controller
 		redirect ( 'Module_controller', 'auto' );
 	}
 
+	public function retirer ( $module, $cours = null )
+	{
+		if ( $cours == null ) {
+			$this -> Module_model -> desinscrire_responsable ( $module, $this -> session -> userdata ( 'me' )['login'] );
+		} else {
+			$this -> Cours_model -> desinscrire_enseignant ( $module, $cours, $this -> session -> userdata ( 'me' )['login'] );
+		}
+		redirect ( 'Module_controller', 'auto' );
+	}
+
 }
 ?>

@@ -114,7 +114,7 @@ class Module_model extends CI_model
 
 	public function desinscrire_responsable ( $ID, $enseignant )
 	{
-		$this -> db -> where ( 'id', $module );
+		$this -> db -> where ( 'id', $ID );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
 				'responsable' => NULL 
 		) );
