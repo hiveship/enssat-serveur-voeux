@@ -8,6 +8,11 @@
 			<i class="icon-chevron-down text-muted"></i>
 		</div>
 	</div>
+
+
+
+	<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+
 	<div class="row-fluid user-infos cyruxx">
 		<div class="span10 offset1">
 			<div class="panel panel-primary">
@@ -48,6 +53,22 @@
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
 									}
 									?>
+			
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								
 								
 								
@@ -149,7 +170,7 @@
 								<label class="col-md-4 control-label" for="newemail">Nouvelle adresse mail</label>
 								<div class="col-md-4">
 								<?php
-								echo form_input ( 'newemail', '', 'id="newemail" placeholder="email" class="form-control input-md"' );
+								echo form_input( 'newemail', '', 'id="newemail" placeholder="email" class="form-control input-md"' );
 								?></div>
 							</div>
 						</fieldset>
@@ -170,3 +191,55 @@
 	width: 800px;
 }
 </style>
+
+		<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
+		<script type="text/javascript" src="<?php echo base_url("assets/js/pie.js"); ?>"></script>
+
+	<?php
+	
+	$enseigne = 100;
+	$delta = - 50;
+	if ( $delta > 0 ) {
+		$categ = "Heures libres";
+	} else {
+		$delta = - $delta;
+		$categ = "Heures complémentaires";
+	}
+	?>
+	<!-- amCharts javascript code -->
+		<script type="text/javascript">
+			AmCharts.makeChart("chartdiv",
+				{
+					"type": "pie",
+					"angle": 12,
+					"depth3D": 15,
+					"innerRadius": "40%",
+					"titleField": "category",
+					"valueField": "column-1",
+					"allLabels": [],
+					"balloon": {},
+					"colors": [
+								"#BB9C94",
+								"#C44949"
+								],
+					"export": {
+						"enabled": false
+					},
+					"legend": {
+						"align": "center",
+						"markerType": "circle"
+					},
+					"titles": [],
+					"dataProvider": [
+						{
+							"category": "Heures enseignées",
+							"column-1": <?php echo $enseigne;?>
+						},
+						{
+							"category": "<?php echo "$categ";?>",
+							"column-1": <?php echo $delta;?>
+						}
+					]
+				}
+			);
+		</script>
