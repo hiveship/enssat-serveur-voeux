@@ -69,28 +69,19 @@ class Module_model extends CI_model
 		) );
 	}
 
-	public function update ( $ID, $nom, $public, $semestre, $libelle, $responsable = NULL )
+	public function update ( $ID, $nom, $public, $semestre, $libelle )
 	{
 		if ( ! $this -> exists ( $ID ) ) {
 			return false;
 		}
-		if ( $responsable == NULL ) {
-			$data = array ( 
-					
-					'nom' => $nom, 
-					'public' => $public, 
-					'semestre' => $semestre, 
-					'libelle' => $libelle 
-			);
-		} else {
-			$data = array ( 
-					
-					'nom' => $nom, 
-					'public' => $public, 
-					'semestre' => $semestre, 
-					'libelle' => $libelle 
-			);
-		}
+		
+		$data = array ( 
+				
+				'nom' => $nom, 
+				'public' => $public, 
+				'semestre' => $semestre, 
+				'libelle' => $libelle 
+		);
 		
 		$this -> db -> where ( 'id', $ID );
 		$this -> db -> update ( self::TABLE_NAME, $data );
@@ -107,10 +98,34 @@ class Module_model extends CI_model
 
 	public function est_libre ( $ID )
 	{
-		$this -> db -> where ( 'enseignant', null );
+		$this -> db -> where ( 'responsable', null );
 		$this -> db -> where ( 'id', $ID );
 		$query = $this -> db -> get ( self::TABLE_NAME );
 		return $query -> num_rows () == 1;
+	}
+
+	public function inscrire_responsable ( $ID, $enseignant )
+	{
+		$this -> db -> where ( 'id', $ID );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'responsable' => $enseignant 
+		) );
+	}
+
+	public function desinscrire_responsable ( $ID, $enseignant )
+	{
+		$this -> db -> where ( 'id', $ID );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'responsable' => NULL 
+		) );
+	}
+
+	public function desinscrire_responsable_tout ( $enseignant )
+	{
+		$this -> db -> where ( 'responsable', $enseignant );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'responsable' => NULL 
+		) );
 	}
 
 }
