@@ -55,6 +55,10 @@
 									?>
 								
 								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -79,7 +83,7 @@
 			</div>
 		</div>
 
-		<!--  MODAL CREATION PASSWORD-->
+		<!--  MODAL MODIFICATION PASSWORD-->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -130,7 +134,7 @@
 			</div>
 		</div>
 
-		<!--  MODAL CREATION MAIL-->
+		<!--  MODAL MODIFICATION EDITION -->
 		<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -139,7 +143,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h3 class="modal-title" id="exampleModalLabel">Modification de votre mot de passe</h3>
+						<h3 class="modal-title" id="exampleModalLabel">Edition</h3>
 					</div>
 					<div class="modal-body">
 
@@ -150,7 +154,7 @@
 								<label class="col-md-4 control-label" for="newemail">Nouvelle adresse mail</label>
 								<div class="col-md-4">
 								<?php
-								echo form_input( 'newemail', '', 'id="newemail" placeholder="email" class="form-control input-md"' );
+								echo form_input ( 'newemail', '', 'id="newemail" placeholder="email" class="form-control input-md"' );
 								?></div>
 							</div>
 						</fieldset>
