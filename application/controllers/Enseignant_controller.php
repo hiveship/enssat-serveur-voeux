@@ -102,7 +102,7 @@ class Enseignant_controller extends Application_controller
 				'cours' => $cours, 
 				'modules' => $modules 
 		);
-		$this -> load -> template ( 'module/get_module', $data );
+		$this -> load -> template ( 'cours/mes_cours', $data );
 	}
 
 	public function inscrire ( $module, $cours = null )
