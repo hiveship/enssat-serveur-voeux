@@ -31,7 +31,8 @@ class Enseignant_controller extends Admin_controller
 		if ( isset ( $login ) ) {
 			echo json_encode ( $this -> Enseignant_model -> get ( $login ) );
 		} else {
-			echo json_encode ( $this -> session -> userdata ( 'me' )['login'] );
+			echo json_encode ( $this -> Enseignant_model -> get ( $this -> session -> userdata ( 'me' )['login'] ) );
+		
 		}
 	}
 
