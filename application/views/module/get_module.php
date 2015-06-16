@@ -1,19 +1,16 @@
 <div class="container">
-	<a href="<?php echo site_url("Module_controller/create") ?>"
-		class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
-		Module
+	<a href="<?php echo site_url("Module_controller/create") ?>" class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
 	</a> <br></br>
 
-	<div class="row">
+	<div class="row row-bottom-margin">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults'
-					class='table table-hover table-striped'>
+				<table id='tableSearchResults' class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -162,3 +159,8 @@ $('#accordion1').on('hidden.bs.collapse', function () {
 
 
 </script>
+<style>
+.row-bottom-margin {
+	margin-bottom: 200px;
+}
+</style>

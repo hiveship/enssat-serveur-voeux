@@ -10,13 +10,19 @@ class Decharge_controller extends Application_controller
 		parent::__construct ();
 		$this -> load -> model ( 'decharge/Decharge_model' );
 		$this -> load -> model ( '' );
+		$this -> load -> model ( 'enseignant/Enseignant_model' );
 	}
 
 	public function get_all ()
 	{
+		
+		$enseignants = $this -> Enseignant_model -> get_all_login_nom_prenom ();
+		
 		$decharges = $this -> Decharge_model -> get_all ();
+		
 		$data = array ( 
-				'decharge' => $decharges 
+				'decharges' => $decharges, 
+				'enseignant' => $enseignants 
 		);
 		
 		$this -> load -> template ( 'decharge/decharge_admin', $data );
@@ -38,7 +44,7 @@ class Decharge_controller extends Application_controller
 	}
 
 	/**
-	 * Ajoute une décharge
+	 * Ajoute une décharge, c'est la personne connectée qui s'ajoute une décharge
 	 */
 	public function add ()
 	{
@@ -58,6 +64,12 @@ class Decharge_controller extends Application_controller
 		}
 	}
 
+	public function add_admin ()
+	{
+		$enseignant = $this -> input -> post ( 'choix_enseignant' );
+		var_dump ( $enseignant );
+	}
+
 	/**
 	 * Supprime une décharge
 	 */
@@ -68,6 +80,9 @@ class Decharge_controller extends Application_controller
 	
 	}
 
+	/**
+	 * Admin supprime une décharge d'un enseignant
+	 */
 	public function delete_admin ( $id )
 	{
 		$this -> Decharge_model -> delete ( $id );

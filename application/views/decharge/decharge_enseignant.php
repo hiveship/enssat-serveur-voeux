@@ -20,6 +20,10 @@
 							<tbody>
 								
 								<?php
+								$params = array ( 
+										
+										'onsubmit' => 'return(validate(this));' 
+								);
 								
 								foreach ( $decharge as $value ) {
 									
@@ -32,9 +36,22 @@
 									echo "</td>";
 									echo "<td>";
 									echo "<center>";
-									?> <a href="<?php echo site_url('Decharge_controller/delete/'.$value['id']) ?>""><i
-									class="fa fa-times"></i> Supprimer</a>
-								</i><?php
+									
+									echo form_open ( 'Decharge_controller/delete/' . $value ['id'], $params );
+									
+									$data = array ( 
+											
+											'type' => 'textarea', 
+											'content' => 'Supprimer', 
+											'class' => 'btn btn-primary btn-xs' 
+									);
+									
+									echo form_button ( $data );
+									echo form_close ();
+									?>
+									
+								
+								<?php
 									echo "<c/enter>";
 									echo "</td>";
 									echo "</tr>";
@@ -67,10 +84,9 @@
 							<h3 class="modal-title" id="exampleModalLabel">Ajout d'une décharge</h3>
 						</div>
 						<div class="modal-body">
-
+							<!-- Formulaire création d'une décharge -->
 					<?php echo form_open('Decharge_controller/add','class="form-horizontal"'); ?>
 							<fieldset>
-								<!-- Password input-->
 								<div class="form-group">
 									<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
 									<div class="col-md-4">
@@ -117,3 +133,8 @@
 	margin-left: auto;
 }
 </style>
+			<script type="text/javascript">
+function validate(){
+	   return confirm("Etes vous sure de vouloir supprimer cette décharge ?");
+}
+</script>
