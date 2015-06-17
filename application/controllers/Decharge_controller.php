@@ -9,38 +9,29 @@ class Decharge_controller extends Application_controller
 	{
 		parent::__construct();
 		$this -> load -> model( 'decharge/Decharge_model' );
-		$this -> load -> model( '' );
 		$this -> load -> model( 'enseignant/Enseignant_model' );
 	}
 
-	public function get_all ()
+	public function get_all () // TODO déplacer dans admin/ et renomer en 'index'
 	{
-		
-		$enseignants = $this -> Enseignant_model -> get_all_login_nom_prenom();
-		
-		$decharges = $this -> Decharge_model -> get_all();
-		
 		$data = array ( 
 			
-				'decharges' => $decharges, 
-				'enseignant' => $enseignants 
+				'decharges' => $this -> Decharge_model -> get_all(), 
+				// Récupère uniquement les données dont on a besoin pour les décharges (afficher nom et prénom au lieu de simplement le login).
+				'enseignant' => $this -> Enseignant_model -> get_all_login_nom_prenom() 
 		);
 		
-		$this -> load -> template( 'decharge/decharge_admin', $data );
+		$this -> load -> template( 'decharge/decharge_admin', $data ); // TODO NON séparation admin/enseignants !!
 	}
 
 	/**
-	 * Récupère les ou la décharge(s) d'une personne
+	 * Récupère les ou la décharge(s) de l'utilisateur actuellement connecté.
 	 */
 	public function get ()
 	{
-		
-		$login = $this -> session -> userdata( 'me' )['login'];
-		$decharges = $this -> Decharge_model -> get( $login );
-		
 		$data = array ( 
 			
-				'decharge' => $decharges 
+				'decharge' => $this -> Decharge_model -> get( $this -> session -> userdata( 'me' )['login'] ) 
 		);
 		$this -> load -> template( 'decharge/decharge_enseignant', $data );
 	}
@@ -48,28 +39,26 @@ class Decharge_controller extends Application_controller
 	/**
 	 * Ajoute une décharge, c'est la personne connectée qui s'ajoute une décharge
 	 */
-	public function add ()
+	public function add () // TODO renommer en 'create'
 	{
-		$login = $this -> session -> userdata( 'me' )['login'];
-		$decharge = $this -> Decharge_model -> get( $login );
-		$new_decharge = $this -> input -> post( 'decharge' );
-		$new_motif = $this -> input -> post( 'motif' );
-		
 		$this -> form_validation -> set_rules( 'decharge', 'Decharge', 'required' );
 		
 		if ( $this -> form_validation -> run() == FALSE ) {
 			flash_error( "Vous n'avez pas indiqué la valeur de votre décharge." );
-			redirect( site_url( 'Decharge_controller/get' ) );
 		} else {
+			$login = $this -> session -> userdata( 'me' )['login'];
+			$new_decharge = $this -> input -> post( 'decharge' ); // Volume horaire de la décharge
+			$new_motif = $this -> input -> post( 'motif' );
 			$this -> Decharge_model -> add( $login, $new_decharge, $new_motif );
-			redirect( site_url( 'Decharge_controller/get' ) );
 		}
+		redirect( site_url( 'Decharge_controller/get' ) ); // TODO changer le lien dans site_url à partie de la bonne route.
 	}
 
-	public function add_admin ()
+	public function add_admin () // TODO déplacer dans admin/ + renomer en 'create'
 	{
 		$enseignant = $this -> input -> post( 'choix_enseignant' );
 		var_dump( $enseignant );
+		// TODO à finir je suppose ? Sinon à supprimer
 	}
 
 	/**
@@ -77,15 +66,15 @@ class Decharge_controller extends Application_controller
 	 */
 	public function delete ( $id )
 	{
+		// TODO euh attention là, il faut que tu vérifie que la décharge que l'on veut supprimer concerne bien l'enseignant connecté.
 		$this -> Decharge_model -> delete( $id );
 		redirect( site_url( 'Decharge_controller/get' ) );
-	
 	}
 
 	/**
 	 * Admin supprime une décharge d'un enseignant
 	 */
-	public function delete_admin ( $id )
+	public function delete_admin ( $id ) // TODO déplacer dans admin/ + renomer en 'delete'
 	{
 		$this -> Decharge_model -> delete( $id );
 		redirect( site_url( 'Decharge_controller/get_all' ) );

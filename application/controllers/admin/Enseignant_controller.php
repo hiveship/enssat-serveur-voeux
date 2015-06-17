@@ -28,16 +28,15 @@ class Enseignant_controller extends Admin_controller
 	public function get ()
 	{
 		$login = $this -> input -> post( 'login' );
-		if ( isset( $login ) ) {
-			echo json_encode( $this -> Enseignant_model -> get( $login ) );
-		} else {
-			echo json_encode( $this -> Enseignant_model -> get( $this -> session -> userdata( 'me' )['login'] ) );
-		
+		if ( ! isset( $login ) ) {
+			$login = $this -> session -> userdata( 'me' )['login'];
 		}
+		echo json_encode( $this -> Enseignant_model -> get( $login ) );
 	}
 
 	public function create ()
 	{
+		// On ne stocke en base de donnée que des données en minuscule
 		$nom = strtolower( $this -> input -> post( 'nom' ) );
 		$prenom = strtolower( $this -> input -> post( 'prenom' ) );
 		$email = strtolower( $this -> input -> post( 'email' ) );
@@ -45,13 +44,9 @@ class Enseignant_controller extends Admin_controller
 		$statutaire = intval( $this -> input -> post( 'statutaire' ) );
 		$actif = $this -> input -> post( 'actif' );
 		$administrateur = $this -> input -> post( 'administrateur' );
-		$password = $this -> generate_random_string();
+		$password = $this -> generate_random_string(); // Le mot de passe est généré automatiquement
 		
-		// Double vérification pour assurer l'intégrité de l'application. Le contrôle utiliseur est également traité côté client.
 		if ( ! ( $this -> Enseignant_model -> check_statut( $statut ) && $this -> Enseignant_model -> check_statutaire( $statutaire ) ) ) {
-			flash_success( "statut -> " . $this -> Enseignant_model -> check_statut( $statut ) );
-			flash_warning( "statutaire -> " . $this -> Enseignant_model -> check_statutaire( $statutaire ) );
-			
 			flash_error( "Informations incorrectes ! Création impossible." );
 			redirect( 'admin/enseignants', 'refresh' );
 		} else {
@@ -77,7 +72,8 @@ class Enseignant_controller extends Admin_controller
 		}
 		redirect( 'admin/enseignants', 'refresh' );
 	}
-
+	
+	// Cette fonction est correct mais acctuellement non utilisée dans les vues.
 	public function rendre_administrateur ( $login )
 	{
 		$this -> check_login_parameter( $login );
@@ -89,7 +85,8 @@ class Enseignant_controller extends Admin_controller
 		}
 		redirect( 'admin/enseignants', 'refresh' );
 	}
-
+	
+	// Cette fonction est correct mais acctuellement non utilisée dans les vues.
 	public function rendre_enseignant ( $login )
 	{
 		$this -> check_login_parameter( $login );
@@ -105,7 +102,8 @@ class Enseignant_controller extends Admin_controller
 		}
 		redirect( 'admin/enseignants', 'refresh' );
 	}
-
+	
+	// Cette fonction est correct mais acctuellement non utilisée dans les vues.
 	public function rendre_actif ( $login )
 	{
 		$this -> check_login_parameter( $login );
@@ -118,7 +116,8 @@ class Enseignant_controller extends Admin_controller
 		}
 		redirect( 'admin/enseignants', 'refresh' );
 	}
-
+	
+	// Cette fonction est correct mais acctuellement non utilisée dans les vues.
 	public function rendre_inactif ( $login )
 	{
 		$this -> check_login_parameter( $login );
@@ -134,7 +133,11 @@ class Enseignant_controller extends Admin_controller
 		}
 		redirect( 'admin/enseignants', 'refresh' );
 	}
-
+	
+	// =========
+	// UTILITIES
+	// =========
+	
 	private function check_login_parameter ( $login )
 	{
 		if ( ! isset( $login ) || ! $this -> Enseignant_model -> exists( $login ) ) {
