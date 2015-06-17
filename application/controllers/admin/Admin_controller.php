@@ -7,7 +7,7 @@ abstract class Admin_controller extends Application_controller
 
 	public function __construct ()
 	{
-		parent::__construct(); // check logged in
+		parent::__construct(); // S'occupe de vérifier que l'on est déjà connecté.
 		$this -> require_admin_privilege();
 	}
 

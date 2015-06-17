@@ -6,8 +6,6 @@ class Site_controller extends CI_Controller
 	public function __construct ()
 	{
 		parent::__construct();
-		$this -> load -> helper( 'form' );
-		$this -> load -> library( 'form_validation' );
 		$this -> load -> model( 'enseignant/Enseignant_model' );
 	}
 
@@ -24,7 +22,7 @@ class Site_controller extends CI_Controller
 				flash_warning( "Votre compte est désactivé, veuillez contacter un administrateur." );
 				redirect( 'login', 'refresh' );
 			} else {
-				$this -> session -> set_userdata( 'me', $me ); // Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis.
+				$this -> session -> set_userdata( 'me', $me ); // Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis de sécurité si le mot de passe est présent dans la variable de session.
 				flash_success( 'Authentification réussie !' );
 				redirect( 'enseignants', 'auto' );
 			}
