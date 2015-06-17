@@ -124,7 +124,7 @@ class Enseignant_controller extends Application_controller
 				'cours' => $cours, 
 				'modules' => $modules 
 		);
-		$this -> load -> template ( 'module/get_module', $data );
+		$this -> load -> template ( 'cours/mes_cours', $data );
 	}
 
 	public function inscrire ( $module, $cours = null )
@@ -136,8 +136,9 @@ class Enseignant_controller extends Application_controller
 			}
 			$this -> Module_model -> inscrire_responsable ( $module, $this -> session -> userdata ( 'me' )['login'] );
 		} else {
+			$cours = rawurldecode ( $cours );
 			if ( ! $this -> Cours_model -> est_libre ( $module, $cours ) ) {
-				flash_error ( "fail2" );
+				flash_error ( "fail2 " . $cours );
 				redirect ( 'Module_controller', 'auto' );
 			}
 			$this -> Cours_model -> inscrire_enseignant ( $module, $cours, $this -> session -> userdata ( 'me' )['login'] );
@@ -150,6 +151,7 @@ class Enseignant_controller extends Application_controller
 		if ( $cours == null ) {
 			$this -> Module_model -> desinscrire_responsable ( $module, $this -> session -> userdata ( 'me' )['login'] );
 		} else {
+			$cours = rawurldecode ( $cours );
 			$this -> Cours_model -> desinscrire_enseignant ( $module, $cours, $this -> session -> userdata ( 'me' )['login'] );
 		}
 		redirect ( 'Module_controller', 'auto' );

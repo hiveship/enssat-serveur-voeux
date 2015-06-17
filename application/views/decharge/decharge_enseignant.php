@@ -21,7 +21,7 @@
 								
 								<?php
 								$params = array ( 
-										
+									
 										'onsubmit' => 'return(validate(this));' 
 								);
 								
@@ -37,17 +37,17 @@
 									echo "<td>";
 									echo "<center>";
 									
-									echo form_open ( 'Decharge_controller/delete/' . $value ['id'], $params );
+									echo form_open( 'Decharge_controller/delete/' . $value ['id'], $params );
 									
 									$data = array ( 
-											
+										
 											'type' => 'textarea', 
 											'content' => 'Supprimer', 
 											'class' => 'btn btn-primary btn-xs' 
 									);
 									
-									echo form_button ( $data );
-									echo form_close ();
+									echo form_button( $data );
+									echo form_close();
 									?>
 									
 								
