@@ -6,10 +6,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<script src="http://cdn.amcharts.com/lib/3/amcharts.js"
-					type="text/javascript"></script>
-				<script src="http://www.amcharts.com/lib/3/radar.js"
-					type="text/javascript"></script>
+				<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
+				<script type="text/javascript" src="<?php echo base_url("assets/js/radar.js"); ?>"></script>
 
 				<!-- amCharts javascript code -->
 				<script type="text/javascript">
@@ -60,8 +58,7 @@ foreach ( $modules as $module ) {
 			);
 		</script>
 
-				<div id="chartdiv"
-					style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+				<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
 
 				<table id='modules' class='table table-hover table-striped'>
 					<thead>
@@ -85,9 +82,9 @@ foreach ( $modules as $module ) {
 			echo "<td><center>";
 			if ( $key == 'responsable' ) {
 				if ( $value == null ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
-				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
+					echo "<a href=" . site_url( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
+				} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
+					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -102,14 +99,19 @@ foreach ( $modules as $module ) {
 	foreach ( $cours [$i - 1] as $cours_mod ) {
 		$hed_total += $cours_mod ['hed'];
 	}
-	echo "<td><center>$hed_total</center></td>";
+	if ( $hed_total == 0 ) {
+		echo "<td class='info'><center>Uniquement responsable</center></td>";
+	
+	} else {
+		echo "<td><center>$hed_total</center></td>";
+	}
 	
 	echo "</tr>";
 	echo "<tr>
 	<td colspan='7' class='hiddenRow'>
 	<div class='accordion-body collapse packageDetails$i'
 		id='accordion$i'>
-		<table id='tableSearchResults' class='table table-hover table-striped'>";
+		<table id='tableSearchResults' class='table table-hover table-striped table-condensed'>";
 	echo "<thead>
 					<tr>
 					<th><center>Partie</center></th>
@@ -129,7 +131,7 @@ foreach ( $modules as $module ) {
 				echo "<td>";
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">me retirer</a>";
+					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode( $cours_mod ['partie'] ) ) . ">me retirer</a>";
 				} else {
 					echo $value;
 				}
