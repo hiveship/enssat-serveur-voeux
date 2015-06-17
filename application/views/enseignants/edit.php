@@ -2,6 +2,7 @@
 <br>
 <br>
 <div class="container">
+
 	<div class="row-fluid user-row">
 		<div class="span1"></div>
 		<div class="span1 dropdown-user" data-for=".cyruxx">
@@ -53,21 +54,7 @@
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
 									}
 									?>
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
+					
 								
 								
 								</tr>
@@ -224,49 +211,17 @@
 
 
 							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-							<style>
-.container {
-	width: 800px;
-}
-</style>
-
-
-							<script>
-		function populate_edit_form()
-		{
-		    $.ajax
-		    ({
-		        url: <?php echo "'".site_url("/admin/enseignants/get")."'";?>,
-		        type: 'post',
-		        success: function(result)
-		        {
-			        console.log(result);
-		            var array = JSON.parse(result);
-		           // Populate the form using the returned content
-		        	$("#nomEdit").val(array.nom); // test
-		        	$("#prenomEdit").val(array.prenom); // test
-		        	$("#emailEdit").val(array.email); // test
-		        	$("#statutaire").val(array.statutaire); // test
-		        	console.log("administrateur -> " +array.administrateur);
-		        	if (array.administrateur) {
-		            	console.log("dans le if");
-		            	$('#editAdminAdm').attr('selected', true);
-		            	$('#editAdminAdm').attr('checked', true);
-		            	$('#editAdminAdm').prop('checked', true);
-		            	$('#editAdminAdm').attr('selected', true);
-		            	$('#editAdminAdm').val(1);
-		        	}
-		        	
-		        }
-		    });
-
-		}
-		</script>
-
-							<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
-							<script type="text/javascript" src="<?php echo base_url("assets/js/pie.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/pie.js"); ?>"></script>
 
 <?php
 
@@ -280,7 +235,7 @@ if ( $delta > 0 ) {
 }
 ?>
 <!-- amCharts javascript code -->
-							<script type="text/javascript">
+<script type="text/javascript">
 			AmCharts.makeChart("chartdiv",
 				{
 					"type": "pie",
@@ -315,4 +270,46 @@ if ( $delta > 0 ) {
 					]
 				}
 			);
+		</script>
+
+
+
+
+<style>
+.container {
+	width: 800px;
+}
+</style>
+
+
+<script>
+		function populate_edit_form()
+		{
+		    $.ajax
+		    ({
+		        url: <?php echo "'".site_url("/admin/enseignants/get")."'";?>,
+		        type: 'post',
+		        success: function(result)
+		        {
+			        console.log(result);
+		            var array = JSON.parse(result);
+		           // Populate the form using the returned content
+		        	$("#nomEdit").val(array.nom); // test
+		        	$("#prenomEdit").val(array.prenom); // test
+		        	$("#emailEdit").val(array.email); // test
+		        	$("#statutaire").val(array.statutaire); // test
+		        	console.log("administrateur -> " +array.administrateur);
+		        	if (array.administrateur) {
+		            	console.log("dans le if");
+		            	$('#editAdminAdm').attr('selected', true);
+		            	$('#editAdminAdm').attr('checked', true);
+		            	$('#editAdminAdm').prop('checked', true);
+		            	$('#editAdminAdm').attr('selected', true);
+		            	$('#editAdminAdm').val(1);
+		        	}
+		        	
+		        }
+		    });
+
+		}
 		</script>
