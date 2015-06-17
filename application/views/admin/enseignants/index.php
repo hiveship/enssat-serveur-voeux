@@ -349,9 +349,6 @@ $('#search-enseignants-admin').keyup(function(){
 
 function populate_edit_form(login)
 {
-    console.log(login); //DEBUG
-    console.log("log finish"); //DEBUG
-    // passer le login en paramètre de la fonction populate_edit_form
     $.ajax
     ({
         url: <?php echo "'".site_url("/admin/enseignants/get")."'";?>,

@@ -28,7 +28,12 @@ class Enseignant_controller extends Admin_controller
 	public function get ()
 	{
 		$login = $this -> input -> post( 'login' );
-		echo json_encode( $this -> Enseignant_model -> get( $login ) );
+		if ( isset( $login ) ) {
+			echo json_encode( $this -> Enseignant_model -> get( $login ) );
+		} else {
+			echo json_encode( $this -> Enseignant_model -> get( $this -> session -> userdata( 'me' )['login'] ) );
+		
+		}
 	}
 
 	public function create ()

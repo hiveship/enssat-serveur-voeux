@@ -55,6 +55,38 @@
 									?>
 								
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -71,15 +103,17 @@
 						data-whatever="@mdo">
 						<span class="glyphicon glyphicon-lock"></span> Modifier mot de passe
 					</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"
-						data-whatever="@mdo">
+
+
+					<button type="button" class="btn btn-primary" onClick="populate_edit_form()"
+						data-toggle="modal" data-target="#editMoi" data-toggle="modal" data-whatever="@mdo">
 						<i class="fa fa-envelope-o"></i> Modifier adresse mail
 					</button>
 				</div>
 			</div>
 		</div>
 
-		<!--  MODAL CREATION PASSWORD-->
+		<!--  MODAL MODIFICATION PASSWORD-->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -130,64 +164,140 @@
 			</div>
 		</div>
 
-		<!--  MODAL CREATION MAIL-->
-		<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!--  MODAL MODIFICATION EDITION -->
+		<div class="modal fade" id="editMoi" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h3 class="modal-title" id="exampleModalLabel">Modification de votre mot de passe</h3>
+						<h3 class="modal-title" id="exampleModalLabel">Edition</h3>
 					</div>
 					<div class="modal-body">
 
 						<?php echo form_open('enseignants/edit/email','class="form-horizontal"'); ?>
 							<fieldset>
+							<!-- Prepended text-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="nom">Nom</label>
+								<div class="col-md-4">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user"></i></span> <input id="nomEdit"
+											name="nom" class="form-control" placeholder="Nom" type="text" required="">
+									</div>
+								</div>
+							</div>
+
+							<!-- Prepended text-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="prenom">Prénom</label>
+								<div class="col-md-4">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user"></i></span> <input id="prenomEdit"
+											name="prenom" class="form-control" placeholder="Prénom" type="text" required="">
+									</div>
+								</div>
+							</div>
+
+							<!-- Prepended text-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="email">Email</label>
+								<div class="col-md-6">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span> <input
+											id="emailEdit" name="email" class="form-control" placeholder="Email" type="email"
+											required="">
+									</div>
+								</div>
+							</div>
+
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="newemail">Nouvelle adresse mail</label>
-								<div class="col-md-4">
-								<?php
-								echo form_input( 'newemail', '', 'id="newemail" placeholder="email" class="form-control input-md"' );
-								?></div>
-							</div>
-						</fieldset>
+								<label class="col-md-4 control-label" for="statutaire">Statutaire</label>
+								<div class="col-md-2">
+									<input id="statutaire" name="statutaire" type="number" value=192
+										class="form-control input-md" required="">
+								</div>
+								<div class="col-md-5">
+									<span class="help-block">En heures équivalent TD</span>
+								</div>
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-primary" type="button"');?>
+							</div>
+
+
+
+
+							<div class="form-group">
+
+								<div class="modal-footer">
+									<button type="button" id="submit-button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+						<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-primary pull-right" type="button" ');?>
 						<?php echo form_close();?>
 					</div>
-				</div>
-			</div>
-		</div>
 
 
-		<style>
+
+
+							</div>
+
+
+							<style>
 .container {
 	width: 800px;
 }
 </style>
 
-		<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
-		<script type="text/javascript" src="<?php echo base_url("assets/js/pie.js"); ?>"></script>
 
-	<?php
-	
-	$enseigne = 100;
-	$delta = - 50;
-	if ( $delta > 0 ) {
-		$categ = "Heures libres";
-	} else {
-		$delta = - $delta;
-		$categ = "Heures complémentaires";
-	}
-	?>
-	<!-- amCharts javascript code -->
-		<script type="text/javascript">
+							<script>
+		function populate_edit_form()
+		{
+		    $.ajax
+		    ({
+		        url: <?php echo "'".site_url("/admin/enseignants/get")."'";?>,
+		        type: 'post',
+		        success: function(result)
+		        {
+			        console.log(result);
+		            var array = JSON.parse(result);
+		           // Populate the form using the returned content
+		        	$("#nomEdit").val(array.nom); // test
+		        	$("#prenomEdit").val(array.prenom); // test
+		        	$("#emailEdit").val(array.email); // test
+		        	$("#statutaireEdit").val(array.statutaire); // test
+		        	console.log("administrateur -> " +array.administrateur);
+		        	if (array.administrateur) {
+		            	console.log("dans le if");
+		            	$('#editAdminAdm').attr('selected', true);
+		            	$('#editAdminAdm').attr('checked', true);
+		            	$('#editAdminAdm').prop('checked', true);
+		            	$('#editAdminAdm').attr('selected', true);
+		            	$('#editAdminAdm').val(1);
+		        	}
+		        	
+		        }
+		    });
+
+		}
+		</script>
+
+							<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
+							<script type="text/javascript" src="<?php echo base_url("assets/js/pie.js"); ?>"></script>
+
+<?php
+
+$enseigne = 100;
+$delta = - 50;
+if ( $delta > 0 ) {
+	$categ = "Heures libres";
+} else {
+	$delta = - $delta;
+	$categ = "Heures complémentaires";
+}
+?>
+<!-- amCharts javascript code -->
+							<script type="text/javascript">
 			AmCharts.makeChart("chartdiv",
 				{
 					"type": "pie",

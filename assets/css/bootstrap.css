@@ -34,12 +34,16 @@ audio
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -52,7 +56,9 @@ controls
 
 
 
+
  
+
 
 
 
@@ -68,7 +74,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -78,7 +87,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -97,12 +109,16 @@ height
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -175,12 +191,16 @@ svg
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -191,7 +211,9 @@ svg
 
 
 
+
  
+
 
 
 
@@ -207,7 +229,10 @@ overflow
 
 
 
+
+
 :
+
 
 
 
@@ -217,7 +242,10 @@ overflow
 
 
 
+
 hidden
+
+
 
 
 
@@ -1512,58 +1540,265 @@ a:hover, a:focus {
 a:focus {
 	outline: thin dotted;
 	outline: 5px auto -webkit-focus-ring-color;
-	outline-offset: -2px; } figure { margin : 0; } img { vertical-align : middle; }
-	.img-responsive , .thumbnail > img , .thumbnail a > img ,
-	.carousel-inner > .item > img , .carousel-inner > .item > a > img {
-	display : block; max-width : 100%; height : auto; } .img-rounded {
-	border-radius : 6px; } .img-thumbnail { display : inline-block;
-	max-width : 100%; height : auto; padding : 4px; line-height :
-	1.42857143; background-color : #fff; border : 1px solid #ddd;
-	border-radius : 4px; -webkit-transition : all .2s ease-in-out;
-	-o-transition : all .2s ease-in-out; transition : all .2s ease-in-out;
-	} .img-circle { border-radius : 50%; } hr { margin-top : 20px;
-	margin-bottom : 20px; border : 0; border-top : 1px solid #eee; }
-	.sr-only { position : absolute; width : 1px; height : 1px; padding : 0;
-	margin : -1px; overflow : hidden; clip : rect( 0, 0, 0, 0); border : 0;
-	} .sr-only-focusable :active , .sr-only-focusable :focus { position :
-	static; width : auto; height : auto; margin : 0; overflow : visible;
-	clip : auto; } [ role = "button" ] { cursor : pointer; } h1 , h2 , h3 ,
-	h4 , h5 , h6 , .h1 , .h2 , .h3 , .h4 , .h5 , .h6 { font-family :
-	inherit; font-weight : 500; line-height : 1.1; color : inherit; } h1 
-	small , h2 small , h3 small , h4 small , h5 small , h6 small , .h1 
-	small , .h2 small , .h3 small , .h4 small , .h5 small , .h6 small , h1
-	 .small , h2 .small , h3 .small , h4 .small , h5 .small , h6 .small ,
-	.h1 .small , .h2 .small , .h3 .small , .h4 .small , .h5 .small , .h6 
-	.small { font-weight : normal; line-height : 1; color : #777; } h1 ,
-	.h1 , h2 , .h2 , h3 , .h3 { margin-top : 20px; margin-bottom : 10px; }
-	h1 small , .h1 small , h2 small , .h2 small , h3 small , .h3 small , h1
-	 .small , .h1 .small , h2 .small , .h2 .small , h3 .small , .h3 .small
-	{ font-size : 65%; } h4 , .h4 , h5 , .h5 , h6 , .h6 { margin-top : 10px;
-	margin-bottom : 10px; } h4 small , .h4 small , h5 small , .h5 small ,
-	h6 small , .h6 small , h4 .small , .h4 .small , h5 .small , .h5 .small
-	, h6 .small , .h6 .small { font-size : 75%; } h1 , .h1 { font-size :
-	36px; } h2 , .h2 { font-size : 30px; } h3 , .h3 { font-size : 24px; }
-	h4 , .h4 { font-size : 18px; } h5 , .h5 { font-size : 14px; } h6 , .h6
-	{ font-size : 12px; } p { margin : 0 0 10px; } .lead { margin-bottom :
-	20px; font-size : 16px; font-weight : 300; line-height : 1.4; } @media
-	( min-width : 768px) { .lead { font-size : 21px; } } small , .small {
-	font-size : 85%; } mark , .mark { padding : .2em; background-color :
-	#fcf8e3; } .text-left { text-align : left; } .text-right { text-align :
-	right; } .text-center { text-align : center; } .text-justify {
-	text-align : justify; } .text-nowrap { white-space : nowrap; }
-	.text-lowercase { text-transform : lowercase; } .text-uppercase {
-	text-transform : uppercase; } .text-capitalize { text-transform :
-	capitalize; } .text-muted { color : #777; } .text-primary { color :
-	#337ab7; } a .text-primary :hover { color : #286090; } .text-success {
-	color : #3c763d; } a .text-success :hover { color : #2b542c; }
-	.text-info { color : #31708f; } a .text-info :hover { color : #245269;
-	} .text-warning { color : #8a6d3b; } a .text-warning :hover { color :
-	#66512c; } .text-danger { color : #a94442; } a .text-danger :hover {
-	color : #843534; } .bg-primary { color : #fff; background-color :
-	#337ab7; } a .bg-primary :hover { background-color : #286090; }
-	.bg-success { background-color : #dff0d8; } a .bg-success :hover {
-	background-color : #c1e2b3; } .bg-info { background-color : #d9edf7; }
-	a .bg-info :hover { background-color}
+	outline-offset: -2px;
+}
+
+figure {
+	margin: 0;
+}
+
+img {
+	vertical-align: middle;
+}
+
+.img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img,
+	.carousel-inner>.item>a>img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.img-rounded {
+	border-radius: 6px;
+}
+
+.img-thumbnail {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	padding: 4px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.img-circle {
+	border-radius: 50%;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #eee;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.sr-only-focusable :active, .sr-only-focusable :focus {
+	position: static;
+	width: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	clip: auto;
+}
+
+[role="button"] {
+	cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+}
+
+h1 
+	small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 
+	small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1
+	 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small,
+	.h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 
+	.small {
+	font-weight: normal;
+	line-height: 1;
+	color: #777;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h1
+	 .small, .h1 .small, h2 .small, .h2 .small, h3 .small, .h3 .small {
+	font-size: 65%;
+}
+
+h4, .h4, h5, .h5, h6, .h6 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+h4 small, .h4 small, h5 small, .h5 small, h6 small, .h6 small, h4 .small,
+	.h4 .small, h5 .small, .h5 .small, h6 .small, .h6 .small {
+	font-size: 75%;
+}
+
+h1, .h1 {
+	font-size: 36px;
+}
+
+h2, .h2 {
+	font-size: 30px;
+}
+
+h3, .h3 {
+	font-size: 24px;
+}
+
+h4, .h4 {
+	font-size: 18px;
+}
+
+h5, .h5 {
+	font-size: 14px;
+}
+
+h6, .h6 {
+	font-size: 12px;
+}
+
+p {
+	margin: 0 0 10px;
+}
+
+.lead {
+	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+@media ( min-width : 768px) {
+	.lead {
+		font-size: 21px;
+	}
+}
+
+small, .small {
+	font-size: 85%;
+}
+
+mark, .mark {
+	padding: .2em;
+	background-color: #fcf8e3;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+.text-nowrap {
+	white-space: nowrap;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-capitalize {
+	text-transform: capitalize;
+}
+
+.text-muted {
+	color: #777;
+}
+
+.text-primary {
+	color: #337ab7;
+}
+
+a .text-primary :hover {
+	color: #286090;
+}
+
+.text-success {
+	color: #3c763d;
+}
+
+a .text-success :hover {
+	color: #2b542c;
+}
+
+.text-info {
+	color: #31708f;
+}
+
+a .text-info :hover {
+	color: #245269;
+}
+
+.text-warning {
+	color: #8a6d3b;
+}
+
+a .text-warning :hover {
+	color: #66512c;
+}
+
+.text-danger {
+	color: #a94442;
+}
+
+a .text-danger :hover {
+	color: #843534;
+}
+
+.bg-primary {
+	color: #fff;
+	background-color: #337ab7;
+}
+
+a .bg-primary :hover {
+	background-color: #286090;
+}
+
+.bg-success {
+	background-color: #dff0d8;
+}
+
+a .bg-success :hover {
+	background-color: #c1e2b3;
+}
+
+.bg-info {
+	background-color: #d9edf7;
+}
+
+a .bg-info :hover {background-color
+	
+}
 
 figure {
 	margin: 0;
@@ -3589,7 +3824,6 @@ textarea.form-group-lg .form-control, select[multiple].form-group-lg .form-contr
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active,
 	.btn-primary.active, .open>.dropdown-toggle.btn-primary {
 	color: #fff;
-	
 	background-color: #e67e22;
 	border-color: #d35400;
 }
@@ -4057,12 +4291,16 @@ tbody.collapse.in {
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -4073,7 +4311,9 @@ tbody.collapse.in {
 
 
 
+
  
+
 
 
 
@@ -4084,7 +4324,9 @@ tbody.collapse.in {
 
 
 
+
  
+
 
 
 
@@ -4095,7 +4337,9 @@ tbody.collapse.in {
 
 
 
+
  
+
 
 
 
@@ -4106,7 +4350,9 @@ tbody.collapse.in {
 
 
 
+
  
+
 
 
 
@@ -4118,7 +4364,9 @@ tbody.collapse.in {
 
 
 
+
 	
+
 
 
 
@@ -4134,12 +4382,16 @@ border-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4161,7 +4413,11 @@ border-radius
 
 
 
+
+
 :first-child
+
+
 
 
 
@@ -4175,7 +4431,9 @@ border-radius
 
 
 
+
  
+
 
 
 
@@ -4186,7 +4444,9 @@ border-radius
 
 
 
+
  
+
 
 
 
@@ -4197,7 +4457,9 @@ border-radius
 
 
 
+
  
+
 
 
 
@@ -4208,7 +4470,9 @@ border-radius
 
 
 
+
  
+
 
 
 
@@ -4224,12 +4488,16 @@ border-top-right-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4244,12 +4512,16 @@ border-bottom-right-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4267,7 +4539,11 @@ border-bottom-right-radius
 
 
 
+
+
 :last-child
+
+
 
 
 
@@ -4281,7 +4557,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -4292,7 +4570,9 @@ border-bottom-right-radius
 
 
 
+
  
+
 
 
 
@@ -4309,7 +4589,10 @@ border-bottom-right-radius
 
 
 
+
+
 :not
+
 
 
 
@@ -4320,13 +4603,16 @@ border-bottom-right-radius
 
 
 
+
 (
 :first-child
 
 
 
 
+
  
+
 
 
 
@@ -4342,12 +4628,16 @@ border-top-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4362,12 +4652,16 @@ border-bottom-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4461,12 +4755,16 @@ border-bottom-left-radius
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -4477,7 +4775,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -4488,7 +4788,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -4499,7 +4801,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -4515,12 +4819,16 @@ border-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4538,7 +4846,11 @@ border-radius
 
 
 
+
+
 :first-child
+
+
 
 
 
@@ -4552,7 +4864,9 @@ border-radius
 
 
 
+
  
+
 
 
 
@@ -4563,7 +4877,9 @@ border-radius
 
 
 
+
  
+
 
 
 
@@ -4579,7 +4895,10 @@ border-top-right-radius
 
 
 
+
+
 :
+
 
 
 
@@ -4589,8 +4908,11 @@ border-top-right-radius
 
 
 
+
 4
 px
+
+
 
 
 
@@ -4609,12 +4931,16 @@ border-bottom-right-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4629,12 +4955,16 @@ border-bottom-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4652,7 +4982,11 @@ border-bottom-left-radius
 
 
 
+
+
 :last-child
+
+
 
 
 
@@ -4666,7 +5000,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -4677,7 +5013,9 @@ border-bottom-left-radius
 
 
 
+
  
+
 
 
 
@@ -4693,12 +5031,16 @@ border-top-left-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4713,12 +5055,16 @@ border-top-right-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -4733,7 +5079,10 @@ border-bottom-left-radius
 
 
 
+
+
 :
+
 
 
 
@@ -4743,8 +5092,11 @@ border-bottom-left-radius
 
 
 
+
 4
 px
+
+
 
 
 
@@ -4879,12 +5231,16 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -4895,7 +5251,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4906,7 +5264,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4917,7 +5277,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4932,12 +5294,16 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
+
 :not
 
 
 
 
+
  
+
 
 
 
@@ -4948,7 +5314,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4959,7 +5327,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4970,7 +5340,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4981,7 +5353,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -4995,7 +5369,10 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
+
 :not
+
 
 
 
@@ -5006,13 +5383,16 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
 (
 :first-child
 
 
 
 
+
  
+
 
 
 
@@ -5023,7 +5403,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -5034,7 +5416,9 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 
 
+
  
+
 
 
 
@@ -5050,12 +5434,16 @@ border-radius
 
 
 
+
+
 :
 
 
 
 
+
  
+
 
 
 
@@ -5743,7 +6131,6 @@ border-radius
 .navbar-default .navbar-brand {
 	color: #FFFFFF;
 }
-
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
 	{

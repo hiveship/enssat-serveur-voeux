@@ -1,11 +1,12 @@
 <div class="container">
+
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">Modules</h3>
 				</div>
-
 				<table id='modules' class='table table-hover table-striped'>
 					<thead>
 						<tr>
@@ -124,3 +125,8 @@ $('#accordion1').on('hidden.bs.collapse', function () {
 });
 
 </script>
+<style>
+.row-bottom-margin {
+	margin-bottom: 200px;
+}
+</style>
