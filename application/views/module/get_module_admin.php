@@ -1,8 +1,6 @@
 <div class="container">
-	<a href="<?php echo site_url("admin/module/create") ?>"
-		class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
-		Module
+	<a href="<?php echo site_url("admin/module/create") ?>" class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
 	</a> <br></br>
 
 	<div class="row">
@@ -12,8 +10,7 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults'
-					class='table table-hover table-striped'>
+				<table id='tableSearchResults' class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -115,8 +112,8 @@ foreach ( $modules as $module ) {
 		}
 		echo "<td>";
 		
-		echo "<a href='" . site_url ( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
-			 class='btn btn-primary btn-xs'>Modifier partie</a>";
+		echo "<button type='button' class='btn btn-warning btn-xs' onClick='populate_modif_partie()' data-toggle='modal'
+			data-target='#editPartie' data-toggle='modal' data-whatever='@mdo'> Modifier Partie</button>";
 		
 		echo form_open ( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
 		$data = array ( 
@@ -149,6 +146,50 @@ foreach ( $modules as $module ) {
 		</div>
 	</div>
 </div>
+
+
+
+
+<!--  MODAL MODIFICATION PARTIE-->
+<div class="modal fade" id="editPartie" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="exampleModalLabel">Modification de la partie</h3>
+			</div>
+			<div class="modal-body">
+
+					?
+					<?php  echo form_open ( "admin/module/update/" . $module ['id'], 'role="form"' );?>
+							<fieldset>
+					<!-- Nom -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="nom">Nom</label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span> <input id="nomEdit"
+									name="nom" class="form-control" placeholder="Nom" type="text" required="">
+							</div>
+						</div>
+					</div>
+				</fieldset>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+							<?php echo form_submit('mysubmit', 'Modifier','class="btn btn-primary" type="button"');?>
+						<?php echo form_close();?>
+					</div>
+		</div>
+	</div>
+</div>
+
+
+
 <script type="text/javascript">
 function validate(){
 	   return confirm("voulez vous supprimer supprimer ce module ?");
