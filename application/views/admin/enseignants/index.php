@@ -272,10 +272,11 @@
 				<table class="table table-striped table-hover" id="enseignants-admin">
 					<thead>
 						<tr>
-							<th><center>Nom</center></th>
-							<th><center>Prenom</center></th>
+							<th><center>Droits</center></th>
+							<th><center>Identité</center></th>
 							<th><center>Email</center></th>
-							<th><center>Rang</center></th>
+							<th><center>Statut</center></th>
+							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -286,32 +287,31 @@
 									?>
 		<tr>
 							<td>
-								<center><?php echo mb_strtoupper($enseignant['nom'],'UTF-8')?></center>
+								<center>
+							
+		<?php if($enseignant['administrateur']) {?>
+									<span class="label label-danger"> </span>
+						 <?php } else {?>
+										<span class="label label-success"> </span>							<?php }?></center>
 							</td>
 							<td>
-								<center><?php echo ucfirst($enseignant['prenom'])?></center>
+								<center><?php echo mb_strtoupper($enseignant['nom'],'UTF-8')." ".ucfirst($enseignant['prenom'])?></center>
 							</td>
 							<td>
 								<center><?php echo $enseignant['email']?></center>
 							</td>
-					<?php if($enseignant['administrateur']) {?>
-					<td>
-								<center>
-									<span class="label label-danger"> Administrateur </span>
-								</center>
-							</td> <?php } else {?>
-					<td>
-								<center>
-									<span class="label label-success"> Enseignant </span>
-								</center>
-							</td><?php }?>
-													</td>
-							<td><a href="<?php echo site_url('admin/enseignants/show/'.$enseignant['login']) ?>"> <i
-									class="fa fa-info"></i> Détails
+							<td>
+								<center><?php echo ucfirst($enseignant['statut'])?></center>
+							</td>
+							<td><a href="<?php echo site_url('/enseignants/cours_de/'.$enseignant['login']) ?>"> <i
+									class="fa fa-tasks"></i> Ses cours
 							</a></td>
-							<td><a id='editLink' href="#"
-								onClick="populate_edit_form('<?php echo $enseignant['login'];?>')" data-toggle="modal"
-								data-target="#editEnseignant"><i class="fa fa-pencil-square-o"> Modifier</a></td>
+							<td><a id='editLink' href="#" onClick="populate_modal('<?php echo $enseignant['login'];?>')"
+								data-toggle="modal" data-target="#editEnseignant"><i class="fa fa-info"></i> Voir / Modifier</a></td>
+							<td><a onClick="validate()"
+								href="<?php echo site_url('/admin/enseignants/delete/'.$enseignant['login']) ?>"> <i
+									class="fa fa-times"></i> Supprimer
+							</a></td>
 						</tr>
 		<?php }?>
 					</tbody>
@@ -322,6 +322,7 @@
 </div>
 
 <script type="text/javascript">
+									
 // Colonnes triables
 oTable = $('#enseignants-admin').DataTable( {
     paging: false,
@@ -347,7 +348,7 @@ $('#search-enseignants-admin').keyup(function(){
       oTable.search($(this).val()).draw() ;
 });
 
-function populate_edit_form(login)
+function populate_modal(login)
 {
     $.ajax
     ({
@@ -358,22 +359,18 @@ function populate_edit_form(login)
         {
             var array = JSON.parse(result);
            // Populate the form using the returned content
-        	$("#nomEdit").val(array.nom); // test
-        	$("#prenomEdit").val(array.prenom); // test
-        	$("#emailEdit").val(array.email); // test
-        	$("#statutaireEdit").val(array.statutaire); // test
-        	console.log("administrateur -> " +array.administrateur);
+        	$("#nomEdit").val(array.nom);
+        	$("#prenomEdit").val(array.prenom);
+        	$("#emailEdit").val(array.email);
+        	$("#statutaireEdit").val(array.statutaire);
         	if (array.administrateur) {
-            	console.log("dans le if");
             	$('#editAdminAdm').attr('selected', true);
-            	$('#editAdminAdm').attr('checked', true);
-            	$('#editAdminAdm').prop('checked', true);
-            	$('#editAdminAdm').attr('selected', true);
-            	$('#editAdminAdm').val(1);
         	}
-        	
         }
     });
 };
 
+function validate(){
+	   return confirm("Etes vous sure de vouloir supprimer définitivement cet enseignant ?");
+}
 </script>

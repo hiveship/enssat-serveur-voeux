@@ -2,8 +2,7 @@
 <br>
 <br>
 <div class="container">
-
-	<div class="row-fluid user-row">
+<div class="row-fluid user-row">
 		<div class="span1"></div>
 		<div class="span1 dropdown-user" data-for=".cyruxx">
 			<i class="icon-chevron-down text-muted"></i>
