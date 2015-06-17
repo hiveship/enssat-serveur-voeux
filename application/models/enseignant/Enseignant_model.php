@@ -136,7 +136,7 @@ class Enseignant_model extends CI_Model
 
 	public function update_statutaire ( $login, $statutaire )
 	{
-		$this -> update_field ( $login, 'statutaire', $statutaire );
+		$this -> update_field( $login, 'statutaire', $statutaire );
 	}
 
 	public function rendre_administrateur ( $login )
@@ -164,9 +164,11 @@ class Enseignant_model extends CI_Model
 	
 	public function delete ( $login )
 	{
-		// $this -> load -> model( 'Contenu_model' );
-		// TODO supprimer l'enseignants de tout les cours auquel il est affecté
-		// $this -> Contenu_model -> delete_all_affected_cours( $login );
+		$this -> db -> where( 'enseignant', $login );
+		$this -> db -> update( 'contenu', array ( 
+			
+				'enseignant' => null 
+		) );
 		$this -> db -> delete( self::TABLE_NAME, array ( 
 			
 				'login' => $login 

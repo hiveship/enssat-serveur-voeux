@@ -2,6 +2,7 @@
 
 class Decharge_model extends CI_Model
 {
+	const TABLE_NAME = "decharge";
 
 	public function __construct ()
 	{
@@ -12,14 +13,14 @@ class Decharge_model extends CI_Model
 	public function get_all ()
 	{
 		$this -> db -> select( 'id, enseignant, decharge, motif' );
-		$query = $this -> db -> get( 'decharge' );
+		$query = $this -> db -> get( self::TABLE_NAME );
 		
 		return $query -> result_array();
 	}
 
 	public function get ( $login )
 	{
-		$query = $this -> db -> get_where( 'decharge', array ( 
+		$query = $this -> db -> get_where( self::TABLE_NAME, array ( 
 			
 				'enseignant' => $login 
 		) );
@@ -37,13 +38,13 @@ class Decharge_model extends CI_Model
 				'motif' => $motif 
 		);
 		
-		$this -> db -> insert( 'decharge', $data );
+		$this -> db -> insert( self::TABLE_NAME, $data );
 	}
 
 	public function delete ( $id )
 	{
 		$this -> db -> where( 'id', $id );
-		$this -> db -> delete( 'decharge' );
+		$this -> db -> delete( self::TABLE_NAME );
 	}
 
 }
