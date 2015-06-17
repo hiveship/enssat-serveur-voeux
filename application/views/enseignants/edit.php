@@ -68,23 +68,6 @@
 								
 								
 								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
 								</tr>
 								<tr>
 									</td>
@@ -105,7 +88,7 @@
 
 					<button type="button" class="btn btn-primary" onClick="populate_edit_form()"
 						data-toggle="modal" data-target="#editMoi" data-toggle="modal" data-whatever="@mdo">
-						<i class="fa fa-envelope-o"></i> Modifier adresse mail
+						<i class="fa fa-envelope-o"></i> Modification du profil
 					</button>
 				</div>
 			</div>
@@ -177,7 +160,7 @@
 
 						<?php echo form_open('enseignants/edit/email','class="form-horizontal"'); ?>
 							<fieldset>
-							<!-- Prepended text-->
+							<!-- Nom -->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="nom">Nom</label>
 								<div class="col-md-4">
@@ -188,7 +171,7 @@
 								</div>
 							</div>
 
-							<!-- Prepended text-->
+							<!-- Prenom -->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="prenom">Prénom</label>
 								<div class="col-md-4">
@@ -199,7 +182,7 @@
 								</div>
 							</div>
 
-							<!-- Prepended text-->
+							<!-- Email -->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="email">Email</label>
 								<div class="col-md-6">
@@ -211,12 +194,12 @@
 								</div>
 							</div>
 
-							<!-- Text input-->
+							<!-- Statutaire-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="statutaire">Statutaire</label>
 								<div class="col-md-2">
-									<input id="statutaire" name="statutaire" type="number" value=192
-										class="form-control input-md" required="">
+									<input id="statutaire" name="statutaire" type="number" class="form-control input-md"
+										required="">
 								</div>
 								<div class="col-md-5">
 									<span class="help-block">En heures équivalent TD</span>
@@ -263,7 +246,7 @@
 		        	$("#nomEdit").val(array.nom); // test
 		        	$("#prenomEdit").val(array.prenom); // test
 		        	$("#emailEdit").val(array.email); // test
-		        	$("#statutaireEdit").val(array.statutaire); // test
+		        	$("#statutaire").val(array.statutaire); // test
 		        	console.log("administrateur -> " +array.administrateur);
 		        	if (array.administrateur) {
 		            	console.log("dans le if");
