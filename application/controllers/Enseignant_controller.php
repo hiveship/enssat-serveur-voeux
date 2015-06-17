@@ -65,19 +65,41 @@ class Enseignant_controller extends Application_controller
 	 */
 	public function change_email ()
 	{
-		$this -> form_validation -> set_rules ( 'newemail', 'Email', 'required|valid_email' );
 		
-		if ( $this -> form_validation -> run () == FALSE ) {
-			flash_error ( "Votre email n'est pas valide, veuillez recommencer." );
-		} else {
-			$newemail = $this -> input -> post ( 'newemail' );
-			$this -> Enseignant_model -> update_email ( $this -> session -> userdata ( 'me' )['login'], $newemail );
+		$login = $this -> session -> userdata ( 'me' )['login'];
+		$nom = $this -> input -> post ( 'nom' );
+		$prenom = $this -> input -> post ( 'prenom' );
+		$email = $this -> input -> post ( 'email' );
+		$statutaire = $this -> input -> post ( 'statutaire' );
+		
+		$this -> form_validation -> set_rules ( 'email', 'Email', 'required|valid_email' );
+		$this -> form_validation -> set_rules ( 'nom', 'Nom', 'required' );
+		$this -> form_validation -> set_rules ( 'prenom', 'Prenom', 'required' );
+		$this -> form_validation -> set_rules ( 'statutaire', 'Statutaire', 'required' );
+		
+		if ( $this -> form_validation -> run () == TRUE ) {
+			// Update dans la base de donnée
+			$this -> Enseignant_model -> update_prenom ( $login, $prenom );
+			$this -> Enseignant_model -> update_nom ( $login, $nom );
+			$this -> Enseignant_model -> update_email ( $login, $email );
+			$this -> Enseignant_model -> update_statutaire ( $login, $statutaire );
+			
+			// Update dans la session
 			$me = $this -> session -> userdata ( 'me' );
-			$me ['email'] = $newemail;
+			$me ['nom'] = $nom;
+			$me ['prenom'] = $prenom;
+			$me ['email'] = $email;
+			$me ['statutaire'] = $statutaire;
 			$this -> session -> set_userdata ( 'me', $me );
-			flash_success ( "Le changement de votre adresse email a bien été effectué." );
+			
+			flash_success ( "Votre compte a bien été mis à jour." );
+		
+		} else {
+			flash_error ( "Erreur dans votre formulaire, le changement n'a pu etre effectué" );
 		}
+		
 		redirect ( site_url ( 'enseignants/edit' ) );
+	
 	}
 
 	public function cours_de ( $login = null )
@@ -89,12 +111,26 @@ class Enseignant_controller extends Application_controller
 			redirect ( '', auto );
 		}
 		
+		$Ids = array ();
+		
 		$modIds = $this -> Cours_model -> get_modules_id_de ( $login );
+		
+		foreach ( $modIds as $mod ) {
+			$Ids [] = $mod ['module'];
+		}
+		
+		$modIds = $this -> Module_model -> get_modules_id_de ( $login );
+		foreach ( $modIds as $mod ) {
+			if ( ! array_search ( $mod ['id'], $Ids ) ) {
+				$Ids [] = $mod ['id'];
+			}
+		}
+		
 		$modules = array ();
 		$cours = array ();
-		foreach ( $modIds as $Id ) {
-			$modules [] = $this -> Module_model -> get ( $Id ['module'] );
-			$cours [] = $this -> Cours_model -> get_cours_de ( $login, $Id ['module'] );
+		foreach ( $Ids as $Id ) {
+			$modules [] = $this -> Module_model -> get ( $Id );
+			$cours [] = $this -> Cours_model -> get_cours_de ( $login, $Id );
 		}
 		
 		$data = array ( 
