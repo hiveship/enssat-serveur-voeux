@@ -80,7 +80,7 @@ class Module_controller extends Admin_controller
 				'cours' => $cours, 
 				'modules' => $modules 
 		);
-		$this -> load -> template( 'admin/module/get', $data );
+		$this -> load -> template( 'admin/module/index', $data );
 	}
 
 	public function edit ( $ID )
