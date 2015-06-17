@@ -129,13 +129,7 @@ foreach ( $modules as $module ) {
 				echo "<td>";
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
-					if ( $value == null ) {
-						echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">m'incrire</a>";
-					} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-						echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . ">me retirer</a>";
-					} else {
-						echo $value;
-					}
+					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">me retirer</a>";
 				} else {
 					echo $value;
 				}
