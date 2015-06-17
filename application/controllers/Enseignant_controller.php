@@ -89,12 +89,26 @@ class Enseignant_controller extends Application_controller
 			redirect ( '', auto );
 		}
 		
+		$Ids = array ();
+		
 		$modIds = $this -> Cours_model -> get_modules_id_de ( $login );
+		
+		foreach ( $modIds as $mod ) {
+			$Ids [] = $mod ['module'];
+		}
+		
+		$modIds = $this -> Module_model -> get_modules_id_de ( $login );
+		foreach ( $modIds as $mod ) {
+			if ( ! array_search ( $mod ['id'], $Ids ) ) {
+				$Ids [] = $mod ['id'];
+			}
+		}
+		
 		$modules = array ();
 		$cours = array ();
-		foreach ( $modIds as $Id ) {
-			$modules [] = $this -> Module_model -> get ( $Id ['module'] );
-			$cours [] = $this -> Cours_model -> get_cours_de ( $login, $Id ['module'] );
+		foreach ( $Ids as $Id ) {
+			$modules [] = $this -> Module_model -> get ( $Id );
+			$cours [] = $this -> Cours_model -> get_cours_de ( $login, $Id );
 		}
 		
 		$data = array ( 

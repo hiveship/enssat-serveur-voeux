@@ -1,5 +1,5 @@
 <?php
-defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
+defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
 /*
  * | -------------------------------------------------------------------------
@@ -72,10 +72,16 @@ $route ['enseignants/edit/email'] = 'Enseignant_controller/change_email';
 $route ['enseignants/edit/password'] = 'Enseignant_controller/change_password';
 $route ['enseignants/cours_de/(:any)'] = 'Enseignant_controller/cours_de/$1';
 
-$route ['admin/cours'] = "Module_controller/index";
-$route ['admin/cours/create'] = "Module_controller/create";
-$route ['admin/cours/edit'] = "Module_controller/edit";
-$route ['admin/cours/delete'] = "Module_controller/delete";
+$route ['cours'] = "Module_controller/index";
+$route ['admin/cours'] = "admin/Module_controller/get";
+$route ['admin/cours/create/(:any)'] = "admin/Cours_controller/create/$1";
+$route ['admin/cours/edit/(:any)/(:any)'] = "admin/Cours_controller/edit/$1/$2";
+$route ['admin/cours/delete/(:any)/(:any)'] = "admin/Cours_controller/delete/$1/$2";
+
+$route ['admin/module/create'] = "admin/Module_controller/create";
+$route ['admin/module/edit/(:any)'] = "admin/Module_controller/edit/$1";
+$route ['admin/module/update/(:any)'] = "admin/Module_controller/update/$1";
+$route ['admin/module/delete/(:any)'] = "admin/Module_controller/delete/$1";
 
 
 

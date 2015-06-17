@@ -1,6 +1,8 @@
 <div class="container">
-	<a href="<?php echo site_url("Module_controller/create") ?>" class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	<a href="<?php echo site_url("admin/module/create") ?>"
+		class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
+		Module
 	</a> <br></br>
 
 	<div class="row">
@@ -10,7 +12,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults' class='table table-hover table-striped'>
+				<table id='tableSearchResults'
+					class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -51,33 +54,33 @@ foreach ( $modules as $module ) {
 	}
 	
 	echo "<td><center>";
-	echo form_open( 'Module_controller/edit_menu/' . $module ['id'] );
+	echo form_open ( site_url ( 'admin/module/edit/' . $module ['id'] ) );
 	$data = array ( 
-		
+			
 			'type' => 'submit', 
 			'content' => 'Modifier', 
 			'class' => 'btn btn-primary btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	
 	echo "</center></td>";
 	echo "<td><center>";
 	
 	$params = array ( 
-		
+			
 			'onsubmit' => 'return(validate(this));' 
 	);
 	
-	echo form_open( 'Module_controller/delete/' . $module ['id'], $params );
+	echo form_open ( 'admin/module/delete/' . $module ['id'], $params );
 	$data = array ( 
-		
+			
 			'type' => 'submit', 
 			'content' => 'Supprimer', 
 			'class' => 'btn btn-danger btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	echo "</center></td>";
 	
 	echo "</tr>";
@@ -112,25 +115,25 @@ foreach ( $modules as $module ) {
 		}
 		echo "<td>";
 		
-		echo "<a href='" . site_url( "Cours_controller/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
+		echo "<a href='" . site_url ( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
 			 class='btn btn-primary btn-xs'>Modifier partie</a>";
 		
-		echo form_open( 'Cours_controller/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
+		echo form_open ( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
 		$data = array ( 
-			
+				
 				'type' => 'submit', 
 				'content' => 'Supprimer', 
 				'class' => 'btn btn-danger btn-xs' 
 		);
-		echo form_button( $data );
-		echo form_close();
+		echo form_button ( $data );
+		echo form_close ();
 		
 		echo "</td>";
 		echo "</tr>";
 	}
 	
 	echo "</table>";
-	echo "<a href='" . site_url( "Cours_controller/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
+	echo "<a href='" . site_url ( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
 	echo "</div>";
 	echo "</td>";
 	
