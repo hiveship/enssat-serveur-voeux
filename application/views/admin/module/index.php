@@ -96,25 +96,27 @@ foreach ( $modules as $module ) {
 				
 					<th><center>Enseignant</center></th>
 					
-					<th><center>Options</center></th>
+					<th><center></center></th>
+					
+			       	<th><center></center></th>
+			
 					</tr>
 					</thead>";
 	foreach ( $cours [$i - 1] as $cours_mod ) {
 		echo "<tr>";
 		foreach ( $cours_mod as $key => $value ) {
 			if ( $key != "module" ) {
-				echo "<td>";
-				echo "<center>";
+				echo "<td><center>";
 				echo $value;
-				echo "</center>";
-				echo "</td>";
+				echo "</center></td>";
 			}
 		}
 		echo "<td>";
 		
 		echo "<a href='" . site_url( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
 			 class='btn btn-primary btn-xs'>Modifier partie</a>";
-		
+		echo "</td>";
+		echo "<td>";
 		echo form_open( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
 		$data = array ( 
 			

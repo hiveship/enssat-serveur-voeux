@@ -1,5 +1,5 @@
 <?php
-defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
+defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
 
 /*
  * | -------------------------------------------------------------------------
@@ -67,11 +67,6 @@ $route ['enseignants/edit'] = 'Enseignant_controller/edit';
 $route ['enseignants/edit/email'] = 'Enseignant_controller/change_email';
 $route ['enseignants/edit/password'] = 'Enseignant_controller/change_password';
 $route ['enseignants/cours_de/(:any)'] = 'Enseignant_controller/cours_de/$1';
-
-$route ['admin/cours'] = "Module_controller/index";
-$route ['admin/cours/create'] = "Module_controller/create";
-$route ['admin/cours/edit'] = "Module_controller/edit";
-$route ['admin/cours/delete'] = "Module_controller/delete";
 
 $route ['cours'] = "Module_controller/index";
 $route ['admin/cours'] = "admin/Module_controller/get";

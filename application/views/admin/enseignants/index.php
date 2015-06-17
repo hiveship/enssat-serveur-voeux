@@ -214,12 +214,12 @@
 							<label class="col-md-4 control-label" for="administrateur">Statut</label>
 							<div class="col-md-4">
 								<div class="radio">
-									<label for="administrateur-0"> <input type="radio" name="administrateur" id="editAdminAdm"
+									<label for="administrateur-0"> <input type="radio" name="administrateur" id="editAdminEns"
 										value="0"> Enseignant
 									</label>
 								</div>
 								<div class="radio">
-									<label for="administrateur-1"> <input type="radio" name="administrateur" id="editAdminEns"
+									<label for="administrateur-1"> <input type="radio" name="administrateur" id="editAdminAdm"
 										value="1"> Administrateur
 									</label>
 								</div>
@@ -231,12 +231,12 @@
 							<label class="col-md-4 control-label" for="actif">Etat</label>
 							<div class="col-md-4">
 								<div class="radio">
-									<label for="actif-0"> <input type="radio" name="actif" id="editAdmin" value="1"
+									<label for="actif-0"> <input type="radio" name="actif" id="editActifYes" value="1"
 										checked="checked"> Actif
 									</label>
 								</div>
 								<div class="radio">
-									<label for="actif-1"> <input type="radio" name="actif" id="actif-1" value="0"> Inactif
+									<label for="actif-1"> <input type="radio" name="actif" id="editActifNo" value="0"> Inactif
 									</label>
 								</div>
 							</div>
@@ -364,7 +364,14 @@ function populate_modal(login)
         	$("#emailEdit").val(array.email);
         	$("#statutaireEdit").val(array.statutaire);
         	if (array.administrateur) {
-            	$('#editAdminAdm').attr('selected', true);
+            	$("#editAdminAdm").prop("checked", true);
+        	} else {
+            	$("#editAdminEns").prop("checked", true);
+        	}
+        	if (array.actif) {
+            	$("#editActifYes").prop("checked", true);
+        	} else {
+            	$("#editActifNo").prop("checked", true);
         	}
         }
     });

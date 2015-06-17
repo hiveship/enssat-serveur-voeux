@@ -95,8 +95,6 @@ foreach ( $modules as $module ) {
 				echo "</td>";
 			}
 		}
-		echo "<td>";
-		echo "</td>";
 		echo "</tr>";
 	}
 	

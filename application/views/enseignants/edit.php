@@ -2,14 +2,12 @@
 <br>
 <br>
 <div class="container">
-<div class="row-fluid user-row">
+	<div class="row-fluid user-row">
 		<div class="span1"></div>
 		<div class="span1 dropdown-user" data-for=".cyruxx">
 			<i class="icon-chevron-down text-muted"></i>
 		</div>
 	</div>
-
-
 
 	<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
 
@@ -53,7 +51,7 @@
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
 									}
 									?>
-					
+
 								
 								
 								</tr>
@@ -223,7 +221,9 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/pie.js"); ?>"></script>
 
 <?php
-
+// TODO faire ce graphique avec les VRAIES données
+// On a besoin de: heures à enseigner (statutaire-somme décharges)
+// Heures éffectués (somme de tous les cours affectés)
 $enseigne = 100;
 $delta = - 50;
 if ( $delta > 0 ) {
@@ -270,10 +270,6 @@ if ( $delta > 0 ) {
 				}
 			);
 		</script>
-
-
-
-
 <style>
 .container {
 	width: 800px;
@@ -290,7 +286,6 @@ if ( $delta > 0 ) {
 		        type: 'post',
 		        success: function(result)
 		        {
-			        console.log(result);
 		            var array = JSON.parse(result);
 		           // Populate the form using the returned content
 		        	$("#nomEdit").val(array.nom); // test
