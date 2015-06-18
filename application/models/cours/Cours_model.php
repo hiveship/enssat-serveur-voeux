@@ -87,6 +87,7 @@ class Cours_model extends CI_model
 	{
 		$this -> db -> where ( 'module', $module );
 		$this -> db -> where ( 'partie', $partie );
+		$this -> db -> where ( 'enseignant', $enseignant );
 		$this -> db -> update ( self::TABLE_NAME, array ( 
 				
 				'enseignant' => NULL 

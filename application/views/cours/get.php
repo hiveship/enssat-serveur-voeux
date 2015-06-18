@@ -116,6 +116,8 @@ foreach ( $modules as $module ) {
 					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
 				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
 					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
+				} elseif ( $this -> session -> userdata ( 'me' )['administrateur'] ) {
+					echo "<a href=" . site_url ( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
 				} else {
 					echo $value;
 				}
