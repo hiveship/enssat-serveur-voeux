@@ -21,7 +21,7 @@
 								
 								<?php
 								$params = array ( 
-										
+									
 										'onsubmit' => 'return(validate(this));' 
 								);
 								
@@ -37,17 +37,17 @@
 									echo "<td>";
 									echo "<center>";
 									
-									echo form_open ( 'Decharge_controller/delete/' . $value ['id'], $params );
+									echo form_open( 'Decharge_controller/delete/' . $value ['id'], $params );
 									
 									$supprimer = array ( 
-											
+										
 											'type' => 'textarea', 
 											'content' => 'Supprimer', 
 											'class' => 'btn btn-primary btn-xs' 
 									);
 									
-									echo form_button ( $supprimer );
-									echo form_close ();
+									echo form_button( $supprimer );
+									echo form_close();
 									echo "<c/enter>";
 									echo "</td>";
 									
@@ -69,54 +69,6 @@
 								}
 								
 								?>
-		
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
 							
 							
 							</tbody>
@@ -188,7 +140,7 @@
 						<div class="modal-body">
 
 					<?php
-					echo form_open ( 'decharge/update_motif', 'class="form-horizontal" id="motif_id"' );
+					echo form_open( 'decharge/update_motif', 'class="form-horizontal" id="motif_id"' );
 					?>
 							
 							<div class="form-group">
@@ -205,8 +157,8 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 							<?php
-							echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
-							echo form_close ();
+							echo form_submit( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
+							echo form_close();
 							?>
 					</div>
 					</div>
