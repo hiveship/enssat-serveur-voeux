@@ -144,14 +144,14 @@ class Enseignant_controller extends Application_controller
 	{
 		if ( $cours == null ) {
 			if ( ! $this -> Module_model -> est_libre ( $module ) ) {
-				flash_error ( "Ce cours n'est pas libre !" ); // TODO mettre le bon message d'erreur
+				flash_error ( "il y a déja un responsable ou le module n'exite pas" );
 				redirect ( 'Module_controller', 'auto' ); // TODO renomer avec le nom de la bonne route
 			}
 			$this -> Module_model -> inscrire_responsable ( $module, $this -> session -> userdata ( 'me' )['login'] );
 		} else {
 			$cours = rawurldecode ( $cours );
 			if ( ! $this -> Cours_model -> est_libre ( $module, $cours ) ) {
-				flash_error ( "fail2 " . $cours ); // TODO mettre le bon message d'erreur
+				flash_error ( "cours occupé ou non existant " . $cours );
 				redirect ( 'Module_controller', 'auto' ); // TODO renomer avec le nom de la bonne route
 			}
 			$this -> Cours_model -> inscrire_enseignant ( $module, $cours, $this -> session -> userdata ( 'me' )['login'] );

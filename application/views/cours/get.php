@@ -40,10 +40,16 @@ function convert_heures ( $heures, $type )
 					"startDuration": 2,
 					"graphs": [
 						{
-							"balloonText": "[[value]] heures",
+							"balloonText": "[[value]] heures réelles",
 							"bullet": "round",
 							"id": "AmGraph-1",
 							"valueField": "Heures"
+						},
+						{
+							"balloonText": "[[value]] heures_TD",
+							"bullet": "round",
+							"id": "AmGraph-2",
+							"valueField": "Heures_TD"
 						}
 					],
 					"guides": [],
@@ -64,12 +70,15 @@ function convert_heures ( $heures, $type )
 <?php
 $i = 0;
 foreach ( $modules as $module ) {
-	$hed_total = 0;
+	$heures = 0;
+	$heures_TD = 0;
 	foreach ( $cours [$i] as $cours_mod ) {
-		$hed_total += $cours_mod ['hed'];
+		$heures += $cours_mod ['hed'];
+		$heures_TD += convert_heures ( $cours_mod ['hed'], $cours_mod ['type'] );
 	}
-	echo "{	\"Heures\": \"$hed_total\" ,
-					\"Module\": \"" . $module ['nom'] . "\" ,
+	echo "{	\"Heures\": \"$heures\" ,
+						\"Heures_TD\": \"$heures_TD\" ,
+						\"Module\": \"" . $module ['nom'] . "\" ,
 				},";
 	$i ++;
 }
@@ -107,6 +116,8 @@ foreach ( $modules as $module ) {
 					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
 				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
 					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
+				} elseif ( $this -> session -> userdata ( 'me' )['administrateur'] ) {
+					echo "<a href=" . site_url ( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
 				} else {
 					echo $value;
 				}

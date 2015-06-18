@@ -89,12 +89,13 @@ body {
 
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> <input
-							id="login" type="text" class="form-control" name="login" value="" placeholder="Login">
+							id="login" type="text" class="form-control" name="login" placeholder="Identifiant" required>
 					</div>
 
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> <input
-							id="password" type="password" class="form-control" name="password" placeholder="Mot de passe">
+							id="password" type="password" class="form-control" name="password" placeholder="Mot de passe"
+							required>
 					</div>
 
 					<div class="form-group">

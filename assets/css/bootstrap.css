@@ -4144,6 +4144,24 @@ tbody.collapse.in {
 	background-color: #e5e5e5;
 }
 
+.navbar .divider-vertical {
+height: 50px;
+margin: 0 9px;
+border-right: 1px solid #d35400;
+border-left: 1px solid #d35400;
+}
+
+.navbar-inverse .divider-vertical {
+border-right-color: #222222;
+border-left-color: #111111;
+}
+
+@media (max-width: 767px) {
+.navbar-collapse .nav > .divider-vertical {
+    display: none;
+  }
+}
+
 .dropdown-menu>li>a {
 	display: block;
 	padding: 3px 20px;
@@ -6184,7 +6202,7 @@ border-radius
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
 	.navbar-default .navbar-nav>.open>a:focus {
 	color: #555;
-	background-color: #e7e7e7;
+	background-color: #d35400;
 }
 
 @media ( max-width : 767px) {

@@ -51,8 +51,6 @@
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
 									}
 									?>
-
-								
 								
 								
 								
@@ -101,14 +99,14 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="password-actuel">Mot de passe actuel</label>
 								<div class="col-md-4">
-								<?php echo form_password ( 'password', '', 'id="password" placeholder="Mot de passe actuel " class="form-control input-md"' ); ?>
+								<?php echo form_password ( 'password', '', 'id="password" required placeholder="Mot de passe actuel " class="form-control input-md"' ); ?>
 								</div>
 							</div>
 							<!-- Password input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="newpassword1">Nouveau mot de passe</label>
 								<div class="col-md-4">
-										<?php echo form_password ( 'newpassword1', '', 'id="newpassword1" placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
+										<?php echo form_password ( 'newpassword1', '', 'id="newpassword1" required placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
 								</div>
 							</div>
 
@@ -116,7 +114,7 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="newpassword1">Confirmation</label>
 								<div class="col-md-4">
-										<?php echo form_password ( 'newpassword2', '', 'id="newpassword2" placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
+										<?php echo form_password ( 'newpassword2', '', 'id="newpassword2" required placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
 								</div>
 							</div>
 						</fieldset>
