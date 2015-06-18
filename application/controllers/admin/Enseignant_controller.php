@@ -8,9 +8,9 @@ class Enseignant_controller extends Admin_controller
 	public function __construct ()
 	{
 		parent::__construct();
-		$this -> load -> model( 'enseignant/Enseignant_model' );
-		$this -> load -> model( 'cours/Cours_model' );
-		$this -> load -> model( 'cours/Module_model' );
+		$this -> load -> model( 'Enseignant_model' );
+		$this -> load -> model( 'Cours_model' );
+		$this -> load -> model( 'Module_model' );
 	}
 
 	public function index ()

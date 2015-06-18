@@ -6,7 +6,7 @@ class Site_controller extends CI_Controller
 	public function __construct ()
 	{
 		parent::__construct();
-		$this -> load -> model( 'enseignant/Enseignant_model' );
+		$this -> load -> model( 'Enseignant_model' );
 	}
 
 	public function index ()

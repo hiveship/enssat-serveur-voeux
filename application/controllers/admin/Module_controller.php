@@ -10,8 +10,8 @@ class Module_controller extends Admin_controller
 		parent::__construct();
 		$this -> load -> helper( 'form' );
 		$this -> load -> library( 'form_validation' );
-		$this -> load -> model( 'cours/Module_model' );
-		$this -> load -> model( 'cours/Cours_model' );
+		$this -> load -> model( 'Module_model' );
+		$this -> load -> model( 'Cours_model' );
 	}
 
 	public function index ()

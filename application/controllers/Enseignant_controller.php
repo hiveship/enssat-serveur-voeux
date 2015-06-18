@@ -8,9 +8,9 @@ class Enseignant_controller extends Application_controller
 	public function __construct ()
 	{
 		parent::__construct();
-		$this -> load -> model( 'enseignant/Enseignant_model' );
-		$this -> load -> model( 'cours/Cours_model' );
-		$this -> load -> model( 'cours/Module_model' );
+		$this -> load -> model( 'Enseignant_model' );
+		$this -> load -> model( 'Cours_model' );
+		$this -> load -> model( 'Module_model' );
 	}
 
 	public function edit ()
@@ -82,7 +82,7 @@ class Enseignant_controller extends Application_controller
 			$email = $this -> input -> post( 'email' );
 			$statutaire = $this -> input -> post( 'statutaire' );
 			
-			// Update dans la base de donnée
+			// Update dans la base de donnée //TODO optimiser car trop de requêtes à la BDD que l'on peut regrouperh
 			$this -> Enseignant_model -> update_prenom( $login, $prenom );
 			$this -> Enseignant_model -> update_nom( $login, $nom );
 			$this -> Enseignant_model -> update_email( $login, $email );
