@@ -60,6 +60,7 @@ $route ['logout'] = "Site_controller/logout";
 $route ['admin/enseignants'] = "admin/Enseignant_controller/index";
 $route ['admin/enseignants/create'] = 'admin/Enseignant_controller/create';
 $route ['admin/enseignants/delete/(:any)'] = 'admin/Enseignant_controller/delete/$1';
+$route ['admin/enseignants/edit/(:any)'] = 'admin/Enseignant_controller/edit/$1';
 $route ['admin/enseignants/get'] = 'admin/Enseignant_controller/get/';
 
 $route ['enseignants'] = "Enseignant_controller/index";

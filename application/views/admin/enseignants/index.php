@@ -142,11 +142,11 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="exampleModalLabel">Modifier un enseignant</h4>
+					<h4 class="modal-title" id="exampleModalLabel">Informations personelles d'un enseignant</h4>
 				</div>
 				<div class="modal-body">
-					<form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST"
-						action=<?php echo site_url("admin/enseignants/edit");?>>
+					<form name="form" id="editForm" class="form-horizontal" enctype="multipart/form-data"
+						method="POST" action="">
 
 						<!-- Prepended text-->
 						<div class="form-group">
@@ -358,6 +358,10 @@ function populate_modal(login)
         success: function(result)
         {
             var array = JSON.parse(result);
+            
+            // Set the parameter of the URL destination form
+              $("#editForm").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/edit");?>'+'/'+array.login); //this works
+            
            // Populate the form using the returned content
         	$("#nomEdit").val(array.nom);
         	$("#prenomEdit").val(array.prenom);
@@ -373,6 +377,7 @@ function populate_modal(login)
         	} else {
             	$("#editActifNo").prop("checked", true);
         	}
+        	
         }
     });
 };
