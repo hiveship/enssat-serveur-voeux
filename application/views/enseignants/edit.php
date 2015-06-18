@@ -54,6 +54,8 @@
 
 								
 								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -117,8 +119,6 @@
 										<?php echo form_password ( 'newpassword2', '', 'id="newpassword2" placeholder="Nouveau mot de passe" class="form-control input-md"' ); ?>
 								</div>
 							</div>
-
-
 						</fieldset>
 
 					</div>

@@ -247,7 +247,7 @@
     }
 })(jQuery);
 
-$(window).load(function() {
-   // $("#enssat").unicornblast(); // Active la petite annimation 'licorne' lors du click sur le bouton 'ENSSAT'
-});
+// $(window).load(function() {
+//     $("#enssat").unicornblast(); // Active la petite annimation 'licorne' lors du click sur le bouton 'ENSSAT'
+// });
 </script>
