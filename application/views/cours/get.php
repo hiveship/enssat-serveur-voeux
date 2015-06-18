@@ -195,18 +195,10 @@ foreach ( $modules as $module ) {
 
 }
 ?>
-			
 			</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-$('#accordion1').on('shown.bs.collapse', function () {
-    $("#package1 i.indicator").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-});
-$('#accordion1').on('hidden.bs.collapse', function () {
-    $("#package1 i.indicator").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-});
-</script>
+
