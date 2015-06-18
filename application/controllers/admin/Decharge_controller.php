@@ -37,7 +37,7 @@ class Decharge_controller extends Application_controller
 			$new_motif = $this -> input -> post ( 'motif' );
 			$this -> Decharge_model -> add ( $enseignant, $new_decharge, $new_motif );
 		}
-		redirect ( site_url ( 'admin/decharge/index' ) );
+		redirect ( site_url ( 'admin/decharges' ) );
 	
 	}
 
@@ -47,7 +47,7 @@ class Decharge_controller extends Application_controller
 	public function delete ( $id )
 	{
 		$this -> Decharge_model -> delete ( $id );
-		redirect ( site_url ( 'admin/decharge/index' ) );
+		redirect ( site_url ( 'admin/decharges' ) );
 	}
 
 }
