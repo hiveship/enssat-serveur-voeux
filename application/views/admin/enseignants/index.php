@@ -308,10 +308,9 @@
 							<td><a href="<?php echo site_url('/enseignants/cours_de/'.$enseignant['login']) ?>"> <i
 									class="fa fa-tasks"></i> Ses cours
 							</a></td>
-							<td><a id='editLink' href="#" onClick="populate_modal('<?php echo $enseignant['login'];?>')"
+							<td><a id='editLink' href="#" onClick="populate_modal(<?php echo $enseignant['login'];?>)"
 								data-toggle="modal" data-target="#editEnseignant"><i class="fa fa-info"></i> Voir / Modifier</a></td>
-							<td><a onClick="validate()"
-								href="<?php echo site_url('/admin/enseignants/delete/'.$enseignant['login']) ?>"> <i
+							<td><a onClick='validate("<?php echo $enseignant['login'];?>")' href="#"> <i
 									class="fa fa-times"></i> Supprimer
 							</a></td>
 						</tr>
@@ -383,8 +382,22 @@ function populate_modal(login)
         }
     });
 };
-
-function validate(){
-	   return confirm("Etes vous sure de vouloir supprimer définitivement cet enseignant ?");
+function validate(result) {
+    swal({
+        title: "Confirmer la suppression ?",
+        text: "Cela supprimera toutes ses décharges et rendra libre l'enssemble des cours occupé/gérés.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#e67e22",
+        confirmButtonText:"Supprimer",
+        cancelButtonText:"Annuler",
+        
+        closeOnConfirm: false
+    }, function () {
+    	$.ajax({
+    		url: <?php echo "'".site_url("/admin/enseignants/delete")."'";?>+'/'+result,
+    	});
+	    location.reload();
+    });
 }
 </script>
