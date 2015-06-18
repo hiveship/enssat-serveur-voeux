@@ -18,12 +18,7 @@ class MY_Loader extends CI_Loader
 		$this -> view( 'template/header' ); // styles et js
 		if ( $this -> session -> userdata( 'me' ) !== NULL ) {
 			$me = $this -> session -> userdata( 'me' );
-			if ( $me ['administrateur'] ) {
-				// $this -> view( 'admin/navbar' ); // FIXME voir comment on gère les navbars: une seule ou deux ? adapter ce chargement
-				$this -> view( 'template/navbar' );
-			} else {
-				$this -> view( 'template/navbar' );
-			}
+			$this -> view( 'template/navbar' );
 		}
 		$this -> view( 'template/flash', get_flashs() );
 		$this -> view( $view, $data );
