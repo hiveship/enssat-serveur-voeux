@@ -139,12 +139,17 @@ class Enseignant_model extends CI_Model
 		$this -> update_field( $login, 'statutaire', $statutaire );
 	}
 
+	public function update_statut ( $login, $statutaire )
+	{
+		$this -> update_field( $login, 'statut', $statutaire );
+	}
+
 	public function rendre_administrateur ( $login )
 	{
 		$this -> update_field( $login, 'administrateur', self::LEVEL_ADMINISTRATEUR );
 	}
 
-	public function rendre_enseignant ()
+	public function rendre_enseignant ( $login )
 	{
 		$this -> update_field( $login, 'administrateur', self::LEVEL_ENSEIGNANT );
 	}
