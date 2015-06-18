@@ -53,7 +53,7 @@
 									echo "<td>";
 									echo "<center>";
 									
-									echo form_open ( 'admin/Decharge_controller/delete/' . $value ['id'], $params );
+									echo form_open ( 'admin/Decharge_controller/delete/' . $value ['id'], $params, 'class="form-horizontal"' );
 									
 									$data = array ( 
 											
