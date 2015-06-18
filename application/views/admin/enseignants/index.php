@@ -134,6 +134,8 @@
 	<!-- EDITION MODAL -->
 	<!-- ============= -->
 
+
+
 	<div class="modal fade" id="editEnseignant" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -290,9 +292,9 @@
 								<center>
 							
 		<?php if($enseignant['administrateur']) {?>
-									<span class="label label-danger"> </span>
+									<span title="Administrateur" class="label label-danger"> </span>
 						 <?php } else {?>
-										<span class="label label-success"> </span>							<?php }?></center>
+										<span title="Enseignant" class="label label-success"> </span>							<?php }?></center>
 							</td>
 							<td>
 								<center><?php echo mb_strtoupper($enseignant['nom'],'UTF-8')." ".ucfirst($enseignant['prenom'])?></center>

@@ -53,7 +53,7 @@
 									echo "<td>";
 									echo "<center>";
 									
-									echo form_open ( 'Decharge_controller/delete_admin/' . $value ['id'], $params );
+									echo form_open ( 'admin/Decharge_controller/delete/' . $value ['id'], $params );
 									
 									$data = array ( 
 											
@@ -93,7 +93,7 @@
 									<div class="modal-body">
 									
 									<?php
-									echo form_open ( 'Decharge_controller/add_admin', 'class="form-horizontal"' );
+									echo form_open ( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
 									
 									?>
 
