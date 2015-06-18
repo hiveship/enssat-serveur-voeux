@@ -8,8 +8,6 @@ class Module_controller extends Admin_controller
 	public function __construct ()
 	{
 		parent::__construct();
-		$this -> load -> helper( 'form' );
-		$this -> load -> library( 'form_validation' );
 		$this -> load -> model( 'Module_model' );
 		$this -> load -> model( 'Cours_model' );
 	}
@@ -57,7 +55,7 @@ class Module_controller extends Admin_controller
 				$this -> load -> template( 'admin/module/create' );
 			}
 		} else {
-			$this -> load -> template( 'admin/module/create' );
+			$this -> load -> template( 'admin/modules/create' );
 		}
 	
 	}
@@ -80,7 +78,7 @@ class Module_controller extends Admin_controller
 				'cours' => $cours, 
 				'modules' => $modules 
 		);
-		$this -> load -> template( 'admin/module/index', $data );
+		$this -> load -> template( 'admin/modules/index', $data );
 	}
 
 	public function edit ( $ID )
@@ -91,7 +89,7 @@ class Module_controller extends Admin_controller
 			
 				'module' => $module 
 		);
-		$this -> load -> template( 'admin/module/edit', $data );
+		$this -> load -> template( 'admin/modules/edit', $data );
 	}
 
 	public function delete ( $ID )
@@ -124,7 +122,7 @@ class Module_controller extends Admin_controller
 				redirect( 'admin/cours', 'auto' );
 			} else {
 				flash_error( "nouvel ID invalide" );
-				$this -> load -> template( 'admin/module/edit' );
+				$this -> load -> template( 'admin/modules/edit' );
 			}
 		}
 	}
