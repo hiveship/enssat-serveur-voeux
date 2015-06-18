@@ -25,10 +25,8 @@ function convert_heures ( $heures, $type )
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<script type="text/javascript"
-					src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
-				<script type="text/javascript"
-					src="<?php echo base_url("assets/js/radar.js"); ?>"></script>
+				<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
+				<script type="text/javascript" src="<?php echo base_url("assets/js/radar.js"); ?>"></script>
 
 				<!-- amCharts javascript code -->
 				<script type="text/javascript">
@@ -74,7 +72,7 @@ foreach ( $modules as $module ) {
 	$heures_TD = 0;
 	foreach ( $cours [$i] as $cours_mod ) {
 		$heures += $cours_mod ['hed'];
-		$heures_TD += convert_heures ( $cours_mod ['hed'], $cours_mod ['type'] );
+		$heures_TD += convert_heures( $cours_mod ['hed'], $cours_mod ['type'] );
 	}
 	echo "{	\"Heures\": \"$heures\" ,
 						\"Heures_TD\": \"$heures_TD\" ,
@@ -88,8 +86,7 @@ foreach ( $modules as $module ) {
 			);
 		</script>
 
-				<div id="chartdiv"
-					style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+				<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
 
 				<table id='modules' class='table table-hover table-striped'>
 					<thead>
@@ -113,11 +110,11 @@ foreach ( $modules as $module ) {
 			echo "<td><center>";
 			if ( $key == 'responsable' ) {
 				if ( $value == null ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
-				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
-				} elseif ( $this -> session -> userdata ( 'me' )['administrateur'] ) {
-					echo "<a href=" . site_url ( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
+					echo "<a href=" . site_url( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
+				} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
+					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
+				} elseif ( $this -> session -> userdata( 'me' )['administrateur'] ) {
+					echo "<a href=" . site_url( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -132,10 +129,10 @@ foreach ( $modules as $module ) {
 	$heures_TD = 0;
 	foreach ( $cours [$i - 1] as $cours_mod ) {
 		$heures += $cours_mod ['hed'];
-		$heures_TD += convert_heures ( $cours_mod ['hed'], $cours_mod ['type'] );
+		$heures_TD += convert_heures( $cours_mod ['hed'], $cours_mod ['type'] );
 	}
 	
-	if ( $module ['responsable'] == $this -> session -> userdata ( 'me' )['login'] ) {
+	if ( $module ['responsable'] == $this -> session -> userdata( 'me' )['login'] ) {
 		echo "<td class='info'>";
 	} else {
 		echo "<td>";
@@ -173,9 +170,9 @@ foreach ( $modules as $module ) {
 				echo "<td>";
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">me retirer</a>";
+					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode( $cours_mod ['partie'] ) ) . ">me retirer</a>";
 				} else if ( $key == 'hed' ) {
-					echo "$value (" . convert_heures ( $value, $cours_mod ['type'] ) . ")";
+					echo "$value (" . convert_heures( $value, $cours_mod ['type'] ) . ")";
 				} else {
 					echo $value;
 				}
@@ -212,5 +209,4 @@ $('#accordion1').on('shown.bs.collapse', function () {
 $('#accordion1').on('hidden.bs.collapse', function () {
     $("#package1 i.indicator").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
 });
-
 </script>

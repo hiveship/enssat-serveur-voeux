@@ -17,49 +17,48 @@
 					<div class="panel-body">
 						<div class="row-fluid">
 							<div>
-								<table
-									class="table table-condensed table-responsive table-user-information">
+								<table class="table table-condensed table-responsive table-user-information">
 									<tbody>
 
 <?php
-echo form_open ( "admin/cours/create/$module", 'role="form"' );
+echo form_open( "admin/cours/create/$module", 'role="form"' );
 
 echo "<p id=P0>";
-echo br ( 2 );
+echo br( 2 );
 
 $Pn = array ( 
-		
+	
 		'name' => 'nom' 
 );
 
-echo form_label ( 'Nom Partie: ', 'Partie' );
-echo form_input ( $Pn, '', 'class="form-control"' );
+echo form_label( 'Nom Partie: ', 'Partie' );
+echo form_input( $Pn, '', 'class="form-control"' );
 
 $Pt = array ( 
-		
+	
 		'CM' => 'CM', 
 		'TD' => 'TD', 
 		'TP' => 'TP', 
 		'DS' => 'DS' 
 );
 
-echo form_label ( 'Type: ', 'Type' );
-echo form_dropdown ( 'type', $Pt, 'CM' );
+echo form_label( 'Type: ', 'Type' );
+echo form_dropdown( 'type', $Pt, 'CM' );
 
 $Ph = array ( 
-		
+	
 		'name' => 'hed', 
 		'type' => 'number', 
 		'value' => '30' 
 );
-echo form_label ( 'hed: ', 'hed' );
-echo form_input ( $Ph );
+echo form_label( 'hed: ', 'hed' );
+echo form_input( $Ph );
 
 echo "</p>";
 
-echo form_submit ( 'submit', 'creer', 'class="btn btn-primary pull-right"' );
+echo form_submit( 'submit', 'creer', 'class="btn btn-primary pull-right"' );
 
-echo form_close ();
+echo form_close();
 ?>
 									</tbody>
 								</table>
