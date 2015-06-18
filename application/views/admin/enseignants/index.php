@@ -62,7 +62,7 @@
 							<label class="col-md-4 control-label" for="statutaire">Statutaire</label>
 							<div class="col-md-2">
 								<input id="statutaire" name="statutaire" type="number" value=192
-									class="form-control input-md" required="">
+									class="form-control input-md" required=>
 							</div>
 							<div class="col-md-5">
 								<span class="help-block">En heures équivalent TD</span>
@@ -338,6 +338,7 @@ oTable = $('#enseignants-admin').DataTable( {
                   null,
                   null,
                   null,
+                  {'bSortable': false },
                   {'bSortable': false },
                   {'bSortable': false },
               ]
