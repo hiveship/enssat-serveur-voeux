@@ -56,6 +56,15 @@ class Decharge_model extends CI_Model
 		return $query -> result_array ();
 	}
 
+	public function update_motif ( $id, $motif )
+	{
+		
+		$this -> db -> where ( 'id', $id );
+		$this -> db -> update ( self::TABLE_NAME, array ( 
+				'motif' => $motif 
+		) );
+	}
+
 }
 
 ?>

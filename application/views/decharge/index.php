@@ -39,28 +39,88 @@
 									
 									echo form_open ( 'Decharge_controller/delete/' . $value ['id'], $params );
 									
-									$data = array ( 
+									$supprimer = array ( 
 											
 											'type' => 'textarea', 
 											'content' => 'Supprimer', 
 											'class' => 'btn btn-primary btn-xs' 
 									);
 									
-									echo form_button ( $data );
+									echo form_button ( $supprimer );
 									echo form_close ();
-									?>
+									echo "<c/enter>";
+									echo "</td>";
 									
-								
-								<?php
+									echo "<td>";
+									echo "<center>";
+									?>
+									<form class='form-horizontal' action='Decharge_controller/get_motif/'.$value['id'] >
+
+
+									<button id='motif' type='button' content='Motif' class='btn btn-primary btn-xs'
+										data-toggle='modal' data-target='#motifModal' value="<?php $value['id'] ?>"
+										onClick="ajax_get_motif('<?php echo $value['id']; ?>')">Motif</button>
+									
+									<?php
+									echo "</form";
 									echo "<c/enter>";
 									echo "</td>";
 									echo "</tr>";
 								}
 								
 								?>
-								
-
+		
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							</tbody>
+
 						</table>
 					</div>
 					<div class="panel-footer">
@@ -73,6 +133,7 @@
 
 			</div>
 
+			<!--  MODALE CREATION DECHARGE -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -85,7 +146,7 @@
 						</div>
 						<div class="modal-body">
 							<!-- Formulaire création d'une décharge -->
-					<?php echo form_open('Decharge_controller/create','class="form-horizontal"'); ?>
+					<?php echo form_open('decharge/create','class="form-horizontal"'); ?>
 							<fieldset>
 								<div class="form-group">
 									<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
@@ -96,7 +157,7 @@
 								<div class="form-group">
 									<label class="col-md-4 control-label" for="password-actuel">Motif</label>
 									<div class="col-md-4">
-								<?php echo form_textarea( 'motif', '', 'id="motif" placeholder="" class="form-control input-md"' ); ?>
+								<?php echo form_textarea( 'motif', '', 'id="motif" placeholder="" class="form-control input-md" ' ); ?>
 								</div>
 								</div>
 
@@ -113,28 +174,80 @@
 			</div>
 
 
+			<!--  MODAL APERCU / MODIFICATION MODALE-->
+			<div class="modal fade" id="motifModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h3 class="modal-title" id="exampleModalLabel">Motif de votre décharge</h3>
+						</div>
+						<div class="modal-body">
+
+					<?php
+					echo form_open ( 'decharge/update_motif', 'class="form-horizontal" id="motif_id"' );
+					?>
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="password-actuel">Motif</label>
+								<div class="col-md-4">
+								<?php echo form_textarea( 'motif', '', 'id="motif_txt" placeholder="" class="form-control input-md"' ); ?>
+								</div>
+							</div>
+
+
+							</fieldset>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+							<?php
+							echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
+							echo form_close ();
+							?>
+					</div>
+					</div>
+				</div>
+			</div>
+
+
 			<style>
 .panel-body {
 	padding: 0px;
 }
 
-.panel-body {
-	padding: 10;
-}
-
 .container {
-	width: 350px;
-}
-
-.container {
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: 200px;
-	margin-left: auto;
+	width: 400px;
 }
 </style>
 			<script type="text/javascript">
 function validate(){
 	   return confirm("Etes vous sure de vouloir supprimer cette décharge ?");
 }
-</script>
+
+function ajax_get_motif(id)
+		{
+		    $.ajax
+		    ({
+		        url: <?php echo "'".site_url("decharge/ajax_get_motif")."'";?>,
+		        type: 'post',
+		        data: {"id": id},
+		        success: function(result)
+		        {
+			        tab = JSON.parse(result)[0];
+		            $("#motif_id").get(0).setAttribute('action', '<?php echo site_url("decharge/update_motif");?>'+'/'+tab.id); //this works
+				        
+		           // Populate the form using the returned content
+		        	$("#motif_txt").val(tab.motif); // test
+
+		        }
+		    });
+
+		}
+
+
+
+		</script>
