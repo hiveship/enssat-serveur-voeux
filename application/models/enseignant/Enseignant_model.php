@@ -169,11 +169,16 @@ class Enseignant_model extends CI_Model
 	
 	public function delete ( $login )
 	{
-		$this -> db -> where( 'enseignant', $login );
-		$this -> db -> update( 'contenu', array ( 
-			
-				'enseignant' => null 
-		) );
+		$this -> load -> model( 'cours/Cours_model' );
+		$this -> load -> model( 'cours/Module_model' );
+		$this -> load -> model( 'decharge/Decharge_model' );
+		
+		$this -> Cours_model -> desinscrire_enseignant_tout( $login );
+		$this -> Module_model -> desinscrire_responsable_tout( $login );
+		$this -> Decharge_model -> delete_all( $login );
+		
+		// $this -> db -> where( 'login', $login );
+		
 		$this -> db -> delete( self::TABLE_NAME, array ( 
 			
 				'login' => $login 
