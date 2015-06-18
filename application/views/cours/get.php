@@ -103,6 +103,12 @@ foreach ( $modules as $module ) {
 						</tr>
 					</thead>
 					<tbody>
+
+
+
+						
+					
+					
 <?php
 $i = 1;
 foreach ( $modules as $module ) {

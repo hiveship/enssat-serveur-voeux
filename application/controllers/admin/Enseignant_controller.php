@@ -177,6 +177,26 @@ class Enseignant_controller extends Admin_controller
 		redirect ( 'admin/enseignants', 'refresh' );
 	}
 
+	public function inscrire ( $login, $module, $cours = null )
+	{
+		if ( $cours == null ) {
+			if ( ! $this -> Module_model -> est_libre ( $module ) ) {
+				flash_error ( "il y a déja un responsable ou le module n'exite pas" );
+				redirect ( 'admin/Module_controller', 'auto' ); // TODO renomer avec le nom de la bonne route
+			}
+			$this -> Module_model -> inscrire_responsable ( $module, $login );
+		} else {
+			$cours = rawurldecode ( $cours );
+			if ( ! $this -> Cours_model -> est_libre ( $module, $cours ) ) {
+				flash_error ( "cours occupé ou non existant " . $cours );
+				redirect ( 'admin/Module_controller', 'auto' ); // TODO renomer avec le nom de la bonne route
+			}
+			$this -> Cours_model -> inscrire_enseignant ( $module, $cours, $login );
+			// TODO un flash_success de confirmation ?
+		}
+		redirect ( 'admin/Module_controller', 'auto' ); // TODO renomer avec le nom de la bonne route
+	}
+
 	public function retirer ( $login, $module, $cours = null )
 	{
 		if ( $cours == null ) {

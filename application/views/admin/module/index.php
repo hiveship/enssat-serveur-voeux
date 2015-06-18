@@ -1,6 +1,8 @@
 <div class="container">
-	<a href="<?php echo site_url("admin/module/create") ?>" class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	<a href="<?php echo site_url("admin/module/create") ?>"
+		class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
+		Module
 	</a> <br></br>
 
 	<div class="row">
@@ -10,7 +12,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults' class='table table-hover table-striped'>
+				<table id='tableSearchResults'
+					class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -51,33 +54,33 @@ foreach ( $modules as $module ) {
 	}
 	
 	echo "<td><center>";
-	echo form_open( site_url( 'admin/module/edit/' . $module ['id'] ) );
+	echo form_open ( site_url ( 'admin/module/edit/' . $module ['id'] ) );
 	$data = array ( 
-		
+			
 			'type' => 'submit', 
 			'content' => 'Modifier', 
 			'class' => 'btn btn-primary btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	
 	echo "</center></td>";
 	echo "<td><center>";
 	
 	$params = array ( 
-		
+			
 			'onsubmit' => 'return(validate(this));' 
 	);
 	
-	echo form_open( 'admin/module/delete/' . $module ['id'], $params );
+	echo form_open ( 'admin/module/delete/' . $module ['id'], $params );
 	$data = array ( 
-		
+			
 			'type' => 'submit', 
 			'content' => 'Supprimer', 
 			'class' => 'btn btn-danger btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	echo "</center></td>";
 	
 	echo "</tr>";
@@ -113,26 +116,31 @@ foreach ( $modules as $module ) {
 		}
 		echo "<td>";
 		
-		echo "<a href='" . site_url( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
+		echo "<a href='" . site_url ( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
 			 class='btn btn-primary btn-xs'>Modifier partie</a>";
 		echo "</td>";
 		echo "<td>";
-		echo form_open( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
+		
+		echo "<button class='btn btn-primary btn-xs' id='#boutonModal' data-toggle='modal' data-target='#boutonModal'> BOUTON <//button>";
+		echo "</td>";
+		
+		echo "<td>";
+		echo form_open ( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
 		$data = array ( 
-			
+				
 				'type' => 'submit', 
 				'content' => 'Supprimer', 
 				'class' => 'btn btn-danger btn-xs' 
 		);
-		echo form_button( $data );
-		echo form_close();
+		echo form_button ( $data );
+		echo form_close ();
 		
 		echo "</td>";
 		echo "</tr>";
 	}
 	
 	echo "</table>";
-	echo "<a href='" . site_url( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
+	echo "<a href='" . site_url ( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
 	echo "</div>";
 	echo "</td>";
 	
@@ -148,6 +156,49 @@ foreach ( $modules as $module ) {
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="boutonModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="exampleModalLabel">Ajout d'une décharge</h3>
+			</div>
+			<div class="modal-body">
+				<!-- Formulaire-->
+					<?php echo form_open('Decharge_controller/create','class="form-horizontal"'); //TODO gerer les prof voir: decharge/index?>
+							<fieldset>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
+						<div class="col-md-4">
+								<?php echo form_input( 'decharge', '', 'id="decharge" placeholder="" class="form-control input-md"' ); ?>
+								</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="password-actuel">Motif</label>
+						<div class="col-md-4">
+								<?php echo form_textarea( 'motif', '', 'id="motif" placeholder="" class="form-control input-md"' ); ?>
+								</div>
+					</div>
+
+				</fieldset>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+							<?php echo form_submit('mysubmit', 'Ajouter','class="btn btn-primary" type="button"');?>
+						<?php echo form_close();?>
+					</div>
+		</div>
+	</div>
+</div>
+
+
+
 <script type="text/javascript">
 function validate(){
 	   return confirm("voulez vous supprimer supprimer ce module ?");
