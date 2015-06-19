@@ -56,6 +56,38 @@
 								
 								
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								</tr>
 								<tr>
 									</td>
@@ -78,6 +110,9 @@
 						data-toggle="modal" data-target="#editMoi" data-toggle="modal" data-whatever="@mdo">
 						<i class="fa fa-envelope-o"></i> Modification du profil
 					</button>
+
+					<a class="btn btn-primary pull-right"
+						href="http://localhost/projet/enssat-serveur-voeux/index.php/decharges">Vos décharges</a>
 				</div>
 			</div>
 		</div>
