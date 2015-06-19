@@ -1,4 +1,3 @@
-
 <div class="container">
 
 	<button type="button" class="btn btn-primary pull-right" data-toggle="modal"
@@ -28,7 +27,7 @@
 								
 								<?php
 								$params = array ( 
-										
+									
 										'onsubmit' => 'return(validate(this));' 
 								);
 								
@@ -53,17 +52,10 @@
 									echo "<td>";
 									echo "<center>";
 									
-									echo form_open ( 'admin/Decharge_controller/delete/' . $value ['id'], $params, 'class="form-horizontal"' );
-									
-									$data = array ( 
-											
-											'type' => 'textarea', 
-											'content' => 'Supprimer', 
-											'class' => 'btn btn-primary btn-xs' 
-									);
-									
-									echo form_button ( $data );
-									echo form_close ();
+									?>
+									<button id='suppr' type='button' content='Supprimer' class='btn btn-primary btn-xs'
+									value="<?php $value['id'] ?>" onClick="validate('<?php echo $value['id']; ?>')">Supprimer</button>
+									<?php
 									
 									echo "</td>";
 									echo "</tr>";
@@ -93,7 +85,7 @@
 									<div class="modal-body">
 									
 									<?php
-									echo form_open ( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
+									echo form_open( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
 									
 									?>
 
@@ -149,16 +141,28 @@
 
 						</style>
 						<script type="text/javascript">
-function validate(){
-	   return confirm("Etes vous sure de vouloir supprimer cette décharge ?");
-}
-
+						function validate(result) {
+						    swal({
+						        title: "Confirmer la suppression ?",
+						        text: "Action irréversible.",
+						        type: "warning",
+						        showCancelButton: true,
+						        confirmButtonColor: "#e67e22",
+						        confirmButtonText:"Supprimer",
+						        cancelButtonText:"Annuler",
+						        
+						        closeOnConfirm: false
+						    }, function () {
+						    	$.ajax({
+						    		url: <?php echo "'".site_url("/decharges/delete")."'";?>+'/'+result,
+						    	});
+						    	window.location.reload()
+						    							    });
+						};
 $(".select2-enseignant").select2({
 	  placeholder: "Select a state",
 	  width: 'resolve'
 	});
-
 $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-
    
 </script>

@@ -70,7 +70,6 @@ class Enseignant_model extends CI_Model
 		$this -> db -> select( 'nom, prenom, login' );
 		$query = $this -> db -> get( self::TABLE_NAME );
 		return $query -> result_array();
-	
 	}
 
 	public function authenticate ( $login, $password )
@@ -79,11 +78,15 @@ class Enseignant_model extends CI_Model
 			
 				'login' => $login 
 		) );
-		$securePassword = $query -> result()[0] -> pwd;
-		if ( $this -> verify_password( $password, $securePassword ) ) { // Only 1 row cause login is unique.
-			$me = $this -> create_user_entity( $query -> row() );
-			$me ['password'] = $securePassword; // Save the secure password in the entity.
-			return $me;
+		if ( $query -> num_rows() == 1 ) {
+			$securePassword = $query -> result()[0] -> pwd;
+			if ( $this -> verify_password( $password, $securePassword ) ) { // Only 1 row cause login is unique.
+				$me = $this -> create_user_entity( $query -> row() );
+				$me ['password'] = $securePassword; // Save the secure password in the entity.
+				return $me;
+			} else {
+				return FALSE;
+			}
 		} else {
 			return FALSE;
 		}

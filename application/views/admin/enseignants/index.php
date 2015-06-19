@@ -398,7 +398,7 @@ function validate(result) {
     	$.ajax({
     		url: <?php echo "'".site_url("/admin/enseignants/delete")."'";?>+'/'+result,
     	});
-	    location.reload();
-    });
+    	window.location.reload()
+    	    });
 }
 </script>
