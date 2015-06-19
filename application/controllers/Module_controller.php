@@ -19,10 +19,10 @@ class Module_controller extends Application_controller
 		foreach ( $modules as $module ) {
 			array_push( $cours, $this -> Cours_model -> get( $module ['id'] ) );
 		}
-		$data = array (
+		$data = array ( 
 			
-				'cours' => $cours,
-				'modules' => $modules
+				'cours' => $cours, 
+				'modules' => $modules 
 		);
 		$this -> load -> template( 'modules/index', $data );
 	}
@@ -32,10 +32,10 @@ class Module_controller extends Application_controller
 		$this -> check_ID_parameter( $ID );
 		$modules [0] = $this -> Module_model -> get( $ID );
 		$cours [0] = $this -> Cours_model -> get( $ID );
-		$data = array (
+		$data = array ( 
 			
-				'modules' => $modules,
-				'cours' => $cours
+				'modules' => $modules, 
+				'cours' => $cours 
 		);
 		$this -> load -> template( 'modules/get', $data );
 	}

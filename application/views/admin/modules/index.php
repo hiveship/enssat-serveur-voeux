@@ -1,8 +1,6 @@
 <div class="container">
-	<a href="<?php echo site_url("admin/module/create") ?>"
-		class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
-		Module
+	<a href="<?php echo site_url("admin/module/create") ?>" class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
 	</a> <br></br>
 
 	<div class="row">
@@ -12,8 +10,7 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults'
-					class='table table-hover table-striped'>
+				<table id='tableSearchResults' class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -55,29 +52,28 @@ foreach ( $modules as $module ) {
 	
 	?>
 			<td>
-							<button type="button" class="btn btn-primary btn-xs"
-								data-toggle="modal" data-target="#ajoutDecharge"
-								onClick="ajax_change_enseignant('<?php echo $module['id']; ?>')">
-								Changer enseignant</button>
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
+								data-target="#ajoutDecharge"
+								onClick="ajax_change_enseignant('<?php echo $module['id']; ?>')">Changer enseignant</button>
 						</td>
 	<?php
 	
 	echo "<td><center>";
-	echo form_open ( site_url ( 'admin/module/edit/' . $module ['id'] ) );
+	echo form_open( site_url( 'admin/module/edit/' . $module ['id'] ) );
 	$data = array ( 
-			
+		
 			'type' => 'submit', 
 			'content' => 'Modifier', 
 			'class' => 'btn btn-primary btn-xs' 
 	);
-	echo form_button ( $data );
-	echo form_close ();
+	echo form_button( $data );
+	echo form_close();
 	
 	echo "</center></td>";
 	echo "<td><center>";
 	
 	$params = array ( 
-			
+		
 			'onsubmit' => 'return(validate(this));' 
 	);
 	?>
@@ -94,7 +90,7 @@ foreach ( $modules as $module ) {
 	// );
 	// echo form_button( $data );
 	// echo form_close();
-
+	
 	echo "</center></td>";
 	
 	echo "</tr>";
@@ -131,20 +127,19 @@ foreach ( $modules as $module ) {
 		
 		?>
 		<td>
-							<button type="button" class="btn btn-primary btn-xs"
-								data-toggle="modal" data-target="#ajoutDecharge"
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
+								data-target="#ajoutDecharge"
 								onClick="ajax_change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
 								Changer enseignant</button>
 						</td>
 				<?php
 		echo "<td>";
-		echo "<a href='" . site_url ( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
+		echo "<a href='" . site_url( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
 			 class='btn btn-primary btn-xs'>Modifier partie</a>";
 		echo "</td>";
 		echo "<td>";
 		// echo form_open( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
 		// $data = array (
-
 		
 		// 'type' => 'submit',
 		// 'content' => 'Supprimer',
@@ -161,7 +156,7 @@ foreach ( $modules as $module ) {
 	}
 	
 	echo "</table>";
-	echo "<a href='" . site_url ( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
+	echo "<a href='" . site_url( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
 	echo "</div>";
 	echo "</td>";
 	
@@ -234,7 +229,7 @@ function validate(result) {
 			<div class="modal-body">
 									
 									<?php
-									echo form_open ( 'admin/Decharge_controller/create', 'class="form-horizontal" id="change"' );
+									echo form_open( 'admin/Decharge_controller/create', 'class="form-horizontal" id="change"' );
 									
 									?>
 
@@ -247,7 +242,7 @@ function validate(result) {
 							<?php
 							foreach ( $enseignant as $info ) {
 								echo '
-							<option value="' . $info ['login'] . '">' . ucfirst ( $info ['prenom'] ) . ' ' . mb_strtoupper ( $info ['nom'] ) . '</option>';
+							<option value="' . $info ['login'] . '">' . ucfirst( $info ['prenom'] ) . ' ' . mb_strtoupper( $info ['nom'] ) . '</option>';
 							}
 							?>
 							</select>

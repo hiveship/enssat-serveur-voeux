@@ -2,8 +2,7 @@
 </body>
 <footer>
 
-	<script
-		src="<?php echo base_url("assets/js/tests/gremlins.min.js"); ?>"></script>
+	<script src="<?php echo base_url("assets/js/tests/gremlins.min.js"); ?>"></script>
 
 	<script>
 	//decommenter pour lacher la horde

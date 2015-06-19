@@ -15,8 +15,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="row-fluid">
-						<table
-							class="table table-condensed table-responsive table-user-information center">
+						<table class="table table-condensed table-responsive table-user-information center">
 							<tbody>
 								
 								<?php
@@ -31,18 +30,16 @@
 									echo "<td><center>";
 									?>
 									
-									<button id='suppr' type='button' content='Supprimer'
-									class='btn btn-primary btn-xs' value="<?php $value['id'] ?>"
-									onClick="validate('<?php echo $value['id']; ?>')">Supprimer</button>
+									<button id='suppr' type='button' content='Supprimer' class='btn btn-primary btn-xs'
+									value="<?php $value['id'] ?>" onClick="validate('<?php echo $value['id']; ?>')">Supprimer</button>
 									
 									<?php
 									echo "</center></td>";
 									echo "<td><center>";
 									?>
 
-									<button id='motif' type='button' content='Motif'
-									class='btn btn-primary btn-xs' data-toggle='modal'
-									data-target='#motifModal' value="<?php $value['id'] ?>"
+									<button id='motif' type='button' content='Motif' class='btn btn-primary btn-xs'
+									data-toggle='modal' data-target='#motifModal' value="<?php $value['id'] ?>"
 									onClick="ajax_get_motif('<?php echo $value['id']; ?>')">Motif</button>
 									
 									<?php
@@ -57,28 +54,25 @@
 						</table>
 					</div>
 					<div class="panel-footer">
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#ajoutDecharge">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ajoutDecharge">
 							<i class="fa fa-plus"></i> Ajouter une décharge
 						</button>
-					
+
 					</div>
 				</div>
 
 			</div>
 
 			<!--  MODALE CREATION DECHARGE -->
-			<div class="modal fade" id="ajoutDecharge" tabindex="-1"
-				role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade" id="ajoutDecharge" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h3 class="modal-title" id="exampleModalLabel">Ajout d'une
-								décharge</h3>
+							<h3 class="modal-title" id="exampleModalLabel">Ajout d'une décharge</h3>
 						</div>
 						<div class="modal-body">
 							<!-- Formulaire création d'une décharge -->
@@ -101,8 +95,7 @@
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Annuler</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 							<?php echo form_submit('mysubmit', 'Ajouter','class="btn btn-primary" type="button"');?>
 						<?php echo form_close();?>
 					</div>
@@ -112,22 +105,20 @@
 
 
 			<!--  MODAL APERCU / MODIFICATION MODALE-->
-			<div class="modal fade" id="motifModal" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade" id="motifModal" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h3 class="modal-title" id="exampleModalLabel">Motif de votre
-								décharge</h3>
+							<h3 class="modal-title" id="exampleModalLabel">Motif de votre décharge</h3>
 						</div>
 						<div class="modal-body">
 
 					<?php
-					echo form_open ( 'decharges/update_motif', 'class="form-horizontal" id="motif_id"' );
+					echo form_open( 'decharges/update_motif', 'class="form-horizontal" id="motif_id"' );
 					?>
 							
 							<div class="form-group">
@@ -141,11 +132,10 @@
 
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Annuler</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 							<?php
-							echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
-							echo form_close ();
+							echo form_submit( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
+							echo form_close();
 							?>
 					</div>
 					</div>
