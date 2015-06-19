@@ -56,7 +56,11 @@
 					<div class="panel-footer">
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ajoutDecharge">
 							<i class="fa fa-plus"></i> Ajouter une décharge
-					
+						</button>
+						<a class="btn btn-primary pull-right"
+							href="http://localhost/projet/enssat-serveur-voeux/index.php/CSV_controller/create_csv">Export
+							CSV</a>
+
 					</div>
 				</div>
 
@@ -117,7 +121,7 @@
 						<div class="modal-body">
 
 					<?php
-					echo form_open( 'decharges/update_motif', 'class="form-horizontal" id="motif_id"' );
+					echo form_open ( 'decharges/update_motif', 'class="form-horizontal" id="motif_id"' );
 					?>
 							
 							<div class="form-group">
@@ -133,8 +137,8 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 							<?php
-							echo form_submit( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
-							echo form_close();
+							echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
+							echo form_close ();
 							?>
 					</div>
 					</div>

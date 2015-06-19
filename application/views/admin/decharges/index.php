@@ -27,7 +27,7 @@
 								
 								<?php
 								$params = array ( 
-									
+										
 										'onsubmit' => 'return(validate(this));' 
 								);
 								
@@ -85,7 +85,7 @@
 									<div class="modal-body">
 									
 									<?php
-									echo form_open( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
+									echo form_open ( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
 									
 									?>
 
@@ -93,9 +93,9 @@
 
 											<div class="form-group">
 												<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label>
-
-												<select name="choix_enseignant" id="choix_enseignant"
-													class="select2-enseignant form form-control">
+												<div class="col-md-4">
+													<select name="choix_enseignant" id="choix_enseignant"
+														class="select2-enseignant form form-control input-md">
 																	<?php
 																	
 																	foreach ( $enseignant as $info ) {
@@ -105,7 +105,7 @@
 																	}
 																	?>
 												</select>
-
+												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
@@ -118,7 +118,7 @@
 												<label class="col-md-4 control-label" for="password-actuel">Motif</label>
 												<div class="col-md-4">
 								<?php echo form_textarea( 'motif', '', 'id="motif" placeholder="" class="form-control input-md"' ); ?>
-								</div>
+											</div>
 											</div>
 
 										</fieldset>
@@ -138,8 +138,6 @@
 	width: 1000px;
 }
 </style>
-
-						</style>
 						<script type="text/javascript">
 						function validate(result) {
 						    swal({

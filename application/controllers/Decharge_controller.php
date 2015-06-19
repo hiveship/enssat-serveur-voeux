@@ -1,14 +1,17 @@
 <?php
 
 include "Application_controller.php";
+
 class Decharge_controller extends Application_controller
 {
+
 	public function __construct ()
 	{
 		parent::__construct ();
-		$this -> load -> model ( 'decharge/Decharge_model' );
-		$this -> load -> model ( 'enseignant/Enseignant_model' );
+		$this -> load -> model ( 'Decharge_model' );
+		$this -> load -> model ( 'Enseignant_model' );
 	}
+
 	/**
 	 * Récupère les ou la décharge(s) de l'utilisateur actuellement connecté.
 	 */
@@ -18,8 +21,9 @@ class Decharge_controller extends Application_controller
 				
 				'decharge' => $this -> Decharge_model -> get ( $this -> session -> userdata ( 'me' )['login'] ) 
 		);
-		$this -> load -> template ( 'decharge/index', $data );
+		$this -> load -> template ( 'decharges/index', $data );
 	}
+
 	/**
 	 * Ajoute une décharge, c'est la personne connectée qui s'ajoute une décharge
 	 */
@@ -35,8 +39,9 @@ class Decharge_controller extends Application_controller
 			$new_motif = $this -> input -> post ( 'motif' );
 			$this -> Decharge_model -> add ( $login, $new_decharge, $new_motif );
 		}
-		redirect ( site_url ( 'decharge/index' ) );
+		redirect ( site_url ( 'decharges' ) );
 	}
+
 	public function update_motif ( $id = null )
 	{
 		if ( $id != null ) {
@@ -45,8 +50,9 @@ class Decharge_controller extends Application_controller
 		
 		echo $id . "    " . $motif;
 		$this -> Decharge_model -> update_motif ( $id, $motif );
-		redirect ( site_url ( 'decharge/index' ) );
+		redirect ( site_url ( 'decharges' ) );
 	}
+
 	/**
 	 * Supprime une décharge
 	 */
@@ -59,11 +65,12 @@ class Decharge_controller extends Application_controller
 		
 		if ( $login == $enseignant_login ) {
 			$this -> Decharge_model -> delete ( $id );
-			redirect ( site_url ( 'decharge/index' ) );
+			redirect ( site_url ( 'decharges' ) );
 		} else {
 			flash_error ( "Non mais oh, on ajoute pas de décharge à ses petits camarade!" );
 		}
 	}
+
 	public function ajax_get_motif ()
 	{
 		$id = $this -> input -> post ( 'id' );
@@ -71,6 +78,7 @@ class Decharge_controller extends Application_controller
 		$decharge = $this -> Decharge_model -> get_from_id ( $id );
 		echo json_encode ( $decharge );
 	}
+
 }
 
 ?>

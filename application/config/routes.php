@@ -87,5 +87,5 @@ $route ['decharges/ajax_get_motif'] = "Decharge_controller/ajax_get_motif";
 $route ['decharges/update_motif/(:any)'] = "Decharge_controller/update_motif/$1";
 $route ['decharges/delete/(:any)'] = "Decharge_controller/delete/$1";
 
-
+$route ['csv/download'] = "CSV_controller/create_csv";
 
