@@ -5,44 +5,40 @@
 		<div class="container-fluid">
 
 			<div class="navbar-header">
-				<a id="enssat" class="navbar-brand" href="<?php echo site_url();?>">ENSSAT</a>
+				<a id="enssat" class="navbar-brand"
+					href="<?php echo site_url("enseignants/cours_de/".$this->session->userdata('me')['login']);?>">ENSSAT</a>
 			</div>
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 				<?php if ($this->session->userdata('me')['administrateur']) {?>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><i class="fa fa-cogs"></i> Administration<span
-							class="caret"></span></a>
+									<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs"></i>
+							Administration<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="<?php echo site_url("admin/cours");?>">Gestion des
-									cours</a></li>
+							<li><a href="<?php echo site_url("admin/cours");?>">Gestion des cours</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="<?php echo site_url("admin/decharges");?>">Gestion
-									des décharges</a></li>
+							<li><a href="<?php echo site_url("admin/decharges");?>">Gestion des décharges</a></li>
 						</ul></li>
 						<?php }?>
 					<li><a
 						href="<?php echo site_url("enseignants/cours_de/".$this->session->userdata('me')['login']);?>"
 						value="mescours"><i class="fa fa-calendar-o"></i> Mes Cours</a></li>
-					<li><a href="<?php echo site_url("cours");?>" value="cours"><i
-							class="fa fa-university"></i> Voeux</a></li>
+					<li><a href="<?php echo site_url("cours");?>" value="cours"><i class="fa fa-university"></i>
+							Voeux</a></li>
 											<?php if ($this->session->userdata('me')['administrateur']) {?>
-											<li><a href="<?php echo site_url("admin/enseignants");?>"
-						value="enseignants"><i class="fa fa-male"></i> Enseignants</a></li>
+											<li><a href="<?php echo site_url("admin/enseignants");?>" value="enseignants"><i
+							class="fa fa-male"></i> Enseignants</a></li>
 							<?php } else {?>
-									<li><a href="<?php echo site_url("enseignants");?>"
-						value="enseignants"><i class="fa fa-male"></i> Enseignants</a></li>
+									<li><a href="<?php echo site_url("enseignants");?>" value="enseignants"><i
+							class="fa fa-male"></i> Enseignants</a></li>
 							<?php }?>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a value="moncompte"
-						href="<?php echo site_url("enseignants/edit") ?>"><i
+					<li><a value="moncompte" href="<?php echo site_url("enseignants/edit") ?>"><i
 							class="fa fa-user"></i> Mon Compte (<?php echo $this->session->userdata('me')['login']?>)</a></li>
-					<li><a href="<?php echo site_url('logout') ?>" value="deconnexion"><i
-							class="fa fa-power-off"></i> Déconnexion</a></li>
+					<li><a href="<?php echo site_url('logout') ?>" value="deconnexion"><i class="fa fa-power-off"></i>
+							Déconnexion</a></li>
 				</ul>
 			</div>
 		</div>

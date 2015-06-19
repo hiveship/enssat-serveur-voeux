@@ -68,16 +68,20 @@ foreach ( $modules as $module ) {
 		
 			'onsubmit' => 'return(validate(this));' 
 	);
+	?>
+			<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
+							value="<?php $module ['id'] ?>" onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
+					<?php
 	
-	echo form_open( 'admin/module/delete/' . $module ['id'], $params );
-	$data = array ( 
-		
-			'type' => 'submit', 
-			'content' => 'Supprimer', 
-			'class' => 'btn btn-danger btn-xs' 
-	);
-	echo form_button( $data );
-	echo form_close();
+	// echo form_open( 'admin/module/delete/' . $module ['id'], $params );
+	// $data = array (
+	
+	// 'type' => 'submit',
+	// 'content' => 'Supprimer',
+	// 'class' => 'btn btn-danger btn-xs'
+	// );
+	// echo form_button( $data );
+	// echo form_close();
 	echo "</center></td>";
 	
 	echo "</tr>";
@@ -117,16 +121,19 @@ foreach ( $modules as $module ) {
 			 class='btn btn-primary btn-xs'>Modifier partie</a>";
 		echo "</td>";
 		echo "<td>";
-		echo form_open( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
-		$data = array ( 
-			
-				'type' => 'submit', 
-				'content' => 'Supprimer', 
-				'class' => 'btn btn-danger btn-xs' 
-		);
-		echo form_button( $data );
-		echo form_close();
+		// echo form_open( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
+		// $data = array (
 		
+		// 'type' => 'submit',
+		// 'content' => 'Supprimer',
+		// 'class' => 'btn btn-danger btn-xs'
+		// );
+		// echo form_button( $data );
+		// echo form_close();
+		?>
+		<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
+							value="<?php $module ['id'] ?>" onClick="validate_partie('<?php echo $module ['id']; ?>')">Supprimer</button>
+				<?php
 		echo "</td>";
 		echo "</tr>";
 	}
@@ -148,3 +155,41 @@ foreach ( $modules as $module ) {
 		</div>
 	</div>
 </div>
+<script>
+function validate_partie(result) {
+    swal({
+        title: "Confirmer la suppression ?",
+        text: "Cela supprimera toutes ses décharges et rendra libre l'enssemble des cours occupé/gérés.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#e67e22",
+        confirmButtonText:"Supprimer",
+        cancelButtonText:"Annuler",
+        
+        closeOnConfirm: false
+    }, function () {
+    	$.ajax({
+    		url: <?php echo "'".site_url("admin/cours/delete")."'";?>+'/'+result,
+    	});
+    	window.location.reload()
+    	    });
+};
+function validate(result) {
+    swal({
+        title: "Confirmer la suppression ?",
+        text: "Cela supprimera toutes ses décharges et rendra libre l'enssemble des cours occupé/gérés.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#e67e22",
+        confirmButtonText:"Supprimer",
+        cancelButtonText:"Annuler",
+        
+        closeOnConfirm: false
+    }, function () {
+    	$.ajax({
+    		url: <?php echo "'".site_url("admin/module/delete")."'";?>+'/'+result,
+    	});
+    	window.location.reload()
+    	    });
+}
+</script>
