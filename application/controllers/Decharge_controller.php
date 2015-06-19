@@ -1,17 +1,14 @@
 <?php
 
 include "Application_controller.php";
-
 class Decharge_controller extends Application_controller
 {
-
 	public function __construct ()
 	{
 		parent::__construct ();
 		$this -> load -> model ( 'decharge/Decharge_model' );
 		$this -> load -> model ( 'enseignant/Enseignant_model' );
 	}
-
 	/**
 	 * Récupère les ou la décharge(s) de l'utilisateur actuellement connecté.
 	 */
@@ -23,7 +20,6 @@ class Decharge_controller extends Application_controller
 		);
 		$this -> load -> template ( 'decharge/index', $data );
 	}
-
 	/**
 	 * Ajoute une décharge, c'est la personne connectée qui s'ajoute une décharge
 	 */
@@ -41,7 +37,6 @@ class Decharge_controller extends Application_controller
 		}
 		redirect ( site_url ( 'decharge/index' ) );
 	}
-
 	public function update_motif ( $id = null )
 	{
 		if ( $id != null ) {
@@ -52,7 +47,6 @@ class Decharge_controller extends Application_controller
 		$this -> Decharge_model -> update_motif ( $id, $motif );
 		redirect ( site_url ( 'decharge/index' ) );
 	}
-
 	/**
 	 * Supprime une décharge
 	 */
@@ -70,7 +64,6 @@ class Decharge_controller extends Application_controller
 			flash_error ( "Non mais oh, on ajoute pas de décharge à ses petits camarade!" );
 		}
 	}
-
 	public function ajax_get_motif ()
 	{
 		$id = $this -> input -> post ( 'id' );
@@ -78,7 +71,6 @@ class Decharge_controller extends Application_controller
 		$decharge = $this -> Decharge_model -> get_from_id ( $id );
 		echo json_encode ( $decharge );
 	}
-
 }
 
 ?>

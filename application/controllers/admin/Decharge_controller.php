@@ -1,8 +1,8 @@
 <?php
 $dir = dirname ( __FILE__ );
-include ( $dir . '/Admin_controller.php' );
+include ( $dir . '/../Application_controller.php' );
 
-class Decharge_controller extends Admin_controller
+class Decharge_controller extends Application_controller
 {
 
 	public function __construct ()
