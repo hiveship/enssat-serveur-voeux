@@ -11,11 +11,23 @@ class Enseignant_controller extends Application_controller
 		$this -> load -> model( 'Enseignant_model' );
 		$this -> load -> model( 'Cours_model' );
 		$this -> load -> model( 'Module_model' );
+		$this -> load -> model( 'Decharge_model' );
+	
 	}
 
 	public function edit ()
 	{
-		$this -> load -> template( 'enseignants/edit', $this -> session -> userdata( 'me' ) );
+		$data = array ( 
+			
+				'me' => $this -> session -> userdata( 'me' ), 
+				'total_decharges' => $this -> Decharge_model -> get_sum( $this -> session -> userdata( 'me' )['login'] ), 
+				'enseigne' => $this -> Enseignant_model -> get_sum_heures( $this -> session -> userdata( 'me' )['login'] ), 
+				'sum_cm' => $this -> Enseignant_model -> get_sum_cm( $this -> session -> userdata( 'me' )['login'] ), 
+				'sum_td' => $this -> Enseignant_model -> get_sum_td( $this -> session -> userdata( 'me' )['login'] ), 
+				'sum_tp_projet' => $this -> Enseignant_model -> get_sum_tp( $this -> session -> userdata( 'me' )['login'] ), 
+				'sum_ds' => $this -> Enseignant_model -> get_sum_ds( $this -> session -> userdata( 'me' )['login'] ) 
+		);
+		$this -> load -> template( 'enseignants/edit', $data );
 	}
 
 	public function index ()
@@ -25,6 +37,12 @@ class Enseignant_controller extends Application_controller
 				'enseignants' => $this -> Enseignant_model -> get_all() 
 		);
 		$this -> load -> template( 'enseignants/index', $data );
+	}
+
+	public function get ()
+	{
+		$login = $this -> session -> userdata( 'me' )['login'];
+		echo json_encode( $this -> Enseignant_model -> get( $login ) );
 	}
 
 	/**
@@ -63,10 +81,7 @@ class Enseignant_controller extends Application_controller
 		redirect( site_url( 'enseignants/edit' ) );
 	}
 
-	/**
-	 * Change l'email de la personne connectée
-	 */
-	public function change_email ()
+	public function update ()
 	{
 		$this -> form_validation -> set_rules( 'email', 'Email', 'required|valid_email' );
 		$this -> form_validation -> set_rules( 'nom', 'Nom', 'required' );
@@ -175,15 +190,19 @@ class Enseignant_controller extends Application_controller
 
 	public function get_heures_effectue ( $login = null )
 	{
+		// if ( $login == null ) {
+		// $login = $this -> session -> userdata( 'me' )['login'];
+		// }
+		// $heures = 0;
+		// $cours = $this -> Cours_model -> get_cours_de( $login, $Id );
+		// foreach ( $cours as $value ) {
+		// $heures += $value ['hed'];
+		// }
+		// echo $heures;
 		if ( $login == null ) {
 			$login = $this -> session -> userdata( 'me' )['login'];
 		}
-		$heures = 0;
-		$cours = $this -> Cours_model -> get_cours_de( $login, $Id );
-		foreach ( $cours as $value ) {
-			$heures += $value ['hed'];
-		}
-		echo $heures;
+		echo $this -> Enseignant_model -> get_sum_heures( $login );
 	}
 
 	private function convert_heures ( $heures, $type )

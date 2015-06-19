@@ -1,22 +1,16 @@
 
 <br>
 <br>
-<div class="container">
-	<div class="row-fluid user-row">
-		<div class="span1"></div>
-		<div class="span1 dropdown-user" data-for=".cyruxx">
-			<i class="icon-chevron-down text-muted"></i>
-		</div>
-	</div>
 
-	<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+
+<div class="container" style="width: 800px">
 
 	<div class="row-fluid user-infos cyruxx">
 		<div class="span10 offset1">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h1 class="panel-title">
-						<p><?php echo mb_strtoupper($nom) . " " . ucfirst($prenom); ?></p>
+						<p><?php echo mb_strtoupper($me['nom']) . " " . ucfirst($me['prenom']); ?></p>
 					</h1>
 				</div>
 				<div class="panel-body">
@@ -25,16 +19,24 @@
 							<tbody>
 								<tr>
 									<td>Statut:</td>
-									<td><?php echo ucfirst($statut); ?></td>
+									<td><?php echo ucfirst($me['statut']); ?></td>
 								</tr>
 								<tr>
-									<td>Statutaire:</td>
-									<td><?php echo $statutaire; ?></td>
+									<td>Statutaire de base:</td>
+									<td><?php echo $me['statutaire']; ?> heures équivalent TD</td>
+								</tr>
+								<tr>
+									<td>Total heures déchargées:</td>
+									<td><?php echo $total_decharges; ?>  heures équivalent TD</td>
+								</tr>
+								<tr>
+									<td>Heures à éffectuer:</td>
+									<td><?php echo $me['statutaire'] - $total_decharges; ?>  heures équivalent TD</td>
 								</tr>
 								<tr>
 									<td>Compte actif :</td>
 									<td><?php
-									if ( $actif ) {
+									if ( $me ['actif'] ) {
 										echo "<INPUT type='checkbox' name='actif' value='actif' disabled='disabled' checked>";
 									} else {
 										echo "<INPUT type='checkbox' name='actif' value='inactif' disabled='disabled'>";
@@ -45,7 +47,7 @@
 									<td>Compte administrateur :</td>
 									<td><?php
 									
-									if ( $administrateur ) {
+									if ( $me ['administrateur'] ) {
 										echo "<INPUT type='checkbox' name='administrateur' value='administrateur' disabled='disabled' checked>";
 									} else {
 										echo "<INPUT type='checkbox' name='administrateur' value='enseignant' disabled='disabled'>";
@@ -90,11 +92,28 @@
 								
 								
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								</tr>
 								<tr>
-									</td>
 									<td>Adresse mail :</td>
-									<td><?php echo $email; ?></td>
+									<td><?php echo $me['email']; ?></td>
 								</tr>
 							</tbody>
 						</table>
@@ -110,11 +129,10 @@
 
 					<button type="button" class="btn btn-primary" onClick="populate_edit_form()"
 						data-toggle="modal" data-target="#editMoi" data-toggle="modal" data-whatever="@mdo">
-						<i class="fa fa-envelope-o"></i> Modification du profil
+						<i class="fa  fa-pencil-square-o"></i> Modification du profil
 					</button>
 
-					<a class="btn btn-primary pull-right"
-						href="http://localhost/projet/enssat-serveur-voeux/index.php/decharges">Vos décharges</a>
+					<a class="btn btn-primary pull-right" href="<?php echo site_url('decharges')?>">Vos décharges</a>
 				</div>
 			</div>
 		</div>
@@ -181,7 +199,7 @@
 					</div>
 					<div class="modal-body">
 
-						<?php echo form_open('enseignants/edit/email','class="form-horizontal"'); ?>
+						<?php echo form_open('enseignants/update','class="form-horizontal"'); ?>
 							<fieldset>
 							<!-- Nom -->
 							<div class="form-group">
@@ -252,6 +270,23 @@
 		</div>
 	</div>
 </div>
+<div class="container">
+	<div class="row-fluid user-row">
+		<div class="span1"></div>
+		<div class="span1 dropdown-user" data-for=".cyruxx">
+			<i class="icon-chevron-down text-muted"></i>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div id="chartdiv" style="width: 100%; height: 300px;"></div>
+		</div>
+		<div class="col-md-6">
+			<div id="chartdiv2" style="width: 100%; height: 330px;"></div>
+		</div>
+	</div>
+</div>
 
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
@@ -261,8 +296,7 @@
 // TODO faire ce graphique avec les VRAIES données
 // On a besoin de: heures à enseigner (statutaire-somme décharges)
 // Heures éffectués (somme de tous les cours affectés)
-$enseigne = 100;
-$delta = - 50;
+$delta = ( $me ['statutaire'] - $total_decharges ) - $enseigne;
 if ( $delta > 0 ) {
 	$categ = "Heures libres";
 } else {
@@ -276,7 +310,7 @@ if ( $delta > 0 ) {
 				{
 					"type": "pie",
 					"angle": 12,
-					"depth3D": 15,
+					"depth3D": 8,
 					"innerRadius": "40%",
 					"titleField": "category",
 					"valueField": "column-1",
@@ -306,12 +340,49 @@ if ( $delta > 0 ) {
 					]
 				}
 			);
+
+			AmCharts.makeChart("chartdiv2",
+					{
+				"type": "pie",
+				"angle": 12,
+				"depth3D": 8,
+				"innerRadius": "40%",
+				"titleField": "category",
+				"valueField": "column-1",
+				"allLabels": [],
+				"balloon": {},
+				"colors": [
+				   		"#836953",
+				   		"#C44949",
+				   		"#BB9C94",
+				   		"#FFB347"
+				   	],
+				"legend": {
+					"align": "center",
+					"markerType": "circle"
+				},
+				"titles": [],
+				"dataProvider": [
+					{
+						"category": "CM",
+						"column-1": "<?php echo $sum_cm;?>"
+					},
+					{
+						"category": "TD",
+						"column-1": "<?php echo $sum_td;?>"
+					},
+					{
+						"category": "DS",
+						"column-1": "<?php echo $sum_ds;?>"
+					},
+					{
+						"category": "TP / Projet",
+						"column-1": "<?php echo $sum_tp_projet;?>"
+					}
+				]
+			}
+				);
 		</script>
-<style>
-.container {
-	width: 800px;
-}
-</style>
 
 
 <script>
@@ -319,26 +390,16 @@ if ( $delta > 0 ) {
 		{
 		    $.ajax
 		    ({
-		        url: <?php echo "'".site_url("/admin/enseignants/get")."'";?>,
+		        url: <?php echo "'".site_url("enseignants/get")."'";?>,
 		        type: 'post',
 		        success: function(result)
 		        {
 		            var array = JSON.parse(result);
 		           // Populate the form using the returned content
-		        	$("#nomEdit").val(array.nom); // test
-		        	$("#prenomEdit").val(array.prenom); // test
-		        	$("#emailEdit").val(array.email); // test
-		        	$("#statutaire").val(array.statutaire); // test
-		        	console.log("administrateur -> " +array.administrateur);
-		        	if (array.administrateur) {
-		            	console.log("dans le if");
-		            	$('#editAdminAdm').attr('selected', true);
-		            	$('#editAdminAdm').attr('checked', true);
-		            	$('#editAdminAdm').prop('checked', true);
-		            	$('#editAdminAdm').attr('selected', true);
-		            	$('#editAdminAdm').val(1);
-		        	}
-		        	
+		        	$("#nomEdit").val(array.nom);
+		        	$("#prenomEdit").val(array.prenom);
+		        	$("#emailEdit").val(array.email);
+		        	$("#statutaire").val(array.statutaire);
 		        }
 		    });
 

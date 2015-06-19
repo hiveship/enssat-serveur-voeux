@@ -28,6 +28,14 @@ class Decharge_model extends CI_Model
 		return $query -> result_array();
 	}
 
+	public function get_sum ( $login )
+	{
+		$this -> db -> select_sum( 'decharge' );
+		$this -> db -> where( 'enseignant', $login );
+		$query = $this -> db -> get( self::TABLE_NAME );
+		return $query -> result()[0] -> decharge;
+	}
+
 	public function add ( $login, $decharge, $motif )
 	{
 		

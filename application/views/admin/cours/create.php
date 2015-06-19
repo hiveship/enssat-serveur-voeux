@@ -37,6 +37,7 @@ echo form_input( $Pn, '', 'class="form-control"' );
 $Pt = array ( 
 	
 		'CM' => 'CM', 
+		'Projet' => 'Projet', 
 		'TD' => 'TD', 
 		'TP' => 'TP', 
 		'DS' => 'DS' 

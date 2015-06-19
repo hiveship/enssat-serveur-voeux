@@ -81,6 +81,7 @@
 			
 			$Pt = array ( 
 				
+					'Projet' => 'Projet', 
 					'CM' => 'CM', 
 					'TD' => 'TD', 
 					'TP' => 'TP', 

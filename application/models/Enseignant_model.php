@@ -101,15 +101,49 @@ class Enseignant_model extends CI_Model
 		return $this -> create_user_entity( $query -> row() );
 	}
 
-	public function get_statutaire_including_decharges ( $login )
+	public function get_sum_heures ( $login )
 	{
-		$this -> db -> select( "statutaire, decharge" );
-		$this -> db -> from( SELF::TABLE_NAME );
-		$this -> db -> join( "decharge", "login = enseignant" );
-		$this -> db -> where( "login", login );
-		$query = $this -> db -> get();
-		
-		return $query -> row()[0] -> statutaire - $query -> row()[0] -> statutaire;
+		$this -> db -> select_sum( 'hed' );
+		$this -> db -> where( 'enseignant', $login );
+		$query = $this -> db -> get( 'contenu' );
+		return $query -> result()[0] -> hed;
+	}
+
+	public function get_sum_cm ( $login )
+	{
+		$this -> db -> select_sum( 'hed' );
+		$this -> db -> where( 'enseignant', $login );
+		$this -> db -> where( 'type', 'CM' );
+		$query = $this -> db -> get( 'contenu' );
+		return $query -> result()[0] -> hed;
+	}
+
+	public function get_sum_td ( $login )
+	{
+		$this -> db -> select_sum( 'hed' );
+		$this -> db -> where( 'enseignant', $login );
+		$this -> db -> where( 'type', 'TD' );
+		$query = $this -> db -> get( 'contenu' );
+		return $query -> result()[0] -> hed;
+	}
+
+	public function get_sum_tp ( $login )
+	{
+		$this -> db -> select_sum( 'hed' );
+		$this -> db -> where( 'enseignant', $login );
+		$this -> db -> where( 'type', 'TP' );
+		$this -> db -> or_where( 'type', 'Projet' );
+		$query = $this -> db -> get( 'contenu' );
+		return $query -> result()[0] -> hed;
+	}
+
+	public function get_sum_ds ( $login )
+	{
+		$this -> db -> select_sum( 'hed' );
+		$this -> db -> where( 'enseignant', $login );
+		$this -> db -> where( 'type', 'DS' );
+		$query = $this -> db -> get( 'contenu' );
+		return $query -> result()[0] -> hed;
 	}
 	
 	// UPDATE

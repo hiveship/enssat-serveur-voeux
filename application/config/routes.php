@@ -66,7 +66,8 @@ $route ['admin/enseignants/inscrire_force/(:any)/(:any)'] = 'admin/Enseignant_co
 
 $route ['enseignants'] = "Enseignant_controller/index";
 $route ['enseignants/edit'] = 'Enseignant_controller/edit';
-$route ['enseignants/edit/email'] = 'Enseignant_controller/change_email';
+$route ['enseignants/update'] = 'Enseignant_controller/update';
+$route ['enseignants/get'] = 'Enseignant_controller/get';
 $route ['enseignants/edit/password'] = 'Enseignant_controller/change_password';
 $route ['enseignants/cours_de/(:any)'] = 'Enseignant_controller/cours_de/$1';
 
