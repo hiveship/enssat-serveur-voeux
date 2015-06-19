@@ -95,7 +95,7 @@
 												<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label>
 
 												<select name="choix_enseignant" id="choix_enseignant"
-													class="select2-enseignant form form-control">
+													class="select2-enseignant form form-control" style="width: 200px;">
 																	<?php
 																	
 																	foreach ( $enseignant as $info ) {
