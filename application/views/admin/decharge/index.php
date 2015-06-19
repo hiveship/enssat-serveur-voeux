@@ -101,9 +101,9 @@
 
 											<div class="form-group">
 												<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label>
-
-												<select name="choix_enseignant" id="choix_enseignant"
-													class="select2-enseignant form form-control">
+												<div class="col-md-4">
+													<select name="choix_enseignant" id="choix_enseignant"
+														class="select2-enseignant form form-control">
 																	<?php
 																	
 																	foreach ( $enseignant as $info ) {
@@ -114,7 +114,9 @@
 																	?>
 												</select>
 
+												</div>
 											</div>
+											</span>
 											<div class="form-group">
 												<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
 												<div class="col-md-4">
@@ -145,9 +147,13 @@
 .container {
 	width: 1000px;
 }
+
+élément {
+	width: 170px;
+}
 </style>
 
-						</style>
+
 						<script type="text/javascript">
 function validate(){
 	   return confirm("Etes vous sure de vouloir supprimer cette décharge ?");
