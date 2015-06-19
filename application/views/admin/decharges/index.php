@@ -93,44 +93,48 @@
 
 											<div class="form-group">
 												<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label>
-												<div class="col-md-4">
-													<select name="choix_enseignant" id="choix_enseignant"
-														class="select2-enseignant form form-control input-md">
+
+												<select name="choix_enseignant" id="choix_enseignant"
+													class="select2-enseignant form form-control" style="width: 200px;">
+													<div class="col-md-4">
 																	<?php
-																	
 																	foreach ( $enseignant as $info ) {
 																		?>
 														<option value="<?php echo $info['login']?>"> <?php echo ucfirst($info ['prenom']) . " " . mb_strtoupper($info ['nom']) ?></option>
 														<?php
 																	}
 																	?>
+												
+												
+												
 												</select>
-												</div>
 											</div>
-											<div class="form-group">
-												<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
-												<div class="col-md-4">
+									
+									</div>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="password-actuel">Décharge</label>
+										<div class="col-md-4">
 											<?php echo form_input( 'decharge', '', 'id="decharge" placeholder="" class="form-control input-md"' ); ?>
 											</div>
-											</div>
+									</div>
 
-											<div class="form-group">
-												<label class="col-md-4 control-label" for="password-actuel">Motif</label>
-												<div class="col-md-4">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="password-actuel">Motif</label>
+										<div class="col-md-4">
 								<?php echo form_textarea( 'motif', '', 'id="motif" placeholder="" class="form-control input-md"' ); ?>
 											</div>
-											</div>
-
-										</fieldset>
-
 									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+
+									</fieldset>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 							<?php echo form_submit('mysubmit', 'Ajouter','class="btn btn-primary" type="button"');?>
 						<?php echo form_close();?>
 					</div>
-								</div>
 							</div>
+						</div>
 						</div>
 
 						<style>
