@@ -1,5 +1,5 @@
 <?php
-defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
+defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
 
 /*
  * | -------------------------------------------------------------------------
@@ -81,8 +81,11 @@ $route ['admin/module/update/(:any)'] = "admin/Module_controller/update/$1";
 $route ['admin/module/delete/(:any)'] = "admin/Module_controller/delete/$1";
 
 $route ['admin/decharges'] = "admin/Decharge_controller/index";
-$route ['decharge/index'] = "Decharge_controller/index";
-$route ['decharge/ajax_get_motif'] = "Decharge_controller/ajax_get_motif";
-$route ['decharge/update_motif/(:any)'] = "Decharge_controller/update_motif/$1";
+$route ['decharges'] = "Decharge_controller/index";
+$route ['decharges/create'] = "Decharge_controller/create";
+$route ['decharges/ajax_get_motif'] = "Decharge_controller/ajax_get_motif";
+$route ['decharges/update_motif/(:any)'] = "Decharge_controller/update_motif/$1";
+$route ['decharges/delete/(:any)'] = "Decharge_controller/delete/$1";
+
 
 

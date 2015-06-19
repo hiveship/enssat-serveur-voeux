@@ -8,8 +8,8 @@ class Cours_controller extends Admin_controller
 	public function __construct ()
 	{
 		parent::__construct();
-		$this -> load -> model( 'cours/Module_model' );
-		$this -> load -> model( 'cours/Cours_model' );
+		$this -> load -> model( 'Module_model' );
+		$this -> load -> model( 'Cours_model' );
 	}
 
 	public function edit ( $module, $partie )
