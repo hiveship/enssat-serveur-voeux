@@ -61,7 +61,7 @@
 							data-target="#ajoutDecharge">
 							<i class="fa fa-plus"></i> Ajouter une décharge
 						</button>
-
+					
 					</div>
 				</div>
 

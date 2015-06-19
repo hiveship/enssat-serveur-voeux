@@ -1,2 +1,4 @@
 
 application/config/config.php
+
+application/views/admin/decharges/index.php
