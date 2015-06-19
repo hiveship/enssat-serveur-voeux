@@ -27,7 +27,7 @@
 								
 								<?php
 								$params = array ( 
-										
+									
 										'onsubmit' => 'return(validate(this));' 
 								);
 								
@@ -85,7 +85,7 @@
 									<div class="modal-body">
 									
 									<?php
-									echo form_open ( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
+									echo form_open( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
 									
 									?>
 
@@ -95,7 +95,7 @@
 												<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label>
 												<div class="col-md-4">
 													<select name="choix_enseignant" id="choix_enseignant"
-														class="select2-enseignant form form-control input-md">
+														class="select2-enseignant form form-control input-md" style="width: 300px>
 																	<?php
 																	
 																	foreach ( $enseignant as $info ) {
