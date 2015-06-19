@@ -62,6 +62,7 @@ $route ['admin/enseignants/create'] = 'admin/Enseignant_controller/create';
 $route ['admin/enseignants/delete/(:any)'] = 'admin/Enseignant_controller/delete/$1';
 $route ['admin/enseignants/edit/(:any)'] = 'admin/Enseignant_controller/edit/$1';
 $route ['admin/enseignants/get'] = 'admin/Enseignant_controller/get/';
+$route ['admin/enseignants/inscrire_force/(:any)/(:any)'] = 'admin/Enseignant_controller/inscrire_force/$1/$2';
 
 $route ['enseignants'] = "Enseignant_controller/index";
 $route ['enseignants/edit'] = 'Enseignant_controller/edit';
