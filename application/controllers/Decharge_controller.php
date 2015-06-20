@@ -17,11 +17,10 @@ class Decharge_controller extends Application_controller
 	 */
 	public function index ()
 	{
-		$data = array ( 
+		$this -> load -> template( 'decharges/index', array ( 
 			
 				'decharge' => $this -> Decharge_model -> get( $this -> session -> userdata( 'me' )['login'] ) 
-		);
-		$this -> load -> template( 'decharges/index', $data );
+		) );
 	}
 
 	/**
@@ -42,29 +41,30 @@ class Decharge_controller extends Application_controller
 		redirect( site_url( 'decharges' ) );
 	}
 
-	public function update_motif ( $id = null )
+	/**
+	 * Modifie le motif d'une décharge de l'utilisateur courant.
+	 * 
+	 * @param unknown $id        	
+	 */
+	public function update_motif ( $id )
 	{
-		if ( $id != null ) {
-			$motif = $this -> input -> post( 'motif' );
-		}
-		
-		echo $id . "    " . $motif;
-		$this -> Decharge_model -> update_motif( $id, $motif );
+		// TODO vérifier que l'ID passé en paramètre appartient bien à l'utilisateur courrant.
+		$this -> Decharge_model -> update_motif( $id, $this -> input -> post( 'motif' ) );
 		redirect( site_url( 'decharges' ) );
 	}
 
 	/**
-	 * Supprime une décharge
+	 * Supprime une décharge de l'utilisateur courament connecté
 	 */
 	public function delete ( $id )
 	{
 		$login = $this -> session -> userdata( 'me' )['login'];
-		
 		$enseignant = $this -> Decharge_model -> get_from_id( $id );
 		$enseignant_login = $enseignant [0] ['enseignant'];
 		
 		if ( $login == $enseignant_login ) {
 			$this -> Decharge_model -> delete( $id );
+			// TODO flash success
 			redirect( site_url( 'decharges' ) );
 		} else {
 			flash_error( "Non mais oh, on ajoute pas de décharge à ses petits camarade!" );
@@ -73,10 +73,7 @@ class Decharge_controller extends Application_controller
 
 	public function ajax_get_motif ()
 	{
-		$id = $this -> input -> post( 'id' );
-		
-		$decharge = $this -> Decharge_model -> get_from_id( $id );
-		echo json_encode( $decharge );
+		echo json_encode( $this -> Decharge_model -> get_from_id( $this -> input -> post( 'id' ) ) );
 	}
 
 }

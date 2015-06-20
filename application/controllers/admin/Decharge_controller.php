@@ -26,7 +26,6 @@ class Decharge_controller extends Application_controller
 
 	public function create ()
 	{
-		
 		$this -> form_validation -> set_rules( 'decharge', 'Decharge', 'required' );
 		
 		if ( $this -> form_validation -> run() == FALSE ) {
@@ -38,7 +37,6 @@ class Decharge_controller extends Application_controller
 			$this -> Decharge_model -> add( $enseignant, $new_decharge, $new_motif );
 		}
 		redirect( site_url( 'admin/decharges' ) );
-	
 	}
 
 	/**

@@ -10,18 +10,15 @@ class Cours_model extends CI_model
 		$this -> load -> database();
 	}
 
-	public function create ( $id, $part, $type, $hed, $enseignant = NULL )
+	public function create ( $id, $part, $type, $hed )
 	{
-		// if ( $enseignant == NULL ) {
-		$data = array ( 
+		$this -> db -> insert( 'contenu', array ( 
 			
 				'module' => $id, 
 				'partie' => $part, 
 				'type' => $type, 
 				'hed' => $hed 
-		);
-		// }
-		$this -> db -> insert( 'contenu', $data );
+		) );
 	}
 
 	public function delete ( $module, $partie = NULL )
@@ -59,16 +56,14 @@ class Cours_model extends CI_model
 
 	public function update ( $module, $partie_old, $partie_new, $type, $hed )
 	{
-		$data = array ( 
+		$this -> db -> where( 'module', $module );
+		$this -> db -> where( 'partie', $partie_old );
+		$this -> db -> update( self::TABLE_NAME, array ( 
 			
 				'partie' => $partie_new, 
 				'type' => $type, 
 				'hed' => $hed 
-		);
-		
-		$this -> db -> where( 'module', $module );
-		$this -> db -> where( 'partie', $partie_old );
-		$this -> db -> update( self::TABLE_NAME, $data );
+		) );
 	}
 
 	public function inscrire_enseignant ( $module, $partie, $enseignant )

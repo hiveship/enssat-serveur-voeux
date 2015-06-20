@@ -12,9 +12,11 @@ class Enseignant_controller extends Application_controller
 		$this -> load -> model( 'Cours_model' );
 		$this -> load -> model( 'Module_model' );
 		$this -> load -> model( 'Decharge_model' );
-	
 	}
 
+	/**
+	 * Charge la page permettant à l'utilisateur connecté d'afficher ses informations personelles et des statistiques sur ses cours.
+	 */
 	public function edit ()
 	{
 		$data = array ( 
@@ -30,23 +32,29 @@ class Enseignant_controller extends Application_controller
 		$this -> load -> template( 'enseignants/edit', $data );
 	}
 
+	/**
+	 * Charge la liste de tous les enseignants.
+	 */
 	public function index ()
 	{
-		$data = array ( 
+		$this -> load -> template( 'enseignants/index', array ( 
 			
 				'enseignants' => $this -> Enseignant_model -> get_all() 
-		);
-		$this -> load -> template( 'enseignants/index', $data );
-	}
-
-	public function get ()
-	{
-		$login = $this -> session -> userdata( 'me' )['login'];
-		echo json_encode( $this -> Enseignant_model -> get( $login ) );
+		) );
 	}
 
 	/**
-	 * Change le password de la personne connectée
+	 * Fonction utilisée pour une requête AJAX.
+	 * Retourne les informations de l'utilisateur courament connecté.
+	 */
+	public function get ()
+	{
+		echo json_encode( $this -> Enseignant_model -> get( $this -> session -> userdata( 'me' )['login'] ) );
+	}
+
+	/**
+	 * Change le password de la personne connectée.
+	 * Vérification faites du mot de passe courant.
 	 */
 	public function change_password ()
 	{
@@ -81,6 +89,9 @@ class Enseignant_controller extends Application_controller
 		redirect( site_url( 'enseignants/edit' ) );
 	}
 
+	/**
+	 * Enregistre les modifications de l'utilisateur courant.
+	 */
 	public function update ()
 	{
 		$this -> form_validation -> set_rules( 'email', 'Email', 'required|valid_email' );
@@ -97,13 +108,13 @@ class Enseignant_controller extends Application_controller
 			$email = $this -> input -> post( 'email' );
 			$statutaire = $this -> input -> post( 'statutaire' );
 			
-			// Update dans la base de donnée //TODO optimiser car trop de requêtes à la BDD que l'on peut regrouperh
+			// Update dans la base de donnée - TODO optimiser car trop de requêtes à la BDD que l'on peut regrouperh
 			$this -> Enseignant_model -> update_prenom( $login, $prenom );
 			$this -> Enseignant_model -> update_nom( $login, $nom );
 			$this -> Enseignant_model -> update_email( $login, $email );
 			$this -> Enseignant_model -> update_statutaire( $login, $statutaire );
 			
-			// Update dans la session
+			// Update dans la session (pour avoir les infos en direct sans avoir à se déconnecter avant)
 			$me = $this -> session -> userdata( 'me' );
 			$me ['nom'] = $nom;
 			$me ['prenom'] = $prenom;
@@ -116,19 +127,23 @@ class Enseignant_controller extends Application_controller
 		redirect( site_url( 'enseignants/edit' ) );
 	}
 
+	/**
+	 * Récupère les cours (modules et parties) auquel l'enseignant spécifié est inscrit.
+	 * 
+	 * @param string $login
+	 *        	login de l'enseignant dont on veut récupérer les cours. Par défaut il s'agit de l'utilisateur courament connecté.
+	 */
 	public function cours_de ( $login = null )
 	{
 		if ( $login == null ) {
 			$login = $this -> session -> userdata( 'me' )['login'];
 		}
 		if ( ! $this -> Enseignant_model -> exists( $login ) ) { // Si on fournit un login inconnue... Par exemple modification du paramètre passé en GET dans l'URL.
-			redirect( '', auto );
+			redirect( 'Module_controller', auto );
 		}
 		
 		$Ids = array ();
-		
 		$modIds = $this -> Cours_model -> get_modules_id_de( $login );
-		
 		foreach ( $modIds as $mod ) {
 			array_push( $Ids, $mod ['module'] );
 		}
@@ -155,6 +170,9 @@ class Enseignant_controller extends Application_controller
 		$this -> load -> template( 'cours/get', $data );
 	}
 
+	/**
+	 * Inscrit l'utilisateur courant à un cours ou nomme un utilisateur responsable de module.
+	 */
 	public function inscrire ( $module, $cours = null )
 	{
 		if ( $cours == null ) {
@@ -164,7 +182,7 @@ class Enseignant_controller extends Application_controller
 			}
 			$this -> Module_model -> inscrire_responsable( $module, $this -> session -> userdata( 'me' )['login'] );
 		} else {
-			$cours = rawurldecode( $cours );
+			$cours = rawurldecode( $cours ); // à cause des espaces
 			if ( ! $this -> Cours_model -> est_libre( $module, $cours ) ) {
 				flash_error( "cours occupé ou non existant " . $cours );
 				redirect( 'Module_controller', 'auto' ); // TODO renomer avec le nom de la bonne route
@@ -181,7 +199,7 @@ class Enseignant_controller extends Application_controller
 			$this -> Module_model -> desinscrire_responsable( $module, $this -> session -> userdata( 'me' )['login'] );
 			// TODO message success
 		} else {
-			$cours = rawurldecode( $cours );
+			$cours = rawurldecode( $cours ); // à cause des espaces
 			$this -> Cours_model -> desinscrire_enseignant( $module, $cours, $this -> session -> userdata( 'me' )['login'] );
 			// TODO message success
 		}
@@ -190,21 +208,13 @@ class Enseignant_controller extends Application_controller
 
 	public function get_heures_effectue ( $login = null )
 	{
-		// if ( $login == null ) {
-		// $login = $this -> session -> userdata( 'me' )['login'];
-		// }
-		// $heures = 0;
-		// $cours = $this -> Cours_model -> get_cours_de( $login, $Id );
-		// foreach ( $cours as $value ) {
-		// $heures += $value ['hed'];
-		// }
-		// echo $heures;
 		if ( $login == null ) {
 			$login = $this -> session -> userdata( 'me' )['login'];
 		}
 		echo $this -> Enseignant_model -> get_sum_heures( $login );
 	}
-
+	
+	// TODO devrait plutôt se trouver dans me modèle étant donné que c'est une règle métier
 	private function convert_heures ( $heures, $type )
 	{
 		switch ( $type ) {

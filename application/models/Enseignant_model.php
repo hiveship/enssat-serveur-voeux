@@ -35,7 +35,7 @@ class Enseignant_model extends CI_Model
 	
 	public function create ( $login, $password, $nom, $prenom, $email, $statut, $statutaire, $actif, $administrateur )
 	{
-		// FIXME: debug uniquement
+		// FIXME: debug uniquement, à remplacer par un mailer
 		flash_warning( "DEBUG UNIQUEMENT: mot de passe de l'utilisateur créé -> " . $password );
 		$this -> db -> insert( self::TABLE_NAME, array ( 
 			
@@ -80,7 +80,7 @@ class Enseignant_model extends CI_Model
 		) );
 		if ( $query -> num_rows() == 1 ) {
 			$securePassword = $query -> result()[0] -> pwd;
-			if ( $this -> verify_password( $password, $securePassword ) ) { // Only 1 row cause login is unique.
+			if ( $this -> verify_password( $password, $securePassword ) ) { // Only 0 or 1 row cause login is unique in the db.
 				$me = $this -> create_user_entity( $query -> row() );
 				$me ['password'] = $securePassword; // Save the secure password in the entity.
 				return $me;
@@ -149,6 +149,21 @@ class Enseignant_model extends CI_Model
 	// UPDATE
 	// ------
 	
+	public function update ( $login, $nom, $prenom, $email, $statut, $statutaire, $actif, $administrateur )
+	{
+		$this -> db -> where( 'login', $login );
+		$this -> db -> update( self::TABLE_NAME, array ( 
+			
+				'nom' => $nom, 
+				'prenom' => $prenom, 
+				'email' => $email, 
+				'statut' => $statut, 
+				'statutaire' => $statutaire, 
+				'actif' => $actif, 
+				'administrateur' => $administrateur 
+		) );
+	}
+
 	public function update_nom ( $login, $nom )
 	{
 		$this -> update_field( $login, 'nom', $nom );
@@ -213,8 +228,6 @@ class Enseignant_model extends CI_Model
 		$this -> Cours_model -> desinscrire_enseignant_tout( $login );
 		$this -> Module_model -> desinscrire_responsable_tout( $login );
 		$this -> Decharge_model -> delete_all( $login );
-		
-		// $this -> db -> where( 'login', $login );
 		
 		$this -> db -> delete( self::TABLE_NAME, array ( 
 			

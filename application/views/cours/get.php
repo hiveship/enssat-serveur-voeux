@@ -1,5 +1,5 @@
 <?php
-
+// TODO pas idéal d'avoir cette fonction ici, il faudrait plutôt appeler la fonction écrite dans Enseignant_controller.
 function convert_heures ( $heures, $type )
 {
 	switch ( $type ) {

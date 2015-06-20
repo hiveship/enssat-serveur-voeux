@@ -12,9 +12,8 @@ class Decharge_model extends CI_Model
 
 	public function get_all ()
 	{
-		$this -> db -> select( 'id, enseignant, decharge, motif' );
+		// $this -> db -> select( 'id, enseignant, decharge, motif' );
 		$query = $this -> db -> get( self::TABLE_NAME );
-		
 		return $query -> result_array();
 	}
 
@@ -38,15 +37,12 @@ class Decharge_model extends CI_Model
 
 	public function add ( $login, $decharge, $motif )
 	{
-		
-		$data = array ( 
+		$this -> db -> insert( self::TABLE_NAME, array ( 
 			
 				'enseignant' => $login, 
 				'decharge' => $decharge, 
 				'motif' => $motif 
-		);
-		
-		$this -> db -> insert( self::TABLE_NAME, $data );
+		) );
 	}
 
 	public function delete ( $id )

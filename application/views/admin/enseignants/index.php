@@ -52,7 +52,7 @@
 							<div class="col-md-5">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span> <input id="email"
-										name="email" class="form-control" placeholder="Email" type="email" required="">
+										name="email" class="form-control" placeholder="Email" type="email">
 								</div>
 							</div>
 						</div>
@@ -308,7 +308,7 @@
 							<td><a href="<?php echo site_url('/enseignants/cours_de/'.$enseignant['login']) ?>"> <i
 									class="fa fa-tasks"></i> Ses cours
 							</a></td>
-							<td><a id='editLink' href="#" onClick="populate_modal(<?php echo $enseignant['login'];?>)"
+							<td><a id='editLink' href="#" onClick="populate_modal('<?php echo $enseignant['login'];?>')"
 								data-toggle="modal" data-target="#editEnseignant"><i class="fa fa-info"></i> Voir / Modifier</a></td>
 							<td><a onClick='validate("<?php echo $enseignant['login'];?>")' href="#"> <i
 									class="fa fa-times"></i> Supprimer

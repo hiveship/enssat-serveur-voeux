@@ -32,11 +32,7 @@ class Cours_controller extends Admin_controller
 			redirect( 'admin/cours', 'auto' );
 		}
 		
-		$data = array ( 
-			
-				'cours' => $this -> Cours_model -> get( $module, $partie )[0] 
-		);
-		$this -> load -> template( 'admin/cours/edit', $data );
+		$this -> load -> template( 'admin/cours/edit', $this -> Cours_model -> get( $module, $partie )[0] );
 	}
 
 	/**
@@ -65,11 +61,8 @@ class Cours_controller extends Admin_controller
 				flash_error( "la partie existe déja" );
 			}
 		}
-		$data = array ( 
-			
-				'module' => $module 
-		);
-		$this -> load -> template( 'admin/cours/create', $data );
+		
+		$this -> load -> template( 'admin/cours/create', $modules );
 	}
 
 	public function delete ( $module, $partie )

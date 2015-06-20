@@ -41,11 +41,11 @@ class Enseignant_controller extends Admin_controller
 		// TODO ajouter les règles de formulaires et traiter le cas d'erreur (déjà un premier contrôle client en JS éffectué).
 		
 		// On ne stocke en base de donnée que des données en minuscule
-		$nom = strtolower( $this -> input -> post( 'nom' ) );
-		$prenom = strtolower( $this -> input -> post( 'prenom' ) );
-		$email = strtolower( $this -> input -> post( 'email' ) );
-		$statut = strtolower( $this -> input -> post( 'statut' ) );
-		$statutaire = intval( $this -> input -> post( 'statutaire' ) );
+		$nom = $this -> input -> post( 'nom' );
+		$prenom = $this -> input -> post( 'prenom' );
+		$email = $this -> input -> post( 'email' );
+		$statut = $this -> input -> post( 'statut' );
+		$statutaire = $this -> input -> post( 'statutaire' );
 		$actif = $this -> input -> post( 'actif' );
 		$administrateur = $this -> input -> post( 'administrateur' );
 		$password = $this -> generate_random_string(); // Le mot de passe est généré automatiquement
@@ -64,8 +64,7 @@ class Enseignant_controller extends Admin_controller
 			redirect( 'admin/enseignants', 'refresh' );
 		}
 	}
-	
-	// FIXME refacto
+
 	public function edit ( $login )
 	{
 		$this -> check_login_parameter( $login );
@@ -75,31 +74,15 @@ class Enseignant_controller extends Admin_controller
 		$this -> form_validation -> set_rules( 'email', 'Adresse email', 'trim|required' );
 		
 		if ( $this -> form_validation -> run() === TRUE ) {
-			$nom = strtolower( $this -> input -> post( 'nom' ) );
-			$prenom = strtolower( $this -> input -> post( 'prenom' ) );
-			$email = strtolower( $this -> input -> post( 'email' ) );
-			$statut = strtolower( $this -> input -> post( 'statut' ) );
-			$statutaire = intval( $this -> input -> post( 'statutaire' ) );
+			$nom = $this -> input -> post( 'nom' );
+			$prenom = $this -> input -> post( 'prenom' );
+			$email = $this -> input -> post( 'email' );
+			$statut = $this -> input -> post( 'statut' );
+			$statutaire = $this -> input -> post( 'statutaire' );
 			$actif = $this -> input -> post( 'actif' );
 			$administrateur = $this -> input -> post( 'administrateur' );
 			
-			// FIXME créer une méthode globale dans le modèle car là on fait trop de requêtes individuelles à la BDD, pas top pour les performances.
-			$this -> Enseignant_model -> update_nom( $login, strtolower( $this -> input -> post( 'nom' ) ) );
-			$this -> Enseignant_model -> update_prenom( $login, strtolower( $this -> input -> post( 'prenom' ) ) );
-			$this -> Enseignant_model -> update_email( $login, strtolower( $this -> input -> post( 'email' ) ) );
-			$this -> Enseignant_model -> update_statut( $login, strtolower( $this -> input -> post( 'statut' ) ) );
-			$this -> Enseignant_model -> update_statutaire( $login, strtolower( $this -> input -> post( 'statutaire' ) ) );
-			
-			if ( $this -> input -> post( 'actif' ) == 1 ) {
-				$this -> Enseignant_model -> rendre_actif( $login );
-			} else {
-				$this -> Enseignant_model -> rendre_inactif( $login );
-			}
-			if ( $this -> input -> post( 'administrateur' ) == 1 ) {
-				$this -> Enseignant_model -> rendre_administrateur( $login );
-			} else {
-				$this -> Enseignant_model -> rendre_enseignant( $login );
-			}
+			$this -> Enseignant_model -> update( $login, $nom, $prenom, $email, $statut, $statutaire, $actif, $administrateur );
 		}
 		redirect( site_url( 'admin/enseignants' ) );
 	}

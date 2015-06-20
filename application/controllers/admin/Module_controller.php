@@ -15,7 +15,7 @@ class Module_controller extends Admin_controller
 
 	public function index ()
 	{
-		$this -> get();
+		$this -> get(); // charge tous les modules
 	}
 
 	public function create ()
@@ -86,12 +86,10 @@ class Module_controller extends Admin_controller
 	public function edit ( $ID )
 	{
 		$this -> check_ID_parameter( $ID );
-		$module = $this -> Module_model -> get( $ID );
-		$data = array ( 
+		$this -> load -> template( 'admin/modules/edit', array ( 
 			
-				'module' => $module 
-		);
-		$this -> load -> template( 'admin/modules/edit', $data );
+				'module' => $this -> Module_model -> get( $ID ) 
+		) );
 	}
 
 	public function delete ( $ID )
@@ -120,7 +118,7 @@ class Module_controller extends Admin_controller
 			
 			$res = $this -> Module_model -> update( $ID, $nom, $public, $semestre, $libelle, $responsable );
 			if ( $res ) {
-				flash_info( "module " . $this -> input -> post( 'ID' ) . " mis a jour" );
+				flash_info( "module " . $ID . " mis a jour" );
 				redirect( 'admin/cours', 'auto' );
 			} else {
 				flash_error( "nouvel ID invalide" );

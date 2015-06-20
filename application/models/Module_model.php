@@ -85,16 +85,14 @@ class Module_model extends CI_model
 			return false; // FIXME cette vérification doit être faite dans le controlleur, pas dans le modèle
 		}
 		
-		$data = array ( 
+		$this -> db -> where( 'id', $ID );
+		$this -> db -> update( self::TABLE_NAME, array ( 
 			
 				'nom' => $nom, 
 				'public' => $public, 
 				'semestre' => $semestre, 
 				'libelle' => $libelle 
-		);
-		
-		$this -> db -> where( 'id', $ID );
-		$this -> db -> update( self::TABLE_NAME, $data );
+		) );
 		return true;
 	}
 
