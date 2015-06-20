@@ -1,6 +1,8 @@
 <div class="container">
-	<a href="<?php echo site_url("admin/module/create") ?>" class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	<a href="<?php echo site_url("admin/module/create") ?>"
+		class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
+		Module
 	</a> <br></br>
 
 	<div class="row">
@@ -10,7 +12,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults' class='table table-hover table-striped'>
+				<table id='tableSearchResults'
+					class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -52,33 +55,35 @@ foreach ( $modules as $module ) {
 	
 	?>
 			<td>
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-								data-target="#ajoutDecharge"
-								onClick="ajax_change_enseignant('<?php echo $module['id']; ?>')">Changer enseignant</button>
+							<button type="button" class="btn btn-primary btn-xs"
+								data-toggle="modal" data-target="#assigner"
+								onClick="ajax_change_responsable('<?php echo $module['id']; ?>')">Changer
+								enseignant</button>
 						</td>
 	<?php
 	
 	echo "<td><center>";
-	echo form_open( site_url( 'admin/module/edit/' . $module ['id'] ) );
+	echo form_open ( site_url ( 'admin/module/edit/' . $module ['id'] ) );
 	$data = array ( 
-		
+			
 			'type' => 'submit', 
 			'content' => 'Modifier', 
 			'class' => 'btn btn-primary btn-xs' 
 	);
-	echo form_button( $data );
-	echo form_close();
+	echo form_button ( $data );
+	echo form_close ();
 	
 	echo "</center></td>";
 	echo "<td><center>";
 	
 	$params = array ( 
-		
+			
 			'onsubmit' => 'return(validate(this));' 
 	);
 	?>
-			<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
-							value="<?php $module ['id'] ?>" onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
+			<button id='suppr' type='button' content='Supprimer'
+							class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
+							onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
 					<?php
 	
 	// echo form_open( 'admin/module/delete/' . $module ['id'], $params );
@@ -127,14 +132,14 @@ foreach ( $modules as $module ) {
 		
 		?>
 		<td>
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-								data-target="#ajoutDecharge"
+							<button type="button" class="btn btn-primary btn-xs"
+								data-toggle="modal" data-target="#assigner"
 								onClick="ajax_change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
 								Changer enseignant</button>
 						</td>
 				<?php
 		echo "<td>";
-		echo "<a href='" . site_url( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
+		echo "<a href='" . site_url ( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
 			 class='btn btn-primary btn-xs'>Modifier partie</a>";
 		echo "</td>";
 		echo "<td>";
@@ -148,15 +153,16 @@ foreach ( $modules as $module ) {
 		// echo form_button( $data );
 		// echo form_close();
 		?>
-		<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
-							value="<?php $module ['id'] ?>" onClick="validate_partie('<?php echo $module ['id']; ?>')">Supprimer</button>
+		<button id='suppr' type='button' content='Supprimer'
+							class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
+							onClick="validate_partie('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Supprimer</button>
 				<?php
 		echo "</td>";
 		echo "</tr>";
 	}
 	
 	echo "</table>";
-	echo "<a href='" . site_url( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
+	echo "<a href='" . site_url ( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
 	echo "</div>";
 	echo "</td>";
 	
@@ -174,47 +180,9 @@ foreach ( $modules as $module ) {
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-<script>
-function validate_partie(result) {
-    swal({
-        title: "Confirmer la suppression ?",
-        text: "Cela supprimera toutes ses décharges et rendra libre l'enssemble des cours occupé/gérés.",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#e67e22",
-        confirmButtonText:"Supprimer",
-        cancelButtonText:"Annuler",
-        
-        closeOnConfirm: false
-    }, function () {
-    	$.ajax({
-    		url: <?php echo "'".site_url("admin/cours/delete")."'";?>+'/'+result,
-    	});
-    	window.location.reload()
-    	    });
-};
-function validate(result) {
-    swal({
-        title: "Confirmer la suppression ?",
-        text: "Cela supprimera toutes ses décharges et rendra libre l'enssemble des cours occupé/gérés.",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#e67e22",
-        confirmButtonText:"Supprimer",
-        cancelButtonText:"Annuler",
-        
-        closeOnConfirm: false
-    }, function () {
-    	$.ajax({
-    		url: <?php echo "'".site_url("admin/module/delete")."'";?>+'/'+result,
-    	});
-    	window.location.reload()
-    	    });
-}
 
-<!--  MODALE CREATION DECHARGE -->
-<div class="modal fade" id="ajoutDecharge" role="dialog"
+<!--  MODALE ASSIGNATION ENSEIGNANT -->
+<div class="modal fade" id="assigner" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -229,7 +197,7 @@ function validate(result) {
 			<div class="modal-body">
 									
 									<?php
-									echo form_open( 'admin/Decharge_controller/create', 'class="form-horizontal" id="change"' );
+									echo form_open ( '#', 'class="form-horizontal" id="change"' );
 									
 									?>
 
@@ -242,7 +210,7 @@ function validate(result) {
 							<?php
 							foreach ( $enseignant as $info ) {
 								echo '
-							<option value="' . $info ['login'] . '">' . ucfirst( $info ['prenom'] ) . ' ' . mb_strtoupper( $info ['nom'] ) . '</option>';
+							<option value="' . $info ['login'] . '">' . ucfirst ( $info ['prenom'] ) . ' ' . mb_strtoupper ( $info ['nom'] ) . '</option>';
 							}
 							?>
 							</select>
@@ -258,13 +226,51 @@ function validate(result) {
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
+<script>
+function validate_partie(module,partie) {
+    swal({
+        title: "Confirmer la suppression ?",
+        text: "Cela supprimera le cours definitivement",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#e67e22",
+        confirmButtonText:"Supprimer",
+        cancelButtonText:"Annuler",
+        
+        closeOnConfirm: false
+    }, function () {
+    	$.ajax({
+    		url: <?php echo "'".site_url("admin/cours/delete")."'";?>+'/'+module+'/'+encodeURIComponent(partie),
+    	});
+    	window.location.reload()
+    	    });
+};
+function validate(result) {
+    swal({
+        title: "Confirmer la suppression ?",
+        text: "Cela supprimera le module et ses cours definitivement",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#e67e22",
+        confirmButtonText:"Supprimer",
+        cancelButtonText:"Annuler",
+        
+        closeOnConfirm: false
+
+        
+    }, function () {
+    	$.ajax({
+    		url: <?php echo "'".site_url("admin/module/delete")."'";?>+'/'+result,
+    	});
+    	window.location.reload()
+    	    });
+}
 function ajax_change_enseignant(id,cours){
-	$("#change").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/inscrire_force");?>'+'/'+id+'/'+cours);
+	$("#change").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/inscrire_force");?>'+'/'+id+'/'+encodeURIComponent(cours));
 }
 							
 function ajax_change_responsable(id){
-	$("#change").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/inscrire_force");?>'+'/'+tab.id);
+	$("#change").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/inscrire_force");?>'+'/'+id);
 }
 							
 </script>
