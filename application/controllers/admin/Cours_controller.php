@@ -17,12 +17,12 @@ class Cours_controller extends Admin_controller
 		$partie = rawurldecode ( $partie );
 		$this -> check_parameters ( $module, $partie );
 		
-		$this -> form_validation -> set_rules ( 'partie_new', 'partie_new', 'trim|required' );
+		$this -> form_validation -> set_rules ( 'nom', 'nom', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'type', 'type', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'hed', 'hed', 'trim|required' );
 		
 		if ( $this -> form_validation -> run () === TRUE ) {
-			$partie_new = $this -> input -> post ( 'partie_new' );
+			$partie_new = $this -> input -> post ( 'nom' );
 			$type = $this -> input -> post ( 'type' );
 			$hed = $this -> input -> post ( 'hed' );
 			if ( $partie != $partie_new && $this -> Cours_model -> exists ( $module, $partie_new ) ) {
@@ -76,6 +76,13 @@ class Cours_controller extends Admin_controller
 		$this -> check_parameters ( $module, $partie );
 		$this -> Cours_model -> delete ( $module, $partie );
 		redirect ( 'admin/cours', 'auto' );
+	}
+
+	public function get_ajax ( $module, $partie )
+	{
+		$partie = rawurldecode ( $partie );
+		$this -> check_parameters ( $module, $partie );
+		echo json_encode ( $this -> Cours_model -> get ( $module, $partie ) );
 	}
 
 	private function check_parameters ( $module, $partie )

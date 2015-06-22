@@ -77,11 +77,13 @@ $route ['admin/cours'] = "admin/Module_controller/get";
 $route ['admin/cours/create/(:any)'] = "admin/Cours_controller/create/$1";
 $route ['admin/cours/edit/(:any)/(:any)'] = "admin/Cours_controller/edit/$1/$2";
 $route ['admin/cours/delete/(:any)/(:any)'] = "admin/Cours_controller/delete/$1/$2";
+$route ['admin/cours/get_ajax/(:any)/(:any)'] = "admin/Cours_controller/get_ajax/$1/$2";
 
 $route ['admin/module/create'] = "admin/Module_controller/create";
 $route ['admin/module/edit/(:any)'] = "admin/Module_controller/edit/$1";
 $route ['admin/module/update/(:any)'] = "admin/Module_controller/update/$1";
 $route ['admin/module/delete/(:any)'] = "admin/Module_controller/delete/$1";
+$route ['admin/module/get_ajax/(:any)'] = "admin/Module_controller/get_ajax/$1";
 
 $route ['admin/decharges'] = "admin/Decharge_controller/index";
 $route ['decharges'] = "Decharge_controller/index";

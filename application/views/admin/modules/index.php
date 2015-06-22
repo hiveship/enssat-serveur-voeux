@@ -60,43 +60,18 @@ foreach ( $modules as $module ) {
 								onClick="ajax_change_responsable('<?php echo $module['id']; ?>')">Changer
 								enseignant</button>
 						</td>
-	<?php
-	
-	echo "<td><center>";
-	echo form_open ( site_url ( 'admin/module/edit/' . $module ['id'] ) );
-	$data = array ( 
-			
-			'type' => 'submit', 
-			'content' => 'Modifier', 
-			'class' => 'btn btn-primary btn-xs' 
-	);
-	echo form_button ( $data );
-	echo form_close ();
-	
-	echo "</center></td>";
-	echo "<td><center>";
-	
-	$params = array ( 
-			
-			'onsubmit' => 'return(validate(this));' 
-	);
-	?>
-			<button id='suppr' type='button' content='Supprimer'
-							class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
-							onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
+						<td>
+							<button type="button" class='btn btn-primary btn-xs'
+								data-toggle="modal" data-target="#gestion-module"
+								onClick="ajax_modifier_module('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
+								partie</button>
+						</td>
+						<td>
+							<button id='suppr' type='button' content='Supprimer'
+								class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
+								onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
+						</td>			
 					<?php
-	
-	// echo form_open( 'admin/module/delete/' . $module ['id'], $params );
-	// $data = array (
-	
-	// 'type' => 'submit',
-	// 'content' => 'Supprimer',
-	// 'class' => 'btn btn-danger btn-xs'
-	// );
-	// echo form_button( $data );
-	// echo form_close();
-	
-	echo "</center></td>";
 	
 	echo "</tr>";
 	echo "<tr>
@@ -137,32 +112,28 @@ foreach ( $modules as $module ) {
 								onClick="ajax_change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
 								Changer enseignant</button>
 						</td>
-				<?php
-		echo "<td>";
-		echo "<a href='" . site_url ( "admin/cours/edit/" . $module ['id'] . '/' . $cours_mod ['partie'] ) . "'
-			 class='btn btn-primary btn-xs'>Modifier partie</a>";
-		echo "</td>";
-		echo "<td>";
-		// echo form_open( 'admin/cours/delete/' . $module ['id'] . '/' . $cours_mod ['partie'], $params );
-		// $data = array (
-		
-		// 'type' => 'submit',
-		// 'content' => 'Supprimer',
-		// 'class' => 'btn btn-danger btn-xs'
-		// );
-		// echo form_button( $data );
-		// echo form_close();
-		?>
-		<button id='suppr' type='button' content='Supprimer'
-							class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
-							onClick="validate_partie('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Supprimer</button>
+						<td>
+							<button type="button" class='btn btn-primary btn-xs'
+								data-toggle="modal" data-target="#gestion-cours"
+								onClick="ajax_modifier_cours('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
+								partie</button>
+						</td>
+						<td>
+							<button id='suppr' type='button' content='Supprimer'
+								class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
+								onClick="validate_partie('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Supprimer</button>
 				<?php
 		echo "</td>";
 		echo "</tr>";
 	}
 	
 	echo "</table>";
-	echo "<a href='" . site_url ( "admin/cours/create/" . $module ['id'] ) . "' class='btn btn-default'>Créer un partie de cours</a>";
+	?>
+	<button type='button' content='Creer cours' data-toggle="modal"
+								data-target="#gestion-cours" class='btn btn-default'
+								onClick="creer_cours('<?php echo $module ['id']; ?>')">Creer
+								cours</button>
+	<?php
 	echo "</div>";
 	echo "</td>";
 	
@@ -171,11 +142,102 @@ foreach ( $modules as $module ) {
 
 }
 ?>
-			
-			
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					</tbody>
 				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--  MODAL CREER / MODIFICATION MODALE-->
+<div class="modal fade" id="gestion-cours" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="exampleModalLabel">Motif de votre
+					décharge</h3>
+			</div>
+			<div class="modal-body">
+			<?php
+			echo form_open ( "admin/cours/create", 'role="form" id="form_gest_cours"' );
+			
+			$Pn = array ( 
+					'id' => 'nom_partie', 
+					'name' => 'nom' 
+			);
+			
+			echo form_label ( 'Nom Partie: ', 'Partie' );
+			echo form_input ( $Pn, '', 'class="form-control"' );
+			
+			$Pt = array ( 
+					
+					'CM' => 'CM', 
+					'Projet' => 'Projet', 
+					'TD' => 'TD', 
+					'TP' => 'TP', 
+					'DS' => 'DS' 
+			);
+			
+			echo form_label ( 'Type: ', 'Type' );
+			echo form_dropdown ( 'type', $Pt, 'CM', "id='type_partie'" );
+			
+			$Ph = array ( 
+					'id' => 'HED', 
+					'name' => 'hed', 
+					'type' => 'number', 
+					'value' => '30' 
+			);
+			echo form_label ( 'hed: ', 'hed' );
+			echo form_input ( $Ph );
+			
+			?>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+			<?php
+			
+			echo form_submit ( 'submit', 'creer', 'id="sub-form-cours"class="btn btn-primary pull-right"' );
+			
+			echo form_close ();
+			?>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -226,6 +288,72 @@ foreach ( $modules as $module ) {
 		</div>
 	</div>
 </div>
+
+<!--  MODAL CREER / MODIFICATION MODALE-->
+<div class="modal fade" id="gestion-module" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="exampleModalLabel">Modification de
+					module</h3>
+			</div>
+			<div class="modal-body">
+			<?php
+			echo form_open ( "admin/module/update/", 'role="form" id="form_gest_module"' );
+			$nom = array ( 
+					
+					'id' => 'nom_module', 
+					'name' => 'nom' 
+			);
+			echo form_label ( 'Nom: ', 'nom' );
+			echo form_input ( $nom, '', 'class="form-control"' );
+			echo form_error ( 'nom' );
+			
+			$public = array ( 
+					
+					'name' => 'public', 
+					'id' => 'public_module' 
+			);
+			echo form_label ( 'public: ', 'public' );
+			echo form_input ( $public, '', 'class="form-control"' );
+			echo form_error ( 'public' );
+			
+			$semestre = array ( 
+					
+					'name' => 'semestre', 
+					'id' => 'semestre_module' 
+			);
+			echo form_label ( 'semestre: ', 'semestre' );
+			echo form_input ( $semestre, '', 'class="form-control"' );
+			echo form_error ( 'semestre' );
+			
+			$libelle = array ( 
+					
+					'name' => 'libelle', 
+					'id' => 'libelle_module' 
+			);
+			echo form_label ( 'libelle: ', 'libelle' );
+			echo form_input ( $libelle, '', 'class="form-control"' );
+			echo form_error ( 'libelle' );
+			?>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+			<?php
+			echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
+			echo form_close ();
+			?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <script>
 function validate_partie(module,partie) {
     swal({
@@ -265,12 +393,53 @@ function validate(result) {
     	window.location.reload()
     	    });
 }
-function ajax_change_enseignant(id,cours){
+function change_enseignant(id,cours){
 	$("#change").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/inscrire_force");?>'+'/'+id+'/'+encodeURIComponent(cours));
 }
 							
-function ajax_change_responsable(id){
+function change_responsable(id){
 	$("#change").get(0).setAttribute('action', '<?php echo site_url("admin/enseignants/inscrire_force");?>'+'/'+id);
 }
-							
+
+function creer_cours(id)
+{
+	$("#form_gest_cours").get(0).setAttribute('action', '<?php echo site_url("admin/cours/create");?>'+'/'+id);
+	$("#sub-form-cours").val('Creer');
+}
+
+function ajax_modifier_cours(id,cours)
+{
+	$("#form_gest_cours").get(0).setAttribute('action', '<?php echo site_url("admin/cours/edit");?>'+'/'+id+'/'+encodeURIComponent(cours));
+    $.ajax
+    ({
+        url: <?php echo "'".site_url("admin/cours/get_ajax")."'";?>+'/'+id+'/'+encodeURIComponent(cours),
+        success: function(result)
+        {
+	        tab = JSON.parse(result)[0];
+	        
+	        $("#nom_partie").val(tab.partie);
+	        $('#type_partie option[value="'+tab.type+'"]').attr('selected','selected');
+	        $("#HED").val(tab.hed);
+	        $("#sub-form-cours").val('Modifier');
+       }
+    });
+}
+
+function ajax_modifier_module(id){
+	$("#form_gest_module").get(0).setAttribute('action', '<?php echo site_url("admin/module/update");?>'+'/'+id);
+    $.ajax
+    ({
+        url: <?php echo "'".site_url("admin/module/get_ajax")."'";?>+'/'+id,
+        success: function(result)
+        {
+	        tab = JSON.parse(result);
+
+	        $("#nom_module").val(tab.nom);
+	        $("#public_module").val(tab.public);
+	        $("#semestre_module").val(tab.semestre);
+	        $("#libelle_module").val(tab.libelle);
+       }
+    });
+}
+
 </script>
