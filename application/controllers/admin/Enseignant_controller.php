@@ -45,7 +45,7 @@ class Enseignant_controller extends Admin_controller
 		$prenom = $this -> input -> post( 'prenom' );
 		$email = $this -> input -> post( 'email' );
 		$statut = $this -> input -> post( 'statut' );
-		$statutaire = $this -> input -> post( 'statutaire' );
+		$statutaire = intval( $this -> input -> post( 'statutaire' ) );
 		$actif = $this -> input -> post( 'actif' );
 		$administrateur = $this -> input -> post( 'administrateur' );
 		$password = $this -> generate_random_string(); // Le mot de passe est généré automatiquement
