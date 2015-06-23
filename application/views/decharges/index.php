@@ -16,16 +16,25 @@
 				<div class="panel-body">
 					<div class="row-fluid">
 						<table class="table table-condensed table-responsive table-user-information center">
+							<thead>
+								<tr>
+									<th><center>Décharge</center></th>
+									<th><center>Motif</center></th>
+
+									<th></th>
+								</tr>
+							</thead>
 							<tbody>
 								
 								<?php
 								
 								foreach ( $decharge as $value ) {
 									
-									echo "<tr>";
-									echo "<td><center>Décharge</center></td>";
 									echo "<td><center>";
 									echo $value ['decharge'];
+									echo "</center></td>";
+									echo "<td><center>";
+									echo $value ['motif'];
 									echo "</center></td>";
 									echo "<td><center>";
 									?>
@@ -118,7 +127,7 @@
 						<div class="modal-body">
 
 					<?php
-					echo form_open( 'decharges/update_motif', 'class="form-horizontal" id="motif_id"' );
+					echo form_open ( 'decharges/update_motif', 'class="form-horizontal" id="motif_id"' );
 					?>
 							
 							<div class="form-group">
@@ -134,8 +143,8 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 							<?php
-							echo form_submit( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
-							echo form_close();
+							echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
+							echo form_close ();
 							?>
 					</div>
 					</div>
@@ -149,7 +158,7 @@
 }
 
 .container {
-	width: 400px;
+	width: 800px;
 }
 </style>
 			<script type="text/javascript">
