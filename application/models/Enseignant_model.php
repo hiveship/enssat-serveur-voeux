@@ -221,9 +221,9 @@ class Enseignant_model extends CI_Model
 	
 	public function delete ( $login )
 	{
-		$this -> load -> model( 'cours/Cours_model' );
-		$this -> load -> model( 'cours/Module_model' );
-		$this -> load -> model( 'decharge/Decharge_model' );
+		$this -> load -> model( 'Cours_model' );
+		$this -> load -> model( 'Module_model' );
+		$this -> load -> model( 'Decharge_model' );
 		
 		$this -> Cours_model -> desinscrire_enseignant_tout( $login );
 		$this -> Module_model -> desinscrire_responsable_tout( $login );
