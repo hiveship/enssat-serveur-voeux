@@ -1,6 +1,8 @@
 <div class="container">
-	<a href="<?php echo site_url("admin/module/create") ?>" class='btn btn-primary pull-right'> <span
-		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer Module
+	<a href="<?php echo site_url("admin/module/create") ?>"
+		class='btn btn-primary pull-right'> <span
+		class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Créer
+		Module
 	</a> <br></br>
 
 	<div class="row">
@@ -10,7 +12,8 @@
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<table id='tableSearchResults' class='table table-hover table-striped'>
+				<table id='tableSearchResults'
+					class='table table-hover table-striped'>
 					<thead>
 						<tr>
 							<th><center>Module</center></th>
@@ -52,19 +55,21 @@ foreach ( $modules as $module ) {
 	
 	?>
 			<td>
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-								data-target="#assigner" onClick="ajax_change_responsable('<?php echo $module['id']; ?>')">Changer
+							<button type="button" class="btn btn-primary btn-xs"
+								data-toggle="modal" data-target="#assigner"
+								onClick="change_responsable('<?php echo $module['id']; ?>')">Changer
 								enseignant</button>
 						</td>
 						<td>
-							<button type="button" class='btn btn-primary btn-xs' data-toggle="modal"
-								data-target="#gestion-module"
+							<button type="button" class='btn btn-primary btn-xs'
+								data-toggle="modal" data-target="#gestion-module"
 								onClick="ajax_modifier_module('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
 								partie</button>
 						</td>
 						<td>
-							<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
-								value="<?php $module ['id'] ?>" onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
+							<button id='suppr' type='button' content='Supprimer'
+								class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
+								onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
 						</td>
 					<?php
 	
@@ -102,20 +107,20 @@ foreach ( $modules as $module ) {
 		
 		?>
 		<td>
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-								data-target="#assigner"
-								onClick="ajax_change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
+							<button type="button" class="btn btn-primary btn-xs"
+								data-toggle="modal" data-target="#assigner"
+								onClick="change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
 								Changer enseignant</button>
 						</td>
 						<td>
-							<button type="button" class='btn btn-primary btn-xs' data-toggle="modal"
-								data-target="#gestion-cours"
+							<button type="button" class='btn btn-primary btn-xs'
+								data-toggle="modal" data-target="#gestion-cours"
 								onClick="ajax_modifier_cours('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
 								partie</button>
 						</td>
 						<td>
-							<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
-								value="<?php $module ['id'] ?>"
+							<button id='suppr' type='button' content='Supprimer'
+								class='btn btn-danger btn-xs' value="<?php $module ['id'] ?>"
 								onClick="validate_partie('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Supprimer</button>
 				<?php
 		echo "</td>";
@@ -124,8 +129,10 @@ foreach ( $modules as $module ) {
 	
 	echo "</table>";
 	?>
-	<button type='button' content='Creer cours' data-toggle="modal" data-target="#gestion-cours"
-								class='btn btn-default' onClick="creer_cours('<?php echo $module ['id']; ?>')">Creer cours</button>
+	<button type='button' content='Creer cours' data-toggle="modal"
+								data-target="#gestion-cours" class='btn btn-default'
+								onClick="creer_cours('<?php echo $module ['id']; ?>')">Creer
+								cours</button>
 	<?php
 	echo "</div>";
 	echo "</td>";
@@ -141,6 +148,34 @@ foreach ( $modules as $module ) {
 					
 					
 					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					</tbody>
 				</table>
 			</div>
@@ -148,26 +183,73 @@ foreach ( $modules as $module ) {
 	</div>
 </div>
 
-<!--  MODAL CREER / MODIFICATION MODALE-->
-<div class="modal fade" id="gestion-cours" role="dialog" aria-labelledby="exampleModalLabel"
-	aria-hidden="true">
+<!--  MODALE ASSIGNATION ENSEIGNANT -->
+<div class="modal fade" id="assigner" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="exampleModalLabel">Choix de l'enseignant</h3>
+			</div>
+			<div class="modal-body">
+									
+									<?php
+									echo form_open ( '#', 'class="form-horizontal" id="change"' );
+									
+									?>
+
+										<fieldset>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="enseignant">Choisissez
+							un enseignant</label> <select name="login" id="choix_enseignant"
+							class="select2-enseignant form form-control">
+							<?php
+							foreach ( $enseignant as $info ) {
+								echo '
+							<option value="' . $info ['login'] . '">' . ucfirst ( $info ['prenom'] ) . ' ' . mb_strtoupper ( $info ['nom'] ) . '</option>';
+							}
+							?>
+							</select>
+					</div>
+				</fieldset>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+							<?php echo form_submit('mysubmit', 'Choisir','class="btn btn-primary" type="button"');?>
+						<?php echo form_close();?>
+					</div>
+		</div>
+	</div>
+</div>
+
+<!--  MODAL CREER / MODIFICATION MODALE-->
+<div class="modal fade" id="gestion-cours" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h3 class="modal-title" id="exampleModalLabel">Créer Cours</h3>
-				<div class="modal-body">
+			</div>
+			<div class="modal-body">
 								<?php
 								echo form_open ( "admin/cours/create", 'role="form" id="form_gest_cours"' );
 								
 								?>
 			<!-- NOM PARTIE -->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="email">Nom Partie</label>
-						<div class="col-md-5">
-							<div class="input-group">
+				<fieldset>
+					<label class="col-md-4 control-label" for="email">Nom Partie</label>
+					<div class="col-md-5">
+						<div class="input-group">
 							<?php
 							
 							$Pn = array ( 
@@ -186,27 +268,24 @@ foreach ( $modules as $module ) {
 							);
 							?>
 							</div>
-						</div>
 					</div>
 
+
 					<!-- TYPE -->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="email">Type</label>
-						<div class="col-md-5">
-							<div class="input-group">
+					<label class="col-md-4 control-label" for="email">Type</label>
+					<div class="col-md-5">
+						<div class="input-group">
 							<?php
 							
 							echo form_dropdown ( 'type', $Pt, 'CM', "id='type_partie'" );
 							?>
-														</div>
-						</div>
+							</div>
 					</div>
 
 					<!-- HED -->
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="email">HED</label>
-						<div class="col-md-5">
-							<div class="input-group">
+					<label class="col-md-4 control-label" for="email">HED</label>
+					<div class="col-md-5">
+						<div class="input-group">
 							<?php
 							$Ph = array ( 
 									'id' => 'HED', 
@@ -216,82 +295,37 @@ foreach ( $modules as $module ) {
 							);
 							
 							echo form_input ( $Ph );
-							echo form_close ();
+							
 							?>
 						</div>
-						</div>
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<?php
-				
-				echo form_submit ( 'submit', 'creer', 'id="sub-form-cours"class="btn btn-primary pull-right"' );
-				
-				?>
-					</div>
-				</div>
-
-
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-
-<!--  MODALE ASSIGNATION ENSEIGNANT -->
-<div class="modal fade" id="assigner" role="dialog" aria-labelledby="exampleModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h3 class="modal-title" id="exampleModalLabel">Création d'une décharge</h3>
-			</div>
-			<div class="modal-body">
-									
-									<?php
-									echo form_open ( '#', 'class="form-horizontal" id="change"' );
-									
-									?>
-
-										<fieldset>
-
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label> <select
-							name="login" id="choix_enseignant" class="select2-enseignant form form-control">
-							<?php
-							foreach ( $enseignant as $info ) {
-								echo '
-							<option value="' . $info ['login'] . '">' . ucfirst ( $info ['prenom'] ) . ' ' . mb_strtoupper ( $info ['nom'] ) . '</option>';
-							}
-							?>
-							</select>
 					</div>
 				</fieldset>
-
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-							<?php echo form_submit('mysubmit', 'Ajouter','class="btn btn-primary" type="button"');?>
-						<?php echo form_close();?>
-					</div>
+				<?php
+				
+				echo form_submit ( 'submit', 'creer', 'id="sub-form-cours"class="btn btn-primary pull-right"' );
+				echo form_close ();
+				?>
+					
+			</div>
 		</div>
 	</div>
 </div>
 
 <!--  MODAL CREER / MODIFICATION MODALE-->
-<div class="modal fade" id="gestion-module" role="dialog" aria-labelledby="exampleModalLabel"
-	aria-hidden="true">
+<div class="modal fade" id="gestion-module" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h3 class="modal-title" id="exampleModalLabel">Modification de module</h3>
+				<h3 class="modal-title" id="exampleModalLabel">Modification de
+					module</h3>
 			</div>
 			<div class="modal-body">
 			<?php
@@ -332,17 +366,18 @@ foreach ( $modules as $module ) {
 			echo form_input ( $libelle, '', 'class="form-control"' );
 			echo form_error ( 'libelle' );
 			?>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 			<?php
 			echo form_submit ( 'mysubmit', 'Modifier', 'class="btn btn-primary" type="button"' );
 			echo form_close ();
 			?>
 				</div>
-			</div>
 		</div>
 	</div>
 </div>
+
 
 
 <script>
