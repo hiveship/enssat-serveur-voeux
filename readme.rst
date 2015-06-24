@@ -5,12 +5,11 @@ Installation guide
 
 
 *******************
-Server Requirements
+Server requirements
 *******************
 
 PHP version 5.4 or newer is recommended. It should work on 5.2.4 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+such old versions of PHP, because of potential security and performance issues, as well as missing features.
 
 Your browser needs to accept JavaScript.
 
@@ -26,17 +25,32 @@ MySQL et dump à initiliser
 Installation
 *********
 
-Expliquer comment configurer quand on viens de clone le dépo (fichier de config à aller chercher dans misc et à remplir avec url de base notament + fichier database à remplir en fonction des paramètres de notre bdd
+1. Download the project or clone the git repository.
+2. Copy the file misc/config.php in the application/config folder.
+3. Edit this file to complete the base url parameter (URL to access the project folder on your web server) 
+ $config ['base_url'] = 'YOUR URL HERE'
+
+4. Set up your the database on your server (see above).
+5. Edit the application/config/database.php file
+ 'hostname' => 'IP:port adress to connect to your database'
+ 
+ 'username' => 'username to connect to your database'
+ 
+ 'password' => 'password to connect to your database'
+ 
+ 'database' => 'name of the database (default is 'voeux')'
+
+6. Congrats ! The application should now be available on your browser !
  
 *********
 Sample users
 *********
 
-Compte inactif : login // mdp
+You can use the following account to test our application:
 
-Enseignant actif : login // mdp
-
-Administrateur actif : login // mdp
+ Compte inactif : login // mdp
+ Enseignant actif : login // mdp
+ Administrateur actif : login // mdp
 
 *******
 License
