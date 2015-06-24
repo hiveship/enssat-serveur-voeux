@@ -33,8 +33,11 @@ Installation
 4. Set up your the database on your server (see above).
 5. Edit the application/config/database.php file
  'hostname' => 'IP:port adress to connect to your database'
+ 
  'username' => 'username to connect to your database'
+ 
  'password' => 'password to connect to your database'
+ 
  'database' => 'name of the database (default is 'voeux')'
 
 6. Congrats ! The application should now be available on your browser !
