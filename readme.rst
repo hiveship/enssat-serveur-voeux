@@ -26,7 +26,7 @@ MySQL et dump à initiliser
 Installation
 *********
 
- Expliquer comment configurer quand on viens de clone le dépo (fichier de config à aller chercher dans misc et à remplir avec url de base notament + fichier database à remplir en fonction des paramètres de notre bdd
+Expliquer comment configurer quand on viens de clone le dépo (fichier de config à aller chercher dans misc et à remplir avec url de base notament + fichier database à remplir en fonction des paramètres de notre bdd
  
 *******
 License
@@ -34,6 +34,8 @@ License
 
 Please see the `license
 agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_ for the Code Igniter licence.
+
+Our application is free under the terms of the aGPLv3 licence.
 
 *********
 Contributors
