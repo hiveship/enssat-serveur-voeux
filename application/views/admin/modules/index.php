@@ -52,10 +52,12 @@ foreach ( $modules as $module ) {
 	
 	?>
 			<td><a data-toggle="modal" data-target="#assigner"
-							onClick="change_responsable('<?php echo $module['id']; ?>')"> Changer enseignant</a></td>
+							onClick="change_responsable('<?php echo $module['id']; ?>')"><i class="fa fa-user"></i>
+								Changer enseignant</a></td>
 						<td><a data-toggle="modal" data-target="#gestion-module"
-							onClick="ajax_modifier_module('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
-								partie</a></td>
+							onClick="ajax_modifier_module('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">
+								<i class="fa fa-wrench"></i> Modifier
+						</a></td>
 						<td><a id='suppr' type='button' content='Supprimer' value="<?php $module ['id'] ?>"
 							onClick="validate('<?php echo $module ['id']; ?>')"> <i class="fa fa-times"></i> Supprimer
 						</a></td>
@@ -163,6 +165,20 @@ foreach ( $modules as $module ) {
 					
 					
 					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					</tbody>
 				</table>
 			</div>
@@ -203,6 +219,20 @@ foreach ( $modules as $module ) {
 							}
 							?>
 
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						
 						
 						

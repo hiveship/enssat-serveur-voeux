@@ -44,11 +44,11 @@ Sample users
 You can use the following account to test our application:
 
  Compte inactif : 
-  Login : ganais
+  Login : agalisson
   Mot de passe : 1234
   
  Enseignant actif :
-  Login : rantoine
+  Login : aregnault
   Mot de passe : 1234
   
  Administrateur actif : login // mdp

@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.2.12deb2
--- http://www.phpmyadmin.net
---
--- Client :  localhost
--- Généré le :  Mer 24 Juin 2015 à 18:55
--- Version du serveur :  5.6.24-0ubuntu2
--- Version de PHP :  5.6.9-1+deb.sury.org~utopic+2
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -44,24 +35,24 @@ INSERT INTO `contenu` (`module`, `partie`, `type`, `hed`, `enseignant`) VALUES
 (1, 'TD 2', 'TD', '14', 'kabbaci'),
 (1, 'TD 3', 'TD', '14', 'nestibal'),
 (1, 'TP 1', 'TP', '18', 'fgoasdoue'),
-(1, 'TP 2', 'TP', '18', 'rantoine'),
-(1, 'TP 3', 'TP', '18', 'rantoine'),
-(1, 'TP 4', 'TP', '18', 'rantoine'),
+(1, 'TP 2', 'TP', '18', 'aregnault'),
+(1, 'TP 3', 'TP', '18', NULL),
+(1, 'TP 4', 'TP', '18', NULL),
 (1, 'TP 5', 'TP', '18', NULL),
 (2, 'CM', 'CM', '15', 'fgoasdoue'),
 (2, 'TD', 'TD', '6', 'mnantel'),
-(2, 'TP 1', 'TP', '14', 'rantoine'),
+(2, 'TP 1', 'TP', '14', NULL),
 (2, 'TP 2', 'TP', '14', 'kabbaci'),
 (3, 'CM', 'CM', '27', 'opivert'),
-(3, 'TD', 'TD', '16', 'rantoine'),
-(3, 'TP 1', 'TP', '20', 'rantoine'),
+(3, 'TD', 'TD', '16', NULL),
+(3, 'TP 1', 'TP', '20', NULL),
 (3, 'TP 2', 'TP', '20', NULL),
-(4, 'CM', 'CM', '24', NULL),
+(4, 'CM', 'CM', '24', 'aregnault'),
 (4, 'TD', 'TD', '8', NULL),
 (4, 'TP 1', 'TP', '18', NULL),
 (4, 'TP 2', 'TP', '18', NULL),
-(5, 'CM', 'CM', '30', 'rantoine'),
-(5, 'TD', 'TD', '10', 'rantoine'),
+(5, 'CM', 'CM', '30', 'aregnault'),
+(5, 'TD', 'TD', '10', 'aregnault'),
 (6, 'CM partie 1', 'CM', '15', 'jpettier'),
 (6, 'CM partie 2', 'CM', '6', 'jpettier'),
 (7, 'CM', 'CM', '18', 'vthion'),
@@ -77,15 +68,15 @@ INSERT INTO `contenu` (`module`, `partie`, `type`, `hed`, `enseignant`) VALUES
 (10, 'TP partie 2', 'TP', '10', 'mnantel'),
 (11, 'CM', 'CM', '33', 'hjaudoin'),
 (11, 'TP 2', 'TP', '22', 'mnantel'),
-(12, 'CM', 'CM', '15', NULL),
-(12, 'Projet', 'Projet', '8', NULL),
+(12, 'CM', 'CM', '15', 'aregnault'),
+(12, 'Projet', 'Projet', '8', 'aregnault'),
 (12, 'TD', 'TD', '6', NULL),
 (12, 'TP', 'TP', '4', NULL),
 (13, 'CM', 'CM', '9', 'vthion'),
 (13, 'TP 1', 'TP', '18', 'vthion'),
 (13, 'TP 2', 'TP', '18', 'kabbaci'),
 (14, 'CM', 'CM', '3', 'kabbaci'),
-(14, 'TP 1', 'TP', '18', 'rantoine'),
+(14, 'TP 1', 'TP', '18', NULL),
 (14, 'TP 2', 'TP', '18', 'hjaudoin');
 
 -- --------------------------------------------------------
@@ -110,8 +101,6 @@ INSERT INTO `decharge` (`id`, `enseignant`, `decharge`, `motif`) VALUES
 (34, 'ahadjali', 15, ''),
 (40, 'ahadjali', 15, ''),
 (41, 'fgoasdoue', 5, ''),
-(45, 'rantoine', 10, 'Motif1'),
-(46, 'rantoine', 5, 'Motif 2'),
 (47, 'mnantel', 20, 'Motif ');
 
 -- --------------------------------------------------------
@@ -137,10 +126,11 @@ CREATE TABLE IF NOT EXISTS `enseignant` (
 --
 
 INSERT INTO `enseignant` (`login`, `pwd`, `nom`, `prenom`, `email`, `statut`, `statutaire`, `actif`, `administrateur`) VALUES
+('agalisson', '$2y$10$hyZqfkuOni8rjjpHT4kVo.qyCLMS4OjaPN6YLcPyxx0ctf4xTaXju', 'Galisson', 'Anais', 'anais.galisson@enssat.com', 'administratif', 192, 0, 0),
 ('ahadjali', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Hadjali', 'Allel', '', 'permanent', 192, 1, 1),
+('aregnault', '$2y$10$qMETEEDg1eEsAYLR8mP5.OkIbM93xqIALdx9hsdvMMIBbjcobdNfW', 'Regnault', 'Antoine', 'antoine.regnault@enssat.fr', 'administratif', 192, 1, 0),
 ('dguennec', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Guennec', 'David', '', 'contractuel', 192, 1, 1),
 ('fgoasdoue', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Goasdoué', 'François', 'francois.gasdoue@enssat.fr', 'titulaire', 192, 1, 0),
-('ganais', '$2y$10$mpZMvdZc9RgI4/i4xvmQTuhu7GnHQSDHS8LM9h6vOvKGSl9r3ljtW', 'Anais', 'Galisson', 'anais.galisson@gmail.com', 'administratif', 192, 0, 0),
 ('glecorve', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Lecorvé', 'Gwénolé', '', 'titulaire', 192, 1, 0),
 ('hjaudoin', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Jaudoin', 'Hélène', '', 'titulaire', 192, 1, 0),
 ('jpettier', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Pettier', 'Jean-Christophe', '', 'titulaire', 192, 1, 1),
@@ -150,7 +140,6 @@ INSERT INTO `enseignant` (`login`, `pwd`, `nom`, `prenom`, `email`, `statut`, `s
 ('opivert', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Pivert', 'Olivier', '', 'titulaire', 192, 1, 0),
 ('pbosc', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Bosc', 'Patrick', '', 'titulaire', 192, 1, 0),
 ('pcrepieux', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Crepieux', 'Pierre', '', 'vacataire', 192, 1, 0),
-('rantoine', '$2y$10$ZrSY42zdJOhnsqLUR8RrMuuDTcDuHCN4DytrT25FTaf7TM7WdAtsS', 'Antoine', 'Regnault', 'antoine.regnault@enssat.fr', 'titulaire', 192, 1, 0),
 ('vbarreaud', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Barreaud', 'Vincent', '', 'titulaire', 192, 0, 0),
 ('vthion', '$2y$10$6XMHO9L4DCELp4VS4zOzse9MPd8gQpDeKoE9gjE8/eqrr4JSx8YOO', 'Thion', 'Virginie', 'virginie.thion@enssat.fr', 'titulaire', 192, 1, 0);
 
@@ -178,7 +167,7 @@ INSERT INTO `module` (`id`, `nom`, `public`, `semestre`, `libelle`, `responsable
 (2, 'ALGOC2', 'LSI1', 'S1', 'Algorithmique et language C 2', 'mnantel'),
 (3, 'BDD', 'LSI1', 'S2', 'Bases de données', 'mnantel'),
 (4, 'DOO', 'LSI1', 'S2', 'Développement Orienté Objet', NULL),
-(5, 'FSE', 'LSI1', 'S2', 'Fondement des Systèmes d''Exploitation', 'rantoine'),
+(5, 'FSE', 'LSI1', 'S2', 'Fondement des Systèmes d''Exploitation', 'aregnault'),
 (6, 'ESI', 'LSI1', 'S1', 'Introduction aux systèmes d''exploitatiob', 'jpettier'),
 (7, 'JavaIHM', 'LSI2', 'S1', 'Java Interfaces graphiques', 'mnantel'),
 (8, 'MDD', 'LSI1', 'S1', 'Modèle de données', 'hjaudoin'),
