@@ -15,12 +15,6 @@ Your browser needs to accept JavaScript.
 
 This project has only been tested using an Apache Server and a MySQL database.
 
-**************************
-Setting up the database
-**************************
-
-TODO
-
 *********
 Installation
 *********
@@ -30,7 +24,8 @@ Installation
 3. Edit this file to complete the base url parameter (URL to access the project folder on your web server) 
  $config ['base_url'] = 'YOUR URL HERE'
 
-4. Set up your the database on your server (see above).
+4. Set up your the database on your server by creating a database and then running the SQL script (misc/voeux_DUMP_current) on it
+
 5. Edit the application/config/database.php file
  'hostname' => 'IP:port adress to connect to your database'
  
@@ -48,12 +43,19 @@ Sample users
 
 You can use the following account to test our application:
 
- Compte inactif : login // mdp
- 
- Enseignant actif : login // mdp
- 
+ Compte inactif : 
+  Login : ganais
+  Mot de passe : 1234
+  
+ Enseignant actif :
+  Login : rantoine
+  Mot de passe : 1234
+  
  Administrateur actif : login // mdp
-
+  Login : mnantel
+  Mot de passe : 1234
+  
+  
 *******
 License
 *******
@@ -70,7 +72,3 @@ Contributions
 Do not hesitate to send a pull request.
 
 For contributors, it is appreciated to use the Eclips code formater (misc/eclipse_php_formatter.xml). 
-
-
-
-
