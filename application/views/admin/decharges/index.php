@@ -27,7 +27,7 @@
 								
 								<?php
 								$params = array ( 
-										
+									
 										'onsubmit' => 'return(validate(this));' 
 								);
 								
@@ -85,7 +85,7 @@
 									<div class="modal-body">
 									
 									<?php
-									echo form_open ( 'admin/Decharge_controller/create', 'class="form-horizontal"' );
+									echo form_open( 'admin/decharges/create', 'class="form-horizontal"' );
 									
 									?>
 

@@ -40,7 +40,7 @@ class Module_controller extends Application_controller
 	{
 		if ( ! isset ( $ID ) || ! $this -> Module_model -> exists ( $ID ) ) {
 			flash_error ( "Vous devez spécifier un ID valide ! : recu -> " . $id );
-			redirect ( 'Module_controller', 'auto' ); // TODO renomer avec le bon nom de route
+			redirect ( 'cours', 'auto' );
 		}
 	}
 

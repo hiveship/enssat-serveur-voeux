@@ -64,7 +64,7 @@ class Decharge_controller extends Application_controller
 		// on vérifie que le login de la personne connecté est égal au login correspondant à la décharge qui va être supprimée
 		if ( $login == $enseignant_login || $this -> session -> userdata ( 'me' )['administrateur'] == 1 ) {
 			$this -> Decharge_model -> delete ( $id );
-			// TODO flash success
+			flash_success ( "Votre décharge a bien été supprimée." );
 			redirect ( site_url ( 'decharges' ) );
 		} else {
 			flash_error ( "Non mais oh, on ajoute pas de décharge à ses petits camarade!" );
