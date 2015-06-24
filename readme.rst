@@ -48,12 +48,19 @@ Sample users
 
 You can use the following account to test our application:
 
- Compte inactif : login // mdp
- 
- Enseignant actif : login // mdp
- 
+ Compte inactif : 
+  Login : ganais
+  Mot de passe : 1234
+  
+ Enseignant actif :
+  Login : rantoine
+  Mot de passe : 1234
+  
  Administrateur actif : login // mdp
-
+  Login : mnantel
+  Mot de passe : 1234
+  
+  
 *******
 License
 *******
