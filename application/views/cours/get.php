@@ -181,7 +181,14 @@ foreach ( $modules as $module ) {
 				echo "<td>";
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
-					echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">se retirer</a>";
+					if ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
+						echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">se retirer</a>";
+					} elseif ( $this -> session -> userdata ( 'me' )['administrateur'] ) {
+						echo "<a href=" . site_url ( "admin/enseignants/retirer/" . $cours_mod ['enseignant'] . "/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">retirer</a>";
+					} else {
+						echo $value;
+					}
+					// echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">se retirer</a>";
 				} else if ( $key == 'hed' ) {
 					echo "$value (" . convert_heures ( $value, $cours_mod ['type'] ) . ")";
 				} else {
