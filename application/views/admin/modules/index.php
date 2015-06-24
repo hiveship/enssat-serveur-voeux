@@ -51,21 +51,14 @@ foreach ( $modules as $module ) {
 	}
 	
 	?>
-			<td>
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-								data-target="#assigner" onClick="change_responsable('<?php echo $module['id']; ?>')">Changer
-								enseignant</button>
-						</td>
-						<td>
-							<button type="button" class='btn btn-primary btn-xs' data-toggle="modal"
-								data-target="#gestion-module"
-								onClick="ajax_modifier_module('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
-								partie</button>
-						</td>
-						<td>
-							<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
-								value="<?php $module ['id'] ?>" onClick="validate('<?php echo $module ['id']; ?>')">Supprimer</button>
-						</td>
+			<td><a data-toggle="modal" data-target="#assigner"
+							onClick="change_responsable('<?php echo $module['id']; ?>')"> Changer enseignant</a></td>
+						<td><a data-toggle="modal" data-target="#gestion-module"
+							onClick="ajax_modifier_module('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
+								partie</a></td>
+						<td><a id='suppr' type='button' content='Supprimer' value="<?php $module ['id'] ?>"
+							onClick="validate('<?php echo $module ['id']; ?>')"> <i class="fa fa-times"></i> Supprimer
+						</a></td>
 					<?php
 	
 	echo "</tr>";
@@ -101,22 +94,17 @@ foreach ( $modules as $module ) {
 		}
 		
 		?>
-		<td>
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
-								data-target="#assigner"
-								onClick="change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
-								Changer enseignant</button>
-						</td>
-						<td>
-							<button type="button" class='btn btn-primary btn-xs' data-toggle="modal"
-								data-target="#gestion-cours"
-								onClick="ajax_modifier_cours('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Modifier
-								partie</button>
-						</td>
-						<td>
-							<button id='suppr' type='button' content='Supprimer' class='btn btn-danger btn-xs'
-								value="<?php $module ['id'] ?>"
-								onClick="validate_partie('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">Supprimer</button>
+		<td><a data-toggle="modal" data-target="#assigner"
+							onClick="change_enseignant('<?php echo $cours_mod['module']."','".$cours_mod['partie']; ?>')">
+								<i class="fa fa-user"></i> Changer enseignant
+						</a></td>
+						<td><a data-toggle="modal" data-target="#gestion-cours"
+							onClick="ajax_modifier_cours('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')"><i
+								class="fa fa-wrench"></i> Modifier partie</a></td>
+						<td><a id='suppr' content='Supprimer' value="<?php $module ['id'] ?>"
+							onClick="validate_partie('<?php echo $cours_mod ['module']."','".$cours_mod ['partie']; ?>')">
+								<i class="fa fa-times"></i> Supprimer
+						</a>
 				<?php
 		echo "</td>";
 		echo "</tr>";
@@ -124,8 +112,8 @@ foreach ( $modules as $module ) {
 	
 	echo "</table>";
 	?>
-	<button type='button' content='Creer cours' data-toggle="modal" data-target="#gestion-cours"
-								class='btn btn-default' onClick="creer_cours('<?php echo $module ['id']; ?>')">Creer cours</button>
+	<a type='button' content='Creer cours' data-toggle="modal" data-target="#gestion-cours"
+							class='btn btn-default' onClick="creer_cours('<?php echo $module ['id']; ?>')">Creer cours</a>
 	<?php
 	echo "</div>";
 	echo "</td>";
@@ -135,12 +123,6 @@ foreach ( $modules as $module ) {
 
 }
 ?>
-
-					
-
-					
-					
-					
 					
 					
 					
@@ -204,21 +186,59 @@ foreach ( $modules as $module ) {
 
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="enseignant">Choisissez un enseignant</label> <select
-							name="login" id="choix_enseignant" class="select2-enseignant form form-control">
+							name="login" id="choix_enseignant" class="select2-enseignant form form-control"
+							class="select2-enseignant form form-control input-md" style="width: 170px">
 							<div class="col-md-4">
+				
 							<?php
 							foreach ( $enseignant as $info ) {
 								echo '
 							<option value="' . $info ['login'] . '">' . ucfirst ( $info ['prenom'] ) . ' ' . mb_strtoupper ( $info ['nom'] ) . '</option>';
 							}
 							?>
-							
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						
 						
 						
 						</select>
 
 					</div>
+
 				</fieldset>
 
 			</div>
@@ -280,7 +300,7 @@ foreach ( $modules as $module ) {
 						<div class="input-group">
 							<?php
 							
-							echo form_dropdown ( 'type', $Pt, 'CM', "id='type_partie'" );
+							echo form_dropdown ( 'type', $Pt, 'CM', "id='type_partie' class='select2-enseignant form form-control input-md' style='width: 190px'" );
 							?>
 							</div>
 					</div>
@@ -295,7 +315,8 @@ foreach ( $modules as $module ) {
 									'id' => 'HED', 
 									'name' => 'hed', 
 									'type' => 'number', 
-									'value' => '30' 
+									'value' => '30', 
+									'class' => 'class="select2-enseignant form form-control input-md" style="width: 190px"' 
 							);
 							
 							echo form_input ( $Ph );
