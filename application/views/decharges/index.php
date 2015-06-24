@@ -49,7 +49,7 @@
 
 									<button id='motif' type='button' content='Motif' class='btn btn-primary btn-xs'
 									data-toggle='modal' data-target='#motifModal' value="<?php $value['id'] ?>"
-									onClick="ajax_get_motif('<?php echo $value['id']; ?>')">Motif</button>
+									onClick="ajax_get_motif('<?php echo $value['id']; ?>')">Modifier mon motif</button>
 									
 									<?php
 									echo "</center></td>";
