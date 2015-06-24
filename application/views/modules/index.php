@@ -29,9 +29,9 @@ foreach ( $modules as $module ) {
 			echo "<td><center>";
 			if ( $key == 'responsable' ) {
 				if ( $value == null ) {
-					echo "<a href=" . site_url ( "enseignants/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
-				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-					echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] ) . ">me retirer</a>";
+					echo "<a href=" . site_url( "enseignants/inscrire/" . $module ['id'] ) . ">Inscrire</a>";
+				} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
+					echo "<a href=" . site_url( "enseignants/retirer/" . $module ['id'] ) . ">Retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -81,9 +81,9 @@ foreach ( $modules as $module ) {
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
 					if ( $value == null ) {
-						echo "<a href=" . site_url ( "enseignants/inscrire/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">m'incrire</a>";
-					} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-						echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">me retirer</a>";
+						echo "<a href=" . site_url( "enseignants/inscrire/" . $module ['id'] . '/' . rawurlencode( $cours_mod ['partie'] ) ) . ">Inscrire</a>";
+					} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
+						echo "<a href=" . site_url( "enseignants/retirer/" . $module ['id'] . '/' . rawurlencode( $cours_mod ['partie'] ) ) . ">Retirer</a>";
 					} else {
 						echo $value;
 					}
