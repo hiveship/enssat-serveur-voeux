@@ -38,22 +38,22 @@ Installation
 6. Congrats ! The application should now be available on your browser !
  
 *********
-Sample users
+Demo
 *********
 
-You can use the following account to test our application:
+You can use the following accounts to test our application:
 
  Compte inactif : 
   Login : agalisson
-  Mot de passe : 1234
+  Password : 1234
   
  Enseignant actif :
   Login : aregnault
-  Mot de passe : 1234
+  Password : 1234
   
- Administrateur actif : login // mdp
+ Administrateur actif : 
   Login : mnantel
-  Mot de passe : 1234
+  Password : 1234
   
   
 *******
