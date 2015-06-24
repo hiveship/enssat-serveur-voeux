@@ -36,10 +36,11 @@ class Enseignant_controller extends Admin_controller
 		echo json_encode ( $this -> Enseignant_model -> get ( $login ) );
 	}
 
+	/**
+	 * Créer un enseignant
+	 */
 	public function create ()
 	{
-		// TODO ajouter les règles de formulaires et traiter le cas d'erreur (déjà un premier contrôle client en JS éffectué).
-		
 		// On ne stocke en base de donnée que des données en minuscule
 		$nom = $this -> input -> post ( 'nom' );
 		$prenom = $this -> input -> post ( 'prenom' );
@@ -65,6 +66,12 @@ class Enseignant_controller extends Admin_controller
 		}
 	}
 
+	/**
+	 * Modification des paramètre d'un enseignant
+	 * 
+	 * @param
+	 *        	$login
+	 */
 	public function edit ( $login )
 	{
 		$this -> check_login_parameter ( $login );
@@ -164,7 +171,7 @@ class Enseignant_controller extends Admin_controller
 	{
 		if ( $cours == null ) {
 			if ( ! $this -> Module_model -> est_libre ( $module ) ) {
-				flash_error ( "il y a déja un responsable ou le module n'exite pas" );
+				flash_error ( "il y a déja un responsable ou le module n'existe pas" );
 				redirect ( 'admin/cours', 'auto' ); // TODO renomer avec le nom de la bonne route
 			}
 			$this -> Module_model -> inscrire_responsable ( $module, $login );
