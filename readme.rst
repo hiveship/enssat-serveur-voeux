@@ -49,7 +49,9 @@ Sample users
 You can use the following account to test our application:
 
  Compte inactif : login // mdp
+ 
  Enseignant actif : login // mdp
+ 
  Administrateur actif : login // mdp
 
 *******
@@ -62,10 +64,12 @@ agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/so
 Our application is free under the terms of the aGPLv3 licence.
 
 *********
-Contributors
+Contributions
 *********
-on autorise toute pull request
-il est recommandé d'utiliser la configuration d'éclipse et le formatter de code pour les conventions
+
+Do not hesitate to send a pull request.
+
+For contributors, it is appreciated to use the Eclips code formater (misc/eclipse_php_formatter.xml). 
 
 
 
