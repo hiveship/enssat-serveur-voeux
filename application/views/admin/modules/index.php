@@ -157,6 +157,12 @@ foreach ( $modules as $module ) {
 					
 					
 					
+					
+					
+					
+					
+					
+					
 					</tbody>
 				</table>
 			</div>
@@ -197,6 +203,12 @@ foreach ( $modules as $module ) {
 							}
 							?>
 
+						
+						
+						
+						
+						
+						
 						
 						
 						
@@ -306,7 +318,7 @@ foreach ( $modules as $module ) {
 					</div>
 
 					<!-- HED -->
-					<label class="col-md-4 control-label" for="email">HED</label>
+					<label class="col-md-4 control-label" for="email">Heures </label>
 					<div class="col-md-5">
 						<div class="input-group">
 							<?php

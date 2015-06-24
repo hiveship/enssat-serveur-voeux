@@ -13,7 +13,7 @@ class Decharge_controller extends Application_controller
 	}
 
 	/**
-	 * Récupère les ou la décharge(s) de l'utilisateur actuellement connecté.
+	 * Récupère la ou les décharge(s) de l'utilisateur actuellement connecté.
 	 */
 	public function index ()
 	{
@@ -42,7 +42,7 @@ class Decharge_controller extends Application_controller
 	}
 
 	/**
-	 * Modifie le motif d'une décharge de l'utilisateur courant.
+	 * Modifie le motif d'une décharge de l'utilisateur connecté.
 	 * 
 	 * @param unknown $id        	
 	 */
@@ -54,7 +54,7 @@ class Decharge_controller extends Application_controller
 	}
 
 	/**
-	 * Supprime une décharge de l'utilisateur courament connecté
+	 * Supprime une décharge de l'utilisateur actuellement connecté.
 	 */
 	public function delete ( $id )
 	{
@@ -71,6 +71,9 @@ class Decharge_controller extends Application_controller
 		}
 	}
 
+	/**
+	 * Génère un motif correspondant à son id en JSON.
+	 */
 	public function ajax_get_motif ()
 	{
 		echo json_encode ( $this -> Decharge_model -> get_from_id ( $this -> input -> post ( 'id' ) ) );

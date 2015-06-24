@@ -74,7 +74,7 @@ foreach ( $modules as $module ) {
 	$heures_TD = 0;
 	foreach ( $cours [$i] as $cours_mod ) {
 		$heures += $cours_mod ['hed'];
-		$heures_TD += convert_heures( $cours_mod ['hed'], $cours_mod ['type'] );
+		$heures_TD += convert_heures ( $cours_mod ['hed'], $cours_mod ['type'] );
 	}
 	echo "{	\"Heures\": \"$heures\" ,
 						\"Heures_TD\": \"$heures_TD\" ,
@@ -118,11 +118,11 @@ foreach ( $modules as $module ) {
 			echo "<td><center>";
 			if ( $key == 'responsable' ) {
 				if ( $value == null ) {
-					echo "<a href=" . site_url( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">m'incrire</a>";
-				} elseif ( $value == $this -> session -> userdata( 'me' )['login'] ) {
-					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] ) . ">me retirer</a>";
-				} elseif ( $this -> session -> userdata( 'me' )['administrateur'] ) {
-					echo "<a href=" . site_url( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
+					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">s'incrire</a>";
+				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
+					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">se retirer</a>";
+				} elseif ( $this -> session -> userdata ( 'me' )['administrateur'] ) {
+					echo "<a href=" . site_url ( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -137,10 +137,10 @@ foreach ( $modules as $module ) {
 	$heures_TD = 0;
 	foreach ( $cours [$i - 1] as $cours_mod ) {
 		$heures += $cours_mod ['hed'];
-		$heures_TD += convert_heures( $cours_mod ['hed'], $cours_mod ['type'] );
+		$heures_TD += convert_heures ( $cours_mod ['hed'], $cours_mod ['type'] );
 	}
 	
-	if ( $module ['responsable'] == $this -> session -> userdata( 'me' )['login'] ) {
+	if ( $module ['responsable'] == $this -> session -> userdata ( 'me' )['login'] ) {
 		echo "<td class='info'>";
 	} else {
 		echo "<td>";
@@ -178,9 +178,9 @@ foreach ( $modules as $module ) {
 				echo "<td>";
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
-					echo "<a href=" . site_url( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode( $cours_mod ['partie'] ) ) . ">me retirer</a>";
+					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">se retirer</a>";
 				} else if ( $key == 'hed' ) {
-					echo "$value (" . convert_heures( $value, $cours_mod ['type'] ) . ")";
+					echo "$value (" . convert_heures ( $value, $cours_mod ['type'] ) . ")";
 				} else {
 					echo $value;
 				}
