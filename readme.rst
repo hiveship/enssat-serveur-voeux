@@ -25,6 +25,7 @@ Installation
  $config ['base_url'] = 'YOUR URL HERE'
 
 4. Set up your the database on your server by creating a database and then running the SQL script (misc/voeux_DUMP_current) on it
+
 5. Edit the application/config/database.php file
  'hostname' => 'IP:port adress to connect to your database'
  
@@ -71,7 +72,3 @@ Contributions
 Do not hesitate to send a pull request.
 
 For contributors, it is appreciated to use the Eclips code formater (misc/eclipse_php_formatter.xml). 
-
-
-
-
