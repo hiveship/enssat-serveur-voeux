@@ -45,9 +45,9 @@ foreach ( $modules as $module ) {
 		}
 	}
 	if ( $hed_pris != $hed_total ) {
-		echo "<td><center>$hed_pris / $hed_total</center></td>";
+		echo "<td class='success'><center>$hed_pris / $hed_total</center></td>";
 	} else {
-		echo "<td><center>$hed_total</center></td>";
+		echo "<td class='danger' ><center>$hed_total</center></td>";
 	}
 	
 	?>
@@ -126,54 +126,7 @@ foreach ( $modules as $module ) {
 }
 ?>
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+	
 					
 					
 					
@@ -221,57 +174,7 @@ foreach ( $modules as $module ) {
 
 						
 						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
+			
 						
 						
 						
