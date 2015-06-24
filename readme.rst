@@ -5,7 +5,7 @@ Installation guide
 
 
 *******************
-Server Requirements
+Server requirements
 *******************
 
 PHP version 5.4 or newer is recommended. It should work on 5.2.4 as well, but we strongly advise you NOT to run
@@ -28,14 +28,14 @@ Installation
 1. Download the project or clone the git repository.
 2. Copy the file misc/config.php in the application/config folder.
 3. Edit this file to complete the base url parameter (URL to access the project folder on your web server) 
- $config ['base_url'] = 'YOUR URL HERE';
+ $config ['base_url'] = 'YOUR URL HERE'
 
 4. Set up your the database on your server (see above).
 5. Edit the application/config/database.php file
- 'hostname' => 'IP:port adress to connect to your database', 
-	'username' => 'username to connect to your database', 
-	'password' => 'password to connect to your database', 
-	'database' => 'name of the database (default is 'voeux')', 
+ 'hostname' => 'IP:port adress to connect to your database'
+ 'username' => 'username to connect to your database'
+ 'password' => 'password to connect to your database'
+ 'database' => 'name of the database (default is 'voeux')'
 
 6. Congrats ! The application should now be available on your browser !
  
