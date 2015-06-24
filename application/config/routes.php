@@ -62,6 +62,8 @@ $route ['admin/enseignants/create'] = 'admin/Enseignant_controller/create';
 $route ['admin/enseignants/delete/(:any)'] = 'admin/Enseignant_controller/delete/$1';
 $route ['admin/enseignants/edit/(:any)'] = 'admin/Enseignant_controller/edit/$1';
 $route ['admin/enseignants/get'] = 'admin/Enseignant_controller/get/';
+$route ['admin/enseignants/retirer/(:any)/(:any)'] = 'admin/Enseignant_controller/retirer/$1/$2';
+$route ['admin/enseignants/retirer/(:any)/(:any)/(:any)'] = 'admin/Enseignant_controller/retirer/$1/$2/$3';
 $route ['admin/enseignants/inscrire_force/(:any)'] = 'admin/Enseignant_controller/inscrire_force/$1';
 $route ['admin/enseignants/inscrire_force/(:any)/(:any)'] = 'admin/Enseignant_controller/inscrire_force/$1/$2';
 
@@ -71,6 +73,10 @@ $route ['enseignants/update'] = 'Enseignant_controller/update';
 $route ['enseignants/get'] = 'Enseignant_controller/get';
 $route ['enseignants/edit/password'] = 'Enseignant_controller/change_password';
 $route ['enseignants/cours_de/(:any)'] = 'Enseignant_controller/cours_de/$1';
+$route ['enseignants/inscrire/(:any)'] = 'Enseignant_controller/inscrire/$1';
+$route ['enseignants/inscrire/(:any)/(:any)'] = 'Enseignant_controller/inscrire/$1/$2';
+$route ['enseignants/retirer/(:any)'] = 'Enseignant_controller/retirer/$1';
+$route ['enseignants/retirer/(:any)/(:any)'] = 'Enseignant_controller/retirer/$1/$2';
 
 $route ['cours'] = "Module_controller/index";
 $route ['admin/cours'] = "admin/Module_controller/get";
@@ -91,6 +97,7 @@ $route ['decharges/create'] = "Decharge_controller/create";
 $route ['decharges/ajax_get_motif'] = "Decharge_controller/ajax_get_motif";
 $route ['decharges/update_motif/(:any)'] = "Decharge_controller/update_motif/$1";
 $route ['decharges/delete/(:any)'] = "Decharge_controller/delete/$1";
+$route ['admin/decharges/create'] = "admin/Decharge_controller/create";
 
 $route ['csv/download'] = "CSV_controller/create_csv";
 

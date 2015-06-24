@@ -172,6 +172,12 @@ class Enseignant_controller extends Application_controller
 
 	/**
 	 * Inscrit l'utilisateur courant à un cours ou nomme un utilisateur responsable de module.
+	 * si le cours n'est pas renseigné, alors l'inscription se fait en tant que responsable de module si possible
+	 * 
+	 * @param string $module
+	 *        	identifiant du module ou s'inscrire
+	 * @param string $cours
+	 *        	nom du cours ou s'inscrire
 	 */
 	public function inscrire ( $module, $cours = null )
 	{
@@ -193,6 +199,15 @@ class Enseignant_controller extends Application_controller
 		redirect ( 'cours', 'auto' );
 	}
 
+	/**
+	 * Désinscrit l'utilisateur courant à un cours ou denomme un utilisateur responsable de module.
+	 * si le cours n'est pas renseigné, alors la désinscription se fait en tant que responsable de module si possible
+	 * 
+	 * @param string $module
+	 *        	identifiant du module ou s'inscrire
+	 * @param string $cours
+	 *        	nom du cours ou s'inscrire
+	 */
 	public function retirer ( $module, $cours = null )
 	{
 		if ( $cours == null ) {

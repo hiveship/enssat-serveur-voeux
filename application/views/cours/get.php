@@ -1,5 +1,5 @@
 <?php
-// TODO pas idéal d'avoir cette fonction ici, il faudrait plutôt appeler la fonction écrite dans Enseignant_controller.
+
 function convert_heures ( $heures, $type )
 {
 	switch ( $type ) {
@@ -27,8 +27,10 @@ function convert_heures ( $heures, $type )
 					<h3 class="panel-title">Modules</h3>
 				</div>
 
-				<script type="text/javascript" src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
-				<script type="text/javascript" src="<?php echo base_url("assets/js/radar.js"); ?>"></script>
+				<script type="text/javascript"
+					src="<?php echo base_url("assets/js/amcharts.js"); ?>"></script>
+				<script type="text/javascript"
+					src="<?php echo base_url("assets/js/radar.js"); ?>"></script>
 
 				<!-- amCharts javascript code -->
 				<script type="text/javascript">
@@ -88,7 +90,8 @@ foreach ( $modules as $module ) {
 			);
 		</script>
 
-				<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
+				<div id="chartdiv"
+					style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
 
 				<table id='modules' class='table table-hover table-striped'>
 					<thead>
@@ -118,11 +121,11 @@ foreach ( $modules as $module ) {
 			echo "<td><center>";
 			if ( $key == 'responsable' ) {
 				if ( $value == null ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/inscrire/" . $module ['id'] ) . ">s'incrire</a>";
+					echo "<a href=" . site_url ( "enseignants/inscrire/" . $module ['id'] ) . ">s'incrire</a>";
 				} elseif ( $value == $this -> session -> userdata ( 'me' )['login'] ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] ) . ">se retirer</a>";
+					echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] ) . ">se retirer</a>";
 				} elseif ( $this -> session -> userdata ( 'me' )['administrateur'] ) {
-					echo "<a href=" . site_url ( "admin/Enseignant_controller/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
+					echo "<a href=" . site_url ( "admin/enseignants/retirer/" . $module ['responsable'] . "/" . $module ['id'] ) . ">retirer</a>";
 				} else {
 					echo $value;
 				}
@@ -178,7 +181,7 @@ foreach ( $modules as $module ) {
 				echo "<td>";
 				echo "<center>";
 				if ( $key == 'enseignant' ) {
-					echo "<a href=" . site_url ( "Enseignant_controller/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">se retirer</a>";
+					echo "<a href=" . site_url ( "enseignants/retirer/" . $module ['id'] . '/' . rawurlencode ( $cours_mod ['partie'] ) ) . ">se retirer</a>";
 				} else if ( $key == 'hed' ) {
 					echo "$value (" . convert_heures ( $value, $cours_mod ['type'] ) . ")";
 				} else {
