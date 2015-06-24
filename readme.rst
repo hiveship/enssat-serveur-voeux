@@ -28,6 +28,14 @@ Installation
 
 Expliquer comment configurer quand on viens de clone le dépo (fichier de config à aller chercher dans misc et à remplir avec url de base notament + fichier database à remplir en fonction des paramètres de notre bdd
  
+*********
+Sample users
+*********
+
+Compte inactif : login // mdp
+Enseignant actif : login // mdp
+Administrateur actif : login // mdp
+
 *******
 License
 *******
