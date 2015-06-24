@@ -172,33 +172,33 @@ class Enseignant_controller extends Admin_controller
 		if ( $cours == null ) {
 			if ( ! $this -> Module_model -> est_libre ( $module ) ) {
 				flash_error ( "il y a déja un responsable ou le module n'existe pas" );
-				redirect ( 'admin/cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+				redirect ( 'admin/cours', 'auto' );
 			}
 			$this -> Module_model -> inscrire_responsable ( $module, $login );
-			// TODO un flash_success de confirmation ?
+			flash_success ( "inscription réussie" );
 		} else {
 			$cours = rawurldecode ( $cours );
 			if ( ! $this -> Cours_model -> est_libre ( $module, $cours ) ) {
 				flash_error ( "cours occupé ou non existant " . $cours );
-				redirect ( 'admin/cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+				redirect ( 'admin/cours', 'auto' );
 			}
 			$this -> Cours_model -> inscrire_enseignant ( $module, $cours, $login );
-			// TODO un flash_success de confirmation ?
+			flash_success ( "inscription réussie" );
 		}
-		redirect ( 'admin/cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+		redirect ( 'admin/cours', 'auto' );
 	}
 
 	public function retirer ( $login, $module, $cours = null )
 	{
 		if ( $cours == null ) {
 			$this -> Module_model -> desinscrire_responsable ( $module, $login );
-			// TODO message success
+			flash_success ( "désinscription réussie" );
 		} else {
 			$cours = rawurldecode ( $cours );
 			$this -> Cours_model -> desinscrire_enseignant ( $module, $cours, $login );
-			// TODO message success
+			flash_success ( "désinscription réussie" );
 		}
-		redirect ( 'admin/cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+		redirect ( 'admin/cours', 'auto' );
 	}
 
 	public function inscrire_force ( $module, $cours = NULL )
@@ -206,13 +206,13 @@ class Enseignant_controller extends Admin_controller
 		$login = $this -> input -> post ( 'login' );
 		if ( $cours == null ) {
 			$this -> Module_model -> inscrire_responsable ( $module, $login );
-			// TODO un flash_success de confirmation ?
+			flash_success ( "inscription réussie" );
 		} else {
 			$cours = rawurldecode ( $cours );
 			$this -> Cours_model -> inscrire_enseignant ( $module, $cours, $login );
-			// TODO un flash_success de confirmation ?
+			flash_success ( "inscription réussie" );
 		}
-		redirect ( 'admin/cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+		redirect ( 'admin/cours', 'auto' );
 	}
 	
 	// =========
@@ -229,7 +229,6 @@ class Enseignant_controller extends Admin_controller
 
 	private function generate_random_string ()
 	{
-		// TODO: trouver mieux ?
 		return substr ( str_shuffle ( 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?~#@' ), 0, 10 );
 	}
 

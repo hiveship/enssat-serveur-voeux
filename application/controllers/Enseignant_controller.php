@@ -178,32 +178,33 @@ class Enseignant_controller extends Application_controller
 		if ( $cours == null ) {
 			if ( ! $this -> Module_model -> est_libre ( $module ) ) {
 				flash_error ( "il y a déja un responsable ou le module n'exite pas" );
-				redirect ( 'cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+				redirect ( 'cours', 'auto' );
 			}
 			$this -> Module_model -> inscrire_responsable ( $module, $this -> session -> userdata ( 'me' )['login'] );
 		} else {
 			$cours = rawurldecode ( $cours ); // à cause des espaces
 			if ( ! $this -> Cours_model -> est_libre ( $module, $cours ) ) {
 				flash_error ( "cours occupé ou non existant " . $cours );
-				redirect ( 'cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+				redirect ( 'cours', 'auto' );
 			}
 			$this -> Cours_model -> inscrire_enseignant ( $module, $cours, $this -> session -> userdata ( 'me' )['login'] );
-			// TODO un flash_success de confirmation ?
+			flash_success ( "inscription réussie" );
 		}
-		redirect ( 'cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+		redirect ( 'cours', 'auto' );
 	}
 
 	public function retirer ( $module, $cours = null )
 	{
 		if ( $cours == null ) {
 			$this -> Module_model -> desinscrire_responsable ( $module, $this -> session -> userdata ( 'me' )['login'] );
-			// TODO message success
+			flash_success ( "désinscription réussie" );
+		
 		} else {
 			$cours = rawurldecode ( $cours ); // à cause des espaces
 			$this -> Cours_model -> desinscrire_enseignant ( $module, $cours, $this -> session -> userdata ( 'me' )['login'] );
-			// TODO message success
+			flash_success ( "désinscription réussie" );
 		}
-		redirect ( 'cours', 'auto' ); // TODO renomer avec le nom de la bonne route
+		redirect ( 'cours', 'auto' );
 	}
 
 	public function get_heures_effectue ( $login = null )
@@ -213,8 +214,7 @@ class Enseignant_controller extends Application_controller
 		}
 		echo $this -> Enseignant_model -> get_sum_heures ( $login );
 	}
-	
-	// TODO devrait plutôt se trouver dans me modèle étant donné que c'est une règle métier
+
 	private function convert_heures ( $heures, $type )
 	{
 		switch ( $type ) {

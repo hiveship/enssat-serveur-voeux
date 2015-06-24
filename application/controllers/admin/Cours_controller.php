@@ -48,23 +48,29 @@ class Cours_controller extends Admin_controller
 	 */
 	public function create ( $module = NULL )
 	{
+		// verification de de l'existance du module
 		if ( $module == NULL ) {
 			redirect ( 'admin/cours', 'auto' );
 		}
 		
+		// preparation en cas d'erreur
 		$modules = array ( 
 				
 				'module' => $module 
 		);
 		
+		// préparation verification formulaire
 		$this -> form_validation -> set_rules ( 'nom', 'nom', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'type', 'type', 'trim|required' );
 		$this -> form_validation -> set_rules ( 'hed', 'hed', 'trim|required' );
 		
+		// vérification formulaire
 		if ( $this -> form_validation -> run () === TRUE ) {
 			$part = $this -> input -> post ( 'nom' );
 			$type = $this -> input -> post ( 'type' );
 			$hed = $this -> input -> post ( 'hed' );
+			
+			// verification de l'unicitée de la partie
 			if ( ! $this -> Cours_model -> exists ( $module, $part ) ) {
 				$this -> Cours_model -> create ( $module, $part, $type, $hed );
 				redirect ( 'admin/cours', 'auto' );
@@ -76,6 +82,14 @@ class Cours_controller extends Admin_controller
 		$this -> load -> template ( 'admin/cours/create', $modules );
 	}
 
+	/**
+	 * supprime une partie transmise en parametre
+	 * 
+	 * @param string $module
+	 *        	identifiant du module de la partie à supprimer
+	 * @param string $partie
+	 *        	nom de la partie à supprimer
+	 */
 	public function delete ( $module, $partie )
 	{
 		$partie = rawurldecode ( $partie );
@@ -84,6 +98,14 @@ class Cours_controller extends Admin_controller
 		redirect ( 'admin/cours', 'auto' );
 	}
 
+	/**
+	 * retourne sous la forme de Json la partie transmise en parametre
+	 * 
+	 * @param string $module
+	 *        	identifiant du module de la partie à recuperer
+	 * @param string $partie
+	 *        	nom de la partie à recupérer
+	 */
 	public function get_ajax ( $module, $partie )
 	{
 		$partie = rawurldecode ( $partie );
@@ -91,6 +113,14 @@ class Cours_controller extends Admin_controller
 		echo json_encode ( $this -> Cours_model -> get ( $module, $partie ) );
 	}
 
+	/**
+	 * verifie l'existance d'une partie
+	 * 
+	 * @param string $module
+	 *        	identifiant du module de la partie à verifier
+	 * @param string $partie
+	 *        	nom de la partie à verifier
+	 */
 	private function check_parameters ( $module, $partie )
 	{
 		if ( ! isset ( $partie ) || ! isset ( $module ) || ! $this -> Cours_model -> exists ( $module, $partie ) ) {
