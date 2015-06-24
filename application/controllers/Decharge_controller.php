@@ -24,7 +24,7 @@ class Decharge_controller extends Application_controller
 	}
 
 	/**
-	 * Ajoute une décharge, c'est la personne connectée qui s'ajoute une décharge
+	 * Ajoute une décharge, c'est la personne connectée qui s'ajoute une décharge.
 	 */
 	public function create ()
 	{
@@ -61,7 +61,7 @@ class Decharge_controller extends Application_controller
 		$login = $this -> session -> userdata ( 'me' )['login'];
 		$enseignant = $this -> Decharge_model -> get_from_id ( $id );
 		$enseignant_login = $enseignant [0] ['enseignant'];
-		
+		// on vérifie que le login de la personne connecté est égal au login correspondant à la décharge qui va être supprimée
 		if ( $login == $enseignant_login || $this -> session -> userdata ( 'me' )['administrateur'] == 1 ) {
 			$this -> Decharge_model -> delete ( $id );
 			// TODO flash success
