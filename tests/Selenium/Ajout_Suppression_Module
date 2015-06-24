@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>Ajout_Suppression_Module</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Ajout_Suppression_Module</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/projet/enssat-serveur-voeux/index.php/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=login</td>
+	<td>mnantel</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//body/div/div</td>
+	<td>Authentification réussie !×</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=×</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Administration</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Gestion des cours</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Changer enseignant</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=choix_enseignant</td>
+	<td>label=François GOASDOUÉ</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=mysubmit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//tr[@id='package1']/td[5]/center</td>
+	<td>fgoasdoue</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Créer Module</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ID</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=public</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=semestre</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=libelle</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=P0-Pname</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=P0-Ptype</td>
+	<td>label=TD</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=#package16 &gt; td &gt; center</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//tr[@id='package16']/td[2]/center</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//tr[@id='package16']/td[3]/center</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//tr[@id='package16']/td[4]/center</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//a[@id='suppr'])[64]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.confirm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//body/div/div</td>
+	<td>module supprimé×</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Déconnexion</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
