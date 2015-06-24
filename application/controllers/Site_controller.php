@@ -24,7 +24,7 @@ class Site_controller extends CI_Controller
 			} else {
 				$this -> session -> set_userdata( 'me', $me ); // Stocké en session (côté serveur) et non en cookie (côté client), donc pas de soucis de sécurité si le mot de passe est présent dans la variable de session.
 				flash_success( 'Authentification réussie !' );
-				redirect( 'enseignants', 'auto' );
+				redirect( "enseignants/cours_de/" . $me ['login'], 'auto' );
 			}
 		} else {
 			flash_error( "Login et/ou mot de passe incorrect !" );
