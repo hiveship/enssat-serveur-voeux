@@ -19,7 +19,7 @@ This project has only been tested using an Apache Server and a MySQL database.
 Setting up the database
 **************************
 
-MySQL et dump à initiliser
+TODO
 
 *********
 Installation
