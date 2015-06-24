@@ -33,7 +33,9 @@ Sample users
 *********
 
 Compte inactif : login // mdp
+
 Enseignant actif : login // mdp
+
 Administrateur actif : login // mdp
 
 *******
